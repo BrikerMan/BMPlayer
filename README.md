@@ -22,7 +22,7 @@ pod "BMPlayer"
 
 ## Author
 
-Eliyar Eziz, eliyar917@gmail.com
+BrikerMan
 
 ## License
 

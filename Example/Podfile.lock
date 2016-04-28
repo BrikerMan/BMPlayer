@@ -1,0 +1,14 @@
+PODS:
+  - BMPlayer (0.1.0)
+
+DEPENDENCIES:
+  - BMPlayer (from `../`)
+
+EXTERNAL SOURCES:
+  BMPlayer:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BMPlayer: 151f6074f0c1f926a1cf9ccd03cde54af7bfa845
+
+COCOAPODS: 0.39.0

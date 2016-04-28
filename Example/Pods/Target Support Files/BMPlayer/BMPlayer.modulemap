@@ -1,0 +1,6 @@
+framework module BMPlayer {
+  umbrella header "BMPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}
