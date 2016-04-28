@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Eliyar Eziz" => "eliyar917@gmail.com" }
   s.source           = { :git => "https://github.com/BrikerMan/BMPlayer.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'http://weibo.com/536445669'
 
   s.ios.deployment_target = '8.0'
 

@@ -1,1753 +1,784 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>001F9F682FDDF024A965A58320F5453F</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>EE3C2F7609AC481F1DBC6689516883BF</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>BMPlayer</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>011C3A79873EC2FC4BE107B4B3E43A1C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>07350B3D46B4C6EB1054E2CFA0006D51</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>54CFED26145F5B90B0767FA3F0EE3F1C</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>099F279F91D9B55FA87AE213E34CFE4C</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>64E78E86E71BFC80B0B55D838CFCD3F2</string>
-			<key>buildPhases</key>
-			<array>
-				<string>07350B3D46B4C6EB1054E2CFA0006D51</string>
-				<string>7E7AA50DCD5EF94A0B376025AE75C9D5</string>
-				<string>70FC0F07781C92199425CBEA38DE22B8</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>35CA08A62D6DB795B31AD9BA365C0425</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods-BMPlayer_Tests</string>
-			<key>productName</key>
-			<string>Pods-BMPlayer_Tests</string>
-			<key>productReference</key>
-			<string>628C386F0AD26698F04B8ADA3AE7F32F</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>0DD2AC573A706B98542BF075781635DE</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>3258E29464FAF9E2E3C66AA16D3E6FC2</string>
-			<key>remoteInfo</key>
-			<string>BMPlayer-BMPlayer</string>
-		</dict>
-		<key>0F028EC79DAF4163EF870E97C73246F2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>10DE1947DAC0ED28F6C0A9F9BD75D546</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>YES</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>RELEASE=1</string>
-				</array>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>STRIP_INSTALLED_PRODUCT</key>
-				<string>NO</string>
-				<key>SYMROOT</key>
-				<string>${SRCROOT}/../build</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>1C07384224623464F2A0F4F46F439798</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>20DFD83A7A9B111FF88738EC51BE39EF</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>EF8FF01A7851AD25E618CE9D7A577039</string>
-			<key>buildPhases</key>
-			<array>
-				<string>E7E35E7AF504396AF35303E552696E01</string>
-				<string>3C782377B39E0BC2EE2FEADC11ECAE26</string>
-				<string>AB240C75DCA599CBB8A8D968EFE8F643</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>BDDB76466DA37563C6EAD59751407359</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods-BMPlayer_Example</string>
-			<key>productName</key>
-			<string>Pods-BMPlayer_Example</string>
-			<key>productReference</key>
-			<string>6866EAD4C6E853DF8E77B741A8853C5F</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>22F88529BBA5B4F9A92B49BD00BB5C76</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>248FDA6C785568FE361A253776302B1F</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>FD0F09C04FA3CADBE831F9AAD1E74D33</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>26AB7A885E71DC6DA12709A404FE048D</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>29424B7921F6EEE3E24F4006478078B7</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2A7355ABB6951B332FD2F930253A991D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>2D8E8EC45A3A1A1D94AE762CB5028504</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>552D02D5BA751AC2E8790D2811D496CA</string>
-				<string>10DE1947DAC0ED28F6C0A9F9BD75D546</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>2EFF8178422D95F2FD8DA532AEDD2B23</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>4C369424FDFB379889AE7FD546D8824A</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Tests/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Tests/Pods-BMPlayer_Tests.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_BMPlayer_Tests</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>309036FB83ACE453A54A2A420540F8B8</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>EE3C2F7609AC481F1DBC6689516883BF</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/BMPlayer/BMPlayer-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/BMPlayer/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/BMPlayer/BMPlayer.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>BMPlayer</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>3258E29464FAF9E2E3C66AA16D3E6FC2</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>7B096B411ADC94D7CBC40F85117627E5</string>
-			<key>buildPhases</key>
-			<array>
-				<string>D83FCFCF3531FAE2D357F49187B41FC2</string>
-				<string>E6C33C6C9D556F22438E751F606DE380</string>
-				<string>2A7355ABB6951B332FD2F930253A991D</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>BMPlayer-BMPlayer</string>
-			<key>productName</key>
-			<string>BMPlayer-BMPlayer</string>
-			<key>productReference</key>
-			<string>CEF30F178BA6681880673EC19ED2572E</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle</string>
-		</dict>
-		<key>35CA08A62D6DB795B31AD9BA365C0425</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>BMPlayer</string>
-			<key>target</key>
-			<string>EF942DD32453496EE51CA197618864F9</string>
-			<key>targetProxy</key>
-			<string>E4637FD2EEA64F6B3D3E3D3826743F7C</string>
-		</dict>
-		<key>3C782377B39E0BC2EE2FEADC11ECAE26</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>1C07384224623464F2A0F4F46F439798</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>3E227887DE2D7D3517FAFA5B6852FEC5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3E4E89230EF59BC255123B67864ACF77</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>484478941BE9F5C1865D5C014DD5ED0A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4C369424FDFB379889AE7FD546D8824A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>512D2AA2CC639E59F5E78653329C1D12</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>54CFED26145F5B90B0767FA3F0EE3F1C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E227887DE2D7D3517FAFA5B6852FEC5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>552D02D5BA751AC2E8790D2811D496CA</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
-				<string>NO</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>STRIP_INSTALLED_PRODUCT</key>
-				<string>NO</string>
-				<key>SYMROOT</key>
-				<string>${SRCROOT}/../build</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>55BCCE2BE1F36397C0F3075C5629E3B3</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>57A7E70B49B2841A363FF252CA4480D9</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>EF942DD32453496EE51CA197618864F9</string>
-			<key>remoteInfo</key>
-			<string>BMPlayer</string>
-		</dict>
-		<key>5803A9EF8642A22124C7B768E3DE6FB6</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>FB0EDCBA729DDF84AF7C75AD7C90E861</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Example/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_BMPlayer_Example</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>628C386F0AD26698F04B8ADA3AE7F32F</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_BMPlayer_Tests.framework</string>
-			<key>path</key>
-			<string>Pods_BMPlayer_Tests.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>64E78E86E71BFC80B0B55D838CFCD3F2</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>8E475EC72B330F695F246B8CD47D0C92</string>
-				<string>2EFF8178422D95F2FD8DA532AEDD2B23</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>6866EAD4C6E853DF8E77B741A8853C5F</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_BMPlayer_Example.framework</string>
-			<key>path</key>
-			<string>Pods_BMPlayer_Example.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>6EF176477D0CABBD50129C28E389010C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9209D21784346F83E716EE78E9C11608</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>70FC0F07781C92199425CBEA38DE22B8</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>76ACACFF3F91FFE83D12EE82A070EF8D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>72EE0568BD43DB5A87024E3BB31B1CAF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>BMPlayer-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>76ACACFF3F91FFE83D12EE82A070EF8D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D987AAB1767A7EA0CCD3D4690CA85E7E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>7B096B411ADC94D7CBC40F85117627E5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>8FD2A3A885E23B63A0365C2D1C4A3A8A</string>
-				<string>001F9F682FDDF024A965A58320F5453F</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>7DB346D0F39D3F0E887471402A8071AB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
-				<string>D474D8FE38F447B90467A7BEEA7D2634</string>
-				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>CC668F5CB887C78310A4EBAEFB27A11B</string>
-				<string>8290C0D7D4E669ED9CCB2FF9D03B79CA</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7E7AA50DCD5EF94A0B376025AE75C9D5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>512D2AA2CC639E59F5E78653329C1D12</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>823B141ABF5EB136AA12C3D23934B3E4</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>EE3C2F7609AC481F1DBC6689516883BF</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/BMPlayer/BMPlayer-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/BMPlayer/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/BMPlayer/BMPlayer.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>PRODUCT_NAME</key>
-				<string>BMPlayer</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>8290C0D7D4E669ED9CCB2FF9D03B79CA</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>ED7795291564D6877A61CDCC7004FF79</string>
-				<string>98DA22763EF2BEF44B9B4B8E9C7952B9</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Targets Support Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>82C3EF82AE0315659D29386B40A5D79F</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CA472731BC620AE870F58DA963EE08AC</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Classes</string>
-			<key>path</key>
-			<string>Classes</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8A044617B807A8D100BBF60657C55A97</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BAAE7D85726DE5FB240DA7E0C9E9EDE2</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>8C1C778C02C68CD5F059DC7F977C71AB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8D04F567E35C80E23E12C04DEBA880AD</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AC262FB697210C7F1C651D64D9E42512</string>
-				<string>91B89A3E8AA09207C9B9D7FED5C9B50B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8E475EC72B330F695F246B8CD47D0C92</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>F8D8772D18A964600C38B8C533B071F8</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Tests/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Tests/Pods-BMPlayer_Tests.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_BMPlayer_Tests</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>8FD2A3A885E23B63A0365C2D1C4A3A8A</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>EE3C2F7609AC481F1DBC6689516883BF</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>BMPlayer</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>91B89A3E8AA09207C9B9D7FED5C9B50B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CA472731BC620AE870F58DA963EE08AC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>9209D21784346F83E716EE78E9C11608</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>94EF3EDAEBF2A645684F87B92C14FBEF</key>
-		<dict>
-			<key>fileRef</key>
-			<string>72EE0568BD43DB5A87024E3BB31B1CAF</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>96348CDAFD810EA689322F127C65F738</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>55BCCE2BE1F36397C0F3075C5629E3B3</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Example/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.3</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_BMPlayer_Example</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>98DA22763EF2BEF44B9B4B8E9C7952B9</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8C1C778C02C68CD5F059DC7F977C71AB</string>
-				<string>9D1F3401273F58DC6F5EC5B93151B511</string>
-				<string>22F88529BBA5B4F9A92B49BD00BB5C76</string>
-				<string>011C3A79873EC2FC4BE107B4B3E43A1C</string>
-				<string>3E227887DE2D7D3517FAFA5B6852FEC5</string>
-				<string>0F028EC79DAF4163EF870E97C73246F2</string>
-				<string>484478941BE9F5C1865D5C014DD5ED0A</string>
-				<string>D987AAB1767A7EA0CCD3D4690CA85E7E</string>
-				<string>F8D8772D18A964600C38B8C533B071F8</string>
-				<string>4C369424FDFB379889AE7FD546D8824A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods-BMPlayer_Tests</string>
-			<key>path</key>
-			<string>Target Support Files/Pods-BMPlayer_Tests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9A7118C2F8B748CB8AC50A451F82F0A9</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>94EF3EDAEBF2A645684F87B92C14FBEF</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>9D1F3401273F58DC6F5EC5B93151B511</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A02C221ACF259BC9B9D108FEB8C9FF3F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>BMPlayer-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A479280B37450F7A31744F1DD2786210</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AB240C75DCA599CBB8A8D968EFE8F643</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>6EF176477D0CABBD50129C28E389010C</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AB34B91E6C914052A5DB2ADCA173753E</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>B971C5FE9BB691B353A5E4702FD44067</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>AC262FB697210C7F1C651D64D9E42512</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B4F91EFC0D22BA150BDC9589C61AE0AF</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B469299B3E07FD442A2BE12FCCB9EAC3</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>309036FB83ACE453A54A2A420540F8B8</string>
-				<string>823B141ABF5EB136AA12C3D23934B3E4</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>B4F91EFC0D22BA150BDC9589C61AE0AF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>BMPlayer-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B7B41203F76B1DC2D9F820094AA150BF</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>29424B7921F6EEE3E24F4006478078B7</string>
-				<string>EE3C2F7609AC481F1DBC6689516883BF</string>
-				<string>B4F91EFC0D22BA150BDC9589C61AE0AF</string>
-				<string>A02C221ACF259BC9B9D108FEB8C9FF3F</string>
-				<string>72EE0568BD43DB5A87024E3BB31B1CAF</string>
-				<string>BA8CB67CD76C6814830791B83834354A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>Example/Pods/Target Support Files/BMPlayer</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B971C5FE9BB691B353A5E4702FD44067</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>BA6428E9F66FD5A23C0A2E06ED26CD2F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>name</key>
-			<string>Podfile</string>
-			<key>path</key>
-			<string>../Podfile</string>
-			<key>sourceTree</key>
-			<string>SOURCE_ROOT</string>
-			<key>xcLanguageSpecificationIdentifier</key>
-			<string>xcode.lang.ruby</string>
-		</dict>
-		<key>BA8CB67CD76C6814830791B83834354A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BAAE7D85726DE5FB240DA7E0C9E9EDE2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>BF6342C8B29F4CEEA088EFF7AB4DE362</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BDDB76466DA37563C6EAD59751407359</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>BMPlayer</string>
-			<key>target</key>
-			<string>EF942DD32453496EE51CA197618864F9</string>
-			<key>targetProxy</key>
-			<string>57A7E70B49B2841A363FF252CA4480D9</string>
-		</dict>
-		<key>BF6342C8B29F4CEEA088EFF7AB4DE362</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3E4E89230EF59BC255123B67864ACF77</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>iOS</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C4E14DD21620C6CD6F1433BBBBB6DB48</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CA472731BC620AE870F58DA963EE08AC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>ReplaceMe.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CAED3ED91CE0F0D4970030DA559D9933</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>BMPlayer-BMPlayer</string>
-			<key>target</key>
-			<string>3258E29464FAF9E2E3C66AA16D3E6FC2</string>
-			<key>targetProxy</key>
-			<string>0DD2AC573A706B98542BF075781635DE</string>
-		</dict>
-		<key>CC668F5CB887C78310A4EBAEFB27A11B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CEF30F178BA6681880673EC19ED2572E</string>
-				<string>ECA416A77CA74DF18E490F37BE6D44C8</string>
-				<string>6866EAD4C6E853DF8E77B741A8853C5F</string>
-				<string>628C386F0AD26698F04B8ADA3AE7F32F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CCB178C3BE076771942D5DFC2FA7D74E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CEF30F178BA6681880673EC19ED2572E</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>BMPlayer.bundle</string>
-			<key>path</key>
-			<string>BMPlayer.bundle</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>CF5572FFAA81C53B0CC759B24C9C1DBA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D41D8CD98F00B204E9800998ECF8427E</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastSwiftUpdateCheck</key>
-				<string>0700</string>
-				<key>LastUpgradeCheck</key>
-				<string>0700</string>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>2D8E8EC45A3A1A1D94AE762CB5028504</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-			</array>
-			<key>mainGroup</key>
-			<string>7DB346D0F39D3F0E887471402A8071AB</string>
-			<key>productRefGroup</key>
-			<string>CC668F5CB887C78310A4EBAEFB27A11B</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>EF942DD32453496EE51CA197618864F9</string>
-				<string>3258E29464FAF9E2E3C66AA16D3E6FC2</string>
-				<string>20DFD83A7A9B111FF88738EC51BE39EF</string>
-				<string>099F279F91D9B55FA87AE213E34CFE4C</string>
-			</array>
-		</dict>
-		<key>D474D8FE38F447B90467A7BEEA7D2634</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>FE5F7830DB526B5807F2BE16A4427BF6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Development Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D83FCFCF3531FAE2D357F49187B41FC2</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>D987AAB1767A7EA0CCD3D4690CA85E7E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E29C59F3C0450D307AC0923807D7FF24</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E4637FD2EEA64F6B3D3E3D3826743F7C</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>EF942DD32453496EE51CA197618864F9</string>
-			<key>remoteInfo</key>
-			<string>BMPlayer</string>
-		</dict>
-		<key>E6C33C6C9D556F22438E751F606DE380</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>E7E35E7AF504396AF35303E552696E01</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8A044617B807A8D100BBF60657C55A97</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>ECA416A77CA74DF18E490F37BE6D44C8</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>BMPlayer.framework</string>
-			<key>path</key>
-			<string>BMPlayer.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>ED7795291564D6877A61CDCC7004FF79</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>CF5572FFAA81C53B0CC759B24C9C1DBA</string>
-				<string>26AB7A885E71DC6DA12709A404FE048D</string>
-				<string>C4E14DD21620C6CD6F1433BBBBB6DB48</string>
-				<string>CCB178C3BE076771942D5DFC2FA7D74E</string>
-				<string>BAAE7D85726DE5FB240DA7E0C9E9EDE2</string>
-				<string>A479280B37450F7A31744F1DD2786210</string>
-				<string>E29C59F3C0450D307AC0923807D7FF24</string>
-				<string>9209D21784346F83E716EE78E9C11608</string>
-				<string>55BCCE2BE1F36397C0F3075C5629E3B3</string>
-				<string>FB0EDCBA729DDF84AF7C75AD7C90E861</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods-BMPlayer_Example</string>
-			<key>path</key>
-			<string>Target Support Files/Pods-BMPlayer_Example</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>EE3C2F7609AC481F1DBC6689516883BF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>BMPlayer.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>EF8FF01A7851AD25E618CE9D7A577039</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>96348CDAFD810EA689322F127C65F738</string>
-				<string>5803A9EF8642A22124C7B768E3DE6FB6</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>EF942DD32453496EE51CA197618864F9</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>B469299B3E07FD442A2BE12FCCB9EAC3</string>
-			<key>buildPhases</key>
-			<array>
-				<string>8D04F567E35C80E23E12C04DEBA880AD</string>
-				<string>AB34B91E6C914052A5DB2ADCA173753E</string>
-				<string>248FDA6C785568FE361A253776302B1F</string>
-				<string>9A7118C2F8B748CB8AC50A451F82F0A9</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>CAED3ED91CE0F0D4970030DA559D9933</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>BMPlayer</string>
-			<key>productName</key>
-			<string>BMPlayer</string>
-			<key>productReference</key>
-			<string>ECA416A77CA74DF18E490F37BE6D44C8</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>F8D8772D18A964600C38B8C533B071F8</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Tests.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FB0EDCBA729DDF84AF7C75AD7C90E861</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-BMPlayer_Example.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FD0F09C04FA3CADBE831F9AAD1E74D33</key>
-		<dict>
-			<key>fileRef</key>
-			<string>CEF30F178BA6681880673EC19ED2572E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>FE5F7830DB526B5807F2BE16A4427BF6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>FE984CD872A9039E41EE0FA112277425</string>
-				<string>B7B41203F76B1DC2D9F820094AA150BF</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>BMPlayer</string>
-			<key>path</key>
-			<string>../..</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FE984CD872A9039E41EE0FA112277425</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>82C3EF82AE0315659D29386B40A5D79F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>BMPlayer</string>
-			<key>path</key>
-			<string>BMPlayer</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>D41D8CD98F00B204E9800998ECF8427E</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F96F7287DCF81BBC802F405CA926F0A /* BMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546E3BF8960B0B47108173DB24F7FBBB /* BMPlayer.swift */; };
+		1C07384224623464F2A0F4F46F439798 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		512D2AA2CC639E59F5E78653329C1D12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		54CFED26145F5B90B0767FA3F0EE3F1C /* Pods-BMPlayer_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E227887DE2D7D3517FAFA5B6852FEC5 /* Pods-BMPlayer_Tests-dummy.m */; };
+		6AB6B7151CD221DD0031AFC5 /* BMPlayerLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB6B7141CD221DD0031AFC5 /* BMPlayerLayerView.swift */; };
+		6D897E13C5A849C953C63FE3FEB24C18 /* BMPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F91EFC0D22BA150BDC9589C61AE0AF /* BMPlayer-dummy.m */; };
+		6EF176477D0CABBD50129C28E389010C /* Pods-BMPlayer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9209D21784346F83E716EE78E9C11608 /* Pods-BMPlayer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		76ACACFF3F91FFE83D12EE82A070EF8D /* Pods-BMPlayer_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D987AAB1767A7EA0CCD3D4690CA85E7E /* Pods-BMPlayer_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A044617B807A8D100BBF60657C55A97 /* Pods-BMPlayer_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BAAE7D85726DE5FB240DA7E0C9E9EDE2 /* Pods-BMPlayer_Example-dummy.m */; };
+		94EF3EDAEBF2A645684F87B92C14FBEF /* BMPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 72EE0568BD43DB5A87024E3BB31B1CAF /* BMPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B971C5FE9BB691B353A5E4702FD44067 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		FD0F09C04FA3CADBE831F9AAD1E74D33 /* BMPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEF30F178BA6681880673EC19ED2572E /* BMPlayer.bundle */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0DD2AC573A706B98542BF075781635DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3258E29464FAF9E2E3C66AA16D3E6FC2;
+			remoteInfo = "BMPlayer-BMPlayer";
+		};
+		57A7E70B49B2841A363FF252CA4480D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF942DD32453496EE51CA197618864F9;
+			remoteInfo = BMPlayer;
+		};
+		E4637FD2EEA64F6B3D3E3D3826743F7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF942DD32453496EE51CA197618864F9;
+			remoteInfo = BMPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		011C3A79873EC2FC4BE107B4B3E43A1C /* Pods-BMPlayer_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BMPlayer_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		0F028EC79DAF4163EF870E97C73246F2 /* Pods-BMPlayer_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BMPlayer_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		22F88529BBA5B4F9A92B49BD00BB5C76 /* Pods-BMPlayer_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BMPlayer_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		26AB7A885E71DC6DA12709A404FE048D /* Pods-BMPlayer_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BMPlayer_Example.modulemap"; sourceTree = "<group>"; };
+		29424B7921F6EEE3E24F4006478078B7 /* BMPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BMPlayer.modulemap; sourceTree = "<group>"; };
+		3E227887DE2D7D3517FAFA5B6852FEC5 /* Pods-BMPlayer_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BMPlayer_Tests-dummy.m"; sourceTree = "<group>"; };
+		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		484478941BE9F5C1865D5C014DD5ED0A /* Pods-BMPlayer_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BMPlayer_Tests-resources.sh"; sourceTree = "<group>"; };
+		4C369424FDFB379889AE7FD546D8824A /* Pods-BMPlayer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BMPlayer_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		546E3BF8960B0B47108173DB24F7FBBB /* BMPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BMPlayer.swift; sourceTree = "<group>"; };
+		55BCCE2BE1F36397C0F3075C5629E3B3 /* Pods-BMPlayer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BMPlayer_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		628C386F0AD26698F04B8ADA3AE7F32F /* Pods_BMPlayer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMPlayer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6866EAD4C6E853DF8E77B741A8853C5F /* Pods_BMPlayer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMPlayer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AB6B7141CD221DD0031AFC5 /* BMPlayerLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerLayerView.swift; sourceTree = "<group>"; };
+		72EE0568BD43DB5A87024E3BB31B1CAF /* BMPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BMPlayer-umbrella.h"; sourceTree = "<group>"; };
+		8C1C778C02C68CD5F059DC7F977C71AB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9209D21784346F83E716EE78E9C11608 /* Pods-BMPlayer_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BMPlayer_Example-umbrella.h"; sourceTree = "<group>"; };
+		9D1F3401273F58DC6F5EC5B93151B511 /* Pods-BMPlayer_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BMPlayer_Tests.modulemap"; sourceTree = "<group>"; };
+		A02C221ACF259BC9B9D108FEB8C9FF3F /* BMPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BMPlayer-prefix.pch"; sourceTree = "<group>"; };
+		A479280B37450F7A31744F1DD2786210 /* Pods-BMPlayer_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BMPlayer_Example-frameworks.sh"; sourceTree = "<group>"; };
+		B4F91EFC0D22BA150BDC9589C61AE0AF /* BMPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BMPlayer-dummy.m"; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BA8CB67CD76C6814830791B83834354A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAAE7D85726DE5FB240DA7E0C9E9EDE2 /* Pods-BMPlayer_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BMPlayer_Example-dummy.m"; sourceTree = "<group>"; };
+		C4E14DD21620C6CD6F1433BBBBB6DB48 /* Pods-BMPlayer_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BMPlayer_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CCB178C3BE076771942D5DFC2FA7D74E /* Pods-BMPlayer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BMPlayer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		CEF30F178BA6681880673EC19ED2572E /* BMPlayer.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMPlayer.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF5572FFAA81C53B0CC759B24C9C1DBA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D987AAB1767A7EA0CCD3D4690CA85E7E /* Pods-BMPlayer_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BMPlayer_Tests-umbrella.h"; sourceTree = "<group>"; };
+		E29C59F3C0450D307AC0923807D7FF24 /* Pods-BMPlayer_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BMPlayer_Example-resources.sh"; sourceTree = "<group>"; };
+		ECA416A77CA74DF18E490F37BE6D44C8 /* BMPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BMPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE3C2F7609AC481F1DBC6689516883BF /* BMPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BMPlayer.xcconfig; sourceTree = "<group>"; };
+		F8D8772D18A964600C38B8C533B071F8 /* Pods-BMPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BMPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FB0EDCBA729DDF84AF7C75AD7C90E861 /* Pods-BMPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BMPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3C782377B39E0BC2EE2FEADC11ECAE26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C07384224623464F2A0F4F46F439798 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E7AA50DCD5EF94A0B376025AE75C9D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				512D2AA2CC639E59F5E78653329C1D12 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB34B91E6C914052A5DB2ADCA173753E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B971C5FE9BB691B353A5E4702FD44067 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C33C6C9D556F22438E751F606DE380 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				D474D8FE38F447B90467A7BEEA7D2634 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				CC668F5CB887C78310A4EBAEFB27A11B /* Products */,
+				8290C0D7D4E669ED9CCB2FF9D03B79CA /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8290C0D7D4E669ED9CCB2FF9D03B79CA /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED7795291564D6877A61CDCC7004FF79 /* Pods-BMPlayer_Example */,
+				98DA22763EF2BEF44B9B4B8E9C7952B9 /* Pods-BMPlayer_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		98DA22763EF2BEF44B9B4B8E9C7952B9 /* Pods-BMPlayer_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8C1C778C02C68CD5F059DC7F977C71AB /* Info.plist */,
+				9D1F3401273F58DC6F5EC5B93151B511 /* Pods-BMPlayer_Tests.modulemap */,
+				22F88529BBA5B4F9A92B49BD00BB5C76 /* Pods-BMPlayer_Tests-acknowledgements.markdown */,
+				011C3A79873EC2FC4BE107B4B3E43A1C /* Pods-BMPlayer_Tests-acknowledgements.plist */,
+				3E227887DE2D7D3517FAFA5B6852FEC5 /* Pods-BMPlayer_Tests-dummy.m */,
+				0F028EC79DAF4163EF870E97C73246F2 /* Pods-BMPlayer_Tests-frameworks.sh */,
+				484478941BE9F5C1865D5C014DD5ED0A /* Pods-BMPlayer_Tests-resources.sh */,
+				D987AAB1767A7EA0CCD3D4690CA85E7E /* Pods-BMPlayer_Tests-umbrella.h */,
+				F8D8772D18A964600C38B8C533B071F8 /* Pods-BMPlayer_Tests.debug.xcconfig */,
+				4C369424FDFB379889AE7FD546D8824A /* Pods-BMPlayer_Tests.release.xcconfig */,
+			);
+			name = "Pods-BMPlayer_Tests";
+			path = "Target Support Files/Pods-BMPlayer_Tests";
+			sourceTree = "<group>";
+		};
+		B7B41203F76B1DC2D9F820094AA150BF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				29424B7921F6EEE3E24F4006478078B7 /* BMPlayer.modulemap */,
+				EE3C2F7609AC481F1DBC6689516883BF /* BMPlayer.xcconfig */,
+				B4F91EFC0D22BA150BDC9589C61AE0AF /* BMPlayer-dummy.m */,
+				A02C221ACF259BC9B9D108FEB8C9FF3F /* BMPlayer-prefix.pch */,
+				72EE0568BD43DB5A87024E3BB31B1CAF /* BMPlayer-umbrella.h */,
+				BA8CB67CD76C6814830791B83834354A /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/BMPlayer";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CC668F5CB887C78310A4EBAEFB27A11B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEF30F178BA6681880673EC19ED2572E /* BMPlayer.bundle */,
+				ECA416A77CA74DF18E490F37BE6D44C8 /* BMPlayer.framework */,
+				6866EAD4C6E853DF8E77B741A8853C5F /* Pods_BMPlayer_Example.framework */,
+				628C386F0AD26698F04B8ADA3AE7F32F /* Pods_BMPlayer_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D3FD0CB6D8EBF5C470F4CF3C11ECE006 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				546E3BF8960B0B47108173DB24F7FBBB /* BMPlayer.swift */,
+				6AB6B7141CD221DD0031AFC5 /* BMPlayerLayerView.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		D474D8FE38F447B90467A7BEEA7D2634 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE5F7830DB526B5807F2BE16A4427BF6 /* BMPlayer */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		ED7795291564D6877A61CDCC7004FF79 /* Pods-BMPlayer_Example */ = {
+			isa = PBXGroup;
+			children = (
+				CF5572FFAA81C53B0CC759B24C9C1DBA /* Info.plist */,
+				26AB7A885E71DC6DA12709A404FE048D /* Pods-BMPlayer_Example.modulemap */,
+				C4E14DD21620C6CD6F1433BBBBB6DB48 /* Pods-BMPlayer_Example-acknowledgements.markdown */,
+				CCB178C3BE076771942D5DFC2FA7D74E /* Pods-BMPlayer_Example-acknowledgements.plist */,
+				BAAE7D85726DE5FB240DA7E0C9E9EDE2 /* Pods-BMPlayer_Example-dummy.m */,
+				A479280B37450F7A31744F1DD2786210 /* Pods-BMPlayer_Example-frameworks.sh */,
+				E29C59F3C0450D307AC0923807D7FF24 /* Pods-BMPlayer_Example-resources.sh */,
+				9209D21784346F83E716EE78E9C11608 /* Pods-BMPlayer_Example-umbrella.h */,
+				55BCCE2BE1F36397C0F3075C5629E3B3 /* Pods-BMPlayer_Example.debug.xcconfig */,
+				FB0EDCBA729DDF84AF7C75AD7C90E861 /* Pods-BMPlayer_Example.release.xcconfig */,
+			);
+			name = "Pods-BMPlayer_Example";
+			path = "Target Support Files/Pods-BMPlayer_Example";
+			sourceTree = "<group>";
+		};
+		FE5F7830DB526B5807F2BE16A4427BF6 /* BMPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				FE984CD872A9039E41EE0FA112277425 /* BMPlayer */,
+				B7B41203F76B1DC2D9F820094AA150BF /* Support Files */,
+			);
+			name = BMPlayer;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		FE984CD872A9039E41EE0FA112277425 /* BMPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				D3FD0CB6D8EBF5C470F4CF3C11ECE006 /* Classes */,
+			);
+			path = BMPlayer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		70FC0F07781C92199425CBEA38DE22B8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76ACACFF3F91FFE83D12EE82A070EF8D /* Pods-BMPlayer_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A7118C2F8B748CB8AC50A451F82F0A9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94EF3EDAEBF2A645684F87B92C14FBEF /* BMPlayer-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB240C75DCA599CBB8A8D968EFE8F643 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EF176477D0CABBD50129C28E389010C /* Pods-BMPlayer_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		099F279F91D9B55FA87AE213E34CFE4C /* Pods-BMPlayer_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64E78E86E71BFC80B0B55D838CFCD3F2 /* Build configuration list for PBXNativeTarget "Pods-BMPlayer_Tests" */;
+			buildPhases = (
+				07350B3D46B4C6EB1054E2CFA0006D51 /* Sources */,
+				7E7AA50DCD5EF94A0B376025AE75C9D5 /* Frameworks */,
+				70FC0F07781C92199425CBEA38DE22B8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35CA08A62D6DB795B31AD9BA365C0425 /* PBXTargetDependency */,
+			);
+			name = "Pods-BMPlayer_Tests";
+			productName = "Pods-BMPlayer_Tests";
+			productReference = 628C386F0AD26698F04B8ADA3AE7F32F /* Pods_BMPlayer_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		20DFD83A7A9B111FF88738EC51BE39EF /* Pods-BMPlayer_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF8FF01A7851AD25E618CE9D7A577039 /* Build configuration list for PBXNativeTarget "Pods-BMPlayer_Example" */;
+			buildPhases = (
+				E7E35E7AF504396AF35303E552696E01 /* Sources */,
+				3C782377B39E0BC2EE2FEADC11ECAE26 /* Frameworks */,
+				AB240C75DCA599CBB8A8D968EFE8F643 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BDDB76466DA37563C6EAD59751407359 /* PBXTargetDependency */,
+			);
+			name = "Pods-BMPlayer_Example";
+			productName = "Pods-BMPlayer_Example";
+			productReference = 6866EAD4C6E853DF8E77B741A8853C5F /* Pods_BMPlayer_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3258E29464FAF9E2E3C66AA16D3E6FC2 /* BMPlayer-BMPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B096B411ADC94D7CBC40F85117627E5 /* Build configuration list for PBXNativeTarget "BMPlayer-BMPlayer" */;
+			buildPhases = (
+				D83FCFCF3531FAE2D357F49187B41FC2 /* Sources */,
+				E6C33C6C9D556F22438E751F606DE380 /* Frameworks */,
+				2A7355ABB6951B332FD2F930253A991D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BMPlayer-BMPlayer";
+			productName = "BMPlayer-BMPlayer";
+			productReference = CEF30F178BA6681880673EC19ED2572E /* BMPlayer.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		EF942DD32453496EE51CA197618864F9 /* BMPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B469299B3E07FD442A2BE12FCCB9EAC3 /* Build configuration list for PBXNativeTarget "BMPlayer" */;
+			buildPhases = (
+				79745EFE4F8BAB6B3C1975888AFDD87B /* Sources */,
+				AB34B91E6C914052A5DB2ADCA173753E /* Frameworks */,
+				248FDA6C785568FE361A253776302B1F /* Resources */,
+				9A7118C2F8B748CB8AC50A451F82F0A9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CAED3ED91CE0F0D4970030DA559D9933 /* PBXTargetDependency */,
+			);
+			name = BMPlayer;
+			productName = BMPlayer;
+			productReference = ECA416A77CA74DF18E490F37BE6D44C8 /* BMPlayer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = CC668F5CB887C78310A4EBAEFB27A11B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF942DD32453496EE51CA197618864F9 /* BMPlayer */,
+				3258E29464FAF9E2E3C66AA16D3E6FC2 /* BMPlayer-BMPlayer */,
+				20DFD83A7A9B111FF88738EC51BE39EF /* Pods-BMPlayer_Example */,
+				099F279F91D9B55FA87AE213E34CFE4C /* Pods-BMPlayer_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		248FDA6C785568FE361A253776302B1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD0F09C04FA3CADBE831F9AAD1E74D33 /* BMPlayer.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A7355ABB6951B332FD2F930253A991D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07350B3D46B4C6EB1054E2CFA0006D51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54CFED26145F5B90B0767FA3F0EE3F1C /* Pods-BMPlayer_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79745EFE4F8BAB6B3C1975888AFDD87B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D897E13C5A849C953C63FE3FEB24C18 /* BMPlayer-dummy.m in Sources */,
+				0F96F7287DCF81BBC802F405CA926F0A /* BMPlayer.swift in Sources */,
+				6AB6B7151CD221DD0031AFC5 /* BMPlayerLayerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D83FCFCF3531FAE2D357F49187B41FC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7E35E7AF504396AF35303E552696E01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A044617B807A8D100BBF60657C55A97 /* Pods-BMPlayer_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35CA08A62D6DB795B31AD9BA365C0425 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BMPlayer;
+			target = EF942DD32453496EE51CA197618864F9 /* BMPlayer */;
+			targetProxy = E4637FD2EEA64F6B3D3E3D3826743F7C /* PBXContainerItemProxy */;
+		};
+		BDDB76466DA37563C6EAD59751407359 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BMPlayer;
+			target = EF942DD32453496EE51CA197618864F9 /* BMPlayer */;
+			targetProxy = 57A7E70B49B2841A363FF252CA4480D9 /* PBXContainerItemProxy */;
+		};
+		CAED3ED91CE0F0D4970030DA559D9933 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BMPlayer-BMPlayer";
+			target = 3258E29464FAF9E2E3C66AA16D3E6FC2 /* BMPlayer-BMPlayer */;
+			targetProxy = 0DD2AC573A706B98542BF075781635DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		001F9F682FDDF024A965A58320F5453F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3C2F7609AC481F1DBC6689516883BF /* BMPlayer.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				PRODUCT_NAME = BMPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		10DE1947DAC0ED28F6C0A9F9BD75D546 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2EFF8178422D95F2FD8DA532AEDD2B23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C369424FDFB379889AE7FD546D8824A /* Pods-BMPlayer_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BMPlayer_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BMPlayer_Tests/Pods-BMPlayer_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_BMPlayer_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		309036FB83ACE453A54A2A420540F8B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3C2F7609AC481F1DBC6689516883BF /* BMPlayer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BMPlayer/BMPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BMPlayer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BMPlayer/BMPlayer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = BMPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		552D02D5BA751AC2E8790D2811D496CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		5803A9EF8642A22124C7B768E3DE6FB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB0EDCBA729DDF84AF7C75AD7C90E861 /* Pods-BMPlayer_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BMPlayer_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_BMPlayer_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		823B141ABF5EB136AA12C3D23934B3E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3C2F7609AC481F1DBC6689516883BF /* BMPlayer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/BMPlayer/BMPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BMPlayer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BMPlayer/BMPlayer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = BMPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8E475EC72B330F695F246B8CD47D0C92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8D8772D18A964600C38B8C533B071F8 /* Pods-BMPlayer_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BMPlayer_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BMPlayer_Tests/Pods-BMPlayer_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_BMPlayer_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8FD2A3A885E23B63A0365C2D1C4A3A8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3C2F7609AC481F1DBC6689516883BF /* BMPlayer.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				PRODUCT_NAME = BMPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		96348CDAFD810EA689322F127C65F738 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55BCCE2BE1F36397C0F3075C5629E3B3 /* Pods-BMPlayer_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-BMPlayer_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_BMPlayer_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				552D02D5BA751AC2E8790D2811D496CA /* Debug */,
+				10DE1947DAC0ED28F6C0A9F9BD75D546 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64E78E86E71BFC80B0B55D838CFCD3F2 /* Build configuration list for PBXNativeTarget "Pods-BMPlayer_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E475EC72B330F695F246B8CD47D0C92 /* Debug */,
+				2EFF8178422D95F2FD8DA532AEDD2B23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B096B411ADC94D7CBC40F85117627E5 /* Build configuration list for PBXNativeTarget "BMPlayer-BMPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FD2A3A885E23B63A0365C2D1C4A3A8A /* Debug */,
+				001F9F682FDDF024A965A58320F5453F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B469299B3E07FD442A2BE12FCCB9EAC3 /* Build configuration list for PBXNativeTarget "BMPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				309036FB83ACE453A54A2A420540F8B8 /* Debug */,
+				823B141ABF5EB136AA12C3D23934B3E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF8FF01A7851AD25E618CE9D7A577039 /* Build configuration list for PBXNativeTarget "Pods-BMPlayer_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96348CDAFD810EA689322F127C65F738 /* Debug */,
+				5803A9EF8642A22124C7B768E3DE6FB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
