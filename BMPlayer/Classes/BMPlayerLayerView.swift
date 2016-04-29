@@ -110,6 +110,7 @@ class BMPlayerLayerView: UIView {
                 player.pause()
                 self.state = .Pause
                 isPlaying  = false
+                isPauseByUser = true
             } else {
                 return
             }
@@ -277,7 +278,7 @@ class BMPlayerLayerView: UIView {
                 case "status":
                     if player?.status == AVPlayerStatus.ReadyToPlay {
                         self.state = .ReadyToPlay
-                        self.play()
+                        player?.play()
                     } else if player?.status == AVPlayerStatus.Failed {
                         self.state = .Error
                     }
@@ -300,7 +301,7 @@ class BMPlayerLayerView: UIView {
                     if item.playbackBufferEmpty {
                         self.state = .BufferFinished
                         if isPauseByUser == false {
-                            self.play()
+                            player?.play()
                         }
                     }
                 default:
@@ -339,25 +340,27 @@ class BMPlayerLayerView: UIView {
         }
         isBuffering = true
         // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
-        self.pause()
+        player?.pause()
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * 1.0 ))
         
         dispatch_after(popTime, dispatch_get_main_queue()) {
-            if self.isPauseByUser {
-                self.isBuffering = false
-                return
-            }
-            // 如果此时用户已经暂停了，则不再需要开启播放了
-            self.play()
+
+            
+            
             
             // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
             self.isBuffering = false
             if let item = self.playerItem {
                 if !item.playbackLikelyToKeepUp {
                     self.bufferingSomeSecond()
+                } else {
+                    // 如果此时用户已经暂停了，则不再需要开启播放了
+                    self.state = BMPlayerState.BufferFinished
+                    if !self.isPauseByUser {
+                        self.player?.play()
+                    }
                 }
             }
-            
         }
     }
 }

@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--视频列表-->
@@ -58,7 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFp-gh-V3X" customClass="BMPlayer" customModule="BMPlayer">
-                                <rect key="frame" x="0.0" y="64" width="320" height="180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="WFp-gh-V3X" secondAttribute="height" multiplier="16:9" id="8Jf-SN-7zh"/>
@@ -67,12 +68,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WFp-gh-V3X" firstAttribute="top" secondItem="9WM-2o-xJy" secondAttribute="bottom" id="SeA-fG-xSa"/>
+                            <constraint firstItem="WFp-gh-V3X" firstAttribute="top" secondItem="rjf-a8-6lR" secondAttribute="topMargin" id="1qr-5m-0Rt"/>
                             <constraint firstAttribute="trailing" secondItem="WFp-gh-V3X" secondAttribute="trailing" id="WOs-Sa-3ei"/>
                             <constraint firstItem="WFp-gh-V3X" firstAttribute="leading" secondItem="rjf-a8-6lR" secondAttribute="leading" id="qqg-fT-R7e"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zc1-7Z-f0E"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="player" destination="WFp-gh-V3X" id="uY6-4R-gZ3"/>
                     </connections>
@@ -84,7 +86,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ki5-lf-6nV">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Drt-Aa-Cn5" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Drt-Aa-Cn5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DBf-w0-AXY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

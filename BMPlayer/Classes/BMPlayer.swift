@@ -11,7 +11,7 @@ import SnapKit
 
 enum BMPlayerState {
     case NotSetURL      // 未设置URL
-    case MediaInfoReady // 获取媒体信息
+    //    case MediaInfoReady // 获取媒体信息
     case Buffering      // 缓冲中
     case BufferFinished // 播放中
     case ReadyToPlay    // 播放中
@@ -22,34 +22,30 @@ enum BMPlayerState {
     case Error
 }
 
-func BMResourcePath(fileName: String) -> String {
-    return "BMPLayer.bundle/" + fileName
-}
-
 public class BMPlayer: UIView {
+    
+    public var backBlock:(() -> Void)?
     
     var playerLayer: BMPlayerLayerView!
     
-    var maskImageView    : UIImageView!
-    var currentTimeLabel : UILabel!
-    var totalTimeLabel   : UILabel!
+    var controlView: BMPlayerControlView!
     
-    var timeSlider       : UISlider!
-    var progressView     : UIProgressView!
-    var fullScreenButton : UIButton!
+    private var isMaskShowing = false
+    private var isFullScreen  = false
     
-    var centerButton     : UIButton!
-    var loadIndector     : UIActivityIndicatorView!
+    private let BMPlayerAnimationTimeInterval:Double                = 4.0
+    private let BMPlayerControlBarAutoFadeOutTimeInterval:Double    = 0.5
     
+    // MARK: - Public functions
     public func playWithURL(url: NSURL) {
         playerLayer = BMPlayerLayerView()
-        insertSubview(playerLayer, atIndex: 1)
+        insertSubview(playerLayer, atIndex: 0)
         playerLayer.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
         playerLayer.delegate = self
         playerLayer.videoURL = url
-        loadIndector.startAnimating()
+        controlView.loadIndector.startAnimating()
         self.layoutIfNeeded()
     }
     
@@ -61,11 +57,94 @@ public class BMPlayer: UIView {
         playerLayer.pause()
     }
     
+    func autoFadeOutControlBar() {
+        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(hideControlViewAnimated), object: nil)
+        self.performSelector(#selector(hideControlViewAnimated), withObject: nil, afterDelay: BMPlayerAnimationTimeInterval)
+    }
+    
+    func cancelAutoFadeOutControlBar() {
+        NSObject.cancelPreviousPerformRequestsWithTarget(self)
+    }
+    
+    // MARK: - Action Response
+    @objc private func hideControlViewAnimated() {
+        UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
+            self.controlView.hideIcons()
+            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
+            
+        }) { (_) in
+            self.isMaskShowing = false
+        }
+    }
+    
+    @objc private func showControlViewAnimated() {
+        UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
+            self.controlView.showIcons()
+            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
+        }) { (_) in
+            self.isMaskShowing = true
+        }
+    }
+    
+    @objc private func tapGestureTapped(sender: UIGestureRecognizer) {
+        if isMaskShowing {
+            hideControlViewAnimated()
+            autoFadeOutControlBar()
+        } else {
+            showControlViewAnimated()
+        }
+    }
+    
+    @objc private func progressSliderTouchBegan(sender: UISlider)  {
+        playerLayer.onTimeSliderBegan()
+        cancelAutoFadeOutControlBar()
+    }
+    
+    @objc private func progressSliderValueChanged(sender: UISlider)  {
+        self.pause()
+    }
+    
+    @objc private func progressSliderTouchEnded(sender: UISlider)  {
+        controlView.loadIndector.startAnimating()
+        autoFadeOutControlBar()
+        playerLayer.onSliderTouchEnd(withValue: sender.value)
+    }
+    
+    @objc private func backButtonPressed(button: UIButton) {
+        if isFullScreen {
+            fullScreenButtonPressed(nil)
+        } else {
+            playerLayer.prepareToDeinit()
+            backBlock?()
+        }
+    }
+    
+    @objc private func playButtonPressed(button: UIButton) {
+        if button.selected {
+            self.pause()
+        } else {
+            self.play()
+        }
+    }
+    
+    @objc private func fullScreenButtonPressed(button: UIButton?) {
+        if isFullScreen {
+            UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
+            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
+            UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.Portrait, animated: false)
+        } else {
+            UIDevice.currentDevice().setValue(UIInterfaceOrientation.LandscapeRight.rawValue, forKey: "orientation")
+            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
+            UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight, animated: false)
+        }
+        isFullScreen = !isFullScreen
+    }
+    
+    // MARK: - 生命周期
     deinit {
         playerLayer.pause()
         playerLayer.prepareToDeinit()
     }
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,125 +158,59 @@ public class BMPlayer: UIView {
         initUIData()
     }
     
-    @objc private func progressSliderTouchBegan(sender: UISlider)  {
-        playerLayer.onTimeSliderBegan()
-    }
-    
-    @objc private func progressSliderValueChanged(sender: UISlider)  {
-        centerButton.hidden = true
-        self.pause()
-    }
-    
-    @objc private func progressSliderTouchEnded(sender: UISlider)  {
-        centerButton.hidden = false
-        loadIndector.startAnimating()
-        playerLayer.onSliderTouchEnd(withValue: sender.value)
-    }
-    
     private func formatSecondsToString(secounds: Int) -> String {
         let Min = secounds / 60
         let Sec = secounds % 60
         return String(format: "%02d:%02d", Min, Sec)
     }
     
+    // MARK: - 初始化
     private func initUI() {
-        maskImageView    = UIImageView()
-        addSubview(maskImageView)
         
-        currentTimeLabel = UILabel()
-        totalTimeLabel   = UILabel()
-        
-        currentTimeLabel.textColor = UIColor.whiteColor()
-        totalTimeLabel.textColor   = UIColor.whiteColor()
-        currentTimeLabel.font      = UIFont.systemFontOfSize(12)
-        totalTimeLabel.font      = UIFont.systemFontOfSize(12)
-        
-        addSubview(currentTimeLabel)
-        addSubview(totalTimeLabel)
-        
-        timeSlider       = UISlider()
-        progressView     = UIProgressView()
-        fullScreenButton = UIButton()
-        addSubview(timeSlider)
-        addSubview(progressView)
-        addSubview(fullScreenButton)
-        
-        loadIndector     = UIActivityIndicatorView()
-        centerButton     = UIButton()
-        addSubview(loadIndector)
-        addSubview(centerButton)
-        
-        addSnapKitConstraint()
-    }
-    
-    
-    private func addSnapKitConstraint() {
-        maskImageView.snp_makeConstraints { (make) in
+        controlView =  BMPlayerControlView()
+        addSubview(controlView)
+        controlView.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
         
-        currentTimeLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(self.snp_left).offset(10)
-            make.bottom.equalTo(self.snp_bottom).offset(-10)
-        }
-        
-        timeSlider.snp_makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(currentTimeLabel.snp_right).offset(10)
-        }
-        
-        totalTimeLabel.snp_makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(timeSlider.snp_right).offset(10)
-        }
-        
-        fullScreenButton.snp_makeConstraints { (make) in
-            make.width.height.equalTo(40)
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(totalTimeLabel.snp_right)
-            make.right.equalTo(self.snp_right)
-        }
-        
-        loadIndector.snp_makeConstraints { (make) in
-            make.center.equalTo(self.snp_center)
-        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureTapped(_:)))
+        self.addGestureRecognizer(tapGesture)
     }
     
     private func initUIData() {
-        currentTimeLabel.text = "00:00"
-        totalTimeLabel.text = "00:00"
-        
-        fullScreenButton.setImage(UIImage(named: BMResourcePath("BMPlayer_fullscreen")), forState: UIControlState.Normal)
-        
-        loadIndector.hidesWhenStopped = true
-        
-        timeSlider.maximumValue = 1.0
-        timeSlider.minimumValue = 0.0
-        timeSlider.value        = 0.0
-        
-        timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
-        timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
+        controlView.playButton.addTarget(self, action: #selector(self.playButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        controlView.fullScreenButton.addTarget(self, action: #selector(self.fullScreenButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        controlView.backButton.addTarget(self, action: #selector(self.backButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
+        controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
     }
+    
 }
 
 extension BMPlayer: BMPlayerLayerViewDelegate {
     
     func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int) {
         print("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
+        controlView.progressView.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
     
     func bmPlayer(player player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
         print("playerStateDidChange - \(state)")
         switch state {
         case BMPlayerState.ReadyToPlay:
-            loadIndector.stopAnimating()
+            controlView.loadIndector.stopAnimating()
         case BMPlayerState.Buffering:
-            loadIndector.startAnimating()
+            cancelAutoFadeOutControlBar()
+            controlView.loadIndector.startAnimating()
         case BMPlayerState.BufferFinished:
-            loadIndector.stopAnimating()
+            controlView.loadIndector.stopAnimating()
         case BMPlayerState.Playing:
-            loadIndector.stopAnimating()
+            autoFadeOutControlBar()
+            controlView.loadIndector.stopAnimating()
+            controlView.playButton.selected = true
+        case BMPlayerState.Pause:
+            controlView.playButton.selected = false
         default:
             break
         }
@@ -205,9 +218,9 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     
     func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: Int, totalTime: Int) {
         print("playTimeDidChange - \(currentTime) - \(totalTime)")
-        currentTimeLabel.text = formatSecondsToString(currentTime)
-        totalTimeLabel.text = formatSecondsToString(totalTime)
+        controlView.currentTimeLabel.text = formatSecondsToString(currentTime)
+        controlView.totalTimeLabel.text = formatSecondsToString(totalTime)
         
-        timeSlider.value    = Float(currentTime) / Float(totalTime)
+        controlView.timeSlider.value    = Float(currentTime) / Float(totalTime)
     }
 }

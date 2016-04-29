@@ -18,23 +18,26 @@ class VideoPlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         player.playWithURL(NSURL(string: url)!)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        player.backBlock = { [unowned self] in
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
         player.pause()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         player.play()
     }
+    
+    
     
     deinit {
         print("VideoPlayViewController Deinit")
