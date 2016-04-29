@@ -17,6 +17,9 @@ protocol BMPlayerLayerViewDelegate : class {
 }
 
 class BMPlayerLayerView: UIView {
+    
+    weak var delegate: BMPlayerLayerViewDelegate?
+    
     /// 视频URL
     var videoURL: NSURL! {
         didSet { onSetVideoURL() }
@@ -99,7 +102,6 @@ class BMPlayerLayerView: UIView {
     }
     
     // MARK: - 生命周期
-    
     /**
      *  初始化player
      */
@@ -111,7 +113,7 @@ class BMPlayerLayerView: UIView {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        print("BMPlayerView deint")
+        print("BMPlayerLayerView did dealloc")
     }
     
     
@@ -165,7 +167,7 @@ class BMPlayerLayerView: UIView {
         
         self.layer.insertSublayer(playerLayer!, atIndex: 0)
         
-//        self.timer  = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
+        self.timer  = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
         //        NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSRunLoopCommonModes)
         
         self.state      = .Buffering
@@ -176,5 +178,29 @@ class BMPlayerLayerView: UIView {
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }
+    
+    
+    // MARK: - 计时器事件
+    func playerTimerAction() {
+        if playerItem!.duration.timescale != 0 {
+            let currentTime = CMTimeGetSeconds(self.player!.currentTime())
+            let totalTime   = playerItem!.duration.value / Int64(playerItem!.duration.timescale)
+            delegate?.bmPlayer(player: self, playTimeDidChange: Int(currentTime), totalTime: Int(totalTime))
+        }
+    }
+    
+    func availableDuration() -> NSTimeInterval? {
+        if let loadedTimeRanges = player?.currentItem?.loadedTimeRanges,
+            first = loadedTimeRanges.first {
+            let timeRange = first.CMTimeRangeValue
+            let startSeconds = CMTimeGetSeconds(timeRange.start)
+            let durationSecound = CMTimeGetSeconds(timeRange.duration)
+            let result = startSeconds + durationSecound
+            return result
+        }
+        
+        return nil
+    }
+
     
 }

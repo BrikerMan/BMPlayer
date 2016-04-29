@@ -32,7 +32,27 @@ public class BMPlayer: UIView {
         playerLayer.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
+        playerLayer.delegate = self
         playerLayer.videoURL = url
         self.layoutIfNeeded()
+    }
+    
+    deinit {
+        playerLayer.pause()
+        playerLayer.prepareToDeinit()
+    }
+}
+
+extension BMPlayer: BMPlayerLayerViewDelegate {
+    func bmPlayer(player player: BMPlayerLayerView, loadedTimeDidChange progressValue: Float) {
+        
+    }
+    
+    func bmPlayer(player player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
+        
+    }
+    
+    func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: Int, totalTime: Int) {
+        print("playTimeDidChange - \(currentTime) - \(totalTime)")
     }
 }
