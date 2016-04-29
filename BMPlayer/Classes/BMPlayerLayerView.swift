@@ -88,20 +88,32 @@ class BMPlayerLayerView: UIView {
     // 仅在bufferingSomeSecond里面使用
     private var isBuffering     = false
     
+    private var isPlaying       = false
     
     // MARK: - Actions
     func play() {
         if let player = player {
-            player.play()
-            self.state = .Playing
+            if isPlaying {
+                return
+            } else {
+                isPlaying = true
+                player.play()
+                self.state = .Playing
+            }
         }
     }
     
     
     func pause() {
         if let player = player {
-            player.pause()
-            self.state = .Pause
+            if isPlaying {
+                player.pause()
+                self.state = .Pause
+                isPlaying  = false
+            } else {
+                return
+            }
+            
         }
     }
     
@@ -231,9 +243,9 @@ class BMPlayerLayerView: UIView {
         
         self.timer  = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
         
-//        self.state      = .Buffering
+        //        self.state      = .Buffering
         
-//        self.play()
+        //        self.play()
         self.isPauseByUser  = false
         
         self.setNeedsLayout()
@@ -259,8 +271,8 @@ class BMPlayerLayerView: UIView {
     
     // MARK: - KVO
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if let object = object as? AVPlayerItem, keyPath = keyPath {
-            if object == self.playerItem {
+        if let item = object as? AVPlayerItem, keyPath = keyPath {
+            if item == self.playerItem {
                 switch keyPath {
                 case "status":
                     if player?.status == AVPlayerStatus.ReadyToPlay {
@@ -273,8 +285,8 @@ class BMPlayerLayerView: UIView {
                 case "loadedTimeRanges":
                     // 计算缓冲进度
                     if let timeInterVarl    = self.availableDuration() {
-                        let duration        = self.playerItem?.duration
-                        let totalDuration   = CMTimeGetSeconds(duration!)
+                        let duration        = item.duration
+                        let totalDuration   = CMTimeGetSeconds(duration)
                         delegate?.bmPlayer(player: self, loadedTimeDidChange: Int(timeInterVarl), totalDuration: Int(totalDuration))
                     }
                     
@@ -285,7 +297,7 @@ class BMPlayerLayerView: UIView {
                         self.bufferingSomeSecond()
                     }
                 case "playbackLikelyToKeepUp":
-                    if self.playerItem!.playbackBufferEmpty {
+                    if item.playbackBufferEmpty {
                         self.state = .BufferFinished
                         if isPauseByUser == false {
                             self.play()
@@ -294,8 +306,6 @@ class BMPlayerLayerView: UIView {
                 default:
                     break
                 }
-                
-                
             }
         }
     }
@@ -342,9 +352,12 @@ class BMPlayerLayerView: UIView {
             
             // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
             self.isBuffering = false
-            if !self.playerItem!.playbackLikelyToKeepUp {
-                self.bufferingSomeSecond()
+            if let item = self.playerItem {
+                if !item.playbackLikelyToKeepUp {
+                    self.bufferingSomeSecond()
+                }
             }
+            
         }
     }
 }
