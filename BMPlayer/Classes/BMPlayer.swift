@@ -175,9 +175,7 @@ public class BMPlayer: UIView {
                     self.controlView.centerLabel.hidden = true
                 }
                 
-//                controlView.playButton.selected = true
                 playerLayer.isPauseByUser = false
-                
                 playerLayer.seekToTime(Int(self.sumTime), completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
@@ -213,8 +211,6 @@ public class BMPlayer: UIView {
             
             self.controlView.centerLabel.text = "\(style) \(nowTime) / \(durationTime)"
         }
-        
-        
     }
     
     @objc private func progressSliderTouchBegan(sender: UISlider)  {
@@ -322,7 +318,6 @@ public class BMPlayer: UIView {
             }
         }
     }
-    
 }
 
 extension BMPlayer: BMPlayerLayerViewDelegate {

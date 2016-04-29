@@ -39,7 +39,7 @@ class BMPlayerControlView: UIView {
         initUIData()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUI()
         initUIData()
@@ -137,11 +137,9 @@ class BMPlayerControlView: UIView {
         
         centerLabel.snp_makeConstraints { (make) in
             make.center.equalTo(self.snp_center)
-            make.width.equalTo(120)
-            make.height.equalTo(30)
+            make.width.equalTo(100)
+            make.height.equalTo(24)
         }
-
-        
     }
     
     private func initUIData() {
@@ -152,7 +150,6 @@ class BMPlayerControlView: UIView {
         
         currentTimeLabel.textAlignment = NSTextAlignment.Center
         totalTimeLabel.textAlignment   = NSTextAlignment.Center
-        
         
         playButton.setImage(BMImageResourcePath("BMPlayer_play"), forState: UIControlState.Normal)
         playButton.setImage(BMImageResourcePath("BMPlayer_pause"), forState: UIControlState.Selected)
@@ -177,6 +174,10 @@ class BMPlayerControlView: UIView {
         centerLabel.textColor       = UIColor.whiteColor()
         centerLabel.textAlignment   = NSTextAlignment.Center
         centerLabel.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
+        centerLabel.layer.cornerRadius = 2
+        centerLabel.clipsToBounds      = true
+        centerLabel.hidden             = true
+        
     }
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {
