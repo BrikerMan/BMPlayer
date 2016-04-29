@@ -28,21 +28,22 @@ class BMPlayerLayerView: UIView {
     /// 视频跳转秒数置0
     var seekTime = 0
     
-    /// 枚举值，包含水平移动方向和垂直移动方向
-    private enum PanDirection {
-        case HorizontalMoved
-        case VerticalMoved
-    }
+    /// 计时器
+    var timer       : NSTimer?
     
     /// 播放属性
-    lazy private var player: AVPlayer? = {
+    lazy var player: AVPlayer? = {
         if let item = self.playerItem {
             return  AVPlayer(playerItem: item)
         }
         return nil
     }()
+    
+    /// 是否被用户暂停
+    var isPauseByUser = false
+    
     /// 播放属性
-    private var playerItem: AVPlayerItem? {
+    var playerItem: AVPlayerItem? {
         didSet {
             onPlayerItemChange()
         }
@@ -53,13 +54,6 @@ class BMPlayerLayerView: UIView {
     private var playerLayer: AVPlayerLayer?
     /// 音量滑杆
     private var volumeViewSlider: UISlider!
-    /// 计时器
-    private var timer       : NSTimer?
-    
-    /// 用来保存快进的总时长
-    private var sumTime     : CGFloat!
-    /// 滑动方向
-    private var panDirection: PanDirection!
     /// 播发器的几种状态
     private var state = BMPlayerState.NotSetURL {
         didSet {
@@ -72,10 +66,6 @@ class BMPlayerLayerView: UIView {
     private var isLocked      = false
     /// 是否在调节音量
     private var isVolume      = false
-    /// 是否显示controlView
-    private var isMaskShowing = false
-    /// 是否被用户暂停
-    private var isPauseByUser = false
     /// 是否播放本地文件
     private var isLocalVideo  = false
     /// slider上次的值
@@ -138,7 +128,6 @@ class BMPlayerLayerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.playerLayer?.frame  = self.bounds
-        self.isMaskShowing      = false
     }
     
     func resetPlayer() {
@@ -176,11 +165,11 @@ class BMPlayerLayerView: UIView {
             self.isPauseByUser = false
             let total = Float(playerItem!.duration.value) / Float(playerItem!.duration.timescale)
             let draggedSecound = Int(total * value)
-            self.seekToTime(draggedSecound)
+            self.seekToTime(draggedSecound, completionHandler: nil)
         }
     }
     
-    func seekToTime(secounds: Int) {
+    func seekToTime(secounds: Int, completionHandler:(()->Void)?) {
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             let draggedTime = CMTimeMake(Int64(secounds), 1)
             self.player!.seekToTime(draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in

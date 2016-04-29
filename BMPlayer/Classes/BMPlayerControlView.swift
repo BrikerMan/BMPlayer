@@ -21,19 +21,16 @@ class BMPlayerControlView: UIView {
     var backButton       : UIButton!
     
     var loadIndector     : UIActivityIndicatorView!
-    
+    var centerLabel      : UILabel!
     
     // MARK: - funcitons
     func hideIcons() {
         maskImageView.alpha = 0.0
     }
     
-    
     func showIcons() {
         maskImageView.alpha = 1.0
     }
-    
-    
     
     // MARK: - 初始化
     override init(frame: CGRect) {
@@ -78,8 +75,11 @@ class BMPlayerControlView: UIView {
         maskImageView.addSubview(backButton)
         
         loadIndector     = UIActivityIndicatorView()
+        centerLabel      = UILabel()
+        
         addSubview(loadIndector)
-    
+        addSubview(centerLabel)
+        
         addSnapKitConstraint()
     }
     
@@ -135,6 +135,13 @@ class BMPlayerControlView: UIView {
             make.center.equalTo(self.snp_center)
         }
         
+        centerLabel.snp_makeConstraints { (make) in
+            make.center.equalTo(self.snp_center)
+            make.width.equalTo(120)
+            make.height.equalTo(30)
+        }
+
+        
     }
     
     private func initUIData() {
@@ -165,6 +172,11 @@ class BMPlayerControlView: UIView {
         
         progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
         progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
+        
+        centerLabel.font = UIFont.systemFontOfSize(12)
+        centerLabel.textColor       = UIColor.whiteColor()
+        centerLabel.textAlignment   = NSTextAlignment.Center
+        centerLabel.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
     }
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {
@@ -181,5 +193,5 @@ class BMPlayerControlView: UIView {
         }
         return nil
     }
-
+    
 }

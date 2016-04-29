@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import MediaPlayer
 
 enum BMPlayerState {
     case NotSetURL      // 未设置URL
@@ -22,6 +23,12 @@ enum BMPlayerState {
     case Error
 }
 
+/// 枚举值，包含水平移动方向和垂直移动方向
+enum BMPanDirection: Int {
+    case Horizontal = 0
+    case Vertical   = 1
+}
+
 public class BMPlayer: UIView {
     
     public var backBlock:(() -> Void)?
@@ -29,9 +36,21 @@ public class BMPlayer: UIView {
     var playerLayer: BMPlayerLayerView!
     
     var controlView: BMPlayerControlView!
-    
+    /// 是否显示controlView
     private var isMaskShowing = false
+    
     private var isFullScreen  = false
+    
+    
+    
+    /// 用来保存快进的总时长
+    private var sumTime     : Float!
+    /// 滑动方向
+    private var panDirection = BMPanDirection.Horizontal
+    /// 是否是音量
+    private var isVolume = false
+    /// 音量滑竿
+    private var volumeViewSlider: UISlider!
     
     private let BMPlayerAnimationTimeInterval:Double                = 4.0
     private let BMPlayerControlBarAutoFadeOutTimeInterval:Double    = 0.5
@@ -57,12 +76,12 @@ public class BMPlayer: UIView {
         playerLayer.pause()
     }
     
-    func autoFadeOutControlBar() {
+    public func autoFadeOutControlBar() {
         NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(hideControlViewAnimated), object: nil)
         self.performSelector(#selector(hideControlViewAnimated), withObject: nil, afterDelay: BMPlayerAnimationTimeInterval)
     }
     
-    func cancelAutoFadeOutControlBar() {
+    public func cancelAutoFadeOutControlBar() {
         NSObject.cancelPreviousPerformRequestsWithTarget(self)
     }
     
@@ -93,6 +112,109 @@ public class BMPlayer: UIView {
         } else {
             showControlViewAnimated()
         }
+    }
+    
+    @objc private func panDirection(pan: UIPanGestureRecognizer) {
+        // 根据在view上Pan的位置，确定是调音量还是亮度
+        let locationPoint = pan.locationInView(self)
+        
+        // 我们要响应水平移动和垂直移动
+        // 根据上次和本次移动的位置，算出一个速率的point
+        let velocityPoint = pan.velocityInView(self)
+        
+        // 判断是垂直移动还是水平移动
+        switch pan.state {
+        case UIGestureRecognizerState.Began:
+            // 使用绝对值来判断移动的方向
+            
+            let x = fabs(velocityPoint.x)
+            let y = fabs(velocityPoint.y)
+            
+            if x > y {
+                self.controlView.centerLabel.hidden = false
+                self.panDirection = BMPanDirection.Horizontal
+                
+                // 给sumTime初值
+                if let player = playerLayer.player {
+                    let time = player.currentTime()
+                    self.sumTime = Float(time.value) / Float(time.timescale)
+                }
+                
+                playerLayer.player?.pause()
+                playerLayer.timer?.fireDate = NSDate.distantFuture()
+            } else {
+                self.panDirection = BMPanDirection.Vertical
+                if locationPoint.x > self.bounds.size.width / 2 {
+                    self.isVolume = true
+                } else {
+                    self.isVolume = false
+                }
+            }
+            
+        case UIGestureRecognizerState.Changed:
+            switch self.panDirection {
+            case BMPanDirection.Horizontal:
+                self.horizontalMoved(velocityPoint.x)
+                print(velocityPoint.x)
+            case BMPanDirection.Vertical:
+                self.verticalMoved(velocityPoint.y)
+                print(velocityPoint.y)
+            }
+        case UIGestureRecognizerState.Ended:
+            // 移动结束也需要判断垂直或者平移
+            // 比如水平移动结束时，要快进到指定位置，如果这里没有判断，当我们调节音量完之后，会出现屏幕跳动的bug
+            switch (self.panDirection) {
+            case BMPanDirection.Horizontal:
+                playerLayer.player?.play()
+                playerLayer.timer?.fireDate = NSDate()
+                
+                let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * 1.0 ))
+                
+                dispatch_after(popTime, dispatch_get_main_queue()) {
+                    // 隐藏视图
+                    self.controlView.centerLabel.hidden = true
+                }
+                
+//                controlView.playButton.selected = true
+                playerLayer.isPauseByUser = false
+                
+                playerLayer.seekToTime(Int(self.sumTime), completionHandler: nil)
+                // 把sumTime滞空，不然会越加越多
+                self.sumTime = 0.0
+                
+            case BMPanDirection.Vertical:
+                self.isVolume = false
+            }
+        default:
+            break
+        }
+    }
+    
+    private func verticalMoved(value: CGFloat) {
+        self.isVolume ? (self.volumeViewSlider.value -= Float(value / 10000)) : (UIScreen.mainScreen().brightness -= value / 10000)
+    }
+    
+    private func horizontalMoved(value: CGFloat) {
+        // 快进快退的方法
+        var style = ""
+        if value < 0 { style = "<<" }
+        if value > 0 { style = ">>" }
+        // 每次滑动需要叠加时间
+        self.sumTime = self.sumTime + Float(value) / 200.0
+        
+        if let playerItem = playerLayer.playerItem {
+            let totalTime       = playerItem.duration
+            let totalDuration   = Float(totalTime.value) / Float(totalTime.timescale)
+            if (self.sumTime > totalDuration) { self.sumTime = totalDuration}
+            if (self.sumTime < 0){ self.sumTime = 0}
+            
+            let nowTime      = formatSecondsToString(Int(sumTime))
+            let durationTime = formatSecondsToString(Int(totalDuration))
+            
+            self.controlView.centerLabel.text = "\(style) \(nowTime) / \(durationTime)"
+        }
+        
+        
     }
     
     @objc private func progressSliderTouchBegan(sender: UISlider)  {
@@ -150,12 +272,14 @@ public class BMPlayer: UIView {
         super.init(frame: frame)
         initUI()
         initUIData()
+        configureVolume()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUI()
         initUIData()
+        configureVolume()
     }
     
     private func formatSecondsToString(secounds: Int) -> String {
@@ -175,6 +299,10 @@ public class BMPlayer: UIView {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureTapped(_:)))
         self.addGestureRecognizer(tapGesture)
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
+        //        panGesture.delegate = self
+        self.addGestureRecognizer(panGesture)
     }
     
     private func initUIData() {
@@ -184,6 +312,15 @@ public class BMPlayer: UIView {
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
+    }
+    
+    private func configureVolume() {
+        let volumeView = MPVolumeView()
+        for view in volumeView.subviews {
+            if let slider = view as? UISlider {
+                self.volumeViewSlider = slider
+            }
+        }
     }
     
 }
