@@ -11,8 +11,8 @@ import AVFoundation
 
 protocol BMPlayerLayerViewDelegate : class {
     func bmPlayer(player player: BMPlayerLayerView ,playerStateDidChange state: BMPlayerState)
-    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  progressValue: Float)
-    func bmPlayer(player player: BMPlayerLayerView ,playTimeDidChange    currentTime: Int, totalTime: Int)
+    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int)
+    func bmPlayer(player player: BMPlayerLayerView ,playTimeDidChange    currentTime   : Int , totalTime: Int)
     
 }
 
@@ -44,7 +44,7 @@ class BMPlayerLayerView: UIView {
     /// 播放属性
     private var playerItem: AVPlayerItem? {
         didSet {
-            
+            onPlayerItemChange()
         }
     }
     
@@ -61,7 +61,11 @@ class BMPlayerLayerView: UIView {
     /// 滑动方向
     private var panDirection: PanDirection!
     /// 播发器的几种状态
-    private var state = BMPlayerState.NotSetURL
+    private var state = BMPlayerState.NotSetURL {
+        didSet {
+            delegate?.bmPlayer(player: self, playerStateDidChange: state)
+        }
+    }
     /// 是否为全屏
     private var isFullScreen  = false
     /// 是否锁定屏幕方向
@@ -147,6 +151,38 @@ class BMPlayerLayerView: UIView {
         self.resetPlayer()
     }
     
+    func onTimeSliderBegan() {
+        if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
+            self.timer?.fireDate = NSDate.distantFuture()
+        }
+    }
+    
+    func onSliderTouchEnd(withValue value: Float) {
+        if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
+            self.timer?.fireDate = NSDate()
+            self.isPauseByUser = false
+            let total = Float(playerItem!.duration.value) / Float(playerItem!.duration.timescale)
+            let draggedSecound = Int(total * value)
+            self.seekToTime(draggedSecound)
+        }
+    }
+    
+    func seekToTime(secounds: Int) {
+        if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
+            let draggedTime = CMTimeMake(Int64(secounds), 1)
+            self.player!.seekToTime(draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
+                if self.isPauseByUser {
+                    return
+                }
+                self.play()
+                if !self.playerItem!.playbackLikelyToKeepUp {
+                    self.state = .Buffering
+                }
+            })
+        }
+    }
+    
+    
     // MARK: - 设置视频URL
     
     private func onSetVideoURL() {
@@ -156,7 +192,33 @@ class BMPlayerLayerView: UIView {
         
     }
     
-    func configPlayer(){
+    private func onPlayerItemChange() {
+        if lastPlayerItem == playerItem {
+            return
+        }
+        
+        if let item = lastPlayerItem {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: item)
+            item.removeObserver(self, forKeyPath: "status")
+            item.removeObserver(self, forKeyPath: "loadedTimeRanges")
+            item.removeObserver(self, forKeyPath: "playbackBufferEmpty")
+            item.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
+        }
+        
+        lastPlayerItem = playerItem
+        
+        if let item = playerItem {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.moviePlayDidEnd(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+            item.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.New, context: nil)
+            item.addObserver(self, forKeyPath: "loadedTimeRanges", options: NSKeyValueObservingOptions.New, context: nil)
+            // 缓冲区空了，需要等待数据
+            item.addObserver(self, forKeyPath: "playbackBufferEmpty", options: NSKeyValueObservingOptions.New, context: nil)
+            // 缓冲区有足够数据可以播放了
+            item.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: NSKeyValueObservingOptions.New, context: nil)
+        }
+    }
+    
+    private func configPlayer(){
         self.playerItem = AVPlayerItem(URL: videoURL)
         
         self.player     = AVPlayer(playerItem: playerItem!)
@@ -168,11 +230,10 @@ class BMPlayerLayerView: UIView {
         self.layer.insertSublayer(playerLayer!, atIndex: 0)
         
         self.timer  = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
-        //        NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSRunLoopCommonModes)
         
-        self.state      = .Buffering
+//        self.state      = .Buffering
         
-        self.play()
+//        self.play()
         self.isPauseByUser  = false
         
         self.setNeedsLayout()
@@ -181,7 +242,7 @@ class BMPlayerLayerView: UIView {
     
     
     // MARK: - 计时器事件
-    func playerTimerAction() {
+    @objc private func playerTimerAction() {
         if playerItem!.duration.timescale != 0 {
             let currentTime = CMTimeGetSeconds(self.player!.currentTime())
             let totalTime   = playerItem!.duration.value / Int64(playerItem!.duration.timescale)
@@ -189,7 +250,62 @@ class BMPlayerLayerView: UIView {
         }
     }
     
-    func availableDuration() -> NSTimeInterval? {
+    
+    // MARK: - Notification Event
+    @objc private func moviePlayDidEnd(notif: NSNotification) {
+        self.state   = BMPlayerState.PlayedToTheEnd
+        self.playDidEnd = true
+    }
+    
+    // MARK: - KVO
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if let object = object as? AVPlayerItem, keyPath = keyPath {
+            if object == self.playerItem {
+                switch keyPath {
+                case "status":
+                    if player?.status == AVPlayerStatus.ReadyToPlay {
+                        self.state = .ReadyToPlay
+                        self.play()
+                    } else if player?.status == AVPlayerStatus.Failed {
+                        self.state = .Error
+                    }
+                    
+                case "loadedTimeRanges":
+                    // 计算缓冲进度
+                    if let timeInterVarl    = self.availableDuration() {
+                        let duration        = self.playerItem?.duration
+                        let totalDuration   = CMTimeGetSeconds(duration!)
+                        delegate?.bmPlayer(player: self, loadedTimeDidChange: Int(timeInterVarl), totalDuration: Int(totalDuration))
+                    }
+                    
+                case "playbackBufferEmpty":
+                    // 当缓冲是空的时候
+                    if self.playerItem!.playbackBufferEmpty {
+                        self.state = .Buffering
+                        self.bufferingSomeSecond()
+                    }
+                case "playbackLikelyToKeepUp":
+                    if self.playerItem!.playbackBufferEmpty {
+                        self.state = .BufferFinished
+                        if isPauseByUser == false {
+                            self.play()
+                        }
+                    }
+                default:
+                    break
+                }
+                
+                
+            }
+        }
+    }
+    
+    /**
+     缓冲进度
+     
+     - returns: 缓冲进度
+     */
+    private func availableDuration() -> NSTimeInterval? {
         if let loadedTimeRanges = player?.currentItem?.loadedTimeRanges,
             first = loadedTimeRanges.first {
             let timeRange = first.CMTimeRangeValue
@@ -198,9 +314,37 @@ class BMPlayerLayerView: UIView {
             let result = startSeconds + durationSecound
             return result
         }
-        
         return nil
     }
-
     
+    /**
+     缓冲比较差的时候
+     */
+    private func bufferingSomeSecond() {
+        self.state = .Buffering
+        // playbackBufferEmpty会反复进入，因此在bufferingOneSecond延时播放执行完之前再调用bufferingSomeSecond都忽略
+        
+        if isBuffering {
+            return
+        }
+        isBuffering = true
+        // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
+        self.pause()
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * 1.0 ))
+        
+        dispatch_after(popTime, dispatch_get_main_queue()) {
+            if self.isPauseByUser {
+                self.isBuffering = false
+                return
+            }
+            // 如果此时用户已经暂停了，则不再需要开启播放了
+            self.play()
+            
+            // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
+            self.isBuffering = false
+            if !self.playerItem!.playbackLikelyToKeepUp {
+                self.bufferingSomeSecond()
+            }
+        }
+    }
 }

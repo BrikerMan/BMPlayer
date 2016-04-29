@@ -18,8 +18,6 @@ class VideoPlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         player.playWithURL(NSURL(string: url)!)
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,6 +25,16 @@ class VideoPlayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        player.pause()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        player.play()
+    }
     
     deinit {
         print("VideoPlayViewController Deinit")

@@ -18,7 +18,8 @@ enum BMPlayerState {
     case Playing        // 播放中
     case Stopped        // 停止播放
     case Pause          // 暂停播放
-    case PlayedToTheEnd
+    case PlayedToTheEnd // 
+    case Error
 }
 
 
@@ -37,6 +38,14 @@ public class BMPlayer: UIView {
         self.layoutIfNeeded()
     }
     
+    public func play() {
+        playerLayer.play()
+    }
+    
+    public func pause() {
+        playerLayer.pause()
+    }
+    
     deinit {
         playerLayer.pause()
         playerLayer.prepareToDeinit()
@@ -44,12 +53,13 @@ public class BMPlayer: UIView {
 }
 
 extension BMPlayer: BMPlayerLayerViewDelegate {
-    func bmPlayer(player player: BMPlayerLayerView, loadedTimeDidChange progressValue: Float) {
-        
+
+    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int) {
+        print("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
     }
     
     func bmPlayer(player player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
-        
+        print("playerStateDidChange - \(state)")
     }
     
     func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: Int, totalTime: Int) {
