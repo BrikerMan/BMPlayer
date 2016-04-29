@@ -10,23 +10,26 @@ import UIKit
 import BMPlayer
 
 class VideoPlayViewController: UIViewController {
-
+    
     @IBOutlet weak var player: BMPlayer!
+    
+    var url = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        player.playWithURL(NSURL(string: url)!)
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     deinit {
         print("VideoPlayViewController Deinit")
     }
-
+    
 }

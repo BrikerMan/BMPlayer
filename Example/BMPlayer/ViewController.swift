@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         if let sender = sender as? Int ,
         vc = segue.destinationViewController as? VideoPlayViewController {
             vc.title = "网络视频 \(sender)"
+            vc.url   = dataList[sender]
         }
     }
     

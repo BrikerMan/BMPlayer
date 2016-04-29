@@ -12,6 +12,7 @@
     "git": "https://github.com/BrikerMan/BMPlayer.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "http://weibo.com/536445669",
   "platforms": {
     "ios": "8.0"
   },
@@ -19,6 +20,15 @@
   "resource_bundles": {
     "BMPlayer": [
       "BMPlayer/Assets/*.png"
+    ]
+  },
+  "frameworks": [
+    "UIKit",
+    "AVFoundation"
+  ],
+  "dependencies": {
+    "SnapKit": [
+      "~> 0.20.0"
     ]
   }
 }

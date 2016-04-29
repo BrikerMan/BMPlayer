@@ -85,7 +85,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-BMPlayer_Example/BMPlayer.framework"
+  install_framework "Pods-BMPlayer_Example/SnapKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-BMPlayer_Example/BMPlayer.framework"
+  install_framework "Pods-BMPlayer_Example/SnapKit.framework"
 fi

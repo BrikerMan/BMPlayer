@@ -1,14 +1,18 @@
 PODS:
-  - BMPlayer (0.1.0)
+  - BMPlayer (0.1.0):
+    - SnapKit (~> 0.20.0)
+  - SnapKit (0.20.0)
 
 DEPENDENCIES:
   - BMPlayer (from `../`)
+  - SnapKit (~> 0.20.0)
 
 EXTERNAL SOURCES:
   BMPlayer:
     :path: ../
 
 SPEC CHECKSUMS:
-  BMPlayer: 3d089aa473b280a01675430390acb1bf48a263cc
+  BMPlayer: 98b6d8d2b417a23c271a91e411ffc2c17ea04179
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
 
 COCOAPODS: 0.39.0
