@@ -33,7 +33,7 @@ public class BMPlayer: UIView {
     
     public var backBlock:(() -> Void)?
     
-    var playerLayer: BMPlayerLayerView!
+    var playerLayer: BMPlayerLayerView?
     
     var controlView: BMPlayerControlView!
     /// 是否显示controlView
@@ -58,22 +58,22 @@ public class BMPlayer: UIView {
     // MARK: - Public functions
     public func playWithURL(url: NSURL) {
         playerLayer = BMPlayerLayerView()
-        insertSubview(playerLayer, atIndex: 0)
-        playerLayer.snp_makeConstraints { (make) in
+        insertSubview(playerLayer!, atIndex: 0)
+        playerLayer!.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
-        playerLayer.delegate = self
-        playerLayer.videoURL = url
+        playerLayer!.delegate = self
+        playerLayer!.videoURL = url
         controlView.loadIndector.startAnimating()
         self.layoutIfNeeded()
     }
     
     public func play() {
-        playerLayer.play()
+        playerLayer?.play()
     }
     
     public func pause() {
-        playerLayer.pause()
+        playerLayer?.pause()
     }
     
     public func autoFadeOutControlBar() {
@@ -88,7 +88,7 @@ public class BMPlayer: UIView {
     // MARK: - Action Response
     @objc private func hideControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
-            self.controlView.hideIcons()
+            self.controlView.hidePlayerIcons()
             UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
             
         }) { (_) in
@@ -98,7 +98,7 @@ public class BMPlayer: UIView {
     
     @objc private func showControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
-            self.controlView.showIcons()
+            self.controlView.showPlayerIcons()
             UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         }) { (_) in
             self.isMaskShowing = true
@@ -135,13 +135,13 @@ public class BMPlayer: UIView {
                 self.panDirection = BMPanDirection.Horizontal
                 
                 // 给sumTime初值
-                if let player = playerLayer.player {
+                if let player = playerLayer?.player {
                     let time = player.currentTime()
                     self.sumTime = Float(time.value) / Float(time.timescale)
                 }
                 
-                playerLayer.player?.pause()
-                playerLayer.timer?.fireDate = NSDate.distantFuture()
+                playerLayer?.player?.pause()
+                playerLayer?.timer?.fireDate = NSDate.distantFuture()
             } else {
                 self.panDirection = BMPanDirection.Vertical
                 if locationPoint.x > self.bounds.size.width / 2 {
@@ -165,8 +165,8 @@ public class BMPlayer: UIView {
             // 比如水平移动结束时，要快进到指定位置，如果这里没有判断，当我们调节音量完之后，会出现屏幕跳动的bug
             switch (self.panDirection) {
             case BMPanDirection.Horizontal:
-                playerLayer.player?.play()
-                playerLayer.timer?.fireDate = NSDate()
+                playerLayer?.player?.play()
+                playerLayer?.timer?.fireDate = NSDate()
                 
                 let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * 1.0 ))
                 
@@ -175,8 +175,8 @@ public class BMPlayer: UIView {
                     self.controlView.centerLabel.hidden = true
                 }
                 
-                playerLayer.isPauseByUser = false
-                playerLayer.seekToTime(Int(self.sumTime), completionHandler: nil)
+                playerLayer?.isPauseByUser = false
+                playerLayer?.seekToTime(Int(self.sumTime), completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
                 
@@ -200,7 +200,7 @@ public class BMPlayer: UIView {
         // 每次滑动需要叠加时间
         self.sumTime = self.sumTime + Float(value) / 200.0
         
-        if let playerItem = playerLayer.playerItem {
+        if let playerItem = playerLayer?.playerItem {
             let totalTime       = playerItem.duration
             let totalDuration   = Float(totalTime.value) / Float(totalTime.timescale)
             if (self.sumTime > totalDuration) { self.sumTime = totalDuration}
@@ -214,7 +214,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func progressSliderTouchBegan(sender: UISlider)  {
-        playerLayer.onTimeSliderBegan()
+        playerLayer?.onTimeSliderBegan()
         cancelAutoFadeOutControlBar()
     }
     
@@ -225,14 +225,14 @@ public class BMPlayer: UIView {
     @objc private func progressSliderTouchEnded(sender: UISlider)  {
         controlView.loadIndector.startAnimating()
         autoFadeOutControlBar()
-        playerLayer.onSliderTouchEnd(withValue: sender.value)
+        playerLayer?.onSliderTouchEnd(withValue: sender.value)
     }
     
     @objc private func backButtonPressed(button: UIButton) {
         if isFullScreen {
             fullScreenButtonPressed(nil)
         } else {
-            playerLayer.prepareToDeinit()
+            playerLayer?.prepareToDeinit()
             backBlock?()
         }
     }
@@ -260,8 +260,8 @@ public class BMPlayer: UIView {
     
     // MARK: - 生命周期
     deinit {
-        playerLayer.pause()
-        playerLayer.prepareToDeinit()
+        playerLayer?.pause()
+        playerLayer?.prepareToDeinit()
     }
     
     override init(frame: CGRect) {

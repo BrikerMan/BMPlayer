@@ -8,27 +8,32 @@
 
 import UIKit
 
-class BMPlayerControlView: UIView {
+class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
+    var view: UIView {
+        get {
+            return self
+        }
+    }
+    var maskImageView    = UIImageView()
     
-    var maskImageView    : UIImageView!
-    var currentTimeLabel : UILabel!
-    var totalTimeLabel   : UILabel!
+    var currentTimeLabel = UILabel()
+    var totalTimeLabel   = UILabel()
     
-    var playButton       : UIButton!
-    var timeSlider       : UISlider!
-    var progressView     : UIProgressView!
-    var fullScreenButton : UIButton!
-    var backButton       : UIButton!
+    var playButton       = UIButton(type: UIButtonType.Custom)
+    var timeSlider       = UISlider()
+    var progressView     = UIProgressView()
+    var fullScreenButton = UIButton(type: UIButtonType.Custom)
+    var backButton       = UIButton(type: UIButtonType.Custom)
     
-    var loadIndector     : UIActivityIndicatorView!
-    var centerLabel      : UILabel!
+    var loadIndector     = UIActivityIndicatorView()
+    var centerLabel      = UILabel()
     
     // MARK: - funcitons
-    func hideIcons() {
+    func showPlayerIcons() {
         maskImageView.alpha = 0.0
     }
     
-    func showIcons() {
+    func hidePlayerIcons() {
         maskImageView.alpha = 1.0
     }
     
@@ -46,13 +51,9 @@ class BMPlayerControlView: UIView {
     }
     
     private func initUI() {
-        maskImageView    = UIImageView()
         addSubview(maskImageView)
         maskImageView.userInteractionEnabled = true
-        
-        currentTimeLabel = UILabel()
-        totalTimeLabel   = UILabel()
-        
+    
         currentTimeLabel.textColor = UIColor.whiteColor()
         totalTimeLabel.textColor   = UIColor.whiteColor()
         currentTimeLabel.font      = UIFont.systemFontOfSize(12)
@@ -61,21 +62,11 @@ class BMPlayerControlView: UIView {
         maskImageView.addSubview(currentTimeLabel)
         maskImageView.addSubview(totalTimeLabel)
         
-        timeSlider       = UISlider()
-        progressView     = UIProgressView()
-        
-        fullScreenButton = UIButton()
-        playButton       = UIButton(type: UIButtonType.Custom)
-        backButton       = UIButton(type: UIButtonType.Custom)
-        
         maskImageView.addSubview(progressView)
         maskImageView.addSubview(timeSlider)
         maskImageView.addSubview(fullScreenButton)
         maskImageView.addSubview(playButton)
         maskImageView.addSubview(backButton)
-        
-        loadIndector     = UIActivityIndicatorView()
-        centerLabel      = UILabel()
         
         addSubview(loadIndector)
         addSubview(centerLabel)
@@ -143,6 +134,7 @@ class BMPlayerControlView: UIView {
     }
     
     private func initUIData() {
+        addSubview(maskImageView)
         maskImageView.image = BMImageResourcePath("BMPlayer_mask_image")
         
         currentTimeLabel.text   = "00:00"
