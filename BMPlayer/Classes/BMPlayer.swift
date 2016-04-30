@@ -88,7 +88,7 @@ public class BMPlayer: UIView {
     @objc private func hideControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.hidePlayerIcons()
-            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
+//            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
             
         }) { (_) in
             self.isMaskShowing = false
@@ -98,7 +98,7 @@ public class BMPlayer: UIView {
     @objc private func showControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.showPlayerIcons()
-            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
+//            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         }) { (_) in
             self.isMaskShowing = true
         }
@@ -285,6 +285,7 @@ public class BMPlayer: UIView {
     
     // MARK: - 初始化
     private func initUI() {
+        self.backgroundColor = UIColor.blackColor()
         if let customControlView = customControlView {
             controlView =  customControlView
         } else {

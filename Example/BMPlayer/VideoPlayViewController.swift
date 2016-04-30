@@ -11,7 +11,7 @@ import BMPlayer
 
 class VideoPlayViewController: UIViewController {
     
-//    @IBOutlet weak var player: BMPlayer!
+    //    @IBOutlet weak var player: BMPlayer!
     
     var player: BMPlayer!
     
@@ -20,13 +20,23 @@ class VideoPlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let navView = UIView()
+        navView.backgroundColor = UIColor.blackColor()
+        view.addSubview(navView)
+        
+        navView.snp_makeConstraints { (make) in
+            make.left.top.right.equalTo(view)
+            make.height.equalTo(20)
+        }
+        
+        
         player = BMPlayer()
         view.addSubview(player)
         player.snp_makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(20)
-            make.left.right.equalTo(self.view)
-            // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
-            make.height.equalTo(player.snp_width).multipliedBy(9/16).priority(750)
+            make.top.equalTo(view.snp_top)
+            make.left.equalTo(view.snp_left)
+            make.right.equalTo(view.snp_right)
+            make.height.equalTo(view.snp_width).multipliedBy(9.0/16.0)
         }
         
         player.playWithURL(NSURL(string: url)!)
@@ -34,6 +44,7 @@ class VideoPlayViewController: UIViewController {
         player.backBlock = { [unowned self] in
             self.navigationController?.popViewControllerAnimated(true)
         }
+        self.view.layoutIfNeeded()
     }
     
     

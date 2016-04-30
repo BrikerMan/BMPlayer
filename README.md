@@ -31,6 +31,8 @@ use_frameworks!
 
 pod "BMPlayer"
 ```
+## Demo
+运行 Demo ，请下载后先在 Example 目录运行 `pod install`
 
 # 使用 （支持IB和代码）
 
@@ -43,7 +45,7 @@ pod "BMPlayer"
 player.playWithURL(NSURL(string: url)!)
 
 player.backBlock = { [unowned self] in
-self.navigationController?.popViewControllerAnimated(true)
+    self.navigationController?.popViewControllerAnimated(true)
 }
 ```
 
@@ -52,10 +54,10 @@ self.navigationController?.popViewControllerAnimated(true)
 player = BMPlayer()
 view.addSubview(player)
 player.snp_makeConstraints { (make) in
-make.top.equalTo(self.view).offset(20)
-make.left.right.equalTo(self.view)
-// 注意此处，宽高比 16:9 优先级比 1000 低就行，在因为 iPhone 4S 宽高比不是 16：9
-make.height.equalTo(player.snp_width).multipliedBy(9/16).priority(750)
+    make.top.equalTo(self.view).offset(20)
+    make.left.right.equalTo(self.view)
+    // 注意此处，宽高比 16:9 优先级比 1000 低就行，在因为 iPhone 4S 宽高比不是 16：9
+    make.height.equalTo(player.snp_width).multipliedBy(9/16).priority(750)
 }
 
 player.playWithURL(NSURL(string: url)!)
