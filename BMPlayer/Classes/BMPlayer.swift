@@ -36,13 +36,12 @@ public class BMPlayer: UIView {
     var playerLayer: BMPlayerLayerView?
     
     var controlView: BMPlayerControlView!
+    
+    var customControlView: BMPlayerControlView?
     /// 是否显示controlView
     private var isMaskShowing = false
     
     private var isFullScreen  = false
-    
-    
-    
     /// 用来保存快进的总时长
     private var sumTime     : Float!
     /// 滑动方向
@@ -286,8 +285,12 @@ public class BMPlayer: UIView {
     
     // MARK: - 初始化
     private func initUI() {
+        if let customControlView = customControlView {
+            controlView =  customControlView
+        } else {
+            controlView =  BMPlayerControlView()
+        }
         
-        controlView =  BMPlayerControlView()
         addSubview(controlView)
         controlView.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
