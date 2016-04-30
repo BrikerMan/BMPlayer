@@ -6,9 +6,3 @@ target 'BMPlayer_Example', :exclusive => true do
   pod 'Reveal-iOS-SDK', :configurations => ['Debug']
   
 end
-
-target 'BMPlayer_Tests', :exclusive => true do
-  pod 'BMPlayer', :path => '../'
-
-  
-end
