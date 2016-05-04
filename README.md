@@ -29,7 +29,7 @@
 ```ruby
 use_frameworks!
 
-pod "BMPlayer"
+pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
 ### Demo
@@ -94,7 +94,9 @@ BMPlayer is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "BMPlayer"
+use_frameworks!
+
+pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
 ## License
