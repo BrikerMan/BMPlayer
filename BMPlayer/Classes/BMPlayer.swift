@@ -54,6 +54,10 @@ public class BMPlayer: UIView {
     private let BMPlayerAnimationTimeInterval:Double                = 4.0
     private let BMPlayerControlBarAutoFadeOutTimeInterval:Double    = 0.5
     
+    private var totalTime = 1
+    
+    private var isSliderSliding = false
+    
     // MARK: - Public functions
     public func playWithURL(url: NSURL) {
         playerLayer = BMPlayerLayerView()
@@ -88,7 +92,7 @@ public class BMPlayer: UIView {
     @objc private func hideControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.hidePlayerIcons()
-//            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
+            //            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
             
         }) { (_) in
             self.isMaskShowing = false
@@ -98,7 +102,7 @@ public class BMPlayer: UIView {
     @objc private func showControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.showPlayerIcons()
-//            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
+            //            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         }) { (_) in
             self.isMaskShowing = true
         }
@@ -196,11 +200,16 @@ public class BMPlayer: UIView {
         var style = ""
         if value < 0 { style = "<<" }
         if value > 0 { style = ">>" }
-        // 每次滑动需要叠加时间
-        self.sumTime = self.sumTime + Float(value) / 200.0
+        isSliderSliding = true
+        // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
+        self.sumTime = self.sumTime + Float(value) / 100.0 * (Float(totalTime)/400)
         
         if let playerItem = playerLayer?.playerItem {
             let totalTime       = playerItem.duration
+            
+            // 防止出现NAN
+            if totalTime.timescale == 0 { return }
+            
             let totalDuration   = Float(totalTime.value) / Float(totalTime.timescale)
             if (self.sumTime > totalDuration) { self.sumTime = totalDuration}
             if (self.sumTime < 0){ self.sumTime = 0}
@@ -208,6 +217,8 @@ public class BMPlayer: UIView {
             let nowTime      = formatSecondsToString(Int(sumTime))
             let durationTime = formatSecondsToString(Int(totalDuration))
             
+            controlView.timeSlider.value    = Float(Int(sumTime)) / Float(self.totalTime)
+            controlView.currentTimeLabel.text = formatSecondsToString(Int(sumTime))
             self.controlView.centerLabel.text = "\(style) \(nowTime) / \(durationTime)"
         }
     }
@@ -215,6 +226,7 @@ public class BMPlayer: UIView {
     @objc private func progressSliderTouchBegan(sender: UISlider)  {
         playerLayer?.onTimeSliderBegan()
         cancelAutoFadeOutControlBar()
+        isSliderSliding = true
     }
     
     @objc private func progressSliderValueChanged(sender: UISlider)  {
@@ -345,6 +357,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             autoFadeOutControlBar()
             controlView.loadIndector.stopAnimating()
             controlView.playButton.selected = true
+            isSliderSliding = false
         case BMPlayerState.Pause:
             controlView.playButton.selected = false
         default:
@@ -354,6 +367,10 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     
     func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: Int, totalTime: Int) {
         print("playTimeDidChange - \(currentTime) - \(totalTime)")
+        self.totalTime = totalTime
+        if isSliderSliding {
+            return
+        }
         controlView.currentTimeLabel.text = formatSecondsToString(currentTime)
         controlView.totalTimeLabel.text = formatSecondsToString(totalTime)
         
