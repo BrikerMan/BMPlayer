@@ -5,10 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 
-**正在开发**
-
 ## 介绍
-本项目是基于 AVPlayer 使用 Swift 封装的视频播放器，方便快速集成。目前处于开发阶段，功能将持续完善。
+本项目是基于 AVPlayer 使用 Swift 封装的视频播放器，方便快速集成。功能正在持续完善。
 
 ## 功能
 - 支持横、竖屏切换，在全屏播放模式下还可以锁定屏幕方向
@@ -16,7 +14,6 @@
 - 左侧 1/2 位置上下滑动调节屏幕亮度（模拟器调不了亮度，请在真机调试）
 - 右侧 1/2 位置上下滑动调节音量（模拟器调不了音量，请在真机调试）
 - 左右滑动调节播放进度
-- 切换视频分辨率
 
 ## 要求
 - iOS 8 +
@@ -78,26 +75,6 @@ player.backBlock = { [unowned self] in
 ## 联系我：
 - 博客: https://eliyar.biz
 - 邮箱: eliyar917@gmail.com
-
-## Usage
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-- iOS 8 +
-- Xcode 7.3
-- Swift 2.2
-
-## Installation
-
-BMPlayer is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-use_frameworks!
-
-pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
-```
 
 ## License
 
