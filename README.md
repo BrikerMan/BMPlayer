@@ -26,7 +26,7 @@
 ```ruby
 use_frameworks!
 
-pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+pod 'BMPlayer', '~> 0.1.5'
 ```
 
 ### Demo
