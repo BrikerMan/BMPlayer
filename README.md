@@ -1,6 +1,6 @@
 ## BMPlayer
 
-[![CI Status](http://img.shields.io/travis/Eliyar Eziz/BMPlayer.svg?style=flat)](https://travis-ci.org/Eliyar Eziz/BMPlayer)
+[![Build Status](https://travis-ci.org/BrikerMan/BMPlayer.svg?branch=master)](https://travis-ci.org/BrikerMan/BMPlayer)
 [![Version](https://img.shields.io/cocoapods/v/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![License](https://img.shields.io/cocoapods/l/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
