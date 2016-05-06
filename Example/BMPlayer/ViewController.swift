@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let dataList = [
-        "http://pl.youku.com/playlist/m3u8?ts=1462273286&keyframe=0&ykss=ff842857d381da96211ba4c3&pid=69b81504767483cf&vid=XMTU1MTc0NDgwNA==&type=flv&r=s0KfeG/MpJGxT8zBRdWN/LVC7tut611BSE41Kpa3TP458/QxZV04id1aeqGbo6gH8PUpNx0Ap7OdJBVOT/S01ZODSy6Mv/nJMSqqUC/vobF4VZ4d40lytN0O4MeYDHBrYDosUvY0B4jgOB68cL/amnd2uoaVgi5HSFKSDf24NnAS0HjEYPwPEowaQRAx34uUuW10ScZrNh95iNWKAqYEBjnVfXLqLyyVfm20RjvEPxceONtxuNQ7TChnku8jnsVijaLiauMYJvWl+xSzLDe6wi9DjO+KHJELFeA4sbzpVtKqInnv1Y6TJEMikJs12+fv&sid=046227328679121b9111e&token=6116&&oip=757078857&&ep=advMucTUQ8agbrAuByrrtTC6DAsRN6A3JsiCxhqobqgZ7iTU8sS1aJQVlEvSbrGG&did=65c906c26a8703f45f2f64b92bff8203e8697e75&ctype=21&ev=1",
         "http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
         "http://baobab.wdjcdn.com/1456117847747a_x264.mp4",
         "http://baobab.wdjcdn.com/14525705791193.mp4",
