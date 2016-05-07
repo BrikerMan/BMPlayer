@@ -360,6 +360,8 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             isSliderSliding = false
         case BMPlayerState.Pause:
             controlView.playButton.selected = false
+        case BMPlayerState.PlayedToTheEnd:
+            controlView.showVideoEndedView()
         default:
             break
         }

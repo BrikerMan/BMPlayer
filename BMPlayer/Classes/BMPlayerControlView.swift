@@ -28,6 +28,8 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
     var loadIndector     = UIActivityIndicatorView()
     var centerLabel      = UILabel()
     
+    var centerButton     = UIButton(type: UIButtonType.Custom)
+    
     // MARK: - funcitons
     func showPlayerIcons() {
         maskImageView.alpha = 0.0
@@ -35,6 +37,10 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
     
     func hidePlayerIcons() {
         maskImageView.alpha = 1.0
+    }
+    
+    func showVideoEndedView() {
+        centerButton.hidden = false
     }
     
     // MARK: - 初始化
@@ -67,6 +73,7 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
         maskImageView.addSubview(fullScreenButton)
         maskImageView.addSubview(playButton)
         maskImageView.addSubview(backButton)
+        maskImageView.addSubview(centerButton)
         
         addSubview(loadIndector)
         addSubview(centerLabel)
@@ -131,6 +138,11 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
             make.width.equalTo(100)
             make.height.equalTo(24)
         }
+        
+        centerButton.snp_makeConstraints { (make) in
+            make.center.equalTo(maskImageView.snp_center)
+            make.width.height.equalTo(50)
+        }
     }
     
     private func initUIData() {
@@ -170,6 +182,7 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
         centerLabel.clipsToBounds      = true
         centerLabel.hidden             = true
         
+        centerButton.hidden = true
     }
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {
