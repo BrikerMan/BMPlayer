@@ -1,6 +1,6 @@
 PODS:
-  - BMPlayer (0.1.0):
-    - SnapKit (~> 0.20.0)
+  - BMPlayer (0.1.5):
+    - SnapKit
   - Reveal-iOS-SDK (1.6.2)
   - SnapKit (0.20.0)
 
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BMPlayer: 98b6d8d2b417a23c271a91e411ffc2c17ea04179
+  BMPlayer: 05bd5492c620ef4bc9eacdf96951ddac7603edd1
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
 

@@ -36,6 +36,7 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
     }
     
     func hidePlayerIcons() {
+        centerButton.hidden = true
         maskImageView.alpha = 1.0
     }
     
@@ -148,6 +149,8 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
     private func initUIData() {
         addSubview(maskImageView)
         maskImageView.image = BMImageResourcePath("BMPlayer_mask_image")
+        
+        centerButton.setImage(BMImageResourcePath("BMPlayer_replay"), forState: UIControlState.Normal)
         
         currentTimeLabel.text   = "00:00"
         totalTimeLabel.text     = "00:00"

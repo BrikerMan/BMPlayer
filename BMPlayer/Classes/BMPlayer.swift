@@ -248,6 +248,14 @@ public class BMPlayer: UIView {
         }
     }
     
+    @objc private func replayButtonPressed(button: UIButton) {
+        controlView.centerButton.hidden = true
+        self.playerLayer?.isPauseByUser = false
+        playerLayer?.seekToTime(0, completionHandler: {
+            self.playerLayer?.play()
+        })
+    }
+    
     @objc private func playButtonPressed(button: UIButton) {
         if button.selected {
             self.pause()
@@ -321,6 +329,7 @@ public class BMPlayer: UIView {
         controlView.playButton.addTarget(self, action: #selector(self.playButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.fullScreenButton.addTarget(self, action: #selector(self.fullScreenButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.backButton.addTarget(self, action: #selector(self.backButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        controlView.centerButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
@@ -354,6 +363,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         case BMPlayerState.BufferFinished:
             controlView.loadIndector.stopAnimating()
         case BMPlayerState.Playing:
+            controlView.centerButton.hidden = true
             autoFadeOutControlBar()
             controlView.loadIndector.stopAnimating()
             controlView.playButton.selected = true
@@ -361,6 +371,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         case BMPlayerState.Pause:
             controlView.playButton.selected = false
         case BMPlayerState.PlayedToTheEnd:
+            self.pause()
             controlView.showVideoEndedView()
         default:
             break
