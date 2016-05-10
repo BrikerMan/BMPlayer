@@ -1,8 +1,14 @@
-import UIKit
-import XCTest
-import BMPlayer
+//
+//  BMPlayer_Tests.swift
+//  BMPlayer_Tests
+//
+//  Created by BrikerMan on 16/5/10.
+//  Copyright © 2016年 CocoaPods. All rights reserved.
+//
 
-class Tests: XCTestCase {
+import XCTest
+
+class BMPlayer_Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -16,12 +22,12 @@ class Tests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measureBlock {
             // Put the code you want to measure the time of here.
         }
     }

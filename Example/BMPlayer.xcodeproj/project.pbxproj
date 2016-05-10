@@ -12,6 +12,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		6AAA770B1CE18427009745BA /* BMPlayer_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */; };
 		6AB6B7171CD226F70031AFC5 /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB6B7161CD226F70031AFC5 /* VideoPlayViewController.swift */; };
 		933E01E09ACC72D6473CBFA4 /* Pods_BMPlayer_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D62E6BBA3CCBEF30A098561 /* Pods_BMPlayer_Example.framework */; };
 /* End PBXBuildFile section */
@@ -26,8 +27,9 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		6AAA77081CE18427009745BA /* BMPlayer_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMPlayer_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMPlayer_Tests.swift; sourceTree = "<group>"; };
+		6AAA770C1CE18427009745BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AB6B7161CD226F70031AFC5 /* VideoPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayViewController.swift; sourceTree = "<group>"; };
 		7CEB9288162EE86B9DE1E1C9 /* Pods-BMPlayer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMPlayer_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8806D6A27AFB51DC97DD5764 /* Pods-BMPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMPlayer_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -47,6 +49,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6AAA77051CE18427009745BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,7 +64,7 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for BMPlayer */,
-				607FACE81AFB9204008FA782 /* Tests */,
+				6AAA77091CE18427009745BA /* BMPlayer_Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				D88729133F3EDEE377B07352 /* Pods */,
 				F51DD12F6A239CF99C3AC276 /* Frameworks */,
@@ -66,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* BMPlayer_Example.app */,
+				6AAA77081CE18427009745BA /* BMPlayer_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,23 +103,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		607FACE81AFB9204008FA782 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		607FACE91AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEA1AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +111,15 @@
 				99063F39CF18C5E3F0C969F9 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		6AAA77091CE18427009745BA /* BMPlayer_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */,
+				6AAA770C1CE18427009745BA /* Info.plist */,
+			);
+			path = BMPlayer_Tests;
 			sourceTree = "<group>";
 		};
 		D88729133F3EDEE377B07352 /* Pods */ = {
@@ -163,18 +165,38 @@
 			productReference = 607FACD01AFB9204008FA782 /* BMPlayer_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6AAA77071CE18427009745BA /* BMPlayer_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AAA770F1CE18427009745BA /* Build configuration list for PBXNativeTarget "BMPlayer_Tests" */;
+			buildPhases = (
+				6AAA77041CE18427009745BA /* Sources */,
+				6AAA77051CE18427009745BA /* Frameworks */,
+				6AAA77061CE18427009745BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BMPlayer_Tests;
+			productName = BMPlayer_Tests;
+			productReference = 6AAA77081CE18427009745BA /* BMPlayer_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+					};
+					6AAA77071CE18427009745BA = {
+						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
 			};
@@ -192,6 +214,7 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* BMPlayer_Example */,
+				6AAA77071CE18427009745BA /* BMPlayer_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -204,6 +227,13 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AAA77061CE18427009745BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +295,14 @@
 				6AB6B7171CD226F70031AFC5 /* VideoPlayViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AAA77041CE18427009745BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AAA770B1CE18427009745BA /* BMPlayer_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +436,31 @@
 			};
 			name = Release;
 		};
+		6AAA770D1CE18427009745BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = BMPlayer_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliyar.BMPlayer-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6AAA770E1CE18427009745BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = BMPlayer_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliyar.BMPlayer-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -418,6 +481,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6AAA770F1CE18427009745BA /* Build configuration list for PBXNativeTarget "BMPlayer_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AAA770D1CE18427009745BA /* Debug */,
+				6AAA770E1CE18427009745BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
