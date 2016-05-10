@@ -1,5 +1,3 @@
 language: objective-c
 osx_image: xcode7.3
 xcode_workspace: Example/BMPlayer.xcworkspace
-xcode_scheme: BMPlayer
-xcode_sdk: iphonesimulator
