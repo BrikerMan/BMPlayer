@@ -40,6 +40,7 @@ public class BMPlayer: UIView {
     private var isMaskShowing = false
     
     private var isFullScreen  = false
+    
     /// 用来保存快进的总时长
     private var sumTime     : NSTimeInterval!
     /// 滑动方向
@@ -57,6 +58,8 @@ public class BMPlayer: UIView {
     private var isSliderSliding = false
     
     private var isPlayerPrepared = false
+    
+    private var isPauseByUser    = false
     
     // MARK: - Public functions
     /**
@@ -81,14 +84,23 @@ public class BMPlayer: UIView {
         controlView.titleLabel.text = title
     }
     
-    
+    /**
+     使用自动播放
+     */
+    public func autoPlay() {
+        if !isPauseByUser {
+            self.play()
+        }
+    }
     
     public func play() {
         playerLayer?.play()
+        isPauseByUser = false
     }
     
-    public func pause() {
+    public func pause(allowAutoPlay: Bool = false) {
         playerLayer?.pause()
+        isPauseByUser = !allowAutoPlay
     }
     
     public func autoFadeOutControlBar() {
@@ -111,15 +123,15 @@ public class BMPlayer: UIView {
                 controlView.playButton.selected = false
             }
         }
-        
     }
     
     
     @objc private func hideControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.hidePlayerIcons()
-            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
-            
+            if self.isFullScreen {
+                UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
+            }
         }) { (_) in
             self.isMaskShowing = false
         }
@@ -183,19 +195,14 @@ public class BMPlayer: UIView {
             switch self.panDirection {
             case BMPanDirection.Horizontal:
                 self.horizontalMoved(velocityPoint.x)
-                BMPlayerManager.shared.log("\(velocityPoint.x)")
             case BMPanDirection.Vertical:
                 self.verticalMoved(velocityPoint.y)
-                BMPlayerManager.shared.log("\(velocityPoint.y)")
             }
         case UIGestureRecognizerState.Ended:
             // 移动结束也需要判断垂直或者平移
             // 比如水平移动结束时，要快进到指定位置，如果这里没有判断，当我们调节音量完之后，会出现屏幕跳动的bug
             switch (self.panDirection) {
             case BMPanDirection.Horizontal:
-                playerLayer?.player?.play()
-                playerLayer?.timer?.fireDate = NSDate()
-                
                 controlView.hideSeekToView()
                 playerLayer?.seekToTime(Int(self.sumTime), completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
@@ -244,7 +251,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func progressSliderValueChanged(sender: UISlider)  {
-        self.pause()
+        self.pause(true)
     }
     
     @objc private func progressSliderTouchEnded(sender: UISlider)  {
@@ -264,7 +271,6 @@ public class BMPlayer: UIView {
     
     @objc private func replayButtonPressed(button: UIButton) {
         controlView.centerButton.hidden = true
-        self.playerLayer?.isPauseByUser = false
         playerLayer?.seekToTime(0, completionHandler: {
             self.playerLayer?.play()
         })
@@ -394,6 +400,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         case BMPlayerState.BufferFinished:
             controlView.hideLoader()
             playStateDidChanged()
+            autoPlay()
         case BMPlayerState.PlayedToTheEnd:
             self.pause()
             controlView.showVideoEndedView()

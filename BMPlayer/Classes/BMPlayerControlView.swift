@@ -61,8 +61,6 @@ class BMPlayerControlView: UIView {
     
     func hideLoader() {
         loadingIndector.hidden = true
-        loadingIndector.stopAnimation()
-        
     }
     
     func showSeekToView(to: String, isAdd: Bool) {

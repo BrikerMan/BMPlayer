@@ -38,9 +38,7 @@ class BMPlayerLayerView: UIView {
         }
         return nil
     }()
-    
-    /// 是否被用户暂停
-    var isPauseByUser = false
+
     
     var isPlaying     = false {
         didSet {
@@ -91,6 +89,7 @@ class BMPlayerLayerView: UIView {
         if let player = player {
             isPlaying = true
             player.play()
+            timer?.fireDate = NSDate()
         }
     }
     
@@ -98,7 +97,7 @@ class BMPlayerLayerView: UIView {
     func pause() {
         player?.pause()
         isPlaying  = false
-        isPauseByUser = true
+        timer?.fireDate = NSDate.distantFuture()
     }
     
     // MARK: - 生命周期
@@ -155,7 +154,6 @@ class BMPlayerLayerView: UIView {
     func onSliderTouchEnd(withValue value: Float) {
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             self.timer?.fireDate = NSDate()
-            self.isPauseByUser = false
             let total = Float(playerItem!.duration.value) / Float(playerItem!.duration.timescale)
             let draggedSecound = Int(total * value)
             self.seekToTime(draggedSecound, completionHandler: nil)
@@ -166,13 +164,7 @@ class BMPlayerLayerView: UIView {
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             let draggedTime = CMTimeMake(Int64(secounds), 1)
             self.player!.seekToTime(draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
-                if self.isPauseByUser {
-                    return
-                }
-                self.play()
-                if !self.playerItem!.playbackLikelyToKeepUp {
-                    self.state = .Buffering
-                }
+                
             })
         }
     }
@@ -225,8 +217,6 @@ class BMPlayerLayerView: UIView {
         self.layer.insertSublayer(playerLayer!, atIndex: 0)
         
         self.timer  = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
-
-        self.isPauseByUser  = false
         
         self.setNeedsLayout()
         self.layoutIfNeeded()
@@ -279,9 +269,6 @@ class BMPlayerLayerView: UIView {
                 case "playbackLikelyToKeepUp":
                     if item.playbackBufferEmpty {
                         self.state = .BufferFinished
-                        if isPauseByUser == false {
-                            player?.play()
-                        }
                     }
                 default:
                     break
@@ -332,9 +319,6 @@ class BMPlayerLayerView: UIView {
                 } else {
                     // 如果此时用户已经暂停了，则不再需要开启播放了
                     self.state = BMPlayerState.BufferFinished
-                    if !self.isPauseByUser {
-                        self.player?.play()
-                    }
                 }
             }
         }
