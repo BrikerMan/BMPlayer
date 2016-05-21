@@ -38,8 +38,13 @@ class VideoPlayViewController: UIViewController {
             make.right.equalTo(view.snp_right)
             make.height.equalTo(view.snp_width).multipliedBy(9.0/16.0)
         }
+    
         
-        player.playWithQualityItems([item], title: self.title!)
+        let item1 = BMPlayerItem(url: NSURL(string: "http://baobab.wdjcdn.com/1456117847747a_x264.mp4")!, definitionName: "超清")
+        let item2 = BMPlayerItem(url: NSURL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, definitionName: "高清")
+        let item3 = BMPlayerItem(url: NSURL(string: "http://baobab.wdjcdn.com/1456459181808howtoloseweight_x264.mp4")!, definitionName: "标清")
+        
+        player.playWithQualityItems([item1,item2,item3], title: self.title!)
         
         player.backBlock = { [unowned self] in
             self.navigationController?.popViewControllerAnimated(true)

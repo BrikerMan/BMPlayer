@@ -38,7 +38,7 @@ class BMPlayerLayerView: UIView {
         }
         return nil
     }()
-
+    
     
     var isPlaying     = false {
         didSet {
@@ -161,13 +161,14 @@ class BMPlayerLayerView: UIView {
     
     
     // MARK: - 设置视频URL
-    
     private func onSetVideoURL() {
         self.repeatToPlay = false
         self.playDidEnd   = false
         self.configPlayer()
         
     }
+    
+    
     
     private func onPlayerItemChange() {
         if lastPlayerItem == playerItem {
@@ -215,10 +216,12 @@ class BMPlayerLayerView: UIView {
     
     // MARK: - 计时器事件
     @objc private func playerTimerAction() {
-        if playerItem!.duration.timescale != 0 {
-            let currentTime = CMTimeGetSeconds(self.player!.currentTime())
-            let totalTime   = NSTimeInterval(playerItem!.duration.value) / NSTimeInterval(playerItem!.duration.timescale)
-            delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
+        if let playerItem = playerItem {
+            if playerItem.duration.timescale != 0 {
+                let currentTime = CMTimeGetSeconds(self.player!.currentTime())
+                let totalTime   = NSTimeInterval(playerItem.duration.value) / NSTimeInterval(playerItem.duration.timescale)
+                delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
+            }
         }
     }
     

@@ -52,6 +52,7 @@
 		6933CCCA916A3D1C4A6C12B40C69C552 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E507D7BC25F1B3DCEF5D36BFD1BB08 /* NVActivityIndicatorAnimationBallGridBeat.swift */; };
 		69A2722E2D054D6675C0C5AD6FEF3BF9 /* BMPlayer_slider_thumb@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A55F45EFF9B4A22D50522D1634AC3C69 /* BMPlayer_slider_thumb@3x.png */; };
 		6A06986C1CF065E600019DB4 /* BMPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06986B1CF065E600019DB4 /* BMPlayerItem.swift */; };
+		6A06986E1CF07DA000019DB4 /* BMPlayerClearityChooseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A06986D1CF07DA000019DB4 /* BMPlayerClearityChooseButton.swift */; };
 		6D992051B7BABC1A068A4E49E736127E /* BMPlayer_replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E09D50986C39A022C8141B77EB11E9 /* BMPlayer_replay@2x.png */; };
 		752EA95686C8C81890F3FAED0ED67EA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88747C171B46D5CADD289FEFCA0DFF2 /* UIKit.framework */; };
 		76E6105A2410B36DB853F8BF87AAE0A6 /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F35833B9BABA13EC8F6B21450738FFF /* NVActivityIndicatorAnimationDelegate.swift */; };
@@ -191,6 +192,7 @@
 		5EE71FB7DF2A35F11EF5CD3D78B1E5F9 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBallClipRotateMultiple.swift; path = NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotateMultiple.swift; sourceTree = "<group>"; };
 		64AAE75C5A33B27627C37CDA2409880D /* BMPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BMPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A06986B1CF065E600019DB4 /* BMPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerItem.swift; sourceTree = "<group>"; };
+		6A06986D1CF07DA000019DB4 /* BMPlayerClearityChooseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerClearityChooseButton.swift; sourceTree = "<group>"; };
 		6C59197CFD09B80AF756C03AC23029F9 /* BMPlayer_play@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "BMPlayer_play@3x.png"; sourceTree = "<group>"; };
 		707C0B0D6A2E975557AA0C364BCFE586 /* BMPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BMPlayer-dummy.m"; sourceTree = "<group>"; };
 		70B0C5DCE267F48307F0996D686BEC4D /* BMPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BMPlayer-umbrella.h"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				AC06C9F007B0789488327AE9CFA233BF /* BMPlayerManager.swift */,
 				9F24B695626CE2C785E214CA295AC18C /* BMPlayerProtocols.swift */,
 				6A06986B1CF065E600019DB4 /* BMPlayerItem.swift */,
+				6A06986D1CF07DA000019DB4 /* BMPlayerClearityChooseButton.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				F4C404845F9FC86E5E3E93D9FDE59B35 /* BMPlayerControlView.swift in Sources */,
 				2216910CDE5496822B4045C81DD5A348 /* BMPlayerLayerView.swift in Sources */,
 				6A06986C1CF065E600019DB4 /* BMPlayerItem.swift in Sources */,
+				6A06986E1CF07DA000019DB4 /* BMPlayerClearityChooseButton.swift in Sources */,
 				BE9F201CFC48022939E842DD060F961D /* BMPlayerManager.swift in Sources */,
 				1148E9CD4C9D48FE4E6390A361A516B2 /* BMPlayerProtocols.swift in Sources */,
 			);

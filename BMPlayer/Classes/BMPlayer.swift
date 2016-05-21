@@ -29,7 +29,7 @@ public class BMPlayer: UIView {
     
     public var backBlock:(() -> Void)?
     
-    var playerItems: [BMPlayerItemProtocol] = []
+    var videoItems: [BMPlayerItemProtocol] = []
     
     var currentDefinition = 0
     
@@ -65,6 +65,8 @@ public class BMPlayer: UIView {
     
     private var currentPosition : NSTimeInterval = 0
     
+    private var shouldSeekTo : NSTimeInterval = 0
+    
     // MARK: - Public functions
     /**
      直接使用URL播放
@@ -85,9 +87,11 @@ public class BMPlayer: UIView {
      - parameter definitionIndex: 起始清晰度
      */
     public func playWithQualityItems(items:[BMPlayerItemProtocol], title: String, definitionIndex: Int = 0) {
+        videoItems                  = items
         playerLayer?.videoURL       = items[definitionIndex].playURL
         controlView.titleLabel.text = title
         currentDefinition           = definitionIndex
+        controlView.prepareChooseDefinitionView(items, index: definitionIndex)
     }
     
     /**
@@ -293,6 +297,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func fullScreenButtonPressed(button: UIButton?) {
+        controlView.isFullScreen = !self.isFullScreen
         if isFullScreen {
             UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
             UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
@@ -343,6 +348,8 @@ public class BMPlayer: UIView {
         }
         
         addSubview(controlView)
+        controlView.updateUI()
+        controlView.delegate = self
         controlView.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
@@ -401,7 +408,12 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         BMPlayerManager.shared.log("playerStateDidChange - \(state)")
         switch state {
         case BMPlayerState.ReadyToPlay:
-            break
+            if shouldSeekTo != 0 {
+                playerLayer?.seekToTime(Int(shouldSeekTo), completionHandler: { 
+                    
+                })
+                shouldSeekTo = 0
+            }
         case BMPlayerState.Buffering:
             cancelAutoFadeOutControlBar()
             controlView.showLoader()
@@ -429,5 +441,14 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         controlView.totalTimeLabel.text = formatSecondsToString(totalTime)
         
         controlView.timeSlider.value    = Float(currentTime) / Float(totalTime)
+    }
+}
+
+extension BMPlayer: BMPlayerControlViewDelegate {
+    func controlViewDidChooseDefition(index: Int) {
+        shouldSeekTo                = currentPosition
+        playerLayer?.resetPlayer()
+        playerLayer?.videoURL       = videoItems[index].playURL
+        currentDefinition           = index
     }
 }

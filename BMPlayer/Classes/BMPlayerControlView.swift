@@ -9,7 +9,13 @@
 import UIKit
 import NVActivityIndicatorView
 
+protocol BMPlayerControlViewDelegate: class {
+   func controlViewDidChooseDefition(index: Int)
+}
+
 class BMPlayerControlView: UIView {
+    
+    weak var delegate: BMPlayerControlViewDelegate?
     /// 主体
     var mainMaskView    = UIView()
     var topMaskView     = UIView()
@@ -18,6 +24,7 @@ class BMPlayerControlView: UIView {
     /// 顶部
     var backButton  = UIButton(type: UIButtonType.Custom)
     var titleLabel  = UILabel()
+    var chooseDefitionView = UIView()
     
     /// 底部
     var currentTimeLabel = UILabel()
@@ -36,11 +43,27 @@ class BMPlayerControlView: UIView {
     
     var centerButton     = UIButton(type: UIButtonType.Custom)
     
+    var videoItems:[BMPlayerItemProtocol] = []
+    
+    var selectedIndex = 0
+    
+    private var isSelectecDefitionViewOpened = false
+    
+    var isFullScreen = false {
+        didSet {
+            updateUI()
+        }
+    }
+    
     // MARK: - funcitons
     func showPlayerIcons() {
         topMaskView.alpha    = 1.0
         bottomMaskView.alpha = 1.0
         mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
+        
+        if isFullScreen {
+            chooseDefitionView.alpha = 1.0
+        }
     }
     
     func hidePlayerIcons() {
@@ -48,6 +71,19 @@ class BMPlayerControlView: UIView {
         topMaskView.alpha    = 0.0
         bottomMaskView.alpha = 0.0
         mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0 )
+        
+        chooseDefitionView.snp_updateConstraints { (make) in
+            make.height.equalTo(35)
+        }
+        chooseDefitionView.alpha = 0.0
+    }
+    
+    func updateUI() {
+        if isFullScreen {
+            chooseDefitionView.hidden = false
+        } else {
+            chooseDefitionView.hidden = true
+        }
     }
     
     func showVideoEndedView() {
@@ -74,6 +110,56 @@ class BMPlayerControlView: UIView {
         seekToView.hidden = true
     }
     
+    func prepareChooseDefinitionView(items:[BMPlayerItemProtocol], index: Int) {
+        self.videoItems = items
+        for item in chooseDefitionView.subviews {
+            item.removeFromSuperview()
+        }
+        
+        for i in 0..<items.count {
+            let button = BMPlayerClearityChooseButton()
+            
+            if i == 0 {
+                button.tag = index
+            } else if i <= index {
+                button.tag = i - 1
+            } else {
+                button.tag = i
+            }
+            
+            button.setTitle("\(items[button.tag].definitionName)", forState: UIControlState.Normal)
+            chooseDefitionView.addSubview(button)
+            button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            button.snp_makeConstraints(closure: { (make) in
+                make.top.equalTo(chooseDefitionView.snp_top).offset(35 * i)
+                make.width.equalTo(50)
+                make.height.equalTo(25)
+                make.centerX.equalTo(chooseDefitionView)
+            })
+            
+            if items.count == 1 {
+                button.enabled = false
+            }
+        }
+    }
+    
+    @objc private func onDefinitionSelected(button:UIButton) {
+        let height = isSelectecDefitionViewOpened ? 35 : videoItems.count * 40
+        chooseDefitionView.snp_updateConstraints { (make) in
+            make.height.equalTo(height)
+        }
+        
+        UIView.animateWithDuration(0.3) { 
+            self.layoutIfNeeded()
+        }
+        isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
+        if selectedIndex != button.tag {
+            selectedIndex = button.tag
+            delegate?.controlViewDidChooseDefition(button.tag)
+        }
+        prepareChooseDefinitionView(videoItems, index: selectedIndex)
+    }
+    
     // MARK: - 初始化
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -97,6 +183,7 @@ class BMPlayerControlView: UIView {
         // 顶部
         topMaskView.addSubview(backButton)
         topMaskView.addSubview(titleLabel)
+        self.addSubview(chooseDefitionView)
         
         backButton.setImage(BMImageResourcePath("BMPlayer_back"), forState: UIControlState.Normal)
         
@@ -104,6 +191,9 @@ class BMPlayerControlView: UIView {
         titleLabel.text      = "Hello World"
         titleLabel.font      = UIFont.systemFontOfSize(16)
         
+        chooseDefitionView.clipsToBounds = true
+        
+        // 底部
         bottomMaskView.addSubview(playButton)
         bottomMaskView.addSubview(currentTimeLabel)
         bottomMaskView.addSubview(totalTimeLabel)
@@ -190,6 +280,14 @@ class BMPlayerControlView: UIView {
             make.centerY.equalTo(backButton)
         }
         
+        chooseDefitionView.snp_makeConstraints { (make) in
+            make.right.equalTo(topMaskView.snp_right).offset(-10)
+            make.top.equalTo(titleLabel.snp_top).offset(-4)
+            make.width.equalTo(60)
+            make.height.equalTo(30)
+        }
+        
+        
         // 底部
         playButton.snp_makeConstraints { (make) in
             make.width.equalTo(50)
@@ -253,7 +351,6 @@ class BMPlayerControlView: UIView {
         }
         
     }
-    
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {
         let podBundle = NSBundle(forClass: self.classForCoder)
