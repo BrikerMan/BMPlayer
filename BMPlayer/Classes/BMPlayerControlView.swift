@@ -22,14 +22,17 @@ class BMPlayerControlView: UIView {
     /// 底部
     var currentTimeLabel = UILabel()
     var totalTimeLabel   = UILabel()
-    var timeSlider       = UISlider()
+    var timeSlider       = BMTimeSlider()
     var progressView     = UIProgressView()
     var playButton       = UIButton(type: UIButtonType.Custom)
     var fullScreenButton = UIButton(type: UIButtonType.Custom)
     
     /// 中间部分
     var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
-    var centerLabel      = UILabel()
+    
+    var seekToView       = UIView()
+    var seekToViewImage  = UIImageView()
+    var seekToLabel      = UILabel()
     
     var centerButton     = UIButton(type: UIButtonType.Custom)
     
@@ -56,20 +59,32 @@ class BMPlayerControlView: UIView {
     }
     
     func hideLoader() {
-//        loadingIndector.stopAnimation()
+        loadingIndector.stopAnimation()
+    }
+    
+    func showSeekToView(to: String, isAdd: Bool) {
+        seekToView.hidden   = false
+        seekToLabel.text    = to
+        let rotate = isAdd ? 0 : CGFloat(M_PI)
+        seekToViewImage.transform = CGAffineTransformMakeRotation(rotate)
+    }
+    
+    func hideSeekToView() {
+        seekToView.hidden = true
     }
     
     // MARK: - 初始化
     override init(frame: CGRect) {
         super.init(frame: frame)
         initUI()
-        initUIData()
+        addSnapKitConstraint()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUI()
-        initUIData()
+        addSnapKitConstraint()
+        
     }
     
     private func initUI() {
@@ -77,7 +92,7 @@ class BMPlayerControlView: UIView {
         addSubview(mainMaskView)
         mainMaskView.addSubview(topMaskView)
         mainMaskView.addSubview(bottomMaskView)
-    
+        
         // 顶部
         topMaskView.addSubview(backButton)
         topMaskView.addSubview(titleLabel)
@@ -114,7 +129,7 @@ class BMPlayerControlView: UIView {
         timeSlider.setThumbImage(BMImageResourcePath("BMPlayer_slider_thumb"), forState: UIControlState.Normal)
         
         timeSlider.maximumTrackTintColor = UIColor.clearColor()
-        timeSlider.minimumTrackTintColor = UIColor.whiteColor()
+        timeSlider.minimumTrackTintColor = BMPlayerConf.tintColor
         
         progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
         progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
@@ -129,12 +144,24 @@ class BMPlayerControlView: UIView {
         loadingIndector.color            = BMPlayerConf.tintColor
         
         
+        // 滑动时间显示
+        addSubview(seekToView)
+        seekToView.addSubview(seekToViewImage)
+        seekToView.addSubview(seekToLabel)
+        
+        seekToLabel.font                = UIFont.systemFontOfSize(13)
+        seekToLabel.textColor           = UIColor ( red: 0.9098, green: 0.9098, blue: 0.9098, alpha: 1.0 )
+        seekToView.backgroundColor      = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7 )
+        seekToView.layer.cornerRadius   = 4
+        seekToView.layer.masksToBounds  = true
+        seekToView.hidden               = true
+        
+        seekToViewImage.image = BMImageResourcePath("BMPlayer_seek_to_image")
+        
         self.addSubview(centerButton)
         
-    
-        addSubview(centerLabel)
         
-        addSnapKitConstraint()
+        
         
     }
     
@@ -207,23 +234,26 @@ class BMPlayerControlView: UIView {
             make.centerY.equalTo(mainMaskView.snp_centerY).offset(-15)
         }
         
+        seekToView.snp_makeConstraints { (make) in
+            make.center.equalTo(self.snp_center)
+            make.width.equalTo(100)
+            make.height.equalTo(40)
+        }
+        
+        seekToViewImage.snp_makeConstraints { (make) in
+            make.left.equalTo(seekToView.snp_left).offset(15)
+            make.centerY.equalTo(seekToView.snp_centerY)
+            make.height.equalTo(15)
+            make.width.equalTo(25)
+        }
+        
+        seekToLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(seekToViewImage.snp_right).offset(10)
+            make.centerY.equalTo(seekToView.snp_centerY)
+        }
+        
     }
     
-    
-    private func initUIData() {
-        
-        centerButton.setImage(BMImageResourcePath("BMPlayer_replay"), forState: UIControlState.Normal)
-        
-        centerLabel.font = UIFont.systemFontOfSize(12)
-        centerLabel.textColor       = UIColor.whiteColor()
-        centerLabel.textAlignment   = NSTextAlignment.Center
-        centerLabel.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
-        centerLabel.layer.cornerRadius = 2
-        centerLabel.clipsToBounds      = true
-        centerLabel.hidden             = true
-        
-        centerButton.hidden = true
-    }
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {
         let podBundle = NSBundle(forClass: self.classForCoder)
@@ -239,5 +269,21 @@ class BMPlayerControlView: UIView {
         }
         return nil
     }
+}
+
+public class BMTimeSlider: UISlider {
+    override public func trackRectForBounds(bounds: CGRect) -> CGRect {
+        let trackHeigt:CGFloat = 2
+        let position = CGPoint(x: 0 , y: 14)
+        let customBounds = CGRect(origin: position, size: CGSize(width: bounds.size.width, height: trackHeigt))
+        super.trackRectForBounds(customBounds)
+        return customBounds
+    }
     
+    override public func thumbRectForBounds(bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
+        let rect = super.thumbRectForBounds(bounds, trackRect: rect, value: value)
+        let newx = rect.origin.x - 10
+        let newRect = CGRectMake(newx, 0, 30, 30)
+        return newRect
+    }
 }

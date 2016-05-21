@@ -134,7 +134,6 @@ public class BMPlayer: UIView {
             let y = fabs(velocityPoint.y)
             
             if x > y {
-                self.controlView.centerLabel.hidden = false
                 self.panDirection = BMPanDirection.Horizontal
                 
                 // 给sumTime初值
@@ -171,13 +170,7 @@ public class BMPlayer: UIView {
                 playerLayer?.player?.play()
                 playerLayer?.timer?.fireDate = NSDate()
                 
-                let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * 1.0 ))
-                
-                dispatch_after(popTime, dispatch_get_main_queue()) {
-                    // 隐藏视图
-                    self.controlView.centerLabel.hidden = true
-                }
-                
+                controlView.hideSeekToView()
                 playerLayer?.isPauseByUser = false
                 playerLayer?.seekToTime(Int(self.sumTime), completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
@@ -196,15 +189,11 @@ public class BMPlayer: UIView {
     }
     
     private func horizontalMoved(value: CGFloat) {
-        // 快进快退的方法
-        var style = ""
-        if value < 0 { style = "<<" }
-        if value > 0 { style = ">>" }
         isSliderSliding = true
-        // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
-        self.sumTime = self.sumTime + Float(value) / 100.0 * (Float(totalTime)/400)
-        
         if let playerItem = playerLayer?.playerItem {
+            // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
+            self.sumTime = self.sumTime + Float(value) / 100.0 * (Float(self.totalTime)/400)
+            
             let totalTime       = playerItem.duration
             
             // 防止出现NAN
@@ -214,12 +203,12 @@ public class BMPlayer: UIView {
             if (self.sumTime > totalDuration) { self.sumTime = totalDuration}
             if (self.sumTime < 0){ self.sumTime = 0}
             
-            let nowTime      = formatSecondsToString(Int(sumTime))
-            let durationTime = formatSecondsToString(Int(totalDuration))
+            let targetTime      = formatSecondsToString(Int(sumTime))
             
             controlView.timeSlider.value    = Float(Int(sumTime)) / Float(self.totalTime)
-            controlView.currentTimeLabel.text = formatSecondsToString(Int(sumTime))
-            self.controlView.centerLabel.text = "\(style) \(nowTime) / \(durationTime)"
+            controlView.currentTimeLabel.text = targetTime
+            controlView.showSeekToView(targetTime, isAdd: value > 0)
+            
         }
     }
     

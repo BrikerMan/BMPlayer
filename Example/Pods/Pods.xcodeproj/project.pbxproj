@@ -65,6 +65,17 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>08691098A5B654848971D08A9BBE3A86</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_seek_to_image@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>0966AD0E799E53E7ED1823E67A6C829F</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -79,13 +90,6 @@
 			<string>NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScale.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0C4D2FF41845A725640FCB83E360BA33</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7A19F5FD1F884CDF0B7FEC882AE6C189</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>0C8FA252C5D6A7BB1DAB04C40182901E</key>
 		<dict>
@@ -135,6 +139,13 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>0E7BE31EEE46AFD79B9164BD16A10545</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4F702A2ABB0530F9859A1630378D3487</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>0EF39DA0827896A1CFBDFBCA316295D8</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -162,6 +173,13 @@
 			<string>NVActivityIndicatorView/NVActivityIndicatorAnimationDelegate.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0F6DADFFCC0FC78047EACA3BD910B77B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>434B8779547AC18D8A8109514860532C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>1001A4026497E90F86D599D3141EA474</key>
 		<dict>
@@ -380,6 +398,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>1B40EB2D0181957DA4A1B31945B15F28</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DFAA2A54E1B7B1032D4351390D949CBA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>1BEFA622F1FB27777748E2A99CA654C1</key>
 		<dict>
 			<key>fileRef</key>
@@ -401,6 +426,13 @@
 			<string>NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotatePulse.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1CC797E3FDD4924628F558844E3EB9D4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>448989327FA7A10B5D229531C9212617</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>1DF776F9EF19F3C02AFE8E32B0C89E76</key>
 		<dict>
@@ -572,10 +604,28 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>255D6B60658DDFD612B72FE66806DF9F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_replay@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>25AD0E79E66B67F6C468E09D58C40882</key>
 		<dict>
 			<key>fileRef</key>
 			<string>288591EA8047FAAA4253A28C68C56B37</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>25FC0A508D55ED52963A939A8E6BE7A2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6C59197CFD09B80AF756C03AC23029F9</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -592,12 +642,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>281D7AC98C4A12542A1F52E31C18DAA4</key>
+		<key>27EC432FFB0FED228D100E74002A7DA7</key>
 		<dict>
-			<key>fileRef</key>
-			<string>581E9EFFABCA0797D7E641564DC1FE3E</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_fullscreen@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>288591EA8047FAAA4253A28C68C56B37</key>
 		<dict>
@@ -871,6 +925,17 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>31E09D50986C39A022C8141B77EB11E9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_replay@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>326F5FC86EF60EA04F49A4E2DE942AB8</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -883,6 +948,17 @@
 			<string>NVActivityIndicatorAnimationLineSpinFadeLoader.swift</string>
 			<key>path</key>
 			<string>NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineSpinFadeLoader.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>330BC297DB15326EAF6D7D4C6231FEB7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_play@2x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1037,6 +1113,28 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>3A152AB3B6A445C6A8C51B6CB38A3B70</key>
+		<dict>
+			<key>fileRef</key>
+			<string>255D6B60658DDFD612B72FE66806DF9F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3B61CC05C9CD03076AE5F145329628E6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3E26D4796E419AF631B60ACDB6157DF0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>BMPlayer</string>
+			<key>path</key>
+			<string>BMPlayer</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>3BEF50C047325FAF1B410630DDED4E82</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1086,6 +1184,36 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>3E26D4796E419AF631B60ACDB6157DF0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>DFAA2A54E1B7B1032D4351390D949CBA</string>
+				<string>3F531F7D312BB8B30F42CB4A64EA1262</string>
+				<string>27EC432FFB0FED228D100E74002A7DA7</string>
+				<string>CF494DFB87F80A2A14E4241B3B37C7C6</string>
+				<string>7CE85302269137E5BCC1E3DB5B70F374</string>
+				<string>448989327FA7A10B5D229531C9212617</string>
+				<string>7A12B65671ED417E4329D081F0ABA39B</string>
+				<string>4F702A2ABB0530F9859A1630378D3487</string>
+				<string>330BC297DB15326EAF6D7D4C6231FEB7</string>
+				<string>6C59197CFD09B80AF756C03AC23029F9</string>
+				<string>31E09D50986C39A022C8141B77EB11E9</string>
+				<string>255D6B60658DDFD612B72FE66806DF9F</string>
+				<string>08691098A5B654848971D08A9BBE3A86</string>
+				<string>E8F6E88F602512253F8692C44EB06650</string>
+				<string>434B8779547AC18D8A8109514860532C</string>
+				<string>A55F45EFF9B4A22D50522D1634AC3C69</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Assets</string>
+			<key>path</key>
+			<string>Assets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>3EA26763402D3A7C9A96258F97131C5B</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1121,6 +1249,17 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>3F531F7D312BB8B30F42CB4A64EA1262</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_back@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>3FD527715E6F28CA18143B3F88E6DA5A</key>
 		<dict>
 			<key>fileRef</key>
@@ -1134,17 +1273,6 @@
 			<string>88C7AD51FD0DB737C9BC511EDB966210</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>4060B2739D6272A80593F738E465F021</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_replay@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>418183307D9125051B2C3AD5A97A222F</key>
 		<dict>
@@ -1225,6 +1353,28 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>434B8779547AC18D8A8109514860532C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_slider_thumb@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>448989327FA7A10B5D229531C9212617</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_mask_image@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>4574EFDEE42E05E206233BC2CB6E9FD6</key>
 		<dict>
 			<key>fileRef</key>
@@ -1260,34 +1410,6 @@
 			<key>remoteInfo</key>
 			<string>NVActivityIndicatorView</string>
 		</dict>
-		<key>468E9AAEB456D47F7E994B76AE45EBC4</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>7A19F5FD1F884CDF0B7FEC882AE6C189</string>
-				<string>581E9EFFABCA0797D7E641564DC1FE3E</string>
-				<string>5E888967BDDE0B8E0B6B258FB1CE2E80</string>
-				<string>B786AD7B8F9540956E6F0DE945DDEC43</string>
-				<string>9E177B6FE362D3B8EFF0B987AE840134</string>
-				<string>A5E907A5FC5F775EE13A2DF30E2F5D8A</string>
-				<string>6978F5297A53B5667B550C469F46938B</string>
-				<string>62C0AEB0469B01903F4D55FABA2FFA59</string>
-				<string>E3D3C95F7CDF570D85AEE80524B2813A</string>
-				<string>488E264879B333555DC37E001BB1C2C1</string>
-				<string>B07B52628AC4A6243742D5334258BA0E</string>
-				<string>4060B2739D6272A80593F738E465F021</string>
-				<string>7ACBA0A2FCBB6762B067E2C4E39BF47E</string>
-				<string>7E1EB1636634DA6645FD671AD187C8A0</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Assets</string>
-			<key>path</key>
-			<string>Assets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>47FBCE9768FA66AF7C062647B149789A</key>
 		<dict>
 			<key>fileRef</key>
@@ -1307,17 +1429,6 @@
 			<string>NVActivityIndicatorAnimationPacman.swift</string>
 			<key>path</key>
 			<string>NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationPacman.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>488E264879B333555DC37E001BB1C2C1</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_play@3x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1525,6 +1636,17 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>4F702A2ABB0530F9859A1630378D3487</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_pause@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>5103D80B2DCF0E905B2EDD7C31934A72</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -1636,17 +1758,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>581E9EFFABCA0797D7E641564DC1FE3E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_back@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>5843FEC92F9EEFFDEC2F5E4548B641C0</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -1701,13 +1812,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>594BD09134CF7173339512301F38433C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B786AD7B8F9540956E6F0DE945DDEC43</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>5B72C6AFC3289EB651EC9002EE5B3118</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1722,13 +1826,6 @@
 			<string>NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallZigZagDeflect.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5CB2F8EF4AF6E8026CFAFF942B4DE451</key>
-		<dict>
-			<key>fileRef</key>
-			<string>A5E907A5FC5F775EE13A2DF30E2F5D8A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>5DA540AA81688CC047B8998BE509828D</key>
 		<dict>
@@ -1749,17 +1846,6 @@
 			<string>157E93B88AA239BBBE2D0F3AEC1B97FE</string>
 			<key>remoteInfo</key>
 			<string>SnapKit</string>
-		</dict>
-		<key>5E888967BDDE0B8E0B6B258FB1CE2E80</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_fullscreen@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>5EE71FB7DF2A35F11EF5CD3D78B1E5F9</key>
 		<dict>
@@ -1831,17 +1917,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
-		</dict>
-		<key>62C0AEB0469B01903F4D55FABA2FFA59</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_pause@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>63DE49A59495947F7A58E0B14B468AC0</key>
 		<dict>
@@ -1943,21 +2018,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>685C5197E35ED6A3C992626986B5E106</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>468E9AAEB456D47F7E994B76AE45EBC4</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>BMPlayer</string>
-			<key>path</key>
-			<string>BMPlayer</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>6933CCCA916A3D1C4A6C12B40C69C552</key>
 		<dict>
 			<key>fileRef</key>
@@ -1965,16 +2025,12 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>6978F5297A53B5667B550C469F46938B</key>
+		<key>69A2722E2D054D6675C0C5AD6FEF3BF9</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>A55F45EFF9B4A22D50522D1634AC3C69</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_pause@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>6A3091646572808921FCD671575529DD</key>
 		<dict>
@@ -2006,31 +2062,23 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>6F24933353C35E46F81F9C123AF35DC4</key>
+		<key>6C59197CFD09B80AF756C03AC23029F9</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>0C4D2FF41845A725640FCB83E360BA33</string>
-				<string>281D7AC98C4A12542A1F52E31C18DAA4</string>
-				<string>FD8123D2CEF721FD93B1E07D95FC3917</string>
-				<string>594BD09134CF7173339512301F38433C</string>
-				<string>C5D0CD7F981D07B2A808F069722539EC</string>
-				<string>5CB2F8EF4AF6E8026CFAFF942B4DE451</string>
-				<string>C97C0408B47839B1EF8575A47F3C7F6F</string>
-				<string>A3B57CF4281B8993ECB4198E9A560041</string>
-				<string>98F269B69EBCAFEAB58D618042393936</string>
-				<string>DA0A82EC1136D6E21C6009DEB36C6394</string>
-				<string>8D82B7CC284CE78CDDC8C6D808C6950E</string>
-				<string>F548A42B9C82A2F8D74D837ABBEBC432</string>
-				<string>A981DF3DC4FFECE5497BCC5A89319E08</string>
-				<string>B2BFB8BAA48F969DF18C91A2C4A403A2</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_play@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6D992051B7BABC1A068A4E49E736127E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>31E09D50986C39A022C8141B77EB11E9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>707C0B0D6A2E975557AA0C364BCFE586</key>
 		<dict>
@@ -2188,25 +2236,25 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>7A19F5FD1F884CDF0B7FEC882AE6C189</key>
+		<key>7A12B65671ED417E4329D081F0ABA39B</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>BMPlayer_back@2x.png</string>
+			<string>BMPlayer_pause@2x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7ACBA0A2FCBB6762B067E2C4E39BF47E</key>
+		<key>7CE85302269137E5BCC1E3DB5B70F374</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>BMPlayer_slider_thumb@2x.png</string>
+			<string>BMPlayer_mask_image@2x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2236,17 +2284,6 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>BMPlayer.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7E1EB1636634DA6645FD671AD187C8A0</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_slider_thumb@3x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2305,6 +2342,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>8919E8853203CFD5B23A604B1BC7945C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3F531F7D312BB8B30F42CB4A64EA1262</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>89D5059A71C8840FF7FD80B25ECBBE42</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2340,6 +2384,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>8B9FFF33C85364CB55B4D362EE29DA28</key>
+		<dict>
+			<key>fileRef</key>
+			<string>08691098A5B654848971D08A9BBE3A86</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>8C665374586D41CD81DCE643C5056601</key>
 		<dict>
 			<key>fileRef</key>
@@ -2361,13 +2412,6 @@
 			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8D82B7CC284CE78CDDC8C6D808C6950E</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B07B52628AC4A6243742D5334258BA0E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>9043E8C5CBE1D5FB6738DFF62B446F1C</key>
 		<dict>
@@ -2394,13 +2438,6 @@
 			<string>NVActivityIndicatorView-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>98F269B69EBCAFEAB58D618042393936</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E3D3C95F7CDF570D85AEE80524B2813A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>99D80359DD35D6C3C60F77710BB743C8</key>
 		<dict>
@@ -2445,17 +2482,6 @@
 			<string>SnapKit.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>9E177B6FE362D3B8EFF0B987AE840134</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_mask_image@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>9E4ED0A63FE75B8D1DA4D5B964EFC1E4</key>
 		<dict>
@@ -2527,13 +2553,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>A3B57CF4281B8993ECB4198E9A560041</key>
-		<dict>
-			<key>fileRef</key>
-			<string>62C0AEB0469B01903F4D55FABA2FFA59</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>A4D04E82EDA72ADDE4740606D481461E</key>
 		<dict>
 			<key>baseConfigurationReference</key>
@@ -2589,6 +2608,17 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
+		</dict>
+		<key>A55F45EFF9B4A22D50522D1634AC3C69</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_slider_thumb@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A5E08290478998B2E0885DD679D0C546</key>
 		<dict>
@@ -2646,16 +2676,12 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>A5E907A5FC5F775EE13A2DF30E2F5D8A</key>
+		<key>A7E5AEB383926E3D9FC0BDAD9BA92B83</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>7A12B65671ED417E4329D081F0ABA39B</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_mask_image@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>A7FA3AAE352D11C208A163081EA3E347</key>
 		<dict>
@@ -2670,17 +2696,17 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A981DF3DC4FFECE5497BCC5A89319E08</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7ACBA0A2FCBB6762B067E2C4E39BF47E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>AA02D6EFEDC0BA4F591A634E54FE4F98</key>
 		<dict>
 			<key>fileRef</key>
 			<string>707C0B0D6A2E975557AA0C364BCFE586</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AA24E4065895D07AFC9BB5B35A2325E7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E8F6E88F602512253F8692C44EB06650</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -2746,16 +2772,12 @@
 			<key>targetProxy</key>
 			<string>9043E8C5CBE1D5FB6738DFF62B446F1C</string>
 		</dict>
-		<key>B07B52628AC4A6243742D5334258BA0E</key>
+		<key>AF40C45EEE0BD320F2311B90FC0757A4</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>330BC297DB15326EAF6D7D4C6231FEB7</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_replay@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>B26D2C3C2CDB11DB72F5E1A555562B0D</key>
 		<dict>
@@ -2775,13 +2797,6 @@
 		<dict>
 			<key>fileRef</key>
 			<string>F66CD2E8B90B50EB9081261F89C079E6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B2BFB8BAA48F969DF18C91A2C4A403A2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7E1EB1636634DA6645FD671AD187C8A0</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -2871,17 +2886,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>B786AD7B8F9540956E6F0DE945DDEC43</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_fullscreen@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>B821056FD8056ACB548F880660B30A8E</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2926,6 +2930,13 @@
 			<string>SOURCE_ROOT</string>
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>BAC58E4C568C774CACBA1F3E8D1270B9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CF494DFB87F80A2A14E4241B3B37C7C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>BBC0136B0DC943DFCE44635F3E09E0AF</key>
 		<dict>
@@ -3074,6 +3085,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>C3313D522B96A617B03757C6CD2EA35F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7CE85302269137E5BCC1E3DB5B70F374</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>C3BB95690BF8716F63DBD50C7CE3F016</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3086,13 +3104,6 @@
 			<string>Pods-BMPlayer_Example-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C5D0CD7F981D07B2A808F069722539EC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9E177B6FE362D3B8EFF0B987AE840134</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>C6584F3097C8B2A6CF9EB0CE2F1659DB</key>
 		<dict>
@@ -3165,7 +3176,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>685C5197E35ED6A3C992626986B5E106</string>
+				<string>3B61CC05C9CD03076AE5F145329628E6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -3173,13 +3184,6 @@
 			<string>Resources</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C97C0408B47839B1EF8575A47F3C7F6F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>6978F5297A53B5667B550C469F46938B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>C9816A5C34E5FF2C1083591B680356EA</key>
 		<dict>
@@ -3222,6 +3226,17 @@
 			<string>1001A4026497E90F86D599D3141EA474</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>CF494DFB87F80A2A14E4241B3B37C7C6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_fullscreen@3x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D208BF052CB744BBB335CBCC3C0771E2</key>
 		<dict>
@@ -3343,13 +3358,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DA0A82EC1136D6E21C6009DEB36C6394</key>
-		<dict>
-			<key>fileRef</key>
-			<string>488E264879B333555DC37E001BB1C2C1</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>DA577B3E8C6F188790078B833A77D240</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3447,6 +3455,17 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>DFAA2A54E1B7B1032D4351390D949CBA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_back@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>E05F99B1AA6DC9B42BB0991CC3933CEB</key>
 		<dict>
 			<key>fileRef</key>
@@ -3486,17 +3505,6 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>E3D3C95F7CDF570D85AEE80524B2813A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>BMPlayer_play@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>E46F246B4B757A474D4F92637D1CEC11</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3522,6 +3530,45 @@
 			<string>NVActivityIndicatorAnimationBallPulse.swift</string>
 			<key>path</key>
 			<string>NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulse.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E8C22CD642D2659222653FE5B648116B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>1B40EB2D0181957DA4A1B31945B15F28</string>
+				<string>8919E8853203CFD5B23A604B1BC7945C</string>
+				<string>FD1F88CB1EE9E525A50DC26C513062B1</string>
+				<string>BAC58E4C568C774CACBA1F3E8D1270B9</string>
+				<string>C3313D522B96A617B03757C6CD2EA35F</string>
+				<string>1CC797E3FDD4924628F558844E3EB9D4</string>
+				<string>A7E5AEB383926E3D9FC0BDAD9BA92B83</string>
+				<string>0E7BE31EEE46AFD79B9164BD16A10545</string>
+				<string>AF40C45EEE0BD320F2311B90FC0757A4</string>
+				<string>25FC0A508D55ED52963A939A8E6BE7A2</string>
+				<string>6D992051B7BABC1A068A4E49E736127E</string>
+				<string>3A152AB3B6A445C6A8C51B6CB38A3B70</string>
+				<string>8B9FFF33C85364CB55B4D362EE29DA28</string>
+				<string>AA24E4065895D07AFC9BB5B35A2325E7</string>
+				<string>0F6DADFFCC0FC78047EACA3BD910B77B</string>
+				<string>69A2722E2D054D6675C0C5AD6FEF3BF9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E8F6E88F602512253F8692C44EB06650</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BMPlayer_seek_to_image@3x.png</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3649,13 +3696,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>F548A42B9C82A2F8D74D837ABBEBC432</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4060B2739D6272A80593F738E465F021</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>F66CD2E8B90B50EB9081261F89C079E6</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3694,7 +3734,7 @@
 			<array>
 				<string>FE38975E936A6355E679B5F613449567</string>
 				<string>5103D80B2DCF0E905B2EDD7C31934A72</string>
-				<string>6F24933353C35E46F81F9C123AF35DC4</string>
+				<string>E8C22CD642D2659222653FE5B648116B</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -3733,10 +3773,10 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FD8123D2CEF721FD93B1E07D95FC3917</key>
+		<key>FD1F88CB1EE9E525A50DC26C513062B1</key>
 		<dict>
 			<key>fileRef</key>
-			<string>5E888967BDDE0B8E0B6B258FB1CE2E80</string>
+			<string>27EC432FFB0FED228D100E74002A7DA7</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
