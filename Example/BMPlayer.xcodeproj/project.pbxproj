@@ -489,6 +489,7 @@
 				6AAA770E1CE18427009745BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

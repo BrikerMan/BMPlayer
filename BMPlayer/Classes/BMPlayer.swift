@@ -33,6 +33,8 @@ public class BMPlayer: UIView {
     
     public var backBlock:(() -> Void)?
     
+    var playerItems: [BMPlayerItemProtocol] = []
+    
     var playerLayer: BMPlayerLayerView?
     
     var controlView: BMPlayerControlView!
@@ -58,18 +60,32 @@ public class BMPlayer: UIView {
     
     private var isSliderSliding = false
     
+    private var isPlayerPrepared = false
+    
     // MARK: - Public functions
-    public func playWithURL(url: NSURL) {
-        playerLayer = BMPlayerLayerView()
-        insertSubview(playerLayer!, atIndex: 0)
-        playerLayer!.snp_makeConstraints { (make) in
-            make.edges.equalTo(self)
-        }
-        playerLayer!.delegate = self
-        playerLayer!.videoURL = url
-        controlView.showLoader()
-        self.layoutIfNeeded()
+    /**
+     直接使用URL播放
+     
+     - parameter url:   视频URL
+     - parameter title: 视频标题
+     */
+    public func playWithURL(url: NSURL, title: String = "") {
+        playerLayer?.videoURL       = url
+        controlView.titleLabel.text = title
     }
+    
+    /**
+     播放可切换清晰度的视频
+     
+     - parameter items: model列表
+     - parameter title: 视频标题
+     */
+    public func playWithQualityItems(items:[BMPlayerItemProtocol], title: String, playIndex: Int = 0) {
+        playerLayer?.videoURL       = items[playIndex].playURL
+        controlView.titleLabel.text = title
+    }
+    
+    
     
     public func play() {
         playerLayer?.play()
@@ -92,7 +108,7 @@ public class BMPlayer: UIView {
     @objc private func hideControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.hidePlayerIcons()
-            //            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
+            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
             
         }) { (_) in
             self.isMaskShowing = false
@@ -102,7 +118,7 @@ public class BMPlayer: UIView {
     @objc private func showControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.showPlayerIcons()
-            //            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
+            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         }) { (_) in
             self.isMaskShowing = true
         }
@@ -277,6 +293,7 @@ public class BMPlayer: UIView {
         initUI()
         initUIData()
         configureVolume()
+        preparePlayer()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -284,6 +301,7 @@ public class BMPlayer: UIView {
         initUI()
         initUIData()
         configureVolume()
+        preparePlayer()
     }
     
     private func formatSecondsToString(secounds: Int) -> String {
@@ -318,7 +336,7 @@ public class BMPlayer: UIView {
         controlView.playButton.addTarget(self, action: #selector(self.playButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.fullScreenButton.addTarget(self, action: #selector(self.fullScreenButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.backButton.addTarget(self, action: #selector(self.backButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-//        controlView.centerButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        //        controlView.centerButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
@@ -331,6 +349,17 @@ public class BMPlayer: UIView {
                 self.volumeViewSlider = slider
             }
         }
+    }
+    
+    private func preparePlayer() {
+        playerLayer = BMPlayerLayerView()
+        insertSubview(playerLayer!, atIndex: 0)
+        playerLayer!.snp_makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
+        playerLayer!.delegate = self
+        controlView.showLoader()
+        self.layoutIfNeeded()
     }
 }
 

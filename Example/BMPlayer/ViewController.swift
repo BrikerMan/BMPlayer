@@ -31,8 +31,16 @@ class ViewController: UIViewController {
         "http://baobab.wdjcdn.com/1456653443902B.mp4",
         "http://baobab.wdjcdn.com/1456231710844S(24).mp4"]
     
+    var videoItems = [BMPlayerItem]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for i in 0..<dataList.count {
+            let item = BMPlayerItem(url: NSURL(string:dataList[i] )!, qualityName: "标准")
+            videoItems.append(item)
+        }
+        
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -41,7 +49,7 @@ class ViewController: UIViewController {
         if let sender = sender as? Int ,
         vc = segue.destinationViewController as? VideoPlayViewController {
             vc.title = "网络视频 \(sender)"
-            vc.url   = dataList[sender]
+            vc.item   = videoItems[sender]
         }
     }
     

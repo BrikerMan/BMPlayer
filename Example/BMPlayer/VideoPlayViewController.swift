@@ -15,7 +15,7 @@ class VideoPlayViewController: UIViewController {
     
     var player: BMPlayer!
     
-    var url = ""
+    var item: BMPlayerItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class VideoPlayViewController: UIViewController {
             make.height.equalTo(view.snp_width).multipliedBy(9.0/16.0)
         }
         
-        player.playWithURL(NSURL(string: url)!)
+        player.playWithQualityItems([item], title: self.title!)
         
         player.backBlock = { [unowned self] in
             self.navigationController?.popViewControllerAnimated(true)
