@@ -10,7 +10,7 @@ import Foundation
 
 public class BMPlayerItem: BMPlayerItemProtocol {
     public var playURL: NSURL
-    public var qualityName: String
+    public var definitionName: String
     
     /**
      初始化播放资源
@@ -18,8 +18,8 @@ public class BMPlayerItem: BMPlayerItemProtocol {
      - parameter url:         资源URL
      - parameter qualityName: 资源清晰度标签
      */
-    public init(url:NSURL, qualityName: String) {
-        self.playURL     = url
-        self.qualityName = qualityName
+    public init(url:NSURL, definitionName: String) {
+        self.playURL        = url
+        self.definitionName = definitionName
     }
 }

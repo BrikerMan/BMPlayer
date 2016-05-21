@@ -13,5 +13,5 @@ public protocol BMPlayerItemProtocol {
     var playURL     : NSURL { get set }
     
     /// 清晰度名称，UI上展示，如高清，超清
-    var qualityName : String { get set }
+    var definitionName : String { get set }
 }

@@ -83,7 +83,6 @@ class BMPlayerLayerView: UIView {
     private var isBuffering     = false
     
     
-    
     // MARK: - Actions
     func play() {
         if let player = player {
@@ -148,15 +147,6 @@ class BMPlayerLayerView: UIView {
     func onTimeSliderBegan() {
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             self.timer?.fireDate = NSDate.distantFuture()
-        }
-    }
-    
-    func onSliderTouchEnd(withValue value: Float) {
-        if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
-            self.timer?.fireDate = NSDate()
-            let total = Float(playerItem!.duration.value) / Float(playerItem!.duration.timescale)
-            let draggedSecound = Int(total * value)
-            self.seekToTime(draggedSecound, completionHandler: nil)
         }
     }
     

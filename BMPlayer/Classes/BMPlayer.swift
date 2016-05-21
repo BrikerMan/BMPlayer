@@ -31,6 +31,8 @@ public class BMPlayer: UIView {
     
     var playerItems: [BMPlayerItemProtocol] = []
     
+    var currentDefinition = 0
+    
     var playerLayer: BMPlayerLayerView?
     
     var controlView: BMPlayerControlView!
@@ -53,13 +55,15 @@ public class BMPlayer: UIView {
     private let BMPlayerAnimationTimeInterval:Double                = 4.0
     private let BMPlayerControlBarAutoFadeOutTimeInterval:Double    = 0.5
     
-    private var totalTime:NSTimeInterval = 1
-    
     private var isSliderSliding = false
     
     private var isPlayerPrepared = false
     
     private var isPauseByUser    = false
+    
+    private var totalDuration   : NSTimeInterval = 0
+    
+    private var currentPosition : NSTimeInterval = 0
     
     // MARK: - Public functions
     /**
@@ -76,12 +80,14 @@ public class BMPlayer: UIView {
     /**
      播放可切换清晰度的视频
      
-     - parameter items: model列表
+     - parameter items: 清晰度列表
      - parameter title: 视频标题
+     - parameter definitionIndex: 起始清晰度
      */
-    public func playWithQualityItems(items:[BMPlayerItemProtocol], title: String, playIndex: Int = 0) {
-        playerLayer?.videoURL       = items[playIndex].playURL
+    public func playWithQualityItems(items:[BMPlayerItemProtocol], title: String, definitionIndex: Int = 0) {
+        playerLayer?.videoURL       = items[definitionIndex].playURL
         controlView.titleLabel.text = title
+        currentDefinition           = definitionIndex
     }
     
     /**
@@ -207,7 +213,7 @@ public class BMPlayer: UIView {
                 playerLayer?.seekToTime(Int(self.sumTime), completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
-                
+                controlView.showLoader()
             case BMPanDirection.Vertical:
                 self.isVolume = false
             }
@@ -224,7 +230,7 @@ public class BMPlayer: UIView {
         isSliderSliding = true
         if let playerItem = playerLayer?.playerItem {
             // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
-            self.sumTime = self.sumTime + NSTimeInterval(value) / 100.0 * (NSTimeInterval(self.totalTime)/400)
+            self.sumTime = self.sumTime + NSTimeInterval(value) / 100.0 * (NSTimeInterval(self.totalDuration)/400)
             
             let totalTime       = playerItem.duration
             
@@ -237,7 +243,7 @@ public class BMPlayer: UIView {
             
             let targetTime      = formatSecondsToString(sumTime)
             
-            controlView.timeSlider.value      = Float(sumTime / self.totalTime)
+            controlView.timeSlider.value      = Float(sumTime / totalDuration)
             controlView.currentTimeLabel.text = targetTime
             controlView.showSeekToView(targetTime, isAdd: value > 0)
             
@@ -257,7 +263,9 @@ public class BMPlayer: UIView {
     @objc private func progressSliderTouchEnded(sender: UISlider)  {
         controlView.showLoader()
         autoFadeOutControlBar()
-        playerLayer?.onSliderTouchEnd(withValue: sender.value)
+        let target = self.totalDuration * Double(sender.value)
+        playerLayer?.seekToTime(Int(target), completionHandler: nil)
+        
     }
     
     @objc private func backButtonPressed(button: UIButton) {
@@ -384,6 +392,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     }
     
     func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: NSTimeInterval , totalDuration: NSTimeInterval) {
+        self.totalDuration = totalDuration
         BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
         controlView.progressView.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
@@ -410,8 +419,9 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     }
     
     func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: NSTimeInterval, totalTime: NSTimeInterval) {
+        self.currentPosition = currentTime
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
-        self.totalTime = totalTime
+        totalDuration = totalTime
         if isSliderSliding {
             return
         }

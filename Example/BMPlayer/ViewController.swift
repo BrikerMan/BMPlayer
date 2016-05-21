@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         for i in 0..<dataList.count {
-            let item = BMPlayerItem(url: NSURL(string:dataList[i] )!, qualityName: "标准")
+            let item = BMPlayerItem(url: NSURL(string:dataList[i] )!, definitionName: "标准")
             videoItems.append(item)
         }
         
