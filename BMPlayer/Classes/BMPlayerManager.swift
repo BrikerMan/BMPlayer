@@ -20,10 +20,13 @@ class BMPlayerManager {
     
     /// Loader样式
     var loaderType  = NVActivityIndicatorType.BallRotateChase
+
+    /// 是否自动播放
+    var shouldAutoPlay = true
+    
     
     /// 是否打印log
     var allowLog  = true
-    
     /**
      打印log
      

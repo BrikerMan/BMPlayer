@@ -12,15 +12,11 @@ import MediaPlayer
 
 enum BMPlayerState {
     case NotSetURL      // 未设置URL
-    //    case MediaInfoReady // 获取媒体信息
+    case ReadyToPlay    // 可以播放
     case Buffering      // 缓冲中
-    case BufferFinished // 播放中
-    case ReadyToPlay    // 播放中
-    case Playing        // 播放中
-    case Stopped        // 停止播放
-    case Pause          // 暂停播放
-    case PlayedToTheEnd //
-    case Error
+    case BufferFinished // 缓冲完毕
+    case PlayedToTheEnd // 播放结束
+    case Error          // 出现错误
 }
 
 /// 枚举值，包含水平移动方向和垂直移动方向
@@ -105,6 +101,20 @@ public class BMPlayer: UIView {
     }
     
     // MARK: - Action Response
+    private func playStateDidChanged() {
+        if let player = playerLayer {
+            if player.isPlaying {
+                autoFadeOutControlBar()
+                controlView.playButton.selected = true
+                isSliderSliding = false
+            } else {
+                controlView.playButton.selected = false
+            }
+        }
+        
+    }
+    
+    
     @objc private func hideControlViewAnimated() {
         UIView.animateWithDuration(BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.hidePlayerIcons()
@@ -187,7 +197,6 @@ public class BMPlayer: UIView {
                 playerLayer?.timer?.fireDate = NSDate()
                 
                 controlView.hideSeekToView()
-                playerLayer?.isPauseByUser = false
                 playerLayer?.seekToTime(Int(self.sumTime), completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
@@ -364,6 +373,9 @@ public class BMPlayer: UIView {
 }
 
 extension BMPlayer: BMPlayerLayerViewDelegate {
+    func bmPlayer(player player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
+        playStateDidChanged()
+    }
     
     func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int) {
         BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
@@ -374,20 +386,14 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         BMPlayerManager.shared.log("playerStateDidChange - \(state)")
         switch state {
         case BMPlayerState.ReadyToPlay:
-            controlView.hideLoader()
+            break
         case BMPlayerState.Buffering:
             cancelAutoFadeOutControlBar()
             controlView.showLoader()
+            playStateDidChanged()
         case BMPlayerState.BufferFinished:
             controlView.hideLoader()
-        case BMPlayerState.Playing:
-            controlView.centerButton.hidden = true
-            autoFadeOutControlBar()
-            controlView.hideLoader()
-            controlView.playButton.selected = true
-            isSliderSliding = false
-        case BMPlayerState.Pause:
-            controlView.playButton.selected = false
+            playStateDidChanged()
         case BMPlayerState.PlayedToTheEnd:
             self.pause()
             controlView.showVideoEndedView()

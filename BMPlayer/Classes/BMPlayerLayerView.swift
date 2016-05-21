@@ -13,7 +13,7 @@ protocol BMPlayerLayerViewDelegate : class {
     func bmPlayer(player player: BMPlayerLayerView ,playerStateDidChange state: BMPlayerState)
     func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int)
     func bmPlayer(player player: BMPlayerLayerView ,playTimeDidChange    currentTime   : Int , totalTime: Int)
-    
+    func bmPlayer(player player: BMPlayerLayerView ,playerIsPlaying      playing: Bool)
 }
 
 class BMPlayerLayerView: UIView {
@@ -41,6 +41,12 @@ class BMPlayerLayerView: UIView {
     
     /// 是否被用户暂停
     var isPauseByUser = false
+    
+    var isPlaying     = false {
+        didSet {
+            delegate?.bmPlayer(player: self, playerIsPlaying: isPlaying)
+        }
+    }
     
     /// 播放属性
     var playerItem: AVPlayerItem? {
@@ -78,34 +84,21 @@ class BMPlayerLayerView: UIView {
     // 仅在bufferingSomeSecond里面使用
     private var isBuffering     = false
     
-    private var isPlaying       = false
+    
     
     // MARK: - Actions
     func play() {
         if let player = player {
-            if isPlaying {
-                return
-            } else {
-                isPlaying = true
-                player.play()
-                self.state = .Playing
-            }
+            isPlaying = true
+            player.play()
         }
     }
     
     
     func pause() {
-        if let player = player {
-            if isPlaying {
-                player.pause()
-                self.state = .Pause
-                isPlaying  = false
-                isPauseByUser = true
-            } else {
-                return
-            }
-            
-        }
+        player?.pause()
+        isPlaying  = false
+        isPauseByUser = true
     }
     
     // MARK: - 生命周期
@@ -232,10 +225,7 @@ class BMPlayerLayerView: UIView {
         self.layer.insertSublayer(playerLayer!, atIndex: 0)
         
         self.timer  = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
-        
-        //        self.state      = .Buffering
-        
-        //        self.play()
+
         self.isPauseByUser  = false
         
         self.setNeedsLayout()
@@ -333,9 +323,6 @@ class BMPlayerLayerView: UIView {
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * 1.0 ))
         
         dispatch_after(popTime, dispatch_get_main_queue()) {
-
-            
-            
             
             // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
             self.isBuffering = false

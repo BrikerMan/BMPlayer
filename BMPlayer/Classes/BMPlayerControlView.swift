@@ -40,7 +40,7 @@ class BMPlayerControlView: UIView {
     func showPlayerIcons() {
         topMaskView.alpha    = 1.0
         bottomMaskView.alpha = 1.0
-        mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3 )
+        mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
     }
     
     func hidePlayerIcons() {
@@ -55,11 +55,14 @@ class BMPlayerControlView: UIView {
     }
     
     func showLoader() {
+        loadingIndector.hidden = false
         loadingIndector.startAnimation()
     }
     
     func hideLoader() {
+        loadingIndector.hidden = true
         loadingIndector.stopAnimation()
+        
     }
     
     func showSeekToView(to: String, isAdd: Bool) {
@@ -160,9 +163,6 @@ class BMPlayerControlView: UIView {
         
         self.addSubview(centerButton)
         
-        
-        
-        
     }
     
     private func addSnapKitConstraint() {
@@ -173,28 +173,29 @@ class BMPlayerControlView: UIView {
         
         topMaskView.snp_makeConstraints { (make) in
             make.top.left.right.equalTo(mainMaskView)
-            make.height.equalTo(60)
+            make.height.equalTo(65)
         }
         
         bottomMaskView.snp_makeConstraints { (make) in
             make.bottom.left.right.equalTo(mainMaskView)
-            make.height.equalTo(40)
+            make.height.equalTo(50)
         }
         
         // 顶部
         backButton.snp_makeConstraints { (make) in
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(50)
             make.left.bottom.equalTo(topMaskView)
         }
         
         titleLabel.snp_makeConstraints { (make) in
-            make.left.equalTo(backButton.snp_right).offset(5)
+            make.left.equalTo(backButton.snp_right)
             make.centerY.equalTo(backButton)
         }
         
         // 底部
         playButton.snp_makeConstraints { (make) in
-            make.width.height.equalTo(40)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
             make.left.bottom.equalTo(bottomMaskView)
         }
         
@@ -222,7 +223,8 @@ class BMPlayerControlView: UIView {
         }
         
         fullScreenButton.snp_makeConstraints { (make) in
-            make.width.height.equalTo(40)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
             make.centerY.equalTo(currentTimeLabel)
             make.left.equalTo(totalTimeLabel.snp_right)
             make.right.equalTo(bottomMaskView.snp_right)
