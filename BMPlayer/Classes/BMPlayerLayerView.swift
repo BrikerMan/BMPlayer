@@ -120,7 +120,7 @@ class BMPlayerLayerView: UIView {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        print("BMPlayerLayerView did dealloc")
+        BMPlayerManager.shared.log("BMPlayerLayerView did dealloc")
     }
     
     

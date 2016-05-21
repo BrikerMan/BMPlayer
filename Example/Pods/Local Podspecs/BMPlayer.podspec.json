@@ -29,6 +29,9 @@
   "dependencies": {
     "SnapKit": [
 
+    ],
+    "NVActivityIndicatorView": [
+      "~> 2.6"
     ]
   }
 }

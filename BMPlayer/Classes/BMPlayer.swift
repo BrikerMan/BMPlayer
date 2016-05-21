@@ -67,7 +67,7 @@ public class BMPlayer: UIView {
         }
         playerLayer!.delegate = self
         playerLayer!.videoURL = url
-        controlView.loadIndector.startAnimating()
+        controlView.showLoader()
         self.layoutIfNeeded()
     }
     
@@ -158,10 +158,10 @@ public class BMPlayer: UIView {
             switch self.panDirection {
             case BMPanDirection.Horizontal:
                 self.horizontalMoved(velocityPoint.x)
-                print(velocityPoint.x)
+                BMPlayerManager.shared.log("\(velocityPoint.x)")
             case BMPanDirection.Vertical:
                 self.verticalMoved(velocityPoint.y)
-                print(velocityPoint.y)
+                BMPlayerManager.shared.log("\(velocityPoint.y)")
             }
         case UIGestureRecognizerState.Ended:
             // 移动结束也需要判断垂直或者平移
@@ -234,7 +234,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func progressSliderTouchEnded(sender: UISlider)  {
-        controlView.loadIndector.startAnimating()
+        controlView.showLoader()
         autoFadeOutControlBar()
         playerLayer?.onSliderTouchEnd(withValue: sender.value)
     }
@@ -329,7 +329,7 @@ public class BMPlayer: UIView {
         controlView.playButton.addTarget(self, action: #selector(self.playButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.fullScreenButton.addTarget(self, action: #selector(self.fullScreenButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.backButton.addTarget(self, action: #selector(self.backButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        controlView.centerButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//        controlView.centerButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
@@ -348,24 +348,24 @@ public class BMPlayer: UIView {
 extension BMPlayer: BMPlayerLayerViewDelegate {
     
     func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int) {
-        print("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
+        BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
         controlView.progressView.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
     
     func bmPlayer(player player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
-        print("playerStateDidChange - \(state)")
+        BMPlayerManager.shared.log("playerStateDidChange - \(state)")
         switch state {
         case BMPlayerState.ReadyToPlay:
-            controlView.loadIndector.stopAnimating()
+            controlView.hideLoader()
         case BMPlayerState.Buffering:
             cancelAutoFadeOutControlBar()
-            controlView.loadIndector.startAnimating()
+            controlView.showLoader()
         case BMPlayerState.BufferFinished:
-            controlView.loadIndector.stopAnimating()
+            controlView.hideLoader()
         case BMPlayerState.Playing:
             controlView.centerButton.hidden = true
             autoFadeOutControlBar()
-            controlView.loadIndector.stopAnimating()
+            controlView.hideLoader()
             controlView.playButton.selected = true
             isSliderSliding = false
         case BMPlayerState.Pause:
@@ -379,7 +379,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     }
     
     func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: Int, totalTime: Int) {
-        print("playTimeDidChange - \(currentTime) - \(totalTime)")
+        BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
         self.totalTime = totalTime
         if isSliderSliding {
             return

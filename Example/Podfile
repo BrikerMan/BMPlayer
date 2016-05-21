@@ -3,6 +3,7 @@ use_frameworks!
 target 'BMPlayer_Example', :exclusive => true do
   pod 'BMPlayer', :path => '../'
   pod 'SnapKit' , '~> 0.20.0'
+  pod 'NVActivityIndicatorView', '~> 2.6'
   pod 'Reveal-iOS-SDK', :configurations => ['Debug']
   
 end

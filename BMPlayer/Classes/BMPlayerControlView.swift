@@ -7,41 +7,56 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
-    var view: UIView {
-        get {
-            return self
-        }
-    }
-    var maskImageView    = UIImageView()
+class BMPlayerControlView: UIView {
+    /// 主体
+    var mainMaskView    = UIView()
+    var topMaskView     = UIView()
+    var bottomMaskView  = UIView()
     
+    /// 顶部
+    var backButton  = UIButton(type: UIButtonType.Custom)
+    var titleLabel  = UILabel()
+    
+    /// 底部
     var currentTimeLabel = UILabel()
     var totalTimeLabel   = UILabel()
-    
-    var playButton       = UIButton(type: UIButtonType.Custom)
     var timeSlider       = UISlider()
     var progressView     = UIProgressView()
+    var playButton       = UIButton(type: UIButtonType.Custom)
     var fullScreenButton = UIButton(type: UIButtonType.Custom)
-    var backButton       = UIButton(type: UIButtonType.Custom)
     
-    var loadIndector     = UIActivityIndicatorView()
+    /// 中间部分
+    var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
     var centerLabel      = UILabel()
     
     var centerButton     = UIButton(type: UIButtonType.Custom)
     
     // MARK: - funcitons
     func showPlayerIcons() {
-        maskImageView.alpha = 0.0
+        topMaskView.alpha    = 1.0
+        bottomMaskView.alpha = 1.0
+        mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3 )
     }
     
     func hidePlayerIcons() {
         centerButton.hidden = true
-        maskImageView.alpha = 1.0
+        topMaskView.alpha    = 0.0
+        bottomMaskView.alpha = 0.0
+        mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0 )
     }
     
     func showVideoEndedView() {
         centerButton.hidden = false
+    }
+    
+    func showLoader() {
+        loadingIndector.startAnimation()
+    }
+    
+    func hideLoader() {
+//        loadingIndector.stopAnimation()
     }
     
     // MARK: - 初始化
@@ -58,39 +73,102 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
     }
     
     private func initUI() {
-        addSubview(maskImageView)
-        maskImageView.userInteractionEnabled = true
+        // 主体
+        addSubview(mainMaskView)
+        mainMaskView.addSubview(topMaskView)
+        mainMaskView.addSubview(bottomMaskView)
     
-        currentTimeLabel.textColor = UIColor.whiteColor()
-        totalTimeLabel.textColor   = UIColor.whiteColor()
-        currentTimeLabel.font      = UIFont.systemFontOfSize(12)
-        totalTimeLabel.font      = UIFont.systemFontOfSize(12)
+        // 顶部
+        topMaskView.addSubview(backButton)
+        topMaskView.addSubview(titleLabel)
         
-        maskImageView.addSubview(currentTimeLabel)
-        maskImageView.addSubview(totalTimeLabel)
+        backButton.setImage(BMImageResourcePath("BMPlayer_back"), forState: UIControlState.Normal)
         
-        maskImageView.addSubview(progressView)
-        maskImageView.addSubview(timeSlider)
-        maskImageView.addSubview(fullScreenButton)
-        maskImageView.addSubview(playButton)
-        maskImageView.addSubview(backButton)
-        maskImageView.addSubview(centerButton)
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.text      = "Hello World"
+        titleLabel.font      = UIFont.systemFontOfSize(16)
         
-        addSubview(loadIndector)
+        bottomMaskView.addSubview(playButton)
+        bottomMaskView.addSubview(currentTimeLabel)
+        bottomMaskView.addSubview(totalTimeLabel)
+        bottomMaskView.addSubview(progressView)
+        bottomMaskView.addSubview(timeSlider)
+        bottomMaskView.addSubview(fullScreenButton)
+        
+        playButton.setImage(BMImageResourcePath("BMPlayer_play"), forState: UIControlState.Normal)
+        playButton.setImage(BMImageResourcePath("BMPlayer_pause"), forState: UIControlState.Selected)
+        
+        currentTimeLabel.textColor  = UIColor.whiteColor()
+        currentTimeLabel.font       = UIFont.systemFontOfSize(12)
+        currentTimeLabel.text       = "00:00"
+        currentTimeLabel.textAlignment = NSTextAlignment.Center
+        
+        totalTimeLabel.textColor    = UIColor.whiteColor()
+        totalTimeLabel.font         = UIFont.systemFontOfSize(12)
+        totalTimeLabel.text         = "00:00"
+        totalTimeLabel.textAlignment   = NSTextAlignment.Center
+        
+        timeSlider.maximumValue = 1.0
+        timeSlider.minimumValue = 0.0
+        timeSlider.value        = 0.0
+        timeSlider.setThumbImage(BMImageResourcePath("BMPlayer_slider_thumb"), forState: UIControlState.Normal)
+        
+        timeSlider.maximumTrackTintColor = UIColor.clearColor()
+        timeSlider.minimumTrackTintColor = UIColor.whiteColor()
+        
+        progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
+        progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
+        
+        fullScreenButton.setImage(BMImageResourcePath("BMPlayer_fullscreen"), forState: UIControlState.Normal)
+        
+        // 中间
+        mainMaskView.addSubview(loadingIndector)
+        
+        loadingIndector.hidesWhenStopped = true
+        loadingIndector.type             = BMPlayerConf.loaderType
+        loadingIndector.color            = BMPlayerConf.tintColor
+        
+        
+        self.addSubview(centerButton)
+        
+    
         addSubview(centerLabel)
         
         addSnapKitConstraint()
+        
     }
     
     private func addSnapKitConstraint() {
-        maskImageView.snp_makeConstraints { (make) in
+        // 主体
+        mainMaskView.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
         
-        playButton.snp_makeConstraints { (make) in
-            make.left.equalTo(self.snp_left).offset(5)
-            make.bottom.equalTo(self.snp_bottom)
+        topMaskView.snp_makeConstraints { (make) in
+            make.top.left.right.equalTo(mainMaskView)
+            make.height.equalTo(60)
+        }
+        
+        bottomMaskView.snp_makeConstraints { (make) in
+            make.bottom.left.right.equalTo(mainMaskView)
+            make.height.equalTo(40)
+        }
+        
+        // 顶部
+        backButton.snp_makeConstraints { (make) in
             make.width.height.equalTo(40)
+            make.left.bottom.equalTo(topMaskView)
+        }
+        
+        titleLabel.snp_makeConstraints { (make) in
+            make.left.equalTo(backButton.snp_right).offset(5)
+            make.centerY.equalTo(backButton)
+        }
+        
+        // 底部
+        playButton.snp_makeConstraints { (make) in
+            make.width.height.equalTo(40)
+            make.left.bottom.equalTo(bottomMaskView)
         }
         
         currentTimeLabel.snp_makeConstraints { (make) in
@@ -110,7 +188,6 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
             make.height.equalTo(2)
         }
         
-        
         totalTimeLabel.snp_makeConstraints { (make) in
             make.centerY.equalTo(currentTimeLabel)
             make.left.equalTo(timeSlider.snp_right).offset(5)
@@ -121,61 +198,21 @@ class BMPlayerControlView: UIView, BMPlayerControllViewProtocol {
             make.width.height.equalTo(40)
             make.centerY.equalTo(currentTimeLabel)
             make.left.equalTo(totalTimeLabel.snp_right)
-            make.right.equalTo(self.snp_right)
+            make.right.equalTo(bottomMaskView.snp_right)
         }
         
-        backButton.snp_makeConstraints { (make) in
-            make.top.equalTo(self).offset(20)
-            make.left.equalTo(self).offset(5)
-            make.width.height.equalTo(40)
+        // 中间
+        loadingIndector.snp_makeConstraints { (make) in
+            make.centerX.equalTo(mainMaskView.snp_centerX).offset(-15)
+            make.centerY.equalTo(mainMaskView.snp_centerY).offset(-15)
         }
         
-        loadIndector.snp_makeConstraints { (make) in
-            make.center.equalTo(self.snp_center)
-        }
-        
-        centerLabel.snp_makeConstraints { (make) in
-            make.center.equalTo(self.snp_center)
-            make.width.equalTo(100)
-            make.height.equalTo(24)
-        }
-        
-        centerButton.snp_makeConstraints { (make) in
-            make.center.equalTo(maskImageView.snp_center)
-            make.width.height.equalTo(50)
-        }
     }
     
+    
     private func initUIData() {
-        addSubview(maskImageView)
-        maskImageView.image = BMImageResourcePath("BMPlayer_mask_image")
         
         centerButton.setImage(BMImageResourcePath("BMPlayer_replay"), forState: UIControlState.Normal)
-        
-        currentTimeLabel.text   = "00:00"
-        totalTimeLabel.text     = "00:00"
-        
-        currentTimeLabel.textAlignment = NSTextAlignment.Center
-        totalTimeLabel.textAlignment   = NSTextAlignment.Center
-        
-        playButton.setImage(BMImageResourcePath("BMPlayer_play"), forState: UIControlState.Normal)
-        playButton.setImage(BMImageResourcePath("BMPlayer_pause"), forState: UIControlState.Selected)
-        
-        backButton.setImage(BMImageResourcePath("BMPlayer_back"), forState: UIControlState.Normal)
-        fullScreenButton.setImage(BMImageResourcePath("BMPlayer_fullscreen"), forState: UIControlState.Normal)
-        
-        loadIndector.hidesWhenStopped = true
-        
-        timeSlider.maximumValue = 1.0
-        timeSlider.minimumValue = 0.0
-        timeSlider.value        = 0.0
-        timeSlider.setThumbImage(BMImageResourcePath("BMPlayer_slider_thumb"), forState: UIControlState.Normal)
-        
-        timeSlider.maximumTrackTintColor = UIColor.clearColor()
-        timeSlider.minimumTrackTintColor = UIColor.whiteColor()
-        
-        progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
-        progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
         
         centerLabel.font = UIFont.systemFontOfSize(12)
         centerLabel.textColor       = UIColor.whiteColor()
