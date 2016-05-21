@@ -11,8 +11,8 @@ import AVFoundation
 
 protocol BMPlayerLayerViewDelegate : class {
     func bmPlayer(player player: BMPlayerLayerView ,playerStateDidChange state: BMPlayerState)
-    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int)
-    func bmPlayer(player player: BMPlayerLayerView ,playTimeDidChange    currentTime   : Int , totalTime: Int)
+    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: NSTimeInterval , totalDuration: NSTimeInterval)
+    func bmPlayer(player player: BMPlayerLayerView ,playTimeDidChange    currentTime   : NSTimeInterval , totalTime: NSTimeInterval)
     func bmPlayer(player player: BMPlayerLayerView ,playerIsPlaying      playing: Bool)
 }
 
@@ -237,8 +237,8 @@ class BMPlayerLayerView: UIView {
     @objc private func playerTimerAction() {
         if playerItem!.duration.timescale != 0 {
             let currentTime = CMTimeGetSeconds(self.player!.currentTime())
-            let totalTime   = playerItem!.duration.value / Int64(playerItem!.duration.timescale)
-            delegate?.bmPlayer(player: self, playTimeDidChange: Int(currentTime), totalTime: Int(totalTime))
+            let totalTime   = NSTimeInterval(playerItem!.duration.value) / NSTimeInterval(playerItem!.duration.timescale)
+            delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
         }
     }
     
@@ -267,7 +267,7 @@ class BMPlayerLayerView: UIView {
                     if let timeInterVarl    = self.availableDuration() {
                         let duration        = item.duration
                         let totalDuration   = CMTimeGetSeconds(duration)
-                        delegate?.bmPlayer(player: self, loadedTimeDidChange: Int(timeInterVarl), totalDuration: Int(totalDuration))
+                        delegate?.bmPlayer(player: self, loadedTimeDidChange: timeInterVarl, totalDuration: totalDuration)
                     }
                     
                 case "playbackBufferEmpty":

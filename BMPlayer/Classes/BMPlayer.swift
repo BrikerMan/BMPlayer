@@ -41,7 +41,7 @@ public class BMPlayer: UIView {
     
     private var isFullScreen  = false
     /// 用来保存快进的总时长
-    private var sumTime     : Float!
+    private var sumTime     : NSTimeInterval!
     /// 滑动方向
     private var panDirection = BMPanDirection.Horizontal
     /// 是否是音量
@@ -52,7 +52,7 @@ public class BMPlayer: UIView {
     private let BMPlayerAnimationTimeInterval:Double                = 4.0
     private let BMPlayerControlBarAutoFadeOutTimeInterval:Double    = 0.5
     
-    private var totalTime = 1
+    private var totalTime:NSTimeInterval = 1
     
     private var isSliderSliding = false
     
@@ -165,7 +165,7 @@ public class BMPlayer: UIView {
                 // 给sumTime初值
                 if let player = playerLayer?.player {
                     let time = player.currentTime()
-                    self.sumTime = Float(time.value) / Float(time.timescale)
+                    self.sumTime = NSTimeInterval(time.value) / NSTimeInterval(time.timescale)
                 }
                 
                 playerLayer?.player?.pause()
@@ -217,20 +217,20 @@ public class BMPlayer: UIView {
         isSliderSliding = true
         if let playerItem = playerLayer?.playerItem {
             // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
-            self.sumTime = self.sumTime + Float(value) / 100.0 * (Float(self.totalTime)/400)
+            self.sumTime = self.sumTime + NSTimeInterval(value) / 100.0 * (NSTimeInterval(self.totalTime)/400)
             
             let totalTime       = playerItem.duration
             
             // 防止出现NAN
             if totalTime.timescale == 0 { return }
             
-            let totalDuration   = Float(totalTime.value) / Float(totalTime.timescale)
+            let totalDuration   = NSTimeInterval(totalTime.value) / NSTimeInterval(totalTime.timescale)
             if (self.sumTime > totalDuration) { self.sumTime = totalDuration}
             if (self.sumTime < 0){ self.sumTime = 0}
             
-            let targetTime      = formatSecondsToString(Int(sumTime))
+            let targetTime      = formatSecondsToString(sumTime)
             
-            controlView.timeSlider.value    = Float(Int(sumTime)) / Float(self.totalTime)
+            controlView.timeSlider.value      = Float(sumTime / self.totalTime)
             controlView.currentTimeLabel.text = targetTime
             controlView.showSeekToView(targetTime, isAdd: value > 0)
             
@@ -313,9 +313,9 @@ public class BMPlayer: UIView {
         preparePlayer()
     }
     
-    private func formatSecondsToString(secounds: Int) -> String {
-        let Min = secounds / 60
-        let Sec = secounds % 60
+    private func formatSecondsToString(secounds: NSTimeInterval) -> String {
+        let Min = Int(secounds / 60)
+        let Sec = Int(secounds % 60)
         return String(format: "%02d:%02d", Min, Sec)
     }
     
@@ -377,7 +377,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         playStateDidChanged()
     }
     
-    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: Int , totalDuration: Int) {
+    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: NSTimeInterval , totalDuration: NSTimeInterval) {
         BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
         controlView.progressView.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
@@ -402,7 +402,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         }
     }
     
-    func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: Int, totalTime: Int) {
+    func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: NSTimeInterval, totalTime: NSTimeInterval) {
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
         self.totalTime = totalTime
         if isSliderSliding {
