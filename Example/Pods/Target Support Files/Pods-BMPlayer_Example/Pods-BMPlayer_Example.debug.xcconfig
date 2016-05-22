@@ -3,8 +3,8 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Reveal-iOS-SDK/Reveal-Framew
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/BMPlayer.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/NVActivityIndicatorView.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SnapKit.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"z" -framework "BMPlayer" -framework "CFNetwork" -framework "CoreGraphics" -framework "NVActivityIndicatorView" -framework "QuartzCore" -framework "Reveal" -framework "SnapKit"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/BMPlayer.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/NVActivityIndicatorView.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SnapKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SwipeBack.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"z" -framework "BMPlayer" -framework "CFNetwork" -framework "CoreGraphics" -framework "NVActivityIndicatorView" -framework "QuartzCore" -framework "Reveal" -framework "SnapKit" -framework "SwipeBack"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-BMPlayer_Example
 PODS_ROOT = ${SRCROOT}/Pods

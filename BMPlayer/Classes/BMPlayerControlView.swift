@@ -10,7 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 
 protocol BMPlayerControlViewDelegate: class {
-   func controlViewDidChooseDefition(index: Int)
+    func controlViewDidChooseDefition(index: Int)
 }
 
 class BMPlayerControlView: UIView {
@@ -20,6 +20,7 @@ class BMPlayerControlView: UIView {
     var mainMaskView    = UIView()
     var topMaskView     = UIView()
     var bottomMaskView  = UIView()
+    var maskImageView   = UIImageView()
     
     /// 顶部
     var backButton  = UIButton(type: UIButtonType.Custom)
@@ -120,6 +121,22 @@ class BMPlayerControlView: UIView {
         seekToView.hidden = true
     }
     
+    func showCoverWithLink(cover:String) {
+        if let url = NSURL(string: cover) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                let data = NSData(contentsOfURL: url) //make sure your image in this url does exist, otherwise unwrap in a if let check
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.maskImageView.image = UIImage(data: data!)
+                    self.hideLoader()
+                });
+            }
+        }
+    }
+    
+    func hideImageView() {
+        self.maskImageView.hidden = true
+    }
+    
     func prepareChooseDefinitionView(items:[BMPlayerItemDefinitionProtocol], index: Int) {
         self.videoItems = items
         for item in chooseDefitionView.subviews {
@@ -159,7 +176,7 @@ class BMPlayerControlView: UIView {
             make.height.equalTo(height)
         }
         
-        UIView.animateWithDuration(0.3) { 
+        UIView.animateWithDuration(0.3) {
             self.layoutIfNeeded()
         }
         isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
@@ -189,6 +206,7 @@ class BMPlayerControlView: UIView {
         addSubview(mainMaskView)
         mainMaskView.addSubview(topMaskView)
         mainMaskView.addSubview(bottomMaskView)
+        mainMaskView.insertSubview(maskImageView, atIndex: 0)
         
         // 顶部
         topMaskView.addSubview(backButton)
@@ -268,6 +286,11 @@ class BMPlayerControlView: UIView {
         mainMaskView.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
         }
+        
+        maskImageView.snp_makeConstraints { (make) in
+            make.edges.equalTo(mainMaskView)
+        }
+        
         
         topMaskView.snp_makeConstraints { (make) in
             make.top.left.right.equalTo(mainMaskView)

@@ -108,7 +108,7 @@ public class BMPlayer: UIView {
             playerLayer?.videoURL   = videoItem.resorce[currentDefinition].playURL
             isURLSet                = true
         } else {
-            controlView.hideLoader()
+            controlView.showCoverWithLink(item.cover)
         }
     }
     
@@ -131,6 +131,7 @@ public class BMPlayer: UIView {
             } else {
                 playerLayer?.videoURL       = videoItemURL
             }
+            controlView.hideImageView()
             isURLSet                = true
         }
         playerLayer?.play()
@@ -239,8 +240,6 @@ public class BMPlayer: UIView {
                     self.sumTime = NSTimeInterval(time.value) / NSTimeInterval(time.timescale)
                 }
                 
-                playerLayer?.player?.pause()
-                playerLayer?.timer?.fireDate = NSDate.distantFuture()
             } else {
                 self.panDirection = BMPanDirection.Vertical
                 if locationPoint.x > self.bounds.size.width / 2 {
@@ -269,7 +268,7 @@ public class BMPlayer: UIView {
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
                 
-                controlView.showLoader()
+//                controlView.showLoader()
             case BMPanDirection.Vertical:
                 self.isVolume = false
             }
@@ -317,7 +316,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func progressSliderTouchEnded(sender: UISlider)  {
-        controlView.showLoader()
+//        controlView.showLoader()
         isSliderSliding = false
         autoFadeOutControlBar()
         let target = self.totalDuration * Double(sender.value)

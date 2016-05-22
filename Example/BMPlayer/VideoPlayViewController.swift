@@ -8,6 +8,7 @@
 
 import UIKit
 import BMPlayer
+import NVActivityIndicatorView
 
 class VideoPlayViewController: UIViewController {
     
@@ -19,8 +20,9 @@ class VideoPlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupPlayerManager()
         preparePlayer()
-        preparePlayerForState()
+        setupPlayerResource()
         
     }
     
@@ -37,37 +39,87 @@ class VideoPlayViewController: UIViewController {
             make.height.equalTo(view.snp_width).multipliedBy(9.0/16.0)
         }
         
-
-        
         player.backBlock = { [unowned self] in
             self.navigationController?.popViewControllerAnimated(true)
         }
         self.view.layoutIfNeeded()
     }
     
-    func preparePlayerForState() {
+    // 设置播放资源
+    func setupPlayerResource() {
         switch (index.section,index.row) {
         // 普通播放器
         case (0,0):
             player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
         case (0,1):
-            let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!,
-                                                       definitionName: "高清")
-            let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!,
-                                                      definitionName: "标清")
-
-            let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
-                                       resorce: [resource0, resource1],
-                                       cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
-            //
+            let item = self.preparePlayerItem()
             player.playWithPlayerItem(item)
+        case (0,2):
+            let item = self.preparePlayerItem()
+            player.playWithPlayerItem(item)
+        default:
+            let item = self.preparePlayerItem()
+            player.playWithPlayerItem(item)
+        }
+    }
+    
+    // 设置播放器单例，修改属性
+    func setupPlayerManager() {
+        switch (index.section,index.row) {
+        // 普通播放器
+        case (0,0):
+            break
+        case (0,1):
+            break
+        case (0,2):
+            // 设置播放器属性，此情况下若提供了cover则先展示封面图，否则黑屏。点击播放后开始loading
+            BMPlayerConf.shouldAutoPlay = false
+            
+        case (1,0):
+            // 设置播放器属性，此情况下若提供了cover则先展示封面图，否则黑屏。点击播放后开始loading
+            BMPlayerConf.topBarShowInCase = .Always
+            
+            
+        case (1,1):
+            BMPlayerConf.topBarShowInCase = .HorizantalOnly
+    
+            
+        case (1,2):
+            BMPlayerConf.topBarShowInCase = .None
+            
+        case (1,3):
+            BMPlayerConf.tintColor = UIColor.redColor()
+            
         default:
             break
         }
     }
     
     
+    /**
+     准备播放器资源model
+     
+     */
+    func preparePlayerItem() -> BMPlayerItem {
+        let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!,
+                                                   definitionName: "高清")
+        let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!,
+                                                   definitionName: "标清")
+        
+        let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
+                                   resorce: [resource0, resource1],
+                                   cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
+        return item
+    }
     
+    
+    func resetPlayerManager() {
+        BMPlayerConf.allowLog = false
+        BMPlayerConf.shouldAutoPlay = true
+        BMPlayerConf.tintColor = UIColor.whiteColor()
+        BMPlayerConf.topBarShowInCase = .Always
+        BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
+    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)

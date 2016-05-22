@@ -261,7 +261,9 @@ class BMPlayerLayerView: UIView {
                     }
                 case "playbackLikelyToKeepUp":
                     if item.playbackBufferEmpty {
-                        self.state = .BufferFinished
+                        if state != .BufferFinished {
+                            self.state = .BufferFinished
+                        }
                     }
                 default:
                     break

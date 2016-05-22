@@ -1,0 +1,6 @@
+framework module SwipeBack {
+  umbrella header "SwipeBack-umbrella.h"
+
+  export *
+  module * { export * }
+}
