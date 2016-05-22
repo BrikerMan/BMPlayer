@@ -102,10 +102,10 @@ public class BMPlayer: UIView {
         videoItem                   = item
         controlView.titleLabel.text = item.title
         currentDefinition           = definitionIndex
-        controlView.prepareChooseDefinitionView(item.resorce, index: definitionIndex)
+        controlView.prepareChooseDefinitionView(item.resource, index: definitionIndex)
         
         if BMPlayerConf.shouldAutoPlay {
-            playerLayer?.videoURL   = videoItem.resorce[currentDefinition].playURL
+            playerLayer?.videoURL   = videoItem.resource[currentDefinition].playURL
             isURLSet                = true
         } else {
             controlView.showCoverWithLink(item.cover)
@@ -127,7 +127,7 @@ public class BMPlayer: UIView {
     public func play() {
         if !isURLSet {
             if playerItemType == BMPlayerItemType.BMPlayerItem {
-                playerLayer?.videoURL       = videoItem.resorce[currentDefinition].playURL
+                playerLayer?.videoURL       = videoItem.resource[currentDefinition].playURL
             } else {
                 playerLayer?.videoURL       = videoItemURL
             }
@@ -498,7 +498,7 @@ extension BMPlayer: BMPlayerControlViewDelegate {
     func controlViewDidChooseDefition(index: Int) {
         shouldSeekTo                = currentPosition
         playerLayer?.resetPlayer()
-        playerLayer?.videoURL       = videoItem.resorce[index].playURL
+        playerLayer?.videoURL       = videoItem.resource[index].playURL
         currentDefinition           = index
     }
 }

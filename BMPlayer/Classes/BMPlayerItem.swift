@@ -10,13 +10,13 @@ import Foundation
 
 public class BMPlayerItem {
     var title   : String
-    var resorce : [BMPlayerItemDefinitionProtocol]
+    var resource : [BMPlayerItemDefinitionProtocol]
     var cover   : String
     
-    public init(title: String, resorce : [BMPlayerItemDefinitionProtocol], cover :String) {
-        self.title   = title
-        self.resorce = resorce
-        self.cover   = cover
+    public init(title: String, resource : [BMPlayerItemDefinitionProtocol], cover :String = "") {
+        self.title    = title
+        self.resource = resource
+        self.cover    = cover
     }
 }
 

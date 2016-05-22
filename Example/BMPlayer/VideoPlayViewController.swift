@@ -65,6 +65,7 @@ class VideoPlayViewController: UIViewController {
     
     // 设置播放器单例，修改属性
     func setupPlayerManager() {
+        resetPlayerManager()
         switch (index.section,index.row) {
         // 普通播放器
         case (0,0):
@@ -107,7 +108,7 @@ class VideoPlayViewController: UIViewController {
                                                    definitionName: "标清")
         
         let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
-                                   resorce: [resource0, resource1],
+                                   resource: [resource0, resource1],
                                    cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
         return item
     }
