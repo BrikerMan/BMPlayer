@@ -33,7 +33,7 @@ public class BMPlayerManager {
     public var topBarShowInCase = BMPlayerTopBarShowCase.Always
     
     /// 是否打印log
-    public var allowLog  = true
+    public var allowLog  = false
     /**
      打印log
      

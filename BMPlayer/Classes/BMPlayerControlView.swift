@@ -313,7 +313,7 @@ class BMPlayerControlView: UIView {
         
         timeSlider.snp_makeConstraints { (make) in
             make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(currentTimeLabel.snp_right).offset(10)
+            make.left.equalTo(currentTimeLabel.snp_right).offset(10).priority(750)
             make.height.equalTo(30)
         }
         
