@@ -128,7 +128,6 @@ public class BMPlayer: UIView {
             if player.isPlaying {
                 autoFadeOutControlBar()
                 controlView.playButton.selected = true
-                isSliderSliding = false
             } else {
                 controlView.playButton.selected = false
             }
@@ -152,6 +151,7 @@ public class BMPlayer: UIView {
             self.controlView.showPlayerIcons()
             UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         }) { (_) in
+            self.autoFadeOutControlBar()
             self.isMaskShowing = true
         }
     }
@@ -214,9 +214,11 @@ public class BMPlayer: UIView {
             switch (self.panDirection) {
             case BMPanDirection.Horizontal:
                 controlView.hideSeekToView()
+                isSliderSliding = false
                 playerLayer?.seekToTime(Int(self.sumTime), completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
+                
                 controlView.showLoader()
             case BMPanDirection.Vertical:
                 self.isVolume = false
@@ -256,16 +258,17 @@ public class BMPlayer: UIView {
     
     @objc private func progressSliderTouchBegan(sender: UISlider)  {
         playerLayer?.onTimeSliderBegan()
-        cancelAutoFadeOutControlBar()
         isSliderSliding = true
     }
     
     @objc private func progressSliderValueChanged(sender: UISlider)  {
         self.pause(true)
+        cancelAutoFadeOutControlBar()
     }
     
     @objc private func progressSliderTouchEnded(sender: UISlider)  {
         controlView.showLoader()
+        isSliderSliding = false
         autoFadeOutControlBar()
         let target = self.totalDuration * Double(sender.value)
         playerLayer?.seekToTime(Int(target), completionHandler: nil)
