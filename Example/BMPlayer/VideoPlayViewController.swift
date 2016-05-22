@@ -15,22 +15,19 @@ class VideoPlayViewController: UIViewController {
     
     var player: BMPlayer!
     
-    var item: BMPlayerItem!
+    var index: NSIndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        preparePlayer()
+        preparePlayerForState()
         
-        let navView = UIView()
-        navView.backgroundColor = UIColor.blackColor()
-        view.addSubview(navView)
-        
-        navView.snp_makeConstraints { (make) in
-            make.left.top.right.equalTo(view)
-            make.height.equalTo(20)
-        }
-        
-        BMPlayerConf.topBarShowInCase = BMPlayerTopBarShowCase.HorizantalOnly
-        BMPlayerConf.shouldAutoPlay   = false
+    }
+    
+    /**
+     准备playerView
+     */
+    func preparePlayer() {
         player = BMPlayer()
         view.addSubview(player)
         player.snp_makeConstraints { (make) in
@@ -39,13 +36,8 @@ class VideoPlayViewController: UIViewController {
             make.right.equalTo(view.snp_right)
             make.height.equalTo(view.snp_width).multipliedBy(9.0/16.0)
         }
-    
         
-        let item1 = BMPlayerItem(url: NSURL(string: "http://baobab.wdjcdn.com/1456117847747a_x264.mp4")!, definitionName: "超清")
-        let item2 = BMPlayerItem(url: NSURL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, definitionName: "高清")
-        let item3 = BMPlayerItem(url: NSURL(string: "http://baobab.wdjcdn.com/1456459181808howtoloseweight_x264.mp4")!, definitionName: "标清")
-        
-        player.playWithQualityItems([item1,item2,item3], title: self.title!)
+
         
         player.backBlock = { [unowned self] in
             self.navigationController?.popViewControllerAnimated(true)
@@ -53,22 +45,47 @@ class VideoPlayViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
+    func preparePlayerForState() {
+        switch (index.section,index.row) {
+        // 普通播放器
+        case (0,0):
+            player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+        case (0,1):
+            let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!,
+                                                       definitionName: "高清")
+            let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!,
+                                                      definitionName: "标清")
+
+            let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
+                                       resorce: [resource0, resource1],
+                                       cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
+            //
+            player.playWithPlayerItem(item)
+        default:
+            break
+        }
+    }
+    
+    
+    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
+        // 使用手势返回的时候，调用下面方法
         player.pause(allowAutoPlay: true)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        // 使用手势返回的时候，调用下面方法
         player.autoPlay()
     }
     
-    
-    
     deinit {
+        // 使用手势返回的时候，调用下面方法手动销毁
+        player.prepareToDealloc()
         print("VideoPlayViewController Deinit")
     }
     
