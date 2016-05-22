@@ -29,8 +29,8 @@ class VideoPlayViewController: UIViewController {
             make.height.equalTo(20)
         }
         
-        BMPlayerConf.topBarShowInCase =  BMPlayerTopBarShowCase.HorizantalOnly
-        
+        BMPlayerConf.topBarShowInCase = BMPlayerTopBarShowCase.HorizantalOnly
+        BMPlayerConf.shouldAutoPlay   = false
         player = BMPlayer()
         view.addSubview(player)
         player.snp_makeConstraints { (make) in
@@ -57,13 +57,13 @@ class VideoPlayViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
-        player.pause()
+        player.pause(allowAutoPlay: true)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        player.play()
+        player.autoPlay()
     }
     
     

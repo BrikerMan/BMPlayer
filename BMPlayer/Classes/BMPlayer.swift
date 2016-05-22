@@ -25,6 +25,11 @@ enum BMPanDirection: Int {
     case Vertical   = 1
 }
 
+enum BMPlayerItemType {
+    case URL
+    case BMPlayerItem
+}
+
 public class BMPlayer: UIView {
     
     public var backBlock:(() -> Void)?
@@ -37,35 +42,33 @@ public class BMPlayer: UIView {
     
     var controlView: BMPlayerControlView!
     
-    var customControlView: BMPlayerControlView?
-    /// 是否显示controlView
-    private var isMaskShowing = false
+    var playerItemType = BMPlayerItemType.URL
     
-    private var isFullScreen  = false
+    var videoItemURL: NSURL!
     
-    /// 用来保存快进的总时长
-    private var sumTime     : NSTimeInterval!
+    var videoTitle = ""
+    
     /// 滑动方向
     private var panDirection = BMPanDirection.Horizontal
-    /// 是否是音量
-    private var isVolume = false
     /// 音量滑竿
     private var volumeViewSlider: UISlider!
     
     private let BMPlayerAnimationTimeInterval:Double                = 4.0
     private let BMPlayerControlBarAutoFadeOutTimeInterval:Double    = 0.5
     
-    private var isSliderSliding = false
-    
-    private var isPlayerPrepared = false
-    
-    private var isPauseByUser    = false
-    
+    /// 用来保存时间状态
+    private var sumTime         : NSTimeInterval = 0
     private var totalDuration   : NSTimeInterval = 0
-    
     private var currentPosition : NSTimeInterval = 0
+    private var shouldSeekTo    : NSTimeInterval = 0
     
-    private var shouldSeekTo : NSTimeInterval = 0
+    private var isURLSet        = false
+    private var isSliderSliding = false
+    private var isPauseByUser   = false
+    private var isVolume        = false
+    private var isMaskShowing   = false
+    private var isFullScreen    = false
+    
     
     // MARK: - Public functions
     /**
@@ -75,8 +78,16 @@ public class BMPlayer: UIView {
      - parameter title: 视频标题
      */
     public func playWithURL(url: NSURL, title: String = "") {
-        playerLayer?.videoURL       = url
+        playerItemType              = BMPlayerItemType.URL
+        videoItemURL                = url
         controlView.titleLabel.text = title
+        
+        if BMPlayerConf.shouldAutoPlay {
+            playerLayer?.videoURL   = videoItemURL
+            isURLSet                = true
+        } else {
+            controlView.hideLoader()
+        }
     }
     
     /**
@@ -87,18 +98,25 @@ public class BMPlayer: UIView {
      - parameter definitionIndex: 起始清晰度
      */
     public func playWithQualityItems(items:[BMPlayerItemProtocol], title: String, definitionIndex: Int = 0) {
+        playerItemType              = BMPlayerItemType.BMPlayerItem
         videoItems                  = items
-        playerLayer?.videoURL       = items[definitionIndex].playURL
         controlView.titleLabel.text = title
         currentDefinition           = definitionIndex
         controlView.prepareChooseDefinitionView(items, index: definitionIndex)
+        
+        if BMPlayerConf.shouldAutoPlay {
+            playerLayer?.videoURL   = videoItems[currentDefinition].playURL
+            isURLSet                = true
+        } else {
+            controlView.hideLoader()
+        }
     }
     
     /**
      使用自动播放，参照pause函数
      */
     public func autoPlay() {
-        if !isPauseByUser {
+        if !isPauseByUser && isURLSet {
             self.play()
         }
     }
@@ -107,18 +125,26 @@ public class BMPlayer: UIView {
      手动播放
      */
     public func play() {
+        if !isURLSet {
+            if playerItemType == BMPlayerItemType.BMPlayerItem {
+                playerLayer?.videoURL       = videoItems[currentDefinition].playURL
+            } else {
+                playerLayer?.videoURL       = videoItemURL
+            }
+            isURLSet                = true
+        }
         playerLayer?.play()
         isPauseByUser = false
     }
     
     /**
-    暂停
+     暂停
      
      - parameter allowAutoPlay: 是否允许自动播放，默认不允许，若允许则在调用autoPlay的情况下开始播放。否则autoPlay不会进行播放。
      */
-    public func pause(allowAutoPlay: Bool = false) {
+    public func pause(allowAutoPlay allow: Bool = false) {
         playerLayer?.pause()
-        isPauseByUser = !allowAutoPlay
+        isPauseByUser = !allow
     }
     
     /**
@@ -146,6 +172,7 @@ public class BMPlayer: UIView {
     
     // MARK: - Action Response
     private func playStateDidChanged() {
+        if isSliderSliding { return }
         if let player = playerLayer {
             if player.isPlaying {
                 autoFadeOutControlBar()
@@ -224,6 +251,7 @@ public class BMPlayer: UIView {
             }
             
         case UIGestureRecognizerState.Changed:
+            cancelAutoFadeOutControlBar()
             switch self.panDirection {
             case BMPanDirection.Horizontal:
                 self.horizontalMoved(velocityPoint.x)
@@ -284,7 +312,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func progressSliderValueChanged(sender: UISlider)  {
-        self.pause(true)
+        self.pause(allowAutoPlay: true)
         cancelAutoFadeOutControlBar()
     }
     
@@ -322,6 +350,9 @@ public class BMPlayer: UIView {
     }
     
     @objc private func fullScreenButtonPressed(button: UIButton?) {
+        if !isURLSet {
+            self.play()
+        }
         controlView.isFullScreen = !self.isFullScreen
         if isFullScreen {
             UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
@@ -366,12 +397,7 @@ public class BMPlayer: UIView {
     // MARK: - 初始化
     private func initUI() {
         self.backgroundColor = UIColor.blackColor()
-        if let customControlView = customControlView {
-            controlView =  customControlView
-        } else {
-            controlView =  BMPlayerControlView()
-        }
-        
+        controlView =  BMPlayerControlView()
         addSubview(controlView)
         controlView.updateUI()
         controlView.delegate = self
@@ -434,7 +460,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         switch state {
         case BMPlayerState.ReadyToPlay:
             if shouldSeekTo != 0 {
-                playerLayer?.seekToTime(Int(shouldSeekTo), completionHandler: { 
+                playerLayer?.seekToTime(Int(shouldSeekTo), completionHandler: {
                     
                 })
                 shouldSeekTo = 0
