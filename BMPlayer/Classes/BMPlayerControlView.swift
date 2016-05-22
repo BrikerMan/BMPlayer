@@ -43,7 +43,7 @@ class BMPlayerControlView: UIView {
     
     var centerButton     = UIButton(type: UIButtonType.Custom)
     
-    var videoItems:[BMPlayerItemProtocol] = []
+    var videoItems:[BMPlayerItemDefinitionProtocol] = []
     
     var selectedIndex = 0
     
@@ -120,7 +120,7 @@ class BMPlayerControlView: UIView {
         seekToView.hidden = true
     }
     
-    func prepareChooseDefinitionView(items:[BMPlayerItemProtocol], index: Int) {
+    func prepareChooseDefinitionView(items:[BMPlayerItemDefinitionProtocol], index: Int) {
         self.videoItems = items
         for item in chooseDefitionView.subviews {
             item.removeFromSuperview()

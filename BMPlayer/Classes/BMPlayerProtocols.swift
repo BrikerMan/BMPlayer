@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol BMPlayerItemProtocol {
+public protocol BMPlayerItemDefinitionProtocol {
     /// 视频URL
     var playURL     : NSURL { get set }
     

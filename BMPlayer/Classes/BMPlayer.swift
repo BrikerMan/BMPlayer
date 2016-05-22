@@ -34,7 +34,7 @@ public class BMPlayer: UIView {
     
     public var backBlock:(() -> Void)?
     
-    var videoItems: [BMPlayerItemProtocol] = []
+    var videoItem: BMPlayerItem!
     
     var currentDefinition = 0
     
@@ -97,15 +97,15 @@ public class BMPlayer: UIView {
      - parameter title: 视频标题
      - parameter definitionIndex: 起始清晰度
      */
-    public func playWithQualityItems(items:[BMPlayerItemProtocol], title: String, definitionIndex: Int = 0) {
+    public func playWithPlayerItem(item:BMPlayerItem, definitionIndex: Int = 0) {
         playerItemType              = BMPlayerItemType.BMPlayerItem
-        videoItems                  = items
-        controlView.titleLabel.text = title
+        videoItem                   = item
+        controlView.titleLabel.text = item.title
         currentDefinition           = definitionIndex
-        controlView.prepareChooseDefinitionView(items, index: definitionIndex)
+        controlView.prepareChooseDefinitionView(item.resorce, index: definitionIndex)
         
         if BMPlayerConf.shouldAutoPlay {
-            playerLayer?.videoURL   = videoItems[currentDefinition].playURL
+            playerLayer?.videoURL   = videoItem.resorce[currentDefinition].playURL
             isURLSet                = true
         } else {
             controlView.hideLoader()
@@ -127,7 +127,7 @@ public class BMPlayer: UIView {
     public func play() {
         if !isURLSet {
             if playerItemType == BMPlayerItemType.BMPlayerItem {
-                playerLayer?.videoURL       = videoItems[currentDefinition].playURL
+                playerLayer?.videoURL       = videoItem.resorce[currentDefinition].playURL
             } else {
                 playerLayer?.videoURL       = videoItemURL
             }
@@ -499,7 +499,7 @@ extension BMPlayer: BMPlayerControlViewDelegate {
     func controlViewDidChooseDefition(index: Int) {
         shouldSeekTo                = currentPosition
         playerLayer?.resetPlayer()
-        playerLayer?.videoURL       = videoItems[index].playURL
+        playerLayer?.videoURL       = videoItem.resorce[index].playURL
         currentDefinition           = index
     }
 }

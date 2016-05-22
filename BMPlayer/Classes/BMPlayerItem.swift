@@ -8,7 +8,20 @@
 
 import Foundation
 
-public class BMPlayerItem: BMPlayerItemProtocol {
+public class BMPlayerItem {
+    var title   : String
+    var resorce : [BMPlayerItemDefinitionProtocol]
+    var cover   : String
+    
+    public init(title: String, resorce : [BMPlayerItemDefinitionProtocol], cover :String) {
+        self.title   = title
+        self.resorce = resorce
+        self.cover   = cover
+    }
+}
+
+
+public class BMPlayerItemDefinitionItem: BMPlayerItemDefinitionProtocol {
     public var playURL: NSURL
     public var definitionName: String
     
