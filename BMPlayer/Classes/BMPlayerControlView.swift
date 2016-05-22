@@ -81,7 +81,17 @@ class BMPlayerControlView: UIView {
     func updateUI() {
         if isFullScreen {
             chooseDefitionView.hidden = false
+            if BMPlayerConf.topBarShowInCase.rawValue == 2 {
+                topMaskView.hidden = true
+            } else {
+                topMaskView.hidden = false
+            }
         } else {
+            if BMPlayerConf.topBarShowInCase.rawValue >= 1 {
+                topMaskView.hidden = true
+            } else {
+                topMaskView.hidden = false
+            }
             chooseDefitionView.hidden = true
         }
     }

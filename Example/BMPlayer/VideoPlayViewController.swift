@@ -29,6 +29,7 @@ class VideoPlayViewController: UIViewController {
             make.height.equalTo(20)
         }
         
+        BMPlayerConf.topBarShowInCase =  BMPlayerTopBarShowCase.HorizantalOnly
         
         player = BMPlayer()
         view.addSubview(player)

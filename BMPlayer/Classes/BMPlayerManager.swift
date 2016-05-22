@@ -9,24 +9,31 @@
 import UIKit
 import NVActivityIndicatorView
 
-let BMPlayerConf = BMPlayerManager.shared
+public let BMPlayerConf = BMPlayerManager.shared
 
-class BMPlayerManager {
+public enum BMPlayerTopBarShowCase: Int {
+    case Always         = 0 /// 始终显示
+    case HorizantalOnly = 1 /// 只在横屏界面显示
+    case None           = 2 /// 不显示
+}
+
+public class BMPlayerManager {
     /// 单例
-    static let shared = BMPlayerManager()
+    public static let shared = BMPlayerManager()
     
     /// 主题色
-    var tintColor   = UIColor.whiteColor()
+    public var tintColor   = UIColor.whiteColor()
     
     /// Loader样式
-    var loaderType  = NVActivityIndicatorType.BallRotateChase
+    public var loaderType  = NVActivityIndicatorType.BallRotateChase
 
     /// 是否自动播放
-    var shouldAutoPlay = true
+    public var shouldAutoPlay = true
     
+    public var topBarShowInCase = BMPlayerTopBarShowCase.Always
     
     /// 是否打印log
-    var allowLog  = true
+    public var allowLog  = true
     /**
      打印log
      

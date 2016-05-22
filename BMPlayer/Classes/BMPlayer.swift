@@ -95,7 +95,7 @@ public class BMPlayer: UIView {
     }
     
     /**
-     使用自动播放
+     使用自动播放，参照pause函数
      */
     public func autoPlay() {
         if !isPauseByUser {
@@ -103,24 +103,46 @@ public class BMPlayer: UIView {
         }
     }
     
+    /**
+     手动播放
+     */
     public func play() {
         playerLayer?.play()
         isPauseByUser = false
     }
     
+    /**
+    暂停
+     
+     - parameter allowAutoPlay: 是否允许自动播放，默认不允许，若允许则在调用autoPlay的情况下开始播放。否则autoPlay不会进行播放。
+     */
     public func pause(allowAutoPlay: Bool = false) {
         playerLayer?.pause()
         isPauseByUser = !allowAutoPlay
     }
     
+    /**
+     开始自动隐藏UI倒计时
+     */
     public func autoFadeOutControlBar() {
         NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: #selector(hideControlViewAnimated), object: nil)
         self.performSelector(#selector(hideControlViewAnimated), withObject: nil, afterDelay: BMPlayerAnimationTimeInterval)
     }
     
+    /**
+     取消UI自动隐藏
+     */
     public func cancelAutoFadeOutControlBar() {
         NSObject.cancelPreviousPerformRequestsWithTarget(self)
     }
+    
+    /**
+     准备销毁，适用于手动隐藏等场景
+     */
+    public func prepareToDealloc() {
+        playerLayer?.prepareToDeinit()
+    }
+    
     
     // MARK: - Action Response
     private func playStateDidChanged() {
