@@ -278,7 +278,8 @@ class BMPlayerControlView: UIView {
         seekToViewImage.image = BMImageResourcePath("BMPlayer_seek_to_image")
         
         self.addSubview(centerButton)
-        
+        centerButton.hidden = true
+        centerButton.setImage(BMImageResourcePath("BMPlayer_replay"), forState: UIControlState.Normal)
     }
     
     private func addSnapKitConstraint() {
@@ -383,6 +384,11 @@ class BMPlayerControlView: UIView {
             make.centerY.equalTo(seekToView.snp_centerY)
         }
         
+        centerButton.snp_makeConstraints { (make) in
+            make.centerX.equalTo(mainMaskView.snp_centerX)
+            make.centerY.equalTo(mainMaskView.snp_centerY)
+            make.width.height.equalTo(50)
+        }
     }
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {

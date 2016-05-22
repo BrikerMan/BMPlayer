@@ -268,7 +268,7 @@ public class BMPlayer: UIView {
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
                 
-//                controlView.showLoader()
+            //                controlView.showLoader()
             case BMPanDirection.Vertical:
                 self.isVolume = false
             }
@@ -316,12 +316,11 @@ public class BMPlayer: UIView {
     }
     
     @objc private func progressSliderTouchEnded(sender: UISlider)  {
-//        controlView.showLoader()
         isSliderSliding = false
         autoFadeOutControlBar()
         let target = self.totalDuration * Double(sender.value)
         playerLayer?.seekToTime(Int(target), completionHandler: nil)
-        
+        autoPlay()
     }
     
     @objc private func backButtonPressed(button: UIButton) {
@@ -336,8 +335,9 @@ public class BMPlayer: UIView {
     @objc private func replayButtonPressed(button: UIButton) {
         controlView.centerButton.hidden = true
         playerLayer?.seekToTime(0, completionHandler: {
-            self.playerLayer?.play()
+            
         })
+        self.play()
     }
     
     @objc private func playButtonPressed(button: UIButton) {
@@ -416,7 +416,7 @@ public class BMPlayer: UIView {
         controlView.playButton.addTarget(self, action: #selector(self.playButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.fullScreenButton.addTarget(self, action: #selector(self.fullScreenButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.backButton.addTarget(self, action: #selector(self.backButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        //        controlView.centerButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        controlView.centerButton.addTarget(self, action: #selector(self.replayButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
