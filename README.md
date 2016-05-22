@@ -29,7 +29,7 @@
 ```ruby
 use_frameworks!
 
-pod 'BMPlayer'
+pod 'BMPlayer', '~> 0.2.0'
 ```
 
 ### Demo
@@ -104,6 +104,9 @@ BMPlayerConf.topBarShowInCase = .Always
 // 加载效果，更多请见：https://github.com/ninjaprox/NVActivityIndicatorView
 BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 ```
+
+## 效果
+![gif](https://github.com/BrikerMan/resources/raw/master/BMPlayer/demo.gif)
 
 ## 参考：
 本项目重度参考了 [ZFPlayer](https://github.com/renzifeng/ZFPlayer)，感谢 ZFPlayer 作者的支持和帮助。

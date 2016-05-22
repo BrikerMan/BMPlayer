@@ -350,7 +350,7 @@ public class BMPlayer: UIView {
     
     @objc private func fullScreenButtonPressed(button: UIButton?) {
         if !isURLSet {
-            self.play()
+//            self.play()
         }
         controlView.isFullScreen = !self.isFullScreen
         if isFullScreen {

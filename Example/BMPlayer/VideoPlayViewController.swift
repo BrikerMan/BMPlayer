@@ -102,14 +102,14 @@ class VideoPlayViewController: UIViewController {
      
      */
     func preparePlayerItem() -> BMPlayerItem {
-        let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!,
+        let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
                                                    definitionName: "高清")
-        let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!,
+        let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457529788412_5918_854x480.mp4")!,
                                                    definitionName: "标清")
         
-        let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
+        let item    = BMPlayerItem(title: "周末号外丨中国第一高楼",
                                    resource: [resource0, resource1],
-                                   cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
+                                   cover: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg")
         return item
     }
     

@@ -208,6 +208,7 @@ class BMPlayerControlView: UIView {
         mainMaskView.addSubview(bottomMaskView)
         mainMaskView.insertSubview(maskImageView, atIndex: 0)
         
+        mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
         // 顶部
         topMaskView.addSubview(backButton)
         topMaskView.addSubview(titleLabel)
