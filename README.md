@@ -17,6 +17,7 @@
 - 右侧 1/2 位置上下滑动调节音量（模拟器调不了音量，请在真机调试）
 - 左右滑动调节播放进度
 - 清晰度切换
+- 镜像、慢放
 
 ## 要求
 - iOS 8 +
@@ -61,10 +62,10 @@ import BMPlayer
 player = BMPlayer()
 view.addSubview(player)
 player.snp_makeConstraints { (make) in
-make.top.equalTo(self.view).offset(20)
-make.left.right.equalTo(self.view)
-// 注意此处，宽高比 16:9 优先级比 1000 低就行，在因为 iPhone 4S 宽高比不是 16：9
-    make.height.equalTo(player.snp_width).multipliedBy(9.0/16.0).priority(750)
+    make.top.equalTo(self.view).offset(20)
+    make.left.right.equalTo(self.view)
+    // 注意此处，宽高比 16:9 优先级比 1000 低就行，在因为 iPhone 4S 宽高比不是 16：9
+        make.height.equalTo(player.snp_width).multipliedBy(9.0/16.0).priority(750)
 }
 player.backBlock = { [unowned self] in
     self.navigationController?.popViewControllerAnimated(true)
@@ -101,6 +102,8 @@ BMPlayerConf.shouldAutoPlay = true
 BMPlayerConf.tintColor = UIColor.whiteColor()
 // 顶部返回和标题显示选项，默认.Always，可选.HorizantalOnly、.None
 BMPlayerConf.topBarShowInCase = .Always
+// 显示慢放和镜像按钮
+BMPlayerConf.slowAndMirror = true
 // 加载效果，更多请见：https://github.com/ninjaprox/NVActivityIndicatorView
 BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 ```
@@ -115,6 +118,8 @@ BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 - 博客: https://eliyar.biz
 - 邮箱: eliyar917@gmail.com
 
+## 贡献者
+- [Albert Young](https://github.com/cedared)
 ## License
 
 BMPlayer is available under the MIT license. See the LICENSE file for more info.

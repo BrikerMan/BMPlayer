@@ -34,8 +34,8 @@ class BMPlayerControlView: UIView {
     var progressView     = UIProgressView()
     var playButton       = UIButton(type: UIButtonType.Custom)
     var fullScreenButton = UIButton(type: UIButtonType.Custom)
-    var slowButton = UIButton(type: UIButtonType.Custom)
-    var mirrorButton = UIButton(type: UIButtonType.Custom)
+    var slowButton       = UIButton(type: UIButtonType.Custom)
+    var mirrorButton     = UIButton(type: UIButtonType.Custom)
     
     
     

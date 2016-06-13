@@ -68,8 +68,8 @@ public class BMPlayer: UIView {
     private var isVolume        = false
     private var isMaskShowing   = false
     private var isFullScreen    = false
-    private var isSlowed = false
-    private var isMirrored    = false
+    private var isSlowed        = false
+    private var isMirrored      = false
     
     
     // MARK: - Public functions
@@ -347,6 +347,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func slowButtonPressed(button: UIButton) {
+        autoFadeOutControlBar()
         if isSlowed {
             self.playerLayer?.player?.rate = 1.0
             self.isSlowed = false
@@ -359,6 +360,7 @@ public class BMPlayer: UIView {
     }
     
     @objc private func mirrorButtonPressed(button: UIButton) {
+        autoFadeOutControlBar()
         if isMirrored {
             self.playerLayer?.transform = CGAffineTransformMakeScale(1.0, 1.0)
             self.isMirrored = false
