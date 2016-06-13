@@ -14,7 +14,7 @@ class VideoPlayViewController: UIViewController {
     
     //    @IBOutlet weak var player: BMPlayer!
     
-    var player: BMPlayer!
+    var player: BMPlayer = BMPlayer()
     
     var index: NSIndexPath!
     
@@ -30,7 +30,6 @@ class VideoPlayViewController: UIViewController {
      准备playerView
      */
     func preparePlayer() {
-        player = BMPlayer()
         view.addSubview(player)
         player.snp_makeConstraints { (make) in
             make.top.equalTo(view.snp_top)
@@ -44,6 +43,24 @@ class VideoPlayViewController: UIViewController {
         }
         self.view.layoutIfNeeded()
     }
+    
+    override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransitionToTraitCollection(newCollection, withTransitionCoordinator: coordinator)
+        coordinator.animateAlongsideTransition({
+            a in
+            
+            if (newCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact) {
+                self.player.updateUI(true)
+            } else {
+                self.player.updateUI(false)
+                //To Do: modify something for other vertical size
+            }
+            self.view.setNeedsLayout()
+            }, completion: nil)
+        
+        
+    }
+    
     
     // 设置播放资源
     func setupPlayerResource() {
@@ -66,6 +83,7 @@ class VideoPlayViewController: UIViewController {
     // 设置播放器单例，修改属性
     func setupPlayerManager() {
         resetPlayerManager()
+        BMPlayerConf.slowAndMirror = true
         switch (index.section,index.row) {
         // 普通播放器
         case (0,0):

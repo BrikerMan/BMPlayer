@@ -32,6 +32,9 @@ public class BMPlayerManager {
     
     public var topBarShowInCase = BMPlayerTopBarShowCase.Always
     
+    /// 是否显示慢放和镜像按钮
+    public var slowAndMirror = false
+    
     /// 是否打印log
     public var allowLog  = false
     /**
