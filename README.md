@@ -120,6 +120,6 @@ BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 
 ## 贡献者
 - [Albert Young](https://github.com/cedared)
-## License
 
+## License
 BMPlayer is available under the MIT license. See the LICENSE file for more info.
