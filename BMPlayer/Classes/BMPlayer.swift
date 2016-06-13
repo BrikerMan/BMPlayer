@@ -68,6 +68,8 @@ public class BMPlayer: UIView {
     private var isVolume        = false
     private var isMaskShowing   = false
     private var isFullScreen    = false
+    private var isSlowed = false
+    private var isMirrored    = false
     
     
     // MARK: - Public functions
@@ -161,6 +163,18 @@ public class BMPlayer: UIView {
      */
     public func cancelAutoFadeOutControlBar() {
         NSObject.cancelPreviousPerformRequestsWithTarget(self)
+    }
+    
+    /**
+     旋转屏幕时更新UI
+     */
+    public func updateUI(isFullScreen: Bool) {
+        if isFullScreen {
+            controlView.isFullScreen = true
+        }else {
+            controlView.isFullScreen = false
+        }
+        controlView.updateUI()
     }
     
     /**
@@ -332,6 +346,29 @@ public class BMPlayer: UIView {
         }
     }
     
+    @objc private func slowButtonPressed(button: UIButton) {
+        if isSlowed {
+            self.playerLayer?.player?.rate = 1.0
+            self.isSlowed = false
+            self.controlView.slowButton.setTitle("慢放", forState: .Normal)
+        } else {
+            self.playerLayer?.player?.rate = 0.5
+            self.isSlowed = true
+            self.controlView.slowButton.setTitle("正常", forState: .Normal)
+        }
+    }
+    
+    @objc private func mirrorButtonPressed(button: UIButton) {
+        if isMirrored {
+            self.playerLayer?.transform = CGAffineTransformMakeScale(1.0, 1.0)
+            self.isMirrored = false
+            self.controlView.mirrorButton.setTitle("镜像", forState: .Normal)
+        } else {
+            self.playerLayer?.transform = CGAffineTransformMakeScale(-1.0, 1.0)
+            self.isMirrored = true
+            self.controlView.slowButton.setTitle("正常", forState: .Normal)
+        }    }
+    
     @objc private func replayButtonPressed(button: UIButton) {
         controlView.centerButton.hidden = true
         playerLayer?.seekToTime(0, completionHandler: {
@@ -420,6 +457,8 @@ public class BMPlayer: UIView {
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), forControlEvents: UIControlEvents.TouchDown)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
+        controlView.slowButton.addTarget(self, action: #selector(slowButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        controlView.mirrorButton.addTarget(self, action: #selector(mirrorButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
     
     private func configureVolume() {

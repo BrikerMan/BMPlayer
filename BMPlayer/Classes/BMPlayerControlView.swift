@@ -34,6 +34,10 @@ class BMPlayerControlView: UIView {
     var progressView     = UIProgressView()
     var playButton       = UIButton(type: UIButtonType.Custom)
     var fullScreenButton = UIButton(type: UIButtonType.Custom)
+    var slowButton = UIButton(type: UIButtonType.Custom)
+    var mirrorButton = UIButton(type: UIButtonType.Custom)
+    
+    
     
     /// 中间部分
     var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -81,6 +85,18 @@ class BMPlayerControlView: UIView {
     
     func updateUI() {
         if isFullScreen {
+            if BMPlayerConf.slowAndMirror {
+                self.slowButton.hidden = false
+                self.mirrorButton.hidden = false
+
+                fullScreenButton.snp_remakeConstraints { (make) in
+                    make.width.equalTo(50)
+                    make.height.equalTo(50)
+                    make.centerY.equalTo(currentTimeLabel)
+                    make.left.equalTo(slowButton.snp_right)
+                    make.right.equalTo(bottomMaskView.snp_right)
+                }
+            }
             chooseDefitionView.hidden = false
             if BMPlayerConf.topBarShowInCase.rawValue == 2 {
                 topMaskView.hidden = true
@@ -94,6 +110,16 @@ class BMPlayerControlView: UIView {
                 topMaskView.hidden = false
             }
             chooseDefitionView.hidden = true
+            
+            self.slowButton.hidden = true
+            self.mirrorButton.hidden = true
+            fullScreenButton.snp_remakeConstraints { (make) in
+                make.width.equalTo(50)
+                make.height.equalTo(50)
+                make.centerY.equalTo(currentTimeLabel)
+                make.left.equalTo(totalTimeLabel.snp_right)
+                make.right.equalTo(bottomMaskView.snp_right)
+            }
         }
     }
     
@@ -229,6 +255,8 @@ class BMPlayerControlView: UIView {
         bottomMaskView.addSubview(progressView)
         bottomMaskView.addSubview(timeSlider)
         bottomMaskView.addSubview(fullScreenButton)
+        bottomMaskView.addSubview(mirrorButton)
+        bottomMaskView.addSubview(slowButton)
         
         playButton.setImage(BMImageResourcePath("BMPlayer_play"), forState: UIControlState.Normal)
         playButton.setImage(BMImageResourcePath("BMPlayer_pause"), forState: UIControlState.Selected)
@@ -255,6 +283,20 @@ class BMPlayerControlView: UIView {
         progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
         
         fullScreenButton.setImage(BMImageResourcePath("BMPlayer_fullscreen"), forState: UIControlState.Normal)
+        
+        mirrorButton.layer.borderWidth = 1
+        mirrorButton.layer.borderColor = UIColor(red: 204.0 / 255.0, green: 204.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0).CGColor
+        mirrorButton.layer.cornerRadius = 2.0
+        mirrorButton.setTitle("镜像", forState: UIControlState.Normal)
+        mirrorButton.titleLabel?.font = UIFont.systemFontOfSize(14)
+        mirrorButton.hidden = true
+        
+        slowButton.layer.borderWidth = 1
+        slowButton.layer.borderColor = UIColor(red: 204.0 / 255.0, green: 204.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0).CGColor
+        slowButton.layer.cornerRadius = 2.0
+        slowButton.setTitle("慢放", forState: UIControlState.Normal)
+        slowButton.titleLabel?.font = UIFont.systemFontOfSize(14)
+        mirrorButton.hidden = true
         
         // 中间
         mainMaskView.addSubview(loadingIndector)
@@ -351,6 +393,20 @@ class BMPlayerControlView: UIView {
             make.centerY.equalTo(currentTimeLabel)
             make.left.equalTo(timeSlider.snp_right).offset(5)
             make.width.equalTo(40)
+        }
+        
+        mirrorButton.snp_makeConstraints { (make) in
+            make.width.equalTo(50)
+            make.height.equalTo(30)
+            make.left.equalTo(totalTimeLabel.snp_right).offset(10)
+            make.centerY.equalTo(currentTimeLabel)
+        }
+        
+        slowButton.snp_makeConstraints { (make) in
+            make.width.equalTo(50)
+            make.height.equalTo(30)
+            make.left.equalTo(mirrorButton.snp_right).offset(10)
+            make.centerY.equalTo(currentTimeLabel)
         }
         
         fullScreenButton.snp_makeConstraints { (make) in
