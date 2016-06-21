@@ -83,7 +83,6 @@ class VideoPlayViewController: UIViewController {
     // 设置播放器单例，修改属性
     func setupPlayerManager() {
         resetPlayerManager()
-        BMPlayerConf.slowAndMirror = true
         switch (index.section,index.row) {
         // 普通播放器
         case (0,0):

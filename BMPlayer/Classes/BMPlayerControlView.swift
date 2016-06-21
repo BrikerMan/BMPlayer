@@ -97,6 +97,7 @@ class BMPlayerControlView: UIView {
                     make.right.equalTo(bottomMaskView.snp_right)
                 }
             }
+            fullScreenButton.setImage(BMImageResourcePath("BMPlayer_portialscreen"), forState: UIControlState.Normal)
             chooseDefitionView.hidden = false
             if BMPlayerConf.topBarShowInCase.rawValue == 2 {
                 topMaskView.hidden = true
@@ -113,6 +114,7 @@ class BMPlayerControlView: UIView {
             
             self.slowButton.hidden = true
             self.mirrorButton.hidden = true
+            fullScreenButton.setImage(BMImageResourcePath("BMPlayer_fullscreen"), forState: UIControlState.Normal)
             fullScreenButton.snp_remakeConstraints { (make) in
                 make.width.equalTo(50)
                 make.height.equalTo(50)
