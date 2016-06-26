@@ -23,7 +23,6 @@ class VideoPlayViewController: UIViewController {
         setupPlayerManager()
         preparePlayer()
         setupPlayerResource()
-        
     }
     
     /**
@@ -42,23 +41,6 @@ class VideoPlayViewController: UIViewController {
             self.navigationController?.popViewControllerAnimated(true)
         }
         self.view.layoutIfNeeded()
-    }
-    
-    override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransitionToTraitCollection(newCollection, withTransitionCoordinator: coordinator)
-        coordinator.animateAlongsideTransition({
-            a in
-            
-            if (newCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact) {
-                self.player.updateUI(true)
-            } else {
-                self.player.updateUI(false)
-                //To Do: modify something for other vertical size
-            }
-            self.view.setNeedsLayout()
-            }, completion: nil)
-        
-        
     }
     
     

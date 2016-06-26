@@ -48,6 +48,12 @@ public class BMPlayer: UIView {
     
     var videoTitle = ""
     
+    var isFullScreen:Bool {
+        get {
+            return UIApplication.sharedApplication().statusBarOrientation.isLandscape
+        }
+    }
+    
     /// 滑动方向
     private var panDirection = BMPanDirection.Horizontal
     /// 音量滑竿
@@ -67,7 +73,6 @@ public class BMPlayer: UIView {
     private var isPauseByUser   = false
     private var isVolume        = false
     private var isMaskShowing   = false
-    private var isFullScreen    = false
     private var isSlowed        = false
     private var isMirrored      = false
     
@@ -387,9 +392,13 @@ public class BMPlayer: UIView {
         }
     }
     
+    @objc private func onOrientationChanged() {
+        self.updateUI(isFullScreen)
+    }
+    
     @objc private func fullScreenButtonPressed(button: UIButton?) {
         if !isURLSet {
-//            self.play()
+            //            self.play()
         }
         controlView.isFullScreen = !self.isFullScreen
         if isFullScreen {
@@ -401,13 +410,13 @@ public class BMPlayer: UIView {
             UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
             UIApplication.sharedApplication().setStatusBarOrientation(UIInterfaceOrientation.LandscapeRight, animated: false)
         }
-        isFullScreen = !isFullScreen
     }
     
     // MARK: - 生命周期
     deinit {
         playerLayer?.pause()
         playerLayer?.prepareToDeinit()
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidChangeStatusBarOrientationNotification, object: nil)
     }
     
     override init(frame: CGRect) {
@@ -461,6 +470,8 @@ public class BMPlayer: UIView {
         controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
         controlView.slowButton.addTarget(self, action: #selector(slowButtonPressed(_:)), forControlEvents: .TouchUpInside)
         controlView.mirrorButton.addTarget(self, action: #selector(mirrorButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onOrientationChanged), name: UIApplicationDidChangeStatusBarOrientationNotification, object: nil)
     }
     
     private func configureVolume() {
