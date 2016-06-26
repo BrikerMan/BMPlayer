@@ -7,25 +7,25 @@
 [![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Weibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%40%E8%89%BE%E5%8A%9B%E4%BA%9A%E5%B0%94-yellow.svg?style=flat)](http://weibo.com/536445669)
 
-## 介绍
-本项目是基于 AVPlayer 使用 Swift 封装的视频播放器，方便快速集成。
+A simple video player for iOS, based on AVPlayer, pure swift.
 
-## 功能
-- 支持横、竖屏切换，在全屏播放模式下还可以锁定屏幕方向
-- 支持本地视频、网络视频播放
-- 左侧 1/2 位置上下滑动调节屏幕亮度（模拟器调不了亮度，请在真机调试）
-- 右侧 1/2 位置上下滑动调节音量（模拟器调不了音量，请在真机调试）
-- 左右滑动调节播放进度
-- 清晰度切换
-- 镜像、慢放
-- 支持自动旋转屏幕
+[中文说明](https://github.com/BrikerMan/BMPlayer/blob/master/README.zh.md)
 
-## 要求
+## Features
+- Support for horizontal and vertical play mode
+- Support play with online URL and local file
+- Adjust brightness by slide vertical at left side of screen
+- Adjust volume by slide vertical at right side of screen
+- Slide horizontal to fast forward and rewind
+- Support multi-definition video
+- Mirror mode, slow play mode
+
+## Requirements
 - iOS 8 +
 - Xcode 7.3
 - Swift 2.2
 
-## 安装
+## Installation
 ### CocoaPods
 
 ```ruby
@@ -35,15 +35,16 @@ pod 'BMPlayer', '~> 0.2.0'
 ```
 
 ### Demo
-运行 Demo ，请下载后先在 Example 目录运行 `pod install`
+run `pod install` at `Example` folder before run the demo.
 
-## 使用 （支持IB和代码）
+## Usage （Support IB and code）
 
-### 设置状态栏颜色
-请在 info.plist 中增加 "View controller-based status bar appearance" 字段，并改为 NO
+### Set status bar color
 
-### IB用法
-直接拖 UIView 到 IB 上，宽高比为约束为 16:9 (优先级改为 750，比 1000 低就行)，代码部分只需要实现。更多细节请看Demo。
+Please add the `View controller-based status bar appearance` field in info.plist and change it to NO
+
+### IB usage
+Direct drag IB to UIView, the aspect ratio for the 16:9 constraint (priority to 750, lower than the 1000 line), the code section only needs to achieve. See more detail on the demo.
 
 ```swift
 import BMPlayer
@@ -55,7 +56,7 @@ player.backBlock = { [unowned self] in
 }
 ```
 
-### 代码布局（[SnapKit](https://github.com/SnapKit/SnapKit)）
+### Code implementation by [SnapKit](https://github.com/SnapKit/SnapKit)
 
 ```swift
 import BMPlayer
@@ -65,61 +66,61 @@ view.addSubview(player)
 player.snp_makeConstraints { (make) in
     make.top.equalTo(self.view).offset(20)
     make.left.right.equalTo(self.view)
-    // 注意此处，宽高比 16:9 优先级比 1000 低就行，在因为 iPhone 4S 宽高比不是 16：9
+        // Note here, the aspect ratio 16:9 priority is lower than 1000 on the line, because the 4S iPhone aspect ratio is not 16:9
         make.height.equalTo(player.snp_width).multipliedBy(9.0/16.0).priority(750)
 }
+// Back button event
 player.backBlock = { [unowned self] in
     self.navigationController?.popViewControllerAnimated(true)
 }
 ```
 
-### 设置普通视频
+### Set video url
 
 ```swift
-// 若title为""，则不显示
 player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
 ```
 
-### 多清晰度，带封面视频
+### multi-definition video with cover
 
 ```swift
-let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "高清")
-let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "标清")
+let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "HD")
+let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "SD")
 
 let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
 resource: [resource0, resource1],
 cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
 ```
 
-## 播放器自定义属性
-需要在创建播放器前设定
+## Customize player
+Needs to change before the player alloc.
 
 ```swift
-// 是否打印日志，默认false
+// should print log, default false
 BMPlayerConf.allowLog = false
-// 是否自动播放，默认true
+// should auto play, default true
 BMPlayerConf.shouldAutoPlay = true
-// 主体颜色，默认白色
+// main tint color, default whiteColor
 BMPlayerConf.tintColor = UIColor.whiteColor()
-// 顶部返回和标题显示选项，默认.Always，可选.HorizantalOnly、.None
+// options to show header view (which include the back button, title and definition change button) , default .Always，options: .Always, .HorizantalOnly and .None
 BMPlayerConf.topBarShowInCase = .Always
-// 显示慢放和镜像按钮
+// show mirror mode, slow play mode button, default false
 BMPlayerConf.slowAndMirror = true
-// 加载效果，更多请见：https://github.com/ninjaprox/NVActivityIndicatorView
+// loader type, see detail：https://github.com/ninjaprox/NVActivityIndicatorView
 BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 ```
 
-## 效果
+## Demonstration
 ![gif](https://github.com/BrikerMan/resources/raw/master/BMPlayer/demo.gif)
 
-## 参考：
-本项目重度参考了 [ZFPlayer](https://github.com/renzifeng/ZFPlayer)，感谢 ZFPlayer 作者的支持和帮助。
+## Reference:
+This project heavily reference the Objective-C version of this project [ZFPlayer](https://github.com/renzifeng/ZFPlayer), thanks for the generous help of ZFPlayer's author.
 
-## 联系我：
-- 博客: https://eliyar.biz
-- 邮箱: eliyar917@gmail.com
+## Contact me：
+- Blog: https://eliyar.biz
+- Email: eliyar917@gmail.com
 
-## 贡献者
+## Contributors
 - [Albert Young](https://github.com/cedared)
 
 ## License
