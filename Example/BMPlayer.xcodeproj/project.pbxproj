@@ -13,7 +13,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		6A644AC41D2157170054BA8F /* CustomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A644AC31D2157170054BA8F /* CustomControlView.swift */; };
 		6AAA770B1CE18427009745BA /* BMPlayer_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */; };
 		6AB6B7171CD226F70031AFC5 /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB6B7161CD226F70031AFC5 /* VideoPlayViewController.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		6A644AC31D2157170054BA8F /* CustomControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomControlView.swift; sourceTree = "<group>"; };
 		6AAA77081CE18427009745BA /* BMPlayer_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMPlayer_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMPlayer_Tests.swift; sourceTree = "<group>"; };
 		6AAA770C1CE18427009745BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				6AB6B7161CD226F70031AFC5 /* VideoPlayViewController.swift */,
-				6A644AC31D2157170054BA8F /* CustomControlView.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -291,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AB6B7171CD226F70031AFC5 /* VideoPlayViewController.swift in Sources */,
-				6A644AC41D2157170054BA8F /* CustomControlView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

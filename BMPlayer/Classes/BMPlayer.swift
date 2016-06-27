@@ -31,7 +31,7 @@ enum BMPlayerItemType {
 }
 
 public class BMPlayer: UIView {
-    
+
     public var backBlock:(() -> Void)?
     
     var videoItem: BMPlayerItem!
@@ -428,7 +428,7 @@ public class BMPlayer: UIView {
         preparePlayer()
     }
     
-    public convenience init (customControllView: BMPlayerCustomControlView? = nil) {
+    public convenience init (customControllView: BMPlayerCustomControlView?) {
         self.init(frame:CGRectZero)
         self.customControllView = customControllView
         initUI()
@@ -438,13 +438,9 @@ public class BMPlayer: UIView {
     }
     
     public convenience init() {
-        self.init(frame:CGRectZero)
-        initUI()
-        initUIData()
-        configureVolume()
-        preparePlayer()
+        self.init(customControllView:nil)
     }
-    
+
 
     
     private func formatSecondsToString(secounds: NSTimeInterval) -> String {
