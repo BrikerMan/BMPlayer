@@ -14,7 +14,7 @@ class VideoPlayViewController: UIViewController {
     
     //    @IBOutlet weak var player: BMPlayer!
     
-    var player: BMPlayer = BMPlayer()
+    var player: BMPlayer!
     
     var index: NSIndexPath!
     
@@ -29,6 +29,8 @@ class VideoPlayViewController: UIViewController {
      准备playerView
      */
     func preparePlayer() {
+//        let customView = CustomControlView()
+        player = BMPlayer()
         view.addSubview(player)
         player.snp_makeConstraints { (make) in
             make.top.equalTo(view.snp_top)

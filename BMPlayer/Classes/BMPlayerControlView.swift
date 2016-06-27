@@ -9,13 +9,26 @@
 import UIKit
 import NVActivityIndicatorView
 
-protocol BMPlayerControlViewDelegate: class {
-    func controlViewDidChooseDefition(index: Int)
-}
 
-class BMPlayerControlView: UIView {
+class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     
     weak var delegate: BMPlayerControlViewDelegate?
+    var playerTitleLabel        : UILabel?  { get { return  titleLabel } }
+    var playerCurrentTimeLabel  : UILabel?  { get { return  currentTimeLabel } }
+    var playerTotalTimeLabel    : UILabel?  { get { return  totalTimeLabel } }
+    
+    var playerPlayButton        : UIButton? { get { return  playButton } }
+    var playerFullScreenButton  : UIButton? { get { return  fullScreenButton } }
+    var playerBackButton        : UIButton? { get { return  backButton } }
+    
+    var playerTimeSlider        : UISlider? { get { return  timeSlider } }
+    var playerProgressView      : UIProgressView? { get { return  progressView } }
+    
+    var playerSlowButton        : UIButton? { get { return  slowButton } }
+    var playerMirrorButton      : UIButton? { get { return  mirrorButton } }
+    
+    var getView: UIView { return self }
+    
     /// 主体
     var mainMaskView    = UIView()
     var topMaskView     = UIView()
@@ -30,8 +43,10 @@ class BMPlayerControlView: UIView {
     /// 底部
     var currentTimeLabel = UILabel()
     var totalTimeLabel   = UILabel()
+    
     var timeSlider       = BMTimeSlider()
     var progressView     = UIProgressView()
+    
     var playButton       = UIButton(type: UIButtonType.Custom)
     var fullScreenButton = UIButton(type: UIButtonType.Custom)
     var slowButton       = UIButton(type: UIButtonType.Custom)
@@ -54,14 +69,10 @@ class BMPlayerControlView: UIView {
     
     private var isSelectecDefitionViewOpened = false
     
-    var isFullScreen = false {
-        didSet {
-            updateUI()
-        }
-    }
+    var isFullScreen = false
     
     // MARK: - funcitons
-    func showPlayerIcons() {
+    func showPlayerUIComponents() {
         topMaskView.alpha    = 1.0
         bottomMaskView.alpha = 1.0
         mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
@@ -71,7 +82,7 @@ class BMPlayerControlView: UIView {
         }
     }
     
-    func hidePlayerIcons() {
+    func hidePlayerUIComponents() {
         centerButton.hidden = true
         topMaskView.alpha    = 0.0
         bottomMaskView.alpha = 0.0
@@ -83,8 +94,9 @@ class BMPlayerControlView: UIView {
         chooseDefitionView.alpha = 0.0
     }
     
-    func updateUI() {
-        if isFullScreen {
+    func updateUI(isForFullScreen: Bool) {
+        isFullScreen = isForFullScreen
+        if isForFullScreen {
             if BMPlayerConf.slowAndMirror {
                 self.slowButton.hidden = false
                 self.mirrorButton.hidden = false
@@ -125,7 +137,7 @@ class BMPlayerControlView: UIView {
         }
     }
     
-    func showVideoEndedView() {
+    func showPlayToTheEndView() {
         centerButton.hidden = false
     }
     
@@ -138,9 +150,11 @@ class BMPlayerControlView: UIView {
         loadingIndector.hidden = true
     }
     
-    func showSeekToView(to: String, isAdd: Bool) {
+    func showSeekToView(toSecound: NSTimeInterval, isAdd: Bool) {
         seekToView.hidden   = false
-        seekToLabel.text    = to
+        let Min = Int(toSecound / 60)
+        let Sec = Int(toSecound % 60)
+        seekToLabel.text    = String(format: "%02d:%02d", Min, Sec)
         let rotate = isAdd ? 0 : CGFloat(M_PI)
         seekToViewImage.transform = CGAffineTransformMakeRotation(rotate)
     }
@@ -161,7 +175,7 @@ class BMPlayerControlView: UIView {
         }
     }
     
-    func hideImageView() {
+    func hideCoverImageView() {
         self.maskImageView.hidden = true
     }
     
@@ -213,6 +227,12 @@ class BMPlayerControlView: UIView {
             delegate?.controlViewDidChooseDefition(button.tag)
         }
         prepareChooseDefinitionView(videoItems, index: selectedIndex)
+    }
+    
+    
+    @objc private func onReplyButtonPressed() {
+        centerButton.hidden = true
+        delegate?.controlViewDidPressOnReply()
     }
     
     // MARK: - 初始化
@@ -325,6 +345,7 @@ class BMPlayerControlView: UIView {
         self.addSubview(centerButton)
         centerButton.hidden = true
         centerButton.setImage(BMImageResourcePath("BMPlayer_replay"), forState: UIControlState.Normal)
+        centerButton.addTarget(self, action: #selector(self.onReplyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     private func addSnapKitConstraint() {
@@ -448,6 +469,8 @@ class BMPlayerControlView: UIView {
             make.centerY.equalTo(mainMaskView.snp_centerY)
             make.width.height.equalTo(50)
         }
+        
+        
     }
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {
