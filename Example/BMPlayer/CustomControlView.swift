@@ -1,16 +1,17 @@
 //
-//  BMPlayerControlView.swift
-//  Pods
+//  CustomControlView.swift
+//  BMPlayer
 //
-//  Created by BrikerMan on 16/4/29.
+//  Created by BrikerMan on 16/6/27.
+//  Copyright © 2016年 CocoaPods. All rights reserved.
 //
-//
+
 
 import UIKit
 import NVActivityIndicatorView
+import BMPlayer
 
-
-class BMPlayerControlView: UIView, BMPlayerCustomControlView {
+class CustomControlView: UIView, BMPlayerCustomControlView {
     
     weak var delegate: BMPlayerControlViewDelegate?
     var playerTitleLabel        : UILabel?  { get { return  titleLabel } }
@@ -75,7 +76,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     func showPlayerUIComponents() {
         topMaskView.alpha    = 1.0
         bottomMaskView.alpha = 1.0
-        mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
+        mainMaskView.backgroundColor = UIColor ( red: 0.8, green: 0.0, blue: 0.0, alpha: 0.4 )
         
         if isFullScreen {
             chooseDefitionView.alpha = 1.0
@@ -100,7 +101,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
             if BMPlayerConf.slowAndMirror {
                 self.slowButton.hidden = false
                 self.mirrorButton.hidden = false
-
+                
                 fullScreenButton.snp_remakeConstraints { (make) in
                     make.width.equalTo(50)
                     make.height.equalTo(50)
@@ -180,53 +181,11 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     }
     
     func prepareChooseDefinitionView(items:[BMPlayerItemDefinitionProtocol], index: Int) {
-        self.videoItems = items
-        for item in chooseDefitionView.subviews {
-            item.removeFromSuperview()
-        }
         
-        for i in 0..<items.count {
-            let button = BMPlayerClearityChooseButton()
-            
-            if i == 0 {
-                button.tag = index
-            } else if i <= index {
-                button.tag = i - 1
-            } else {
-                button.tag = i
-            }
-            
-            button.setTitle("\(items[button.tag].definitionName)", forState: UIControlState.Normal)
-            chooseDefitionView.addSubview(button)
-            button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            button.snp_makeConstraints(closure: { (make) in
-                make.top.equalTo(chooseDefitionView.snp_top).offset(35 * i)
-                make.width.equalTo(50)
-                make.height.equalTo(25)
-                make.centerX.equalTo(chooseDefitionView)
-            })
-            
-            if items.count == 1 {
-                button.enabled = false
-            }
-        }
     }
     
     @objc private func onDefinitionSelected(button:UIButton) {
-        let height = isSelectecDefitionViewOpened ? 35 : videoItems.count * 40
-        chooseDefitionView.snp_updateConstraints { (make) in
-            make.height.equalTo(height)
-        }
-        
-        UIView.animateWithDuration(0.3) {
-            self.layoutIfNeeded()
-        }
-        isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
-        if selectedIndex != button.tag {
-            selectedIndex = button.tag
-            delegate?.controlViewDidChooseDefition(button.tag)
-        }
-        prepareChooseDefinitionView(videoItems, index: selectedIndex)
+       
     }
     
     
@@ -299,7 +258,6 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         timeSlider.setThumbImage(BMImageResourcePath("BMPlayer_slider_thumb"), forState: UIControlState.Normal)
         
         timeSlider.maximumTrackTintColor = UIColor.clearColor()
-        timeSlider.minimumTrackTintColor = BMPlayerConf.tintColor
         
         progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
         progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
@@ -324,8 +282,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         mainMaskView.addSubview(loadingIndector)
         
         loadingIndector.hidesWhenStopped = true
-        loadingIndector.type             = BMPlayerConf.loaderType
-        loadingIndector.color            = BMPlayerConf.tintColor
+
         
         
         // 滑动时间显示
@@ -480,10 +437,10 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
                 let image = UIImage(named: fileName, inBundle: bundle, compatibleWithTraitCollection: nil)
                 return image
             }else {
-                assertionFailure("Could not load the bundle")
+//                assertionFailure("Could not load the bundle")
             }
         }else {
-            assertionFailure("Could not create a path to the bundle")
+//            assertionFailure("Could not create a path to the bundle")
         }
         return nil
     }
