@@ -110,6 +110,9 @@ BMPlayerConf.slowAndMirror = true
 BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 ```
 
+## Advanced
+- [Customize control UI](https://eliyar.biz/custom-player-ui-with-bmplayer/)
+
 ## Demonstration
 ![gif](https://github.com/BrikerMan/resources/raw/master/BMPlayer/demo.gif)
 
