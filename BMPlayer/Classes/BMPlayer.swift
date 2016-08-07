@@ -158,6 +158,18 @@ public class BMPlayer: UIView {
     }
     
     /**
+     seek
+     
+     - parameter to: target time
+     */
+    public func seek(to:NSTimeInterval) {
+        self.shouldSeekTo = to
+        playerLayer?.seekToTime(to, completionHandler: {
+            self.shouldSeekTo = 0
+        })
+    }
+    
+    /**
      开始自动隐藏UI倒计时
      */
     public func autoFadeOutControlBar() {
@@ -280,7 +292,7 @@ public class BMPlayer: UIView {
             case BMPanDirection.Horizontal:
                 controlView.hideSeekToView()
                 isSliderSliding = false
-                playerLayer?.seekToTime(Int(self.sumTime), completionHandler: nil)
+                playerLayer?.seekToTime(self.sumTime, completionHandler: nil)
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
                 
@@ -335,7 +347,7 @@ public class BMPlayer: UIView {
         isSliderSliding = false
         autoFadeOutControlBar()
         let target = self.totalDuration * Double(sender.value)
-        playerLayer?.seekToTime(Int(target), completionHandler: nil)
+        playerLayer?.seekToTime(target, completionHandler: nil)
         autoPlay()
     }
     
@@ -524,7 +536,9 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         switch state {
         case BMPlayerState.ReadyToPlay:
             if shouldSeekTo != 0 {
-                playerLayer?.seekToTime(Int(shouldSeekTo), completionHandler: {
+                playerLayer?.seekToTime(shouldSeekTo, completionHandler: {
+                    
+                    
                     
                 })
                 shouldSeekTo = 0
