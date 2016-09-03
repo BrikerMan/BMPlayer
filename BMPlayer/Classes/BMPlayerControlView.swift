@@ -469,8 +469,6 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
             make.centerY.equalTo(mainMaskView.snp_centerY)
             make.width.height.equalTo(50)
         }
-        
-        
     }
     
     private func BMImageResourcePath(fileName: String) -> UIImage? {

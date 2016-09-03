@@ -191,6 +191,14 @@ public class BMPlayer: UIView {
         controlView.updateUI(isFullScreen)
     }
     
+    public func addVolume() {
+        self.volumeViewSlider.value += 0.1
+    }
+    
+    public func reduceVolume() {
+        self.volumeViewSlider.value -= 0.1
+    }
+    
     /**
      准备销毁，适用于手动隐藏等场景
      */
