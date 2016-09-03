@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-protocol BMPlayerLayerViewDelegate : class {
+public protocol BMPlayerLayerViewDelegate : class {
     func bmPlayer(player player: BMPlayerLayerView ,playerStateDidChange state: BMPlayerState)
     func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: NSTimeInterval , totalDuration: NSTimeInterval)
     func bmPlayer(player player: BMPlayerLayerView ,playTimeDidChange    currentTime   : NSTimeInterval , totalTime: NSTimeInterval)
@@ -18,7 +18,7 @@ protocol BMPlayerLayerViewDelegate : class {
 
 public class BMPlayerLayerView: UIView {
     
-    weak var delegate: BMPlayerLayerViewDelegate?
+    public weak var delegate: BMPlayerLayerViewDelegate?
     
     /// 视频URL
     public var videoURL: NSURL! {
@@ -27,6 +27,12 @@ public class BMPlayerLayerView: UIView {
     
     /// 视频跳转秒数置0
     public var seekTime = 0
+    
+    public var videoGravity = AVLayerVideoGravityResizeAspect {
+        didSet {
+            self.playerLayer?.videoGravity = videoGravity
+        }
+    }
     
     /// 计时器
     var timer       : NSTimer?
@@ -201,7 +207,7 @@ public class BMPlayerLayerView: UIView {
         
         self.playerLayer = AVPlayerLayer(player: player)
         
-        self.playerLayer!.videoGravity = AVLayerVideoGravityResizeAspect
+        self.playerLayer!.videoGravity = videoGravity
         
         self.layer.insertSublayer(playerLayer!, atIndex: 0)
         

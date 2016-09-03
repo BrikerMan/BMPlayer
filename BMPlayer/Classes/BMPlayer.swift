@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import MediaPlayer
 
-enum BMPlayerState {
+public enum BMPlayerState {
     case NotSetURL      // 未设置URL
     case ReadyToPlay    // 可以播放
     case Buffering      // 缓冲中
@@ -39,6 +39,13 @@ public class BMPlayer: UIView {
     
     /// Gesture to change volume / brightness
     public var panGesture: UIPanGestureRecognizer!
+    
+    /// AVLayerVideoGravityType
+    public var videoGravity = AVLayerVideoGravityResizeAspect {
+        didSet {
+            self.playerLayer?.videoGravity = videoGravity
+        }
+    }
     
     var videoItem: BMPlayerItem!
     
@@ -524,6 +531,7 @@ public class BMPlayer: UIView {
     
     private func preparePlayer() {
         playerLayer = BMPlayerLayerView()
+        playerLayer!.videoGravity = videoGravity
         insertSubview(playerLayer!, atIndex: 0)
         playerLayer!.snp_makeConstraints { (make) in
             make.edges.equalTo(self)
@@ -535,17 +543,17 @@ public class BMPlayer: UIView {
 }
 
 extension BMPlayer: BMPlayerLayerViewDelegate {
-    func bmPlayer(player player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
+    public func bmPlayer(player player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
         playStateDidChanged()
     }
     
-    func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: NSTimeInterval , totalDuration: NSTimeInterval) {
+    public func bmPlayer(player player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: NSTimeInterval , totalDuration: NSTimeInterval) {
         self.totalDuration = totalDuration
         BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
         controlView.playerProgressView?.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
     
-    func bmPlayer(player player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
+    public func bmPlayer(player player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
         BMPlayerManager.shared.log("playerStateDidChange - \(state)")
         switch state {
         case BMPlayerState.ReadyToPlay:
@@ -573,7 +581,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         }
     }
     
-    func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: NSTimeInterval, totalTime: NSTimeInterval) {
+    public func bmPlayer(player player: BMPlayerLayerView, playTimeDidChange currentTime: NSTimeInterval, totalTime: NSTimeInterval) {
         self.currentPosition = currentTime
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
         totalDuration = totalTime

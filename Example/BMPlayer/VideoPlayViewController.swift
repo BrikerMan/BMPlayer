@@ -29,7 +29,7 @@ class VideoPlayViewController: UIViewController {
      准备playerView
      */
     func preparePlayer() {
-//        let customView = CustomControlView()
+        //        let customView = CustomControlView()
         player = BMPlayer()
         view.addSubview(player)
         player.snp_makeConstraints { (make) in
@@ -54,12 +54,22 @@ class VideoPlayViewController: UIViewController {
         case (0,0):
             player.seek(22)
             player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+            
         case (0,1):
             let item = self.preparePlayerItem()
             player.playWithPlayerItem(item)
+            
         case (0,2):
             let item = self.preparePlayerItem()
             player.playWithPlayerItem(item)
+            
+        case (2,0):
+            player.panGesture.enabled = false
+            
+        case (2,1):
+            player.videoGravity = "AVLayerVideoGravityResizeAspect"
+            player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+            
         default:
             let item = self.preparePlayerItem()
             player.playWithPlayerItem(item)
@@ -86,7 +96,7 @@ class VideoPlayViewController: UIViewController {
             
         case (1,1):
             BMPlayerConf.topBarShowInCase = .HorizantalOnly
-    
+            
             
         case (1,2):
             BMPlayerConf.topBarShowInCase = .None
