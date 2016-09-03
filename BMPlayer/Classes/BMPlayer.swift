@@ -559,9 +559,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         case BMPlayerState.ReadyToPlay:
             if shouldSeekTo != 0 {
                 playerLayer?.seekToTime(shouldSeekTo, completionHandler: {
-                    
-                    
-                    
+                
                 })
                 shouldSeekTo = 0
             }
