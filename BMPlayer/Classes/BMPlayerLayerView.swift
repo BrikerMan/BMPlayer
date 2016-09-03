@@ -16,17 +16,17 @@ protocol BMPlayerLayerViewDelegate : class {
     func bmPlayer(player player: BMPlayerLayerView ,playerIsPlaying      playing: Bool)
 }
 
-class BMPlayerLayerView: UIView {
+public class BMPlayerLayerView: UIView {
     
     weak var delegate: BMPlayerLayerViewDelegate?
     
     /// 视频URL
-    var videoURL: NSURL! {
+    public var videoURL: NSURL! {
         didSet { onSetVideoURL() }
     }
     
     /// 视频跳转秒数置0
-    var seekTime = 0
+    public var seekTime = 0
     
     /// 计时器
     var timer       : NSTimer?
@@ -40,14 +40,14 @@ class BMPlayerLayerView: UIView {
     }()
     
     
-    var isPlaying     = false {
+    public var isPlaying     = false {
         didSet {
             delegate?.bmPlayer(player: self, playerIsPlaying: isPlaying)
         }
     }
     
     /// 播放属性
-    var playerItem: AVPlayerItem? {
+    public var playerItem: AVPlayerItem? {
         didSet {
             onPlayerItemChange()
         }
@@ -84,7 +84,7 @@ class BMPlayerLayerView: UIView {
     
     
     // MARK: - Actions
-    func play() {
+    public func play() {
         if let player = player {
             isPlaying = true
             player.play()
@@ -93,7 +93,7 @@ class BMPlayerLayerView: UIView {
     }
     
     
-    func pause() {
+    public func pause() {
         player?.pause()
         isPlaying  = false
         timer?.fireDate = NSDate.distantFuture()
@@ -116,12 +116,12 @@ class BMPlayerLayerView: UIView {
     
     
     // MARK: - layoutSubviews
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         self.playerLayer?.frame  = self.bounds
     }
     
-    func resetPlayer() {
+    public func resetPlayer() {
         // 初始化状态变量
         self.playDidEnd = false
         self.playerItem = nil
@@ -138,19 +138,19 @@ class BMPlayerLayerView: UIView {
         self.player = nil
     }
     
-    func prepareToDeinit() {
+    public func prepareToDeinit() {
         self.timer?.invalidate()
         self.playerItem = nil
         self.resetPlayer()
     }
     
-    func onTimeSliderBegan() {
+    public func onTimeSliderBegan() {
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             self.timer?.fireDate = NSDate.distantFuture()
         }
     }
     
-    func seekToTime(secounds: NSTimeInterval, completionHandler:(()->Void)?) {
+    public func seekToTime(secounds: NSTimeInterval, completionHandler:(()->Void)?) {
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             let draggedTime = CMTimeMake(Int64(secounds), 1)
             self.player!.seekToTime(draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
@@ -167,8 +167,6 @@ class BMPlayerLayerView: UIView {
         self.configPlayer()
         
     }
-    
-    
     
     private func onPlayerItemChange() {
         if lastPlayerItem == playerItem {
@@ -233,7 +231,7 @@ class BMPlayerLayerView: UIView {
     }
     
     // MARK: - KVO
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if let item = object as? AVPlayerItem, keyPath = keyPath {
             if item == self.playerItem {
                 switch keyPath {
