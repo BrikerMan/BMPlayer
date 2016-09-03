@@ -32,7 +32,7 @@ A simple video player for iOS, based on AVPlayer, pure swift.
 ```ruby
 use_frameworks!
 
-pod 'BMPlayer', '~> 0.2.0'
+pod 'BMPlayer'
 ```
 
 Swift 3: [swift3 branch](https://github.com/BrikerMan/BMPlayer/tree/swift3)

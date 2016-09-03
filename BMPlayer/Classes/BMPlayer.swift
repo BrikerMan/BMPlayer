@@ -34,6 +34,12 @@ public class BMPlayer: UIView {
 
     public var backBlock:(() -> Void)?
     
+    /// Gesture used to show / hide control view
+    public var tapGesture: UITapGestureRecognizer!
+    
+    /// Gesture to change volume / brightness
+    public var panGesture: UIPanGestureRecognizer!
+    
     var videoItem: BMPlayerItem!
     
     var currentDefinition = 0
@@ -486,10 +492,10 @@ public class BMPlayer: UIView {
             make.edges.equalTo(self)
         }
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureTapped(_:)))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureTapped(_:)))
         self.addGestureRecognizer(tapGesture)
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
         //        panGesture.delegate = self
         self.addGestureRecognizer(panGesture)
     }
