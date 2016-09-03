@@ -53,7 +53,7 @@ class VideoPlayViewController: UIViewController {
         // 普通播放器
         case (0,0):
             player.seek(22)
-            player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp")!, title: "风格互换：原来你我相爱")
+            player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
             
         case (0,1):
             let item = self.preparePlayerItem()
