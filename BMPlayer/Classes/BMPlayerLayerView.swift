@@ -179,6 +179,9 @@ public class BMPlayerLayerView: UIView {
     }
     
     public func seekToTime(secounds: NSTimeInterval, completionHandler:(()->Void)?) {
+        if secounds.isNaN {
+            return
+        }
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             let draggedTime = CMTimeMake(Int64(secounds), 1)
             self.player!.seekToTime(draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
