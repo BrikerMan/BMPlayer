@@ -52,8 +52,10 @@ class VideoPlayViewController: UIViewController {
         switch (index.section,index.row) {
         // 普通播放器
         case (0,0):
-            player.seek(22)
-            player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+//            player.seek(22)
+            player.videoGravity = "AVLayerVideoGravityResize"
+            
+            player.playWithURL(NSURL(string: "http://gslb.miaopai.com/stream/kPzSuadRd2ipEo82jk9~sA__.mp4")!, title: "风格互换：原来你我相爱")
             
         case (0,1):
             let item = self.preparePlayerItem()

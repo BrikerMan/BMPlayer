@@ -20,6 +20,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     var playerPlayButton        : UIButton? { get { return  playButton } }
     var playerFullScreenButton  : UIButton? { get { return  fullScreenButton } }
     var playerBackButton        : UIButton? { get { return  backButton } }
+    var playerRatioButton       : UIButton? { get { return  ratioButton }}
     
     var playerTimeSlider        : UISlider? { get { return  timeSlider } }
     var playerProgressView      : UIProgressView? { get { return  progressView } }
@@ -39,6 +40,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     var backButton  = UIButton(type: UIButtonType.Custom)
     var titleLabel  = UILabel()
     var chooseDefitionView = UIView()
+    var ratioButton = UIButton(type: .Custom)       //调整视频画面比例按钮 Added by toodoo
     
     /// 底部
     var currentTimeLabel = UILabel()
@@ -94,6 +96,20 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         chooseDefitionView.alpha = 0.0
     }
     
+    func aspectRatioChanged(state:BMPlayerAspectRatio) {
+        switch state {
+        case .DEFAULT:
+            ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_ratio"), forState: .Normal)
+            break
+        case .SIXTEEN2NINE:
+            ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_169"), forState: .Normal)
+            break
+        case .FOUR2THREE:
+            ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_43"), forState: .Normal)
+            break
+        }
+    }
+    
     func updateUI(isForFullScreen: Bool) {
         isFullScreen = isForFullScreen
         if isForFullScreen {
@@ -110,6 +126,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
                 }
             }
             fullScreenButton.setImage(BMImageResourcePath("BMPlayer_portialscreen"), forState: UIControlState.Normal)
+            ratioButton.hidden = false
             chooseDefitionView.hidden = false
             if BMPlayerConf.topBarShowInCase.rawValue == 2 {
                 topMaskView.hidden = true
@@ -122,6 +139,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
             } else {
                 topMaskView.hidden = false
             }
+            ratioButton.hidden = true
             chooseDefitionView.hidden = true
             
             self.slowButton.hidden = true
@@ -260,9 +278,11 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         // 顶部
         topMaskView.addSubview(backButton)
         topMaskView.addSubview(titleLabel)
+        topMaskView.addSubview(ratioButton)
         self.addSubview(chooseDefitionView)
         
         backButton.setImage(BMImageResourcePath("BMPlayer_back"), forState: UIControlState.Normal)
+        ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_ratio"), forState: .Normal)
         
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.text      = "Hello World"
@@ -380,8 +400,15 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
             make.centerY.equalTo(backButton)
         }
         
+        ratioButton.snp_makeConstraints { (make) in
+            make.right.equalTo(topMaskView.snp_right).offset(-20)
+            make.top.equalTo(titleLabel.snp_top).offset(-4)
+            make.width.equalTo(31)
+            make.height.equalTo(25)
+        }
+        
         chooseDefitionView.snp_makeConstraints { (make) in
-            make.right.equalTo(topMaskView.snp_right).offset(-10)
+            make.right.equalTo(ratioButton.snp_left).offset(-10)
             make.top.equalTo(titleLabel.snp_top).offset(-4)
             make.width.equalTo(60)
             make.height.equalTo(30)

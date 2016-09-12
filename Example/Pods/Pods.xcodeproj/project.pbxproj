@@ -58,6 +58,12 @@
 		79CBF4C0336FA0FD8EA8D669CE4BF74C /* BMPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E5F7408EFAD60EAA8CCC9F2D9CCC87F4 /* BMPlayer.bundle */; };
 		7A14A97E6F52533C06518CBE1E90C3BF /* BMPlayer_fullscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3289CC0BC344E27AE7883F91F2FE7133 /* BMPlayer_fullscreen@2x.png */; };
 		7C54B406184321821DE3C933310A1308 /* Pods-BMPlayer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 251CCB4F4FD00AE4B09A6F555974F932 /* Pods-BMPlayer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8005743E1D85CCF200345A5E /* BMPlayer_43@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 800574321D85C74500345A5E /* BMPlayer_43@2x.png */; };
+		8005743F1D85CCF200345A5E /* BMPlayer_43@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 800574331D85C74500345A5E /* BMPlayer_43@3x.png */; };
+		800574401D85CCF200345A5E /* BMPlayer_169@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 800574341D85C74500345A5E /* BMPlayer_169@2x.png */; };
+		800574411D85CCF200345A5E /* BMPlayer_169@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 800574351D85C74500345A5E /* BMPlayer_169@3x.png */; };
+		800574421D85CCF200345A5E /* BMPlayer_ratio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 800574361D85C74500345A5E /* BMPlayer_ratio@2x.png */; };
+		800574431D85CCF200345A5E /* BMPlayer_ratio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 800574371D85C74500345A5E /* BMPlayer_ratio@3x.png */; };
 		80589F3F119167B5D0DA1CB73428342D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4091D41D5465F19CD1403B9554CAD19 /* AVFoundation.framework */; };
 		841D572690F615633CB641BF879ADEE6 /* BMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3B6BB1B9DE0213443B6F373B91C29A /* BMPlayer.swift */; };
 		858194F09E4C5CEB4707BECA15A12D4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBE7E54681AE2EBA7C71D24F95DC1B5 /* Foundation.framework */; };
@@ -215,6 +221,12 @@
 		7B7A2B2C1258CAF9E563F3D1BAFBB128 /* NVActivityIndicatorAnimationBlank.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBlank.swift; path = NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBlank.swift; sourceTree = "<group>"; };
 		7DB9DCA741F98A49A9A7F877F420456C /* NVActivityIndicatorAnimationLineScaleParty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationLineScaleParty.swift; path = NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScaleParty.swift; sourceTree = "<group>"; };
 		7F3111E5DD341C11D3F9255D2A1A1CD9 /* BMPlayer_replay@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "BMPlayer_replay@2x.png"; sourceTree = "<group>"; };
+		800574321D85C74500345A5E /* BMPlayer_43@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMPlayer_43@2x.png"; sourceTree = "<group>"; };
+		800574331D85C74500345A5E /* BMPlayer_43@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMPlayer_43@3x.png"; sourceTree = "<group>"; };
+		800574341D85C74500345A5E /* BMPlayer_169@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMPlayer_169@2x.png"; sourceTree = "<group>"; };
+		800574351D85C74500345A5E /* BMPlayer_169@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMPlayer_169@3x.png"; sourceTree = "<group>"; };
+		800574361D85C74500345A5E /* BMPlayer_ratio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMPlayer_ratio@2x.png"; sourceTree = "<group>"; };
+		800574371D85C74500345A5E /* BMPlayer_ratio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMPlayer_ratio@3x.png"; sourceTree = "<group>"; };
 		8970941198448FBE8423BD1FD1B24F8C /* NVActivityIndicatorAnimationBallPulse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBallPulse.swift; path = NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulse.swift; sourceTree = "<group>"; };
 		8B8AC6B1B2501DEF753B95EED47BA9D2 /* BMPlayerLayerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BMPlayerLayerView.swift; sourceTree = "<group>"; };
 		9131875CCD90D39F3BC9D68103827282 /* UIViewController+SwipeBack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+SwipeBack.h"; path = "SwipeBack/UIViewController+SwipeBack.h"; sourceTree = "<group>"; };
@@ -399,6 +411,12 @@
 		3A751E5457CC9A46CC5EA63994D5CD5F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				800574321D85C74500345A5E /* BMPlayer_43@2x.png */,
+				800574331D85C74500345A5E /* BMPlayer_43@3x.png */,
+				800574341D85C74500345A5E /* BMPlayer_169@2x.png */,
+				800574351D85C74500345A5E /* BMPlayer_169@3x.png */,
+				800574361D85C74500345A5E /* BMPlayer_ratio@2x.png */,
+				800574371D85C74500345A5E /* BMPlayer_ratio@3x.png */,
 				00A2D67C8E0DB6111058FE2F937BA6D9 /* BMPlayer_back@2x.png */,
 				5FB21CCD5CAF2B32342591C37B980926 /* BMPlayer_back@3x.png */,
 				3289CC0BC344E27AE7883F91F2FE7133 /* BMPlayer_fullscreen@2x.png */,
@@ -851,6 +869,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8005743E1D85CCF200345A5E /* BMPlayer_43@2x.png in Resources */,
+				8005743F1D85CCF200345A5E /* BMPlayer_43@3x.png in Resources */,
+				800574401D85CCF200345A5E /* BMPlayer_169@2x.png in Resources */,
+				800574411D85CCF200345A5E /* BMPlayer_169@3x.png in Resources */,
+				800574421D85CCF200345A5E /* BMPlayer_ratio@2x.png in Resources */,
+				800574431D85CCF200345A5E /* BMPlayer_ratio@3x.png in Resources */,
 				FD01611936405B0F65E6F9A22B45D3EE /* BMPlayer_back@2x.png in Resources */,
 				A0F4730A306581CDE2A032ACCF688217 /* BMPlayer_back@3x.png in Resources */,
 				7A14A97E6F52533C06518CBE1E90C3BF /* BMPlayer_fullscreen@2x.png in Resources */,
