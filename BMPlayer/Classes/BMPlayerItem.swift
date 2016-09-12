@@ -22,8 +22,8 @@ public class BMPlayerItem {
 
 
 public class BMPlayerItemDefinitionItem: BMPlayerItemDefinitionProtocol {
-    public var playURL: NSURL
-    public var definitionName: String
+    @objc public var playURL: NSURL
+    @objc public var definitionName: String
     
     /**
      初始化播放资源
