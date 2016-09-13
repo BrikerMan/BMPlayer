@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol BMPlayerItemDefinitionProtocol {
+@objc public protocol BMPlayerItemDefinitionProtocol {
     /// 视频URL
     var playURL     : NSURL { get set }
     
@@ -44,6 +44,7 @@ public protocol BMPlayerCustomControlView  {
     var playerPlayButton        : UIButton? { get }
     var playerFullScreenButton  : UIButton? { get }
     var playerBackButton        : UIButton? { get }
+    var playerRatioButton       : UIButton? { get }
     
     var playerTimeSlider        : UISlider? { get }
     var playerProgressView      : UIProgressView? { get }
@@ -115,5 +116,6 @@ public protocol BMPlayerCustomControlView  {
      */
     func hideCoverImageView()
     
+    func aspectRatioChanged(state:BMPlayerAspectRatio)
 }
 

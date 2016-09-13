@@ -29,6 +29,13 @@ enum BMPlayerItemType {
     case URL
     case BMPlayerItem
 }
+// 视频画面比例
+public enum BMPlayerAspectRatio : Int {
+    case DEFAULT = 0    //视频源默认比例
+    case SIXTEEN2NINE   //16：9
+    case FOUR2THREE     //4：3
+}
+
 
 public class BMPlayer: UIView {
 
@@ -90,6 +97,9 @@ public class BMPlayer: UIView {
     private var isMaskShowing   = false
     private var isSlowed        = false
     private var isMirrored      = false
+    
+    //视频画面比例
+    private var aspectRatio:BMPlayerAspectRatio = .DEFAULT
     
     
     // MARK: - Public functions
@@ -421,6 +431,16 @@ public class BMPlayer: UIView {
         }
     }
     
+    @objc private func ratioButtonPressed(button: UIButton) {
+        var _ratio = self.aspectRatio.rawValue + 1
+        if _ratio > 2 {
+            _ratio = 0
+        }
+        self.aspectRatio = BMPlayerAspectRatio(rawValue: _ratio)!
+        self.controlView.aspectRatioChanged(self.aspectRatio)
+        self.playerLayer?.aspectRatio = self.aspectRatio
+    }
+    
     @objc private func onOrientationChanged() {
         self.updateUI(isFullScreen)
     }
@@ -516,6 +536,7 @@ public class BMPlayer: UIView {
         controlView.playerTimeSlider?.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), forControlEvents: [UIControlEvents.TouchUpInside,UIControlEvents.TouchCancel, UIControlEvents.TouchUpOutside])
         controlView.playerSlowButton?.addTarget(self, action: #selector(slowButtonPressed(_:)), forControlEvents: .TouchUpInside)
         controlView.playerMirrorButton?.addTarget(self, action: #selector(mirrorButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        controlView.playerRatioButton?.addTarget(self, action: #selector(self.ratioButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.onOrientationChanged), name: UIApplicationDidChangeStatusBarOrientationNotification, object: nil)
     }

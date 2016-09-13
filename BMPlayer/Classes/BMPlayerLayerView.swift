@@ -34,6 +34,12 @@ public class BMPlayerLayerView: UIView {
         }
     }
     
+    var aspectRatio:BMPlayerAspectRatio = .DEFAULT {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
     /// 计时器
     var timer       : NSTimer?
     
@@ -124,7 +130,23 @@ public class BMPlayerLayerView: UIView {
     // MARK: - layoutSubviews
     override public func layoutSubviews() {
         super.layoutSubviews()
-        self.playerLayer?.frame  = self.bounds
+        switch self.aspectRatio {
+        case .DEFAULT:
+            self.playerLayer?.videoGravity = "AVLayerVideoGravityResizeAspect"
+            self.playerLayer?.frame  = self.bounds
+            break
+        case .SIXTEEN2NINE:
+            self.playerLayer?.videoGravity = "AVLayerVideoGravityResize"
+            self.playerLayer?.frame = CGRectMake(0, 0, self.bounds.width, self.bounds.width/(16/9))
+            break
+        case .FOUR2THREE:
+            self.playerLayer?.videoGravity = "AVLayerVideoGravityResize"
+            let _w = self.bounds.height * 4 / 3
+            self.playerLayer?.frame = CGRectMake((self.bounds.width - _w )/2, 0, _w, self.bounds.height)
+            break
+        }
+        
+//        self.playerLayer?.frame  = CGRectMake(0, 0, 200, 200)
     }
     
     public func resetPlayer() {
@@ -157,6 +179,9 @@ public class BMPlayerLayerView: UIView {
     }
     
     public func seekToTime(secounds: NSTimeInterval, completionHandler:(()->Void)?) {
+        if secounds.isNaN {
+            return
+        }
         if self.player?.currentItem?.status == AVPlayerItemStatus.ReadyToPlay {
             let draggedTime = CMTimeMake(Int64(secounds), 1)
             self.player!.seekToTime(draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
