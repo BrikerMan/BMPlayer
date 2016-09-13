@@ -35,6 +35,9 @@ public class BMPlayerManager {
     /// 是否显示慢放和镜像按钮
     public var slowAndMirror = false
     
+    /// 是否显示比例切换按钮
+    public var showScaleChangeButton = false
+    
     /// 是否打印log
     public var allowLog  = false
     /**

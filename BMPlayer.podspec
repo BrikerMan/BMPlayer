@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BMPlayer"
-  s.version          = "0.3.1"
+  s.version          = "0.3.3"
   s.summary          = "Video Player Using Swift, based on AVPlayer"
 
 # This description is used to generate tags and improve search results.
@@ -39,5 +39,5 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'AVFoundation'
   s.dependency 'SnapKit'
-  s.dependency 'NVActivityIndicatorView', '~> 2.6'
+  s.dependency 'NVActivityIndicatorView', '2.10'
 end

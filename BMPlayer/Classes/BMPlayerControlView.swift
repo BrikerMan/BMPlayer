@@ -116,7 +116,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
             if BMPlayerConf.slowAndMirror {
                 self.slowButton.hidden = false
                 self.mirrorButton.hidden = false
-
+                
                 fullScreenButton.snp_remakeConstraints { (make) in
                     make.width.equalTo(50)
                     make.height.equalTo(50)
@@ -152,6 +152,10 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
                 make.left.equalTo(totalTimeLabel.snp_right)
                 make.right.equalTo(bottomMaskView.snp_right)
             }
+        }
+        
+        if !BMPlayerConf.showScaleChangeButton {
+            ratioButton.hidden = true
         }
     }
     
@@ -403,12 +407,16 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         ratioButton.snp_makeConstraints { (make) in
             make.right.equalTo(topMaskView.snp_right).offset(-20)
             make.top.equalTo(titleLabel.snp_top).offset(-4)
-            make.width.equalTo(31)
+            make.width.equalTo(50)
             make.height.equalTo(25)
         }
         
         chooseDefitionView.snp_makeConstraints { (make) in
-            make.right.equalTo(ratioButton.snp_left).offset(-10)
+            if BMPlayerConf.showScaleChangeButton {
+                make.right.equalTo(ratioButton.snp_left).offset(-10)
+            } else {
+                make.right.equalTo(topMaskView.snp_right).offset(-20)
+            }
             make.top.equalTo(titleLabel.snp_top).offset(-4)
             make.width.equalTo(60)
             make.height.equalTo(30)
