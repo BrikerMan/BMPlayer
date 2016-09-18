@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BMPlayerItem {
+open class BMPlayerItem {
     var title   : String
     var resource : [BMPlayerItemDefinitionProtocol]
     var cover   : String
@@ -21,9 +21,9 @@ public class BMPlayerItem {
 }
 
 
-public class BMPlayerItemDefinitionItem: BMPlayerItemDefinitionProtocol {
-    @objc public var playURL: NSURL
-    @objc public var definitionName: String
+open class BMPlayerItemDefinitionItem: BMPlayerItemDefinitionProtocol {
+    @objc open var playURL: URL
+    @objc open var definitionName: String
     
     /**
      初始化播放资源
@@ -31,7 +31,7 @@ public class BMPlayerItemDefinitionItem: BMPlayerItemDefinitionProtocol {
      - parameter url:         资源URL
      - parameter qualityName: 资源清晰度标签
      */
-    public init(url:NSURL, definitionName: String) {
+    public init(url:URL, definitionName: String) {
         self.playURL        = url
         self.definitionName = definitionName
     }

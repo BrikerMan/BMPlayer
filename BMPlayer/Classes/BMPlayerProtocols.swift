@@ -10,7 +10,7 @@ import UIKit
 
 @objc public protocol BMPlayerItemDefinitionProtocol {
     /// 视频URL
-    var playURL     : NSURL { get set }
+    var playURL     : URL { get set }
     
     /// 清晰度名称，UI上展示，如高清，超清
     var definitionName : String { get set }
@@ -22,7 +22,7 @@ public protocol BMPlayerControlViewDelegate: class {
      
      - parameter index: definition item index
      */
-    func controlViewDidChooseDefition(index: Int)
+    func controlViewDidChooseDefition(_ index: Int)
     
     /**
      call this method when user press on replay
@@ -57,7 +57,7 @@ public protocol BMPlayerCustomControlView  {
     /**
      call to prepare UI with definition items
      */
-    func prepareChooseDefinitionView(items:[BMPlayerItemDefinitionProtocol], index: Int)
+    func prepareChooseDefinitionView(_ items:[BMPlayerItemDefinitionProtocol], index: Int)
     
     
     /**
@@ -65,7 +65,7 @@ public protocol BMPlayerCustomControlView  {
      
      - parameter isForFullScreen: is fullscreen
      */
-    func updateUI(isForFullScreen: Bool)
+    func updateUI(_ isForFullScreen: Bool)
     
     /**
      call when buffering
@@ -98,7 +98,7 @@ public protocol BMPlayerCustomControlView  {
      - parameter to:    target time
      - parameter isAdd: is slide to right
      */
-    func showSeekToView(to:NSTimeInterval, isAdd: Bool)
+    func showSeekToView(_ to:TimeInterval, isAdd: Bool)
     /**
      call when seek info view should hide
      */
@@ -109,13 +109,13 @@ public protocol BMPlayerCustomControlView  {
      
      - parameter cover: cover url
      */
-    func showCoverWithLink(cover:String)
+    func showCoverWithLink(_ cover:String)
     
     /**
      call when needs to hide cover image
      */
     func hideCoverImageView()
     
-    func aspectRatioChanged(state:BMPlayerAspectRatio)
+    func aspectRatioChanged(_ state:BMPlayerAspectRatio)
 }
 

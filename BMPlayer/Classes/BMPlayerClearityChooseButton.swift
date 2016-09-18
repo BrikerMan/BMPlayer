@@ -20,10 +20,10 @@ class BMPlayerClearityChooseButton: UIButton {
     }
     
     func initUI() {
-        self.titleLabel?.font   = UIFont.systemFontOfSize(12)
+        self.titleLabel?.font   = UIFont.systemFont(ofSize: 12)
         self.layer.cornerRadius = 2
         self.layer.borderWidth  = 1
-        self.layer.borderColor  = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8 ).CGColor
-        self.setTitleColor(UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9 ), forState: UIControlState.Normal)
+        self.layer.borderColor  = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8 ).cgColor
+        self.setTitleColor(UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9 ), for: UIControlState())
     }
 }
