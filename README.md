@@ -45,7 +45,6 @@ pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityI
 use_frameworks!
 
 pod 'BMPlayer', '~> 0.3.3'
-
 ```
 
 ### Demo
