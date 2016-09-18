@@ -27,10 +27,21 @@
 ## 安装
 ### CocoaPods
 
+#### Swift3
+确保使用最新版本cocoapods **cocoapods 1.1.0.rc.2**, 可以使用命令 `sudo gem install cocoapods --pre` 来升级.
+
 ```ruby
 use_frameworks!
 
-pod 'BMPlayer', '~> 0.2.0'
+pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git', :branch => 'swift3'
+```
+
+#### Swift 2.2 
+```
+use_frameworks!
+
+pod 'BMPlayer', '~> 0.3.3'
 ```
 
 ### Demo
@@ -126,3 +137,5 @@ BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 
 ## License
 BMPlayer is available under the MIT license. See the LICENSE file for more info.
+
+
