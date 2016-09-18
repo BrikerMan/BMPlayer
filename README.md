@@ -61,7 +61,7 @@ Direct drag IB to UIView, the aspect ratio for the 16:9 constraint (priority to 
 ```swift
 import BMPlayer
 
-player.playWithURL(NSURL(string: url)!)
+player.playWithURL(URL(string: url)!)
 
 player.backBlock = { [unowned self] in
     let _ = self.navigationController?.popViewController(animated: true)
@@ -83,21 +83,21 @@ player.snp.makeConstraints { (make) in
 }
 // Back button event
 player.backBlock = { [unowned self] in
-    self.navigationController?.popViewControllerAnimated(true)
+    let _ = self.navigationController?.popViewController(animated: true)
 }
 ```
 
 ### Set video url
 
 ```swift
-player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+player.playWithURL(URL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
 ```
 
 ### multi-definition video with cover
 
 ```swift
-let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "HD")
-let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "SD")
+let resource0 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "HD")
+let resource1 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "SD")
 
 let item = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
                         resource: [resource0, resource1],

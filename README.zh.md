@@ -58,7 +58,7 @@ pod 'BMPlayer', '~> 0.3.3'
 ```swift
 import BMPlayer
 
-player.playWithURL(NSURL(string: url)!)
+player.playWithURL(URL(string: url)!)
 
 player.backBlock = { [unowned self] in
     self.navigationController?.popViewControllerAnimated(true)
@@ -79,7 +79,7 @@ player.snp_makeConstraints { (make) in
         make.height.equalTo(player.snp_width).multipliedBy(9.0/16.0).priority(750)
 }
 player.backBlock = { [unowned self] in
-    self.navigationController?.popViewControllerAnimated(true)
+    let _ = self.navigationController?.popViewController(animated: true)
 }
 ```
 
@@ -87,14 +87,14 @@ player.backBlock = { [unowned self] in
 
 ```swift
 // 若title为""，则不显示
-player.playWithURL(NSURL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+player.playWithURL(URL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
 ```
 
 ### 多清晰度，带封面视频
 
 ```swift
-let resource0 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "高清")
-let resource1 = BMPlayerItemDefinitionItem(url: NSURL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "标清")
+let resource0 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "高清")
+let resource1 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "标清")
 
 let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
 resource: [resource0, resource1],
