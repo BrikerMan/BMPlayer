@@ -23,19 +23,30 @@ A simple video player for iOS, based on AVPlayer, pure swift.
 
 ## Requirements
 - iOS 8 +
-- Xcode 7.3
-- Swift 2.2
+- Xcode 8 
+- Swift 3
 
 ## Installation
 ### CocoaPods
 
+#### Swift3
+Please make sure using the **cocoapods 1.1.0.rc.2**, update with `sudo gem install cocoapods --pre`.
+
 ```ruby
 use_frameworks!
 
-pod 'BMPlayer'
+pod 'BMPlayer', '~> 0.4.0'
+pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git', :branch => 'swift3'
+
 ```
 
-Swift 3: [swift3 branch](https://github.com/BrikerMan/BMPlayer/tree/swift3)
+#### Swift 2.2 
+```
+use_frameworks!
+
+pod 'BMPlayer', '~> 0.3.3'
+
+```
 
 ### Demo
 run `pod install` at `Example` folder before run the demo.
@@ -55,7 +66,7 @@ import BMPlayer
 player.playWithURL(NSURL(string: url)!)
 
 player.backBlock = { [unowned self] in
-    self.navigationController?.popViewControllerAnimated(true)
+    let _ = self.navigationController?.popViewController(animated: true)
 }
 ```
 
@@ -66,11 +77,11 @@ import BMPlayer
 
 player = BMPlayer()
 view.addSubview(player)
-player.snp_makeConstraints { (make) in
+player.snp.makeConstraints { (make) in
     make.top.equalTo(self.view).offset(20)
     make.left.right.equalTo(self.view)
     // Note here, the aspect ratio 16:9 priority is lower than 1000 on the line, because the 4S iPhone aspect ratio is not 16:9
-    make.height.equalTo(player.snp_width).multipliedBy(9.0/16.0).priority(750)
+    make.height.equalTo(player.snp.width).multipliedBy(9.0/16.0).priority(750)
 }
 // Back button event
 player.backBlock = { [unowned self] in

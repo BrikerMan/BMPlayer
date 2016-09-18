@@ -515,7 +515,7 @@ open class BMPlayer: UIView {
         addSubview(controlView.getView)
         controlView.updateUI(isFullScreen)
         controlView.delegate = self
-        controlView.getView.snp_makeConstraints { (make) in
+        controlView.getView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
         
@@ -554,7 +554,7 @@ open class BMPlayer: UIView {
         playerLayer = BMPlayerLayerView()
         playerLayer!.videoGravity = videoGravity
         insertSubview(playerLayer!, at: 0)
-        playerLayer!.snp_makeConstraints { (make) in
+        playerLayer!.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
         playerLayer!.delegate = self

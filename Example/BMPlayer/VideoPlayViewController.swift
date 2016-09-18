@@ -32,15 +32,15 @@ class VideoPlayViewController: UIViewController {
         //        let customView = CustomControlView()
         player = BMPlayer()
         view.addSubview(player)
-        player.snp_makeConstraints { (make) in
-            make.top.equalTo(view.snp_top)
-            make.left.equalTo(view.snp_left)
-            make.right.equalTo(view.snp_right)
-            make.height.equalTo(view.snp_width).multipliedBy(9.0/16.0)
+        player.snp.makeConstraints { (make) in
+            make.top.equalTo(view.snp.top)
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
         }
         
         player.backBlock = { [unowned self] in
-            self.navigationController?.popViewController(animated: true)
+           let _ = self.navigationController?.popViewController(animated: true)
         }
         player.panGesture.isEnabled = false
         self.view.layoutIfNeeded()
