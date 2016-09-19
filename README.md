@@ -36,7 +36,7 @@ Please make sure using the **cocoapods 1.1.0.rc.2**, update with `sudo gem insta
 use_frameworks!
 
 pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
-pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git', :branch => 'swift3'
+pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git'
 ```
 
 #### Swift 2.2 
