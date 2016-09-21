@@ -1,3 +1,3 @@
-language: objective-c
 osx_image: xcode8
-xcode_workspace: Example/BMPlayer.xcworkspace
+language: objective-c
+script: xcodebuild test -project BMPlayer.xcodeproj -scheme BMPlayer -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'

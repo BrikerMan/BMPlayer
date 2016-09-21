@@ -165,7 +165,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     
     func showLoader() {
         loadingIndector.isHidden = false
-        loadingIndector.startAnimation()
+        loadingIndector.startAnimating()
     }
     
     func hideLoader() {
@@ -347,7 +347,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         // 中间
         mainMaskView.addSubview(loadingIndector)
         
-        loadingIndector.hidesWhenStopped = true
+//        loadingIndector.hidesWhenStopped = true
         loadingIndector.type             = BMPlayerConf.loaderType
         loadingIndector.color            = BMPlayerConf.tintColor
         
