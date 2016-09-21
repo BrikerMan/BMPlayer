@@ -34,7 +34,7 @@
 use_frameworks!
 
 pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
-pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git', :branch => 'swift3'
+pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git'
 ```
 
 #### Swift 2.2 
