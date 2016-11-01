@@ -187,7 +187,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     
     func showCoverWithLink(_ cover:String) {
         if let url = URL(string: cover) {
-            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+            DispatchQueue.global(qos: .default).async {
                 let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check
                 DispatchQueue.main.async(execute: {
                     self.maskImageView.image = UIImage(data: data!)
@@ -242,7 +242,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         
         UIView.animate(withDuration: 0.3, animations: {
             self.layoutIfNeeded()
-        }) 
+        })
         isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
         if selectedIndex != button.tag {
             selectedIndex = button.tag
@@ -347,7 +347,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         // 中间
         mainMaskView.addSubview(loadingIndector)
         
-//        loadingIndector.hidesWhenStopped = true
+        //        loadingIndector.hidesWhenStopped = true
         loadingIndector.type             = BMPlayerConf.loaderType
         loadingIndector.color            = BMPlayerConf.tintColor
         
@@ -405,7 +405,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         }
         
         ratioButton.snp.makeConstraints { (make) in
-            make.right.equalTo(topMaskView.snp.right).offset(-20)
+            make.right.equalTo(chooseDefitionView.snp.left).offset(-5)
             make.top.equalTo(titleLabel.snp.top).offset(-4)
             make.width.equalTo(50)
             make.height.equalTo(25)
@@ -477,8 +477,8 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         
         // 中间
         loadingIndector.snp.makeConstraints { (make) in
-            make.centerX.equalTo(mainMaskView.snp.centerX).offset(-15)
-            make.centerY.equalTo(mainMaskView.snp.centerY).offset(-15)
+            make.centerX.equalTo(mainMaskView.snp.centerX).offset(0)
+            make.centerY.equalTo(mainMaskView.snp.centerY).offset(0)
         }
         
         seekToView.snp.makeConstraints { (make) in

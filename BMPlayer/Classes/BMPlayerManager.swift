@@ -26,7 +26,7 @@ open class BMPlayerManager {
     
     /// Loader样式
     open var loaderType  = NVActivityIndicatorType.ballRotateChase
-
+    
     /// 是否自动播放
     open var shouldAutoPlay = true
     
