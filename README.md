@@ -33,10 +33,20 @@ A simple video player for iOS, based on AVPlayer, pure swift.
 Please make sure using the **cocoapods 1.1.0.rc.2**, update with `sudo gem install cocoapods --pre`.
 
 ```ruby
-use_frameworks!
+target 'ProjectName' do
+    use_frameworks!
+    pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+end
 
-pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
-pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git'
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |configuration|
+            configuration.build_settings['SWIFT_VERSION'] = "3.0"
+            configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
+        end
+    end
+end
 ```
 
 #### Swift 2.2 
