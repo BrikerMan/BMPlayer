@@ -11,7 +11,7 @@ import QuartzCore
 
 class NVActivityIndicatorAnimationBallZigZag: NVActivityIndicatorAnimationDelegate {
     
-    func setUpAnimationInLayer(_ layer: CALayer, size: CGSize, color: UIColor) {
+    func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let circleSize: CGFloat = size.width / 5
         let duration: CFTimeInterval = 0.7
         let deltaX = size.width / 2 - circleSize / 2
@@ -25,9 +25,9 @@ class NVActivityIndicatorAnimationBallZigZag: NVActivityIndicatorAnimationDelega
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         
         animation.values = [NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(-deltaX, -deltaY, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(deltaX, -deltaY, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0))]
+                            NSValue(caTransform3D: CATransform3DMakeTranslation(-deltaX, -deltaY, 0)),
+                            NSValue(caTransform3D: CATransform3DMakeTranslation(deltaX, -deltaY, 0)),
+                            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0))]
         animation.duration = duration
         animation.repeatCount = HUGE
         animation.isRemovedOnCompletion = false
@@ -37,16 +37,16 @@ class NVActivityIndicatorAnimationBallZigZag: NVActivityIndicatorAnimationDelega
         
         // Circle 2 animation
         animation.values = [NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(deltaX, deltaY, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(-deltaX, deltaY, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0))]
+                            NSValue(caTransform3D: CATransform3DMakeTranslation(deltaX, deltaY, 0)),
+                            NSValue(caTransform3D: CATransform3DMakeTranslation(-deltaX, deltaY, 0)),
+                            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0))]
         
         // Draw circle 2
         circleAt(frame: frame, layer: layer, size: CGSize(width: circleSize, height: circleSize), color: color, animation: animation)
     }
     
     func circleAt(frame: CGRect, layer: CALayer, size: CGSize, color: UIColor, animation: CAAnimation) {
-        let circle = NVActivityIndicatorShape.circle.createLayerWith(size: size, color: color)
+        let circle = NVActivityIndicatorShape.circle.layerWith(size: size, color: color)
         
         circle.frame = frame
         circle.add(animation, forKey: "animation")

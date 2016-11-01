@@ -16,7 +16,7 @@ class NVActivityIndicatorAnimationOrbit: NVActivityIndicatorAnimationDelegate {
     var coreSize: CGFloat = 0
     var satelliteSize: CGFloat = 0
     
-    func setUpAnimationInLayer(_ layer: CALayer, size: CGSize, color: UIColor) {
+    func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         coreSize = size.width / (1 + satelliteCoreRatio + distanceRatio)
         satelliteSize = coreSize * satelliteCoreRatio
         
@@ -51,13 +51,13 @@ class NVActivityIndicatorAnimationOrbit: NVActivityIndicatorAnimationDelegate {
         animation.duration = duration
         animation.repeatCount = HUGE
         animation.isRemovedOnCompletion = false
-
+        
         // Draw circle
-        let circle = NVActivityIndicatorShape.circle.createLayerWith(size: CGSize(width: coreSize, height: coreSize), color: color)
+        let circle = NVActivityIndicatorShape.circle.layerWith(size: CGSize(width: coreSize, height: coreSize), color: color)
         let frame = CGRect(x: (layer.bounds.size.width - coreSize) / 2,
-                               y: (layer.bounds.size.height - coreSize) / 2,
-                               width: coreSize,
-                               height: coreSize)
+                           y: (layer.bounds.size.height - coreSize) / 2,
+                           width: coreSize,
+                           height: coreSize)
         
         circle.frame = frame
         circle.add(animation, forKey: "animation")
@@ -91,11 +91,11 @@ class NVActivityIndicatorAnimationOrbit: NVActivityIndicatorAnimationDelegate {
         animation.isRemovedOnCompletion = false
         
         // Draw circle
-        let circle = NVActivityIndicatorShape.circle.createLayerWith(size: CGSize(width: coreSize, height: coreSize), color: color)
+        let circle = NVActivityIndicatorShape.circle.layerWith(size: CGSize(width: coreSize, height: coreSize), color: color)
         let frame = CGRect(x: (layer.bounds.size.width - coreSize) / 2,
-                               y: (layer.bounds.size.height - coreSize) / 2,
-                               width: coreSize,
-                               height: coreSize)
+                           y: (layer.bounds.size.height - coreSize) / 2,
+                           width: coreSize,
+                           height: coreSize)
         
         circle.frame = frame
         circle.add(animation, forKey: "animation")
@@ -118,11 +118,11 @@ class NVActivityIndicatorAnimationOrbit: NVActivityIndicatorAnimationDelegate {
         scaleAnimation.isRemovedOnCompletion = false
         
         // Draw circle
-        let circle = NVActivityIndicatorShape.circle.createLayerWith(size: CGSize(width: coreSize, height: coreSize), color: color)
+        let circle = NVActivityIndicatorShape.circle.layerWith(size: CGSize(width: coreSize, height: coreSize), color: color)
         let frame = CGRect(x: (layer.bounds.size.width - coreSize) / 2,
-                               y: (layer.bounds.size.height - coreSize) / 2,
-                               width: coreSize,
-                               height: coreSize)
+                           y: (layer.bounds.size.height - coreSize) / 2,
+                           width: coreSize,
+                           height: coreSize)
         
         circle.frame = frame
         circle.add(scaleAnimation, forKey: "animation")
@@ -143,7 +143,7 @@ class NVActivityIndicatorAnimationOrbit: NVActivityIndicatorAnimationDelegate {
         rotateAnimation.isRemovedOnCompletion = false
         
         // Draw circle
-        let circle = NVActivityIndicatorShape.circle.createLayerWith(size: CGSize(width: satelliteSize, height: satelliteSize), color: color)
+        let circle = NVActivityIndicatorShape.circle.layerWith(size: CGSize(width: satelliteSize, height: satelliteSize), color: color)
         let frame = CGRect(x: 0, y: 0, width: satelliteSize, height: satelliteSize)
         
         circle.frame = frame

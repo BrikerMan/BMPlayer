@@ -4,10 +4,15 @@ use_frameworks!
 target 'BMPlayer_Example' do
   pod 'BMPlayer', :path => '../'
   
-  
-  pod 'NVActivityIndicatorView', :git => 'https://github.com/ninjaprox/NVActivityIndicatorView.git', :branch => 'swift3'
-  
-  
   pod 'Reveal-iOS-SDK', :configurations => ['Debug']
   pod 'SwipeBack'                         ## 全能滑动手势返回,建议集成
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |configuration|
+            configuration.build_settings['SWIFT_VERSION'] = "3.0"
+            configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
+        end
+    end
 end
