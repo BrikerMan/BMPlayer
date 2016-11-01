@@ -86,7 +86,7 @@ public protocol BMPlayerCustomControlView  {
      call when user tapped on player to hide player Ui components
      */
     func hidePlayerUIComponents()
-
+    
     /**
      call when video play did end
      */

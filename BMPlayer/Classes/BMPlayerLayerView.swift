@@ -146,7 +146,7 @@ open class BMPlayerLayerView: UIView {
             break
         }
         
-//        self.playerLayer?.frame  = CGRectMake(0, 0, 200, 200)
+        //        self.playerLayer?.frame  = CGRectMake(0, 0, 200, 200)
     }
     
     open func resetPlayer() {

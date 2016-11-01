@@ -38,7 +38,7 @@ public enum BMPlayerAspectRatio : Int {
 
 
 open class BMPlayer: UIView {
-
+    
     open var backBlock:(() -> Void)?
     
     /// Gesture used to show / hide control view
@@ -248,21 +248,21 @@ open class BMPlayer: UIView {
         UIView.animate(withDuration: BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.hidePlayerUIComponents()
             if self.isFullScreen {
-                UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.fade)
+                UIApplication.shared.isStatusBarHidden = true
             }
         }, completion: { (_) in
             self.isMaskShowing = false
-        }) 
+        })
     }
     
     @objc fileprivate func showControlViewAnimated() {
         UIView.animate(withDuration: BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.showPlayerUIComponents()
-            UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.fade)
+            UIApplication.shared.isStatusBarHidden = false
         }, completion: { (_) in
             self.autoFadeOutControlBar()
             self.isMaskShowing = true
-        }) 
+        })
     }
     
     @objc fileprivate func tapGestureTapped(_ sender: UIGestureRecognizer) {
@@ -452,12 +452,12 @@ open class BMPlayer: UIView {
         controlView.updateUI(!self.isFullScreen)
         if isFullScreen {
             UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-            UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.fade)
-            UIApplication.shared.setStatusBarOrientation(UIInterfaceOrientation.portrait, animated: false)
+            UIApplication.shared.isStatusBarHidden = false
+            UIApplication.shared.statusBarOrientation = .portrait
         } else {
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-            UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.fade)
-            UIApplication.shared.setStatusBarOrientation(UIInterfaceOrientation.landscapeRight, animated: false)
+            UIApplication.shared.isStatusBarHidden = false
+            UIApplication.shared.statusBarOrientation = .landscapeRight
         }
     }
     
@@ -493,8 +493,8 @@ open class BMPlayer: UIView {
     public convenience init() {
         self.init(customControllView:nil)
     }
-
-
+    
+    
     
     fileprivate func formatSecondsToString(_ secounds: TimeInterval) -> String {
         let Min = Int(secounds / 60)
@@ -580,10 +580,12 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         case BMPlayerState.readyToPlay:
             if shouldSeekTo != 0 {
                 playerLayer?.seekToTime(shouldSeekTo, completionHandler: {
-                
+                    
                 })
                 shouldSeekTo = 0
             }
+            controlView.hideLoader()
+            self.play()
         case BMPlayerState.buffering:
             cancelAutoFadeOutControlBar()
             controlView.showLoader()
