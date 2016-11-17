@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'UIKit', 'AVFoundation'
   
-  # s.dependency 'SnapKit', '~> 3.0'
-  # s.dependency 'NVActivityIndicatorView'
+  s.dependency 'SnapKit', '~> 3.0'
+  s.dependency 'NVActivityIndicatorView'
 end
