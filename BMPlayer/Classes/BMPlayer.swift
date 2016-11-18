@@ -268,7 +268,7 @@ open class BMPlayer: UIView {
         UIView.animate(withDuration: BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.hidePlayerUIComponents()
             if self.isFullScreen {
-                UIApplication.shared.isStatusBarHidden = true
+                UIApplication.shared.setStatusBarHidden(true, with: .fade)
             }
         }, completion: { (_) in
             self.isMaskShowing = false
@@ -278,7 +278,7 @@ open class BMPlayer: UIView {
     @objc fileprivate func showControlViewAnimated() {
         UIView.animate(withDuration: BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.showPlayerUIComponents()
-            UIApplication.shared.isStatusBarHidden = false
+            UIApplication.shared.setStatusBarHidden(false, with: .fade)
         }, completion: { (_) in
             self.autoFadeOutControlBar()
             self.isMaskShowing = true
@@ -495,11 +495,11 @@ open class BMPlayer: UIView {
         controlView.updateUI(!self.isFullScreen)
         if isFullScreen {
             UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-            UIApplication.shared.isStatusBarHidden = false
+            UIApplication.shared.setStatusBarHidden(false, with: .fade)
             UIApplication.shared.statusBarOrientation = .portrait
         } else {
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-            UIApplication.shared.isStatusBarHidden = false
+            UIApplication.shared.setStatusBarHidden(false, with: .fade)
             UIApplication.shared.statusBarOrientation = .landscapeRight
         }
     }
