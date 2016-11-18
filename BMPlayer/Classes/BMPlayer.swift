@@ -36,8 +36,16 @@ public enum BMPlayerAspectRatio : Int {
     case four2THREE     //4：3
 }
 
+public protocol BMPlayerDelegate : class {
+    func bmPlayer(player: BMPlayer ,playerStateDidChange state: BMPlayerState)
+    func bmPlayer(player: BMPlayer ,loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval)
+    func bmPlayer(player: BMPlayer ,playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval)
+    func bmPlayer(player: BMPlayer ,playerIsPlaying playing: Bool)
+}
 
 open class BMPlayer: UIView {
+    
+    weak var delegate: BMPlayerDelegate?
     
     open var backBlock:(() -> Void)?
     
@@ -54,6 +62,11 @@ open class BMPlayer: UIView {
         }
     }
     
+    open var isPlaying: Bool {
+        get {
+            return playerLayer?.isPlaying ?? false
+        }
+    }
     var videoItem: BMPlayerItem!
     
     var currentDefinition = 0
@@ -603,8 +616,9 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     }
     
     public func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
-        self.currentPosition = currentTime
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
+                delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
+        self.currentPosition = currentTime
         totalDuration = totalTime
         if isSliderSliding {
             return

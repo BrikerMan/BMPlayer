@@ -46,15 +46,19 @@ open class BMPlayerLayerView: UIView {
     /// 播放属性
     lazy var player: AVPlayer? = {
         if let item = self.playerItem {
-            return  AVPlayer(playerItem: item)
+            let player = AVPlayer(playerItem: item)
+            return player
         }
         return nil
     }()
     
     
-    open var isPlaying     = false {
-        didSet {
-            delegate?.bmPlayer(player: self, playerIsPlaying: isPlaying)
+    open var isPlaying: Bool {
+        get {
+            if let player = player {
+                return player.rate > 0.0
+            }
+            return false
         }
     }
     
@@ -98,7 +102,6 @@ open class BMPlayerLayerView: UIView {
     // MARK: - Actions
     open func play() {
         if let player = player {
-            isPlaying = true
             player.play()
             timer?.fireDate = Date()
         }
@@ -107,7 +110,6 @@ open class BMPlayerLayerView: UIView {
     
     open func pause() {
         player?.pause()
-        isPlaying  = false
         timer?.fireDate = Date.distantFuture
     }
     
@@ -168,6 +170,7 @@ open class BMPlayerLayerView: UIView {
     
     open func prepareToDeinit() {
         self.timer?.invalidate()
+        player?.removeObserver(self, forKeyPath: "rate")
         self.playerItem = nil
         self.resetPlayer()
     }
@@ -216,6 +219,7 @@ open class BMPlayerLayerView: UIView {
         
         if let item = playerItem {
             NotificationCenter.default.addObserver(self, selector: #selector(self.moviePlayDidEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+            
             item.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
             item.addObserver(self, forKeyPath: "loadedTimeRanges", options: NSKeyValueObservingOptions.new, context: nil)
             // 缓冲区空了，需要等待数据
@@ -229,6 +233,8 @@ open class BMPlayerLayerView: UIView {
         self.playerItem = AVPlayerItem(url: videoURL)
         
         self.player     = AVPlayer(playerItem: playerItem!)
+        
+        self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
         
         self.playerLayer = AVPlayerLayer(player: player)
         
@@ -294,9 +300,26 @@ open class BMPlayerLayerView: UIView {
                             self.state = .bufferFinished
                         }
                     }
+                    
                 default:
                     break
                 }
+            }
+        }
+        
+        if keyPath == "rate" {
+            if player!.rate == 0.0 {
+                if player?.error != nil {
+                    self.state = .error
+                } else if player!.currentTime() >= player!.currentItem!.duration {
+                    self.state = .playedToTheEnd
+                } else if (player!.currentItem!.isPlaybackLikelyToKeepUp) {
+                    self.state = .buffering
+                } else {
+                    delegate?.bmPlayer(player: self, playerIsPlaying: false)
+                }
+            } else {
+                delegate?.bmPlayer(player: self, playerIsPlaying: true)
             }
         }
     }
