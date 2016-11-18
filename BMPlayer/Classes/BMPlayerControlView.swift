@@ -406,7 +406,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         }
         
         ratioButton.snp.makeConstraints { (make) in
-            make.right.equalTo(chooseDefitionView.snp.left).offset(-5)
+            make.right.equalTo(topMaskView.snp.right).offset(-20)
             make.top.equalTo(titleLabel.snp.top).offset(-4)
             make.width.equalTo(50)
             make.height.equalTo(25)
