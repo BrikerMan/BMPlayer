@@ -20,6 +20,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     var playerPlayButton        : UIButton? { get { return  playButton } }
     var playerFullScreenButton  : UIButton? { get { return  fullScreenButton } }
     var playerBackButton        : UIButton? { get { return  backButton } }
+    var playerReplayButton      : UIButton? { get { return  centerButton } }
     var playerRatioButton       : UIButton? { get { return  ratioButton }}
     
     var playerTimeSlider        : UISlider? { get { return  timeSlider } }

@@ -44,6 +44,7 @@ public protocol BMPlayerCustomControlView  {
     var playerPlayButton        : UIButton? { get }
     var playerFullScreenButton  : UIButton? { get }
     var playerBackButton        : UIButton? { get }
+    var playerReplayButton      : UIButton? { get }
     var playerRatioButton       : UIButton? { get }
     
     var playerTimeSlider        : UISlider? { get }

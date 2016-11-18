@@ -263,8 +263,10 @@ open class BMPlayerLayerView: UIView {
     
     // MARK: - Notification Event
     @objc fileprivate func moviePlayDidEnd(_ notif: Notification) {
-        self.state   = BMPlayerState.playedToTheEnd
-        self.playDidEnd = true
+        if state != .playedToTheEnd {
+            self.state = .playedToTheEnd
+            self.playDidEnd = true
+        }
     }
     
     // MARK: - KVO
@@ -298,6 +300,7 @@ open class BMPlayerLayerView: UIView {
                     if item.isPlaybackBufferEmpty {
                         if state != .bufferFinished {
                             self.state = .bufferFinished
+                            self.playDidEnd = true
                         }
                     }
                     
@@ -308,7 +311,6 @@ open class BMPlayerLayerView: UIView {
         }
         
         if keyPath == "rate" {
-            
             if let player = player {
                 if player.rate == 0.0 {
                     if player.error != nil {
@@ -317,16 +319,19 @@ open class BMPlayerLayerView: UIView {
                     }
                     if let currentItem = player.currentItem {
                         if player.currentTime() >= currentItem.duration {
-                            self.state = .playedToTheEnd
+                            if self.state != .playedToTheEnd {
+                            self.state = .playedToTheEnd    
+                            }
+                            
                             return
-                        } else if !currentItem.isPlaybackLikelyToKeepUp {
-                            self.state = .buffering
                         }
-                        return
+                        if currentItem.isPlaybackLikelyToKeepUp || currentItem.isPlaybackBufferFull {
+                            delegate?.bmPlayer(player: self, playerIsPlaying: false)
+                        }
+                        
                     }
-                    delegate?.bmPlayer(player: self, playerIsPlaying: false)
                 } else {
-                   delegate?.bmPlayer(player: self, playerIsPlaying: true)
+                    delegate?.bmPlayer(player: self, playerIsPlaying: true)
                 }
             }
         }

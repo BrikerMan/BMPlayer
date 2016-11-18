@@ -110,6 +110,9 @@ open class BMPlayer: UIView {
     fileprivate var isMaskShowing   = false
     fileprivate var isSlowed        = false
     fileprivate var isMirrored      = false
+    fileprivate var isPlayToTheEnd  = false {
+        didSet { controlView.playerReplayButton?.isHidden = !isPlayToTheEnd }
+    }
     
     //视频画面比例
     fileprivate var aspectRatio:BMPlayerAspectRatio = .default
@@ -179,6 +182,9 @@ open class BMPlayer: UIView {
             controlView.hideCoverImageView()
             isURLSet                = true
         }
+        
+        
+        controlView.playerPlayButton?.isSelected = true
         playerLayer?.play()
         isPauseByUser = false
     }
@@ -189,6 +195,7 @@ open class BMPlayer: UIView {
      - parameter allowAutoPlay: 是否允许自动播放，默认不允许，若允许则在调用autoPlay的情况下开始播放。否则autoPlay不会进行播放。
      */
     open func pause(allowAutoPlay allow: Bool = false) {
+        controlView.playerPlayButton?.isSelected = false
         playerLayer?.pause()
         isPauseByUser = !allow
     }
@@ -336,7 +343,17 @@ open class BMPlayer: UIView {
             case BMPanDirection.horizontal:
                 controlView.hideSeekToView()
                 isSliderSliding = false
-                playerLayer?.seekToTime(self.sumTime, completionHandler: nil)
+                if isPlayToTheEnd {
+                    isPlayToTheEnd = false
+                    playerLayer?.seekToTime(self.sumTime, completionHandler: {
+                        self.play()
+                        self.play()
+                    })
+                } else {
+                    playerLayer?.seekToTime(self.sumTime, completionHandler: {
+                        self.autoPlay()
+                    })
+                }
                 // 把sumTime滞空，不然会越加越多
                 self.sumTime = 0.0
                 
@@ -373,7 +390,6 @@ open class BMPlayer: UIView {
             controlView.playerTimeSlider?.value      = Float(sumTime / totalDuration)
             controlView.playerCurrentTimeLabel?.text       = targetTime
             controlView.showSeekToView(sumTime, isAdd: value > 0)
-            
         }
     }
     
@@ -391,8 +407,18 @@ open class BMPlayer: UIView {
         isSliderSliding = false
         autoFadeOutControlBar()
         let target = self.totalDuration * Double(sender.value)
-        playerLayer?.seekToTime(target, completionHandler: nil)
-        autoPlay()
+        
+        if isPlayToTheEnd {
+            isPlayToTheEnd = false
+            playerLayer?.seekToTime(target, completionHandler: {
+                self.play()
+                self.play()
+            })
+        } else {
+            playerLayer?.seekToTime(target, completionHandler: {
+                self.autoPlay()
+            })
+        }
     }
     
     @objc fileprivate func backButtonPressed(_ button: UIButton) {
@@ -440,6 +466,10 @@ open class BMPlayer: UIView {
         if button.isSelected {
             self.pause()
         } else {
+            if isPlayToTheEnd {
+                isPlayToTheEnd = false
+                replayButtonPressed()
+            }
             self.play()
         }
     }
@@ -536,7 +566,6 @@ open class BMPlayer: UIView {
         self.addGestureRecognizer(tapGesture)
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
-        //        panGesture.delegate = self
         self.addGestureRecognizer(panGesture)
     }
     
@@ -613,6 +642,8 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             playStateDidChanged()
             autoPlay()
         case BMPlayerState.playedToTheEnd:
+            isPlayToTheEnd = true
+            controlView.playerPlayButton?.isSelected = false
             controlView.showPlayToTheEndView()
         default:
             break
@@ -621,7 +652,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     
     public func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
-                delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
+        delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
         self.currentPosition = currentTime
         totalDuration = totalTime
         if isSliderSliding {

@@ -42,7 +42,7 @@ class VideoPlayViewController: UIViewController {
         player.backBlock = { [unowned self] in
            let _ = self.navigationController?.popViewController(animated: true)
         }
-        player.panGesture.isEnabled = false
+//        player.panGesture.isEnabled = false
         self.view.layoutIfNeeded()
     }
     
