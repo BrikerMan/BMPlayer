@@ -579,16 +579,21 @@ open class BMPlayer: UIView {
 extension BMPlayer: BMPlayerLayerViewDelegate {
     public func bmPlayer(player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
         playStateDidChanged()
+        delegate?.bmPlayer(player: self, playerIsPlaying: playing)
     }
     
     public func bmPlayer(player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: TimeInterval , totalDuration: TimeInterval) {
-        self.totalDuration = totalDuration
         BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
+        delegate?.bmPlayer(player: self, loadedTimeDidChange: loadedDuration, totalDuration: totalDuration)
+        
+        self.totalDuration = totalDuration
         controlView.playerProgressView?.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
     
     public func bmPlayer(player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
         BMPlayerManager.shared.log("playerStateDidChange - \(state)")
+        delegate?.bmPlayer(player: self, playerStateDidChange: state)
+        
         switch state {
         case BMPlayerState.readyToPlay:
             if shouldSeekTo != 0 {
@@ -608,7 +613,6 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             playStateDidChanged()
             autoPlay()
         case BMPlayerState.playedToTheEnd:
-            self.pause()
             controlView.showPlayToTheEndView()
         default:
             break

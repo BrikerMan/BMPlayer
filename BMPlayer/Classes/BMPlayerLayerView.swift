@@ -308,18 +308,26 @@ open class BMPlayerLayerView: UIView {
         }
         
         if keyPath == "rate" {
-            if player!.rate == 0.0 {
-                if player?.error != nil {
-                    self.state = .error
-                } else if player!.currentTime() >= player!.currentItem!.duration {
-                    self.state = .playedToTheEnd
-                } else if (player!.currentItem!.isPlaybackLikelyToKeepUp) {
-                    self.state = .buffering
-                } else {
+            
+            if let player = player {
+                if player.rate == 0.0 {
+                    if player.error != nil {
+                        self.state = .error
+                        return
+                    }
+                    if let currentItem = player.currentItem {
+                        if player.currentTime() >= currentItem.duration {
+                            self.state = .playedToTheEnd
+                            return
+                        } else if !currentItem.isPlaybackLikelyToKeepUp {
+                            self.state = .buffering
+                        }
+                        return
+                    }
                     delegate?.bmPlayer(player: self, playerIsPlaying: false)
+                } else {
+                   delegate?.bmPlayer(player: self, playerIsPlaying: true)
                 }
-            } else {
-                delegate?.bmPlayer(player: self, playerIsPlaying: true)
             }
         }
     }
