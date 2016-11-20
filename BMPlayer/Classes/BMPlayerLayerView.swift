@@ -77,7 +77,9 @@ open class BMPlayerLayerView: UIView {
     /// 播发器的几种状态
     fileprivate var state = BMPlayerState.notSetURL {
         didSet {
-            delegate?.bmPlayer(player: self, playerStateDidChange: state)
+            if state != oldValue {
+                delegate?.bmPlayer(player: self, playerStateDidChange: state)
+            }
         }
     }
     /// 是否为全屏
@@ -257,9 +259,41 @@ open class BMPlayerLayerView: UIView {
                 let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
                 delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
             }
+            updateStatus()
         }
     }
     
+    fileprivate func updateStatus() {
+        if let player = player {
+            if playerItem!.isPlaybackLikelyToKeepUp || playerItem!.isPlaybackBufferFull {
+                self.state = .bufferFinished
+            } else {
+                self.state = .buffering
+            }
+            
+            if player.rate == 0.0 {
+                if player.error != nil {
+                    self.state = .error
+                    return
+                }
+                if let currentItem = player.currentItem {
+                    if player.currentTime() >= currentItem.duration {
+                        if self.state != .playedToTheEnd {
+                            self.state = .playedToTheEnd
+                        }
+                        
+                        return
+                    }
+                    if currentItem.isPlaybackLikelyToKeepUp || currentItem.isPlaybackBufferFull {
+                        delegate?.bmPlayer(player: self, playerIsPlaying: false)
+                    }
+                    
+                }
+            } else {
+                delegate?.bmPlayer(player: self, playerIsPlaying: true)
+            }
+        }
+    }
     
     // MARK: - Notification Event
     @objc fileprivate func moviePlayDidEnd(_ notif: Notification) {
@@ -303,7 +337,6 @@ open class BMPlayerLayerView: UIView {
                             self.playDidEnd = true
                         }
                     }
-                    
                 default:
                     break
                 }
@@ -311,29 +344,7 @@ open class BMPlayerLayerView: UIView {
         }
         
         if keyPath == "rate" {
-            if let player = player {
-                if player.rate == 0.0 {
-                    if player.error != nil {
-                        self.state = .error
-                        return
-                    }
-                    if let currentItem = player.currentItem {
-                        if player.currentTime() >= currentItem.duration {
-                            if self.state != .playedToTheEnd {
-                            self.state = .playedToTheEnd    
-                            }
-                            
-                            return
-                        }
-                        if currentItem.isPlaybackLikelyToKeepUp || currentItem.isPlaybackBufferFull {
-                            delegate?.bmPlayer(player: self, playerIsPlaying: false)
-                        }
-                        
-                    }
-                } else {
-                    delegate?.bmPlayer(player: self, playerIsPlaying: true)
-                }
-            }
+            updateStatus()
         }
     }
     
