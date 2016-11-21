@@ -173,6 +173,9 @@ open class BMPlayer: UIView {
      手动播放
      */
     open func play() {
+        if videoItemURL == nil && videoItem == nil {
+            return
+        }
         if !isURLSet {
             if playerItemType == BMPlayerItemType.bmPlayerItem {
                 playerLayer?.videoURL       = videoItem.resource[currentDefinition].playURL
