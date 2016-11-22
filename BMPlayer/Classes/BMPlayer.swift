@@ -462,6 +462,7 @@ open class BMPlayer: UIView {
         playerLayer?.seekToTime(0, completionHandler: {
             
         })
+        controlView.playerReplayButton?.isHidden = true
         self.play()
     }
     
