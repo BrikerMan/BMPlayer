@@ -261,7 +261,7 @@ open class BMPlayer: UIView {
     
     // MARK: - Action Response
     fileprivate func playStateDidChanged() {
-        if isSliderSliding { return }
+        if isSliderSliding || isPlayToTheEnd { return }
         if let player = playerLayer {
             if player.isPlaying {
                 autoFadeOutControlBar()
@@ -408,7 +408,7 @@ open class BMPlayer: UIView {
     }
     
     @objc fileprivate func progressSliderValueChanged(_ sender: UISlider)  {
-        self.pause(allowAutoPlay: true)
+//        self.pause(allowAutoPlay: true)
         cancelAutoFadeOutControlBar()
     }
     
