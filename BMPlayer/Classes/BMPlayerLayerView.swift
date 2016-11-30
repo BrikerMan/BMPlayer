@@ -166,14 +166,15 @@ open class BMPlayerLayerView: UIView {
         self.playerLayer?.removeFromSuperlayer()
         // 替换PlayerItem为nil
         self.player?.replaceCurrentItem(with: nil)
+        player?.removeObserver(self, forKeyPath: "rate")
+
         // 把player置为nil
         self.player = nil
     }
     
     open func prepareToDeinit() {
         self.timer?.invalidate()
-        player?.removeObserver(self, forKeyPath: "rate")
-        self.playerItem = nil
+                self.playerItem = nil
         self.resetPlayer()
     }
     
@@ -232,6 +233,8 @@ open class BMPlayerLayerView: UIView {
     }
     
     fileprivate func configPlayer(){
+        self.player?.removeObserver(self, forKeyPath: "rate")
+        
         self.playerItem = AVPlayerItem(url: videoURL)
         
         self.player     = AVPlayer(playerItem: playerItem!)
