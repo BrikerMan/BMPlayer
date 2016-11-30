@@ -119,12 +119,17 @@ let item = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
 
 //Listen to when the player is playing or stopped
 player?.playStateDidChange = { (isPlaying: Bool) in
-    print("playStateDidChange \(isPlaying)")
+    print("playStateDidChange: \(isPlaying)")
 }
 
 //Listen to when the play time changes
 player?.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterval) in
     print("playTimeDidChange currentTime: \(currentTime) totalTime: \(totalTime)")
+}
+
+//Listen to when the player state changes
+player?.playerStateDidChange = {(state: BMPlayerState) in
+    print("player state changed to: \(state)")
 }
 ```
 

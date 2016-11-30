@@ -119,10 +119,14 @@ open class BMPlayer: UIView {
     
     //Cache is playing result to improve callback performance
     fileprivate var isPlayingCache: Bool? = nil
+    //Cache last player state result to improve callback performance
+    var playerStateCache: BMPlayerState? = nil
     //Closure fired when play time changed
     open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
-    //Closure fired when play state chaged
+    //Closure fired when play state changed
     open var playStateDidChange:((Bool) -> Void)?
+    //Closure fired when player state changed
+    open var playerStateDidChange:((BMPlayerState) -> Void)?
     
     // MARK: - Public functions
     /**
@@ -663,6 +667,13 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             controlView.showPlayToTheEndView()
         default:
             break
+        }
+        
+        if playerStateDidChange != nil && playerStateCache != state {
+            playerStateCache = state
+            DispatchQueue.global(qos: .utility).async {
+                self.playerStateDidChange!(state)
+            }
         }
     }
     
