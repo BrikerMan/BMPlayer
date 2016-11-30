@@ -114,6 +114,20 @@ let item = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
                         cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
 ```
 
+### Listening to player state changes
+```swift
+
+//Listen to when the player is playing or stopped
+player?.playStateDidChange = { (isPlaying: Bool) in
+    print("playStateDidChange \(isPlaying)")
+}
+
+//Listen to when the play time changes
+player?.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterval) in
+    print("playTimeDidChange currentTime: \(currentTime) totalTime: \(totalTime)")
+}
+```
+
 ## Customize player
 Needs to change before the player alloc.
 

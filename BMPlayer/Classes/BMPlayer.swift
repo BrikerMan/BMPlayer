@@ -117,6 +117,12 @@ open class BMPlayer: UIView {
     //视频画面比例
     fileprivate var aspectRatio:BMPlayerAspectRatio = .default
     
+    //Cache is playing result to improve callback performance
+    fileprivate var isPlayingCache: Bool? = nil
+    //Closure fired when play time changed
+    open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
+    //Closure fired when play state chaged
+    open var playStateDidChange:((Bool) -> Void)?
     
     // MARK: - Public functions
     /**
@@ -462,6 +468,7 @@ open class BMPlayer: UIView {
         playerLayer?.seekToTime(0, completionHandler: {
             
         })
+        controlView.playerReplayButton?.isHidden = true
         self.play()
     }
     
@@ -612,6 +619,12 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     public func bmPlayer(player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
         playStateDidChanged()
         delegate?.bmPlayer(player: self, playerIsPlaying: playing)
+        if isPlayingCache != playing && playStateDidChange != nil {
+            isPlayingCache = playing
+            DispatchQueue.global(qos: .utility).async {
+                self.playStateDidChange!(playing)
+            }
+        }
     }
     
     public func bmPlayer(player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: TimeInterval , totalDuration: TimeInterval) {
@@ -665,6 +678,12 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         controlView.playerTotalTimeLabel?.text = formatSecondsToString(totalTime)
         
         controlView.playerTimeSlider?.value    = Float(currentTime) / Float(totalTime)
+        
+        if playTimeDidChange != nil {
+            DispatchQueue.global(qos: .utility).async {
+                self.playTimeDidChange!(currentTime, totalTime)
+            }
+        }
     }
 }
 
