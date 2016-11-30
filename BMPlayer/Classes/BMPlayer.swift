@@ -269,6 +269,12 @@ open class BMPlayer: UIView {
             } else {
                 controlView.playerPlayButton?.isSelected = false
             }
+            if isPlayingCache != player.isPlaying && playStateDidChange != nil {
+                isPlayingCache = player.isPlaying
+                DispatchQueue.global(qos: .utility).async {
+                    self.playStateDidChange!(player.isPlaying)
+                }
+            }
         }
     }
     
@@ -619,12 +625,6 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     public func bmPlayer(player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
         playStateDidChanged()
         delegate?.bmPlayer(player: self, playerIsPlaying: playing)
-        if isPlayingCache != playing && playStateDidChange != nil {
-            isPlayingCache = playing
-            DispatchQueue.global(qos: .utility).async {
-                self.playStateDidChange!(playing)
-            }
-        }
     }
     
     public func bmPlayer(player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: TimeInterval , totalDuration: TimeInterval) {
