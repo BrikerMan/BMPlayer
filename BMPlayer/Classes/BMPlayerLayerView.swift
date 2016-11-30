@@ -265,12 +265,13 @@ open class BMPlayerLayerView: UIView {
     
     fileprivate func updateStatus() {
         if let player = player {
-            if playerItem!.isPlaybackLikelyToKeepUp || playerItem!.isPlaybackBufferFull {
-                self.state = .bufferFinished
-            } else {
-                self.state = .buffering
+            if let playerItem = playerItem {
+                if playerItem.isPlaybackLikelyToKeepUp || playerItem.isPlaybackBufferFull {
+                    self.state = .bufferFinished
+                } else {
+                    self.state = .buffering
+                }
             }
-            
             if player.rate == 0.0 {
                 if player.error != nil {
                     self.state = .error
