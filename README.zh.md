@@ -170,6 +170,7 @@ BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 - [Albert Young](https://github.com/cedared)
 - [tooodooo](https://github.com/tooodooo)
 - [Ben Bahrenburg](https://github.com/benbahrenburg)
+
 欢迎提交 issue 和 PR，大门永远向所有人敞开。
 
 ## License
