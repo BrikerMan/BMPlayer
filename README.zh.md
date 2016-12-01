@@ -110,6 +110,30 @@ resource: [resource0, resource1],
 cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
 ```
 
+
+### 监听状态变化
+#### 闭包方式
+```swift
+//Listen to when the player is playing or stopped
+player?.playStateDidChange = { (isPlaying: Bool) in
+    print("playStateDidChange \(isPlaying)")
+}
+
+//Listen to when the play time changes
+player?.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterval) in
+    print("playTimeDidChange currentTime: \(currentTime) totalTime: \(totalTime)")
+}
+```
+
+#### 协议方式
+```swift
+protocol BMPlayerDelegate {
+    func bmPlayer(player: BMPlayer ,playerStateDidChange state: BMPlayerState) { }
+    func bmPlayer(player: BMPlayer ,loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval)  { }
+    func bmPlayer(player: BMPlayer ,playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval)  { }
+    func bmPlayer(player: BMPlayer ,playerIsPlaying playing: Bool)  { }
+}
+```
 ## 播放器自定义属性
 需要在创建播放器前设定
 
@@ -130,6 +154,7 @@ BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 
 ## 进阶用法
 - [自定义控制 UI](https://eliyar.biz/custom-player-ui-with-bmplayer/)
+- 或者使用 `BMPlayerLayer` 并且自己定制控制 UI 和逻辑。
 
 ## 效果
 ![gif](https://github.com/BrikerMan/resources/raw/master/BMPlayer/demo.gif)
@@ -143,6 +168,9 @@ BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 
 ## 贡献者
 - [Albert Young](https://github.com/cedared)
+- [tooodooo](https://github.com/tooodooo)
+- [Ben Bahrenburg](https://github.com/benbahrenburg)
+欢迎提交 issue 和 PR，大门永远向所有人敞开。
 
 ## License
 BMPlayer is available under the MIT license. See the LICENSE file for more info.

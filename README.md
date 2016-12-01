@@ -115,8 +115,8 @@ let item = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
 ```
 
 ### Listening to player state changes
+#### Block
 ```swift
-
 //Listen to when the player is playing or stopped
 player?.playStateDidChange = { (isPlaying: Bool) in
     print("playStateDidChange \(isPlaying)")
@@ -128,6 +128,15 @@ player?.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterva
 }
 ```
 
+#### Delegate
+```swift
+protocol BMPlayerDelegate {
+    func bmPlayer(player: BMPlayer ,playerStateDidChange state: BMPlayerState) { }
+    func bmPlayer(player: BMPlayer ,loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval)  { }
+    func bmPlayer(player: BMPlayer ,playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval)  { }
+    func bmPlayer(player: BMPlayer ,playerIsPlaying playing: Bool)  { }
+}
+```
 ## Customize player
 Needs to change before the player alloc.
 
@@ -148,6 +157,7 @@ BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 
 ## Advanced
 - [Customize control UI](https://eliyar.biz/custom-player-ui-with-bmplayer/)
+- or Use the `BMPlayerLayer` with your own player control view~
 
 ## Demonstration
 ![gif](https://github.com/BrikerMan/resources/raw/master/BMPlayer/demo.gif)
@@ -161,6 +171,9 @@ This project heavily reference the Objective-C version of this project [ZFPlayer
 
 ## Contributors
 - [Albert Young](https://github.com/cedared)
+- [tooodooo](https://github.com/tooodooo)
+- [Ben Bahrenburg](https://github.com/benbahrenburg)
+You are welcome to fork and submit pull requests.
 
 ## License
 BMPlayer is available under the MIT license. See the LICENSE file for more info.
