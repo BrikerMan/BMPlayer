@@ -1,0 +1,6 @@
+[submodule "Carthage/Checkouts/NVActivityIndicatorView"]
+	path = Carthage/Checkouts/NVActivityIndicatorView
+	url = https://github.com/ninjaprox/NVActivityIndicatorView.git
+[submodule "Carthage/Checkouts/SnapKit"]
+	path = Carthage/Checkouts/SnapKit
+	url = https://github.com/SnapKit/SnapKit.git

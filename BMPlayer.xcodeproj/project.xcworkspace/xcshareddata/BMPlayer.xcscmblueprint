@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8CE366408ACBAF2B4284C087C094C0522EAC2479",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "84AEFC7EE1DBA4134E7C025D125C0F065B935F2F" : 9223372036854775807,
+    "8CE366408ACBAF2B4284C087C094C0522EAC2479" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "901824A1-3444-443A-BEF3-F4A326953A34",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "84AEFC7EE1DBA4134E7C025D125C0F065B935F2F" : "BMPlayer\/Carthage\/Checkouts\/NVActivityIndicatorView\/",
+    "8CE366408ACBAF2B4284C087C094C0522EAC2479" : "BMPlayer\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BMPlayer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BMPlayer.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ninjaprox\/NVActivityIndicatorView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "84AEFC7EE1DBA4134E7C025D125C0F065B935F2F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:BrikerMan\/BMPlayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8CE366408ACBAF2B4284C087C094C0522EAC2479"
+    }
+  ]
+}

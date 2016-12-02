@@ -2,7 +2,7 @@
 //  BMPlayer.h
 //  BMPlayer
 //
-//  Created by BrikerMan on 2016/9/21.
+//  Created by BrikerMan on 2016/12/2.
 //  Copyright © 2016年 BrikerMan. All rights reserved.
 //
 
