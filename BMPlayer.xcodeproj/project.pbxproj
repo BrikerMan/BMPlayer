@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A3AA49C1DF198C50052038B /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3AA49B1DF198C50052038B /* NVActivityIndicatorView.framework */; };
 		6A8D30FC1DF18D9500953686 /* BMPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A8D30FA1DF18D9500953686 /* BMPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6AD7EC5B1DF18DE9002F369A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7EC391DF18DE9002F369A /* .gitkeep */; };
 		6AD7EC5C1DF18DE9002F369A /* BMPlayer_169@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD7EC3A1DF18DE9002F369A /* BMPlayer_169@2x.png */; };
@@ -41,7 +42,6 @@
 		6AD7EC791DF18DE9002F369A /* BMPlayerLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7EC581DF18DE9002F369A /* BMPlayerLayerView.swift */; };
 		6AD7EC7A1DF18DE9002F369A /* BMPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7EC591DF18DE9002F369A /* BMPlayerManager.swift */; };
 		6AD7EC7B1DF18DE9002F369A /* BMPlayerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7EC5A1DF18DE9002F369A /* BMPlayerProtocols.swift */; };
-		6AD7EC881DF18F95002F369A /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD7EC831DF18F20002F369A /* NVActivityIndicatorView.framework */; };
 		6AD7EC8B1DF18FBD002F369A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD7EC8A1DF18FBD002F369A /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,30 +74,10 @@
 			remoteGlobalIDString = EEBCC9E219CC627E0083B827;
 			remoteInfo = "SnapKit Tests";
 		};
-		6AD7EC821DF18F20002F369A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6AD7EC7C1DF18F20002F369A /* NVActivityIndicatorView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 90A8792F1BA554A0001C8989;
-			remoteInfo = NVActivityIndicatorView;
-		};
-		6AD7EC841DF18F20002F369A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6AD7EC7C1DF18F20002F369A /* NVActivityIndicatorView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 239CAB201B5EBB2E0051DC06;
-			remoteInfo = NVActivityIndicatorViewDemo;
-		};
-		6AD7EC861DF18F20002F369A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6AD7EC7C1DF18F20002F369A /* NVActivityIndicatorView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 23FB134F1D76D5370096EBE3;
-			remoteInfo = NVActivityIndicatorViewTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A3AA49B1DF198C50052038B /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = "Carthage/Checkouts/NVActivityIndicatorView/build/Debug-iphoneos/NVActivityIndicatorView.framework"; sourceTree = "<group>"; };
 		6A8D30F71DF18D9500953686 /* BMPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BMPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A8D30FA1DF18D9500953686 /* BMPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMPlayer.h; sourceTree = "<group>"; };
 		6A8D30FB1DF18D9500953686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,7 +116,6 @@
 		6AD7EC581DF18DE9002F369A /* BMPlayerLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerLayerView.swift; sourceTree = "<group>"; };
 		6AD7EC591DF18DE9002F369A /* BMPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerManager.swift; sourceTree = "<group>"; };
 		6AD7EC5A1DF18DE9002F369A /* BMPlayerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerProtocols.swift; sourceTree = "<group>"; };
-		6AD7EC7C1DF18F20002F369A /* NVActivityIndicatorView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NVActivityIndicatorView.xcodeproj; path = Carthage/Checkouts/NVActivityIndicatorView/NVActivityIndicatorView.xcodeproj; sourceTree = "<group>"; };
 		6AD7EC8A1DF18FBD002F369A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Checkouts/SnapKit/build/Debug/SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,8 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3AA49C1DF198C50052038B /* NVActivityIndicatorView.framework in Frameworks */,
 				6AD7EC8B1DF18FBD002F369A /* SnapKit.framework in Frameworks */,
-				6AD7EC881DF18F95002F369A /* NVActivityIndicatorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +135,6 @@
 		6A8D30ED1DF18D9500953686 = {
 			isa = PBXGroup;
 			children = (
-				6AD7EC7C1DF18F20002F369A /* NVActivityIndicatorView.xcodeproj */,
 				6A8D30F91DF18D9500953686 /* BMPlayer */,
 				6A8D30F81DF18D9500953686 /* Products */,
 				6AD7EC891DF18FBD002F369A /* Frameworks */,
@@ -247,19 +225,10 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		6AD7EC7D1DF18F20002F369A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6AD7EC831DF18F20002F369A /* NVActivityIndicatorView.framework */,
-				6AD7EC851DF18F20002F369A /* NVActivityIndicatorViewDemo.app */,
-				6AD7EC871DF18F20002F369A /* NVActivityIndicatorViewTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6AD7EC891DF18FBD002F369A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A3AA49B1DF198C50052038B /* NVActivityIndicatorView.framework */,
 				6A9B3C741DF1960100123EFB /* SnapKit.xcodeproj */,
 				6A9B3C681DF195FC00123EFB /* SnapKit.xcodeproj */,
 				6AD7EC8A1DF18FBD002F369A /* SnapKit.framework */,
@@ -327,10 +296,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 6AD7EC7D1DF18F20002F369A /* Products */;
-					ProjectRef = 6AD7EC7C1DF18F20002F369A /* NVActivityIndicatorView.xcodeproj */;
-				},
-				{
 					ProductGroup = 6A9B3C751DF1960100123EFB /* Products */;
 					ProjectRef = 6A9B3C741DF1960100123EFB /* SnapKit.xcodeproj */;
 				},
@@ -373,27 +338,6 @@
 			fileType = wrapper.cfbundle;
 			path = "SnapKit Tests.xctest";
 			remoteRef = 6A9B3C7B1DF1960100123EFB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6AD7EC831DF18F20002F369A /* NVActivityIndicatorView.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = NVActivityIndicatorView.framework;
-			remoteRef = 6AD7EC821DF18F20002F369A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6AD7EC851DF18F20002F369A /* NVActivityIndicatorViewDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = NVActivityIndicatorViewDemo.app;
-			remoteRef = 6AD7EC841DF18F20002F369A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6AD7EC871DF18F20002F369A /* NVActivityIndicatorViewTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NVActivityIndicatorViewTests.xctest;
-			remoteRef = 6AD7EC861DF18F20002F369A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -563,6 +507,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Checkouts/SnapKit/build/Debug",
+					"$(PROJECT_DIR)/Carthage/Checkouts/NVActivityIndicatorView/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = BMPlayer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -587,6 +532,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Checkouts/SnapKit/build/Debug",
+					"$(PROJECT_DIR)/Carthage/Checkouts/NVActivityIndicatorView/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = BMPlayer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
