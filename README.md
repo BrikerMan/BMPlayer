@@ -35,7 +35,7 @@ Please make sure using the **cocoapods 1.1.0.rc.2**, update with `sudo gem insta
 ```ruby
 target 'ProjectName' do
     use_frameworks!
-    pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+    pod 'BMPlayer'
 end
 
 

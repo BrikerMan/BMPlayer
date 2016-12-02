@@ -33,7 +33,7 @@
 ```ruby
 target 'ProjectName' do
     use_frameworks!
-    pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+    pod 'BMPlayer'
 end
 
 post_install do |installer|
