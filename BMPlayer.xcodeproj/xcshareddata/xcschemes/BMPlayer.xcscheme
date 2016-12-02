@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6A8D30F61DF18D9500953686"
+               BlueprintIdentifier = "6A302EE71DF199F700AD54B6"
                BuildableName = "BMPlayer.framework"
                BlueprintName = "BMPlayer"
                ReferencedContainer = "container:BMPlayer.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6A8D30F61DF18D9500953686"
+            BlueprintIdentifier = "6A302EE71DF199F700AD54B6"
             BuildableName = "BMPlayer.framework"
             BlueprintName = "BMPlayer"
             ReferencedContainer = "container:BMPlayer.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6A8D30F61DF18D9500953686"
+            BlueprintIdentifier = "6A302EE71DF199F700AD54B6"
             BuildableName = "BMPlayer.framework"
             BlueprintName = "BMPlayer"
             ReferencedContainer = "container:BMPlayer.xcodeproj">
