@@ -45,7 +45,7 @@ public protocol BMPlayerDelegate : class {
 
 open class BMPlayer: UIView {
     
-    weak var delegate: BMPlayerDelegate?
+    open weak var delegate: BMPlayerDelegate?
     
     open var backBlock:(() -> Void)?
     
@@ -67,23 +67,29 @@ open class BMPlayer: UIView {
             return playerLayer?.isPlaying ?? false
         }
     }
-    var videoItem: BMPlayerItem!
     
-    var currentDefinition = 0
+    //Closure fired when play time changed
+    open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
+    //Closure fired when play state chaged
+    open var playStateDidChange:((Bool) -> Void)?
     
-    var playerLayer: BMPlayerLayerView?
+    fileprivate var videoItem: BMPlayerItem!
     
-    var controlView: BMPlayerCustomControlView!
+    fileprivate var currentDefinition = 0
+    
+    fileprivate var playerLayer: BMPlayerLayerView?
+    
+    fileprivate var controlView: BMPlayerCustomControlView!
     
     fileprivate var customControllView: BMPlayerCustomControlView?
     
-    var playerItemType = BMPlayerItemType.url
+    fileprivate var playerItemType = BMPlayerItemType.url
     
-    var videoItemURL: URL!
+    fileprivate var videoItemURL: URL!
     
-    var videoTitle = ""
+    fileprivate var videoTitle = ""
     
-    var isFullScreen:Bool {
+    fileprivate var isFullScreen:Bool {
         get {
             return UIApplication.shared.statusBarOrientation.isLandscape
         }
@@ -119,10 +125,7 @@ open class BMPlayer: UIView {
     
     //Cache is playing result to improve callback performance
     fileprivate var isPlayingCache: Bool? = nil
-    //Closure fired when play time changed
-    open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
-    //Closure fired when play state chaged
-    open var playStateDidChange:((Bool) -> Void)?
+
     
     // MARK: - Public functions
     /**

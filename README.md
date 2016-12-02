@@ -115,6 +115,7 @@ let item = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
 ```
 
 ### Listening to player state changes
+See more detail from the Example project
 #### Block
 ```swift
 //Listen to when the player is playing or stopped

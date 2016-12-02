@@ -112,6 +112,7 @@ cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.j
 
 
 ### 监听状态变化
+具体用法请看 Example 项目
 #### 闭包方式
 ```swift
 //Listen to when the player is playing or stopped

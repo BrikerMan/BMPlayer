@@ -26,10 +26,9 @@ class VideoPlayViewController: UIViewController {
     }
     
     /**
-     准备playerView
+     prepare playerView
      */
     func preparePlayer() {
-        //        let customView = CustomControlView()
         player = BMPlayer()
         view.addSubview(player)
         player.snp.makeConstraints { (make) in
@@ -38,11 +37,23 @@ class VideoPlayViewController: UIViewController {
             make.right.equalTo(view.snp.right)
             make.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
         }
-        
+        player.delegate = self
         player.backBlock = { [unowned self] in
-           let _ = self.navigationController?.popViewController(animated: true)
+            let _ = self.navigationController?.popViewController(animated: true)
         }
-//        player.panGesture.isEnabled = false
+        
+        /// Listening to player state changes with Block
+        //Listen to when the player is playing or stopped
+        player.playStateDidChange = { (isPlaying: Bool) in
+            print("| BMPlayer Block | playStateDidChange \(isPlaying)")
+        }
+        
+        //Listen to when the play time changes
+        player.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterval) in
+            print("| BMPlayer Block | playTimeDidChange currentTime: \(currentTime) totalTime: \(totalTime)")
+        }
+        
+        // player.panGesture.isEnabled = false
         self.view.layoutIfNeeded()
     }
     
@@ -52,7 +63,7 @@ class VideoPlayViewController: UIViewController {
         switch (index.section,index.row) {
         // 普通播放器
         case (0,0):
-//            player.seek(22)
+            //            player.seek(22)
             player.videoGravity = "AVLayerVideoGravityResize"
             
             player.playWithURL(URL(string: "http://gslb.miaopai.com/stream/kPzSuadRd2ipEo82jk9~sA__.mp4")!, title: "风格互换：原来你我相爱")
@@ -114,7 +125,6 @@ class VideoPlayViewController: UIViewController {
     
     /**
      准备播放器资源model
-     
      */
     func preparePlayerItem() -> BMPlayerItem {
         let resource0 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
@@ -140,21 +150,48 @@ class VideoPlayViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: false)
+        // If use the slide to back, remember to call this method
         // 使用手势返回的时候，调用下面方法
         player.pause(allowAutoPlay: true)
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
+        // If use the slide to back, remember to call this method
         // 使用手势返回的时候，调用下面方法
         player.autoPlay()
     }
     
     deinit {
+        // If use the slide to back, remember to call this method
         // 使用手势返回的时候，调用下面方法手动销毁
         player.prepareToDealloc()
         print("VideoPlayViewController Deinit")
     }
     
+}
+
+// MARK:- BMPlayerDelegate example
+extension VideoPlayViewController: BMPlayerDelegate {
+    // Call back when playing state changed, use to detect is playing or not
+    func bmPlayer(player: BMPlayer, playerIsPlaying playing: Bool) {
+        print("| BMPlayerDelegate | playerIsPlaying | playing - \(playing)")
+    }
+    
+    // Call back when playing state changed, use to detect specefic state like buffering, bufferfinished
+    func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
+        print("| BMPlayerDelegate | playerStateDidChange | state - \(state)")
+    }
+    
+    // Call back when play time change
+    func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
+        print("| BMPlayerDelegate | playTimeDidChange | \(currentTime) of \(totalTime)")
+    }
+    
+    // Call back when the video loaded duration changed
+    func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
+        print("| BMPlayerDelegate | loadedTimeDidChange | \(loadedDuration) of \(totalDuration)")
+    }
 }

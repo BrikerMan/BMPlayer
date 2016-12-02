@@ -60,6 +60,17 @@ open class BMPlayerLayerView: UIView {
             }
             return false
         }
+        set {
+            self.isPlayingCached = isPlaying
+        }
+    }
+    
+    fileprivate var isPlayingCached = false {
+        didSet {
+            if isPlayingCached != oldValue {
+                delegate?.bmPlayer(player: self, playerIsPlaying: isPlayingCached)
+            }
+        }
     }
     
     /// 播放属性
@@ -100,6 +111,7 @@ open class BMPlayerLayerView: UIView {
     // 仅在bufferingSomeSecond里面使用
     fileprivate var isBuffering     = false
     
+
     
     // MARK: - Actions
     open func play() {
@@ -289,12 +301,11 @@ open class BMPlayerLayerView: UIView {
                         return
                     }
                     if currentItem.isPlaybackLikelyToKeepUp || currentItem.isPlaybackBufferFull {
-                        delegate?.bmPlayer(player: self, playerIsPlaying: false)
+                        self.isPlaying = false
                     }
-                    
                 }
             } else {
-                delegate?.bmPlayer(player: self, playerIsPlaying: true)
+                isPlaying = true
             }
         }
     }
