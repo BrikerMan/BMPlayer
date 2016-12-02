@@ -1,7 +1,7 @@
 ## BMPlayer
 
 ![Swift](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)
-[![Build Status](https://travis-ci.org/BrikerMan/BMPlayer.svg?branch=master)](https://travis-ci.org/BrikerMan/BMPlayer)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![License](https://img.shields.io/cocoapods/l/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
@@ -52,6 +52,13 @@ use_frameworks!
 
 pod 'BMPlayer', '~> 0.3.3'
 ```
+
+### Carthage
+安装好 Carthage 后，将下列内容加入你项目的 Cartfile:
+```
+github "BrikerMan/BMPlayer"
+```
+最后，在 general panel 里 的 "Embedded Binaries" 项下点击 "Add Other..." 按钮，BMPlayer.framework 已经躺在了 ./Carthage/Build/iOS 目录里。
 
 ### Demo
 运行 Demo ，请下载后先在 Example 目录运行 `pod install`

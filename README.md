@@ -2,7 +2,7 @@
 
 ![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)
 ![Swift 3.0](https://img.shields.io/badge/Swift-3.0-brightgreen.svg?style=flat)
-[![Build Status](https://travis-ci.org/BrikerMan/BMPlayer.svg?branch=master)](https://travis-ci.org/BrikerMan/BMPlayer)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![License](https://img.shields.io/cocoapods/l/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
@@ -56,6 +56,12 @@ use_frameworks!
 pod 'BMPlayer', '~> 0.3.3'
 ```
 
+### Carthage
+Add `BMPlayer` in your Cartfile.
+```
+github "BrikerMan/BMPlayer"
+```
+Run carthage to build the framework and drag the built BMPlayer.framework into your Xcode project.
 ### Demo
 run `pod install` at `Example` folder before run the demo.
 
