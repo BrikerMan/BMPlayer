@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BMPlayer"
-  s.version          = "0.5.0"
+  s.version          = "0.6.1"
   s.summary          = "Video Player Using Swift, based on AVPlayer"
 
   s.description      = <<-DESC
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'http://weibo.com/536445669'
 
   s.ios.deployment_target = '8.0'
-
+  s.platform     = :ios, '8.0'
   s.source_files = 'BMPlayer/Classes/**/*'
   s.resource_bundles = {
     'BMPlayer' => ['BMPlayer/Assets/*.png']
