@@ -508,18 +508,21 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     }
     
     fileprivate func BMImageResourcePath(_ fileName: String) -> UIImage? {
-        let podBundle = Bundle(for: self.classForCoder)
-        if let bundleURL = podBundle.url(forResource: "BMPlayer", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
-                let image = UIImage(named: fileName, in: bundle, compatibleWith: nil)
-                return image
-            }else {
-                assertionFailure("Could not load the bundle")
-            }
-        }else {
-            assertionFailure("Could not create a path to the bundle")
-        }
-        return nil
+        let bundle = Bundle(for: self.classForCoder)
+        let image  = UIImage(named: fileName, in: bundle, compatibleWith: nil)
+        return image
+//        let podBundle = Bundle(for: self.classForCoder)
+//        if let bundleURL = podBundle.url(forResource: "BMPlayer", withExtension: "bundle") {
+//            if let bundle = Bundle(url: bundleURL) {
+//                let image = UIImage(named: fileName, in: bundle, compatibleWith: nil)
+//                return image
+//            }else {
+//                assertionFailure("Could not load the bundle")
+//            }
+//        }else {
+//            assertionFailure("Could not create a path to the bundle")
+//        }
+//        return nil
     }
 }
 

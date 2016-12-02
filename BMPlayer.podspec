@@ -17,9 +17,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.platform     = :ios, '8.0'
   s.source_files = 'BMPlayer/Classes/**/*'
-  s.resource_bundles = {
-    'BMPlayer' => ['BMPlayer/Assets/*.png']
-  }
+  s.resources    = "BMPlayer/**/*.xcassets"
+
 
   s.frameworks = 'UIKit', 'AVFoundation'
   
