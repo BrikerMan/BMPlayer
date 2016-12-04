@@ -111,7 +111,7 @@ open class BMPlayerLayerView: UIView {
     // 仅在bufferingSomeSecond里面使用
     fileprivate var isBuffering     = false
     
-
+    
     
     // MARK: - Actions
     open func play() {
@@ -179,14 +179,14 @@ open class BMPlayerLayerView: UIView {
         // 替换PlayerItem为nil
         self.player?.replaceCurrentItem(with: nil)
         player?.removeObserver(self, forKeyPath: "rate")
-
+        
         // 把player置为nil
         self.player = nil
     }
     
     open func prepareToDeinit() {
         self.timer?.invalidate()
-                self.playerItem = nil
+        self.playerItem = nil
         self.resetPlayer()
     }
     
@@ -274,17 +274,19 @@ open class BMPlayerLayerView: UIView {
                 let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
                 delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
             }
-            updateStatus()
+            updateStatus(inclodeLoading: true)
         }
     }
     
-    fileprivate func updateStatus() {
+    fileprivate func updateStatus(inclodeLoading: Bool = false) {
         if let player = player {
             if let playerItem = playerItem {
-                if playerItem.isPlaybackLikelyToKeepUp || playerItem.isPlaybackBufferFull {
-                    self.state = .bufferFinished
-                } else {
-                    self.state = .buffering
+                if inclodeLoading {
+                    if playerItem.isPlaybackLikelyToKeepUp || playerItem.isPlaybackBufferFull {
+                        self.state = .bufferFinished
+                    } else {
+                        self.state = .buffering
+                    }
                 }
             }
             if player.rate == 0.0 {

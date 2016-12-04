@@ -173,7 +173,7 @@ open class BMPlayer: UIView {
      使用自动播放，参照pause函数
      */
     open func autoPlay() {
-        if !isPauseByUser && isURLSet {
+        if !isPauseByUser && isURLSet && !isPlayToTheEnd {
             self.play()
         }
     }
