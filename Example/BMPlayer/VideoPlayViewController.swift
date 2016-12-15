@@ -38,7 +38,10 @@ class VideoPlayViewController: UIViewController {
             make.height.equalTo(view.snp.width).multipliedBy(9.0/16.0)
         }
         player.delegate = self
-        player.backBlock = { [unowned self] in
+        player.backBlock = { [unowned self] (isFullScreen) in
+            if isFullScreen == true {
+                return
+            }
             let _ = self.navigationController?.popViewController(animated: true)
         }
         

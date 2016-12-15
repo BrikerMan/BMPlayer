@@ -47,7 +47,7 @@ open class BMPlayer: UIView {
     
     open weak var delegate: BMPlayerDelegate?
     
-    open var backBlock:(() -> Void)?
+    open var backBlock:((Bool) -> Void)?
     
     /// Gesture used to show / hide control view
     open var tapGesture: UITapGestureRecognizer!
@@ -444,7 +444,9 @@ open class BMPlayer: UIView {
             fullScreenButtonPressed(nil)
         } else {
             playerLayer?.prepareToDeinit()
-            backBlock?()
+        }
+        if let block = backBlock {
+            block(isFullScreen)
         }
     }
     
