@@ -191,7 +191,11 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
             DispatchQueue.global(qos: .default).async {
                 let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check
                 DispatchQueue.main.async(execute: {
-                    self.maskImageView.image = UIImage(data: data!)
+                    if let data = data {
+                        self.maskImageView.image = UIImage(data: data)
+                    } else {
+                        self.maskImageView.image = nil
+                    }
                     self.hideLoader()
                 });
             }
