@@ -480,6 +480,8 @@ open class BMPlayer: UIView {
             
         })
         controlView.playerReplayButton?.isHidden = true
+        isPlayToTheEnd = false
+        playerLayer?.isPlaying = true
         self.play()
     }
     
