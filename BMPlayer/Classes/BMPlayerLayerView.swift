@@ -22,7 +22,11 @@ open class BMPlayerLayerView: UIView {
     
     /// 视频URL
     open var videoURL: URL! {
-        didSet { onSetVideoURL() }
+        didSet {
+            if videoURL != nil {
+                onSetVideoURL()
+            }
+        }
     }
     
     /// 视频跳转秒数置0
