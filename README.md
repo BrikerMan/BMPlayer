@@ -31,7 +31,7 @@ A simple video player for iOS, based on AVPlayer, pure swift.
 ### CocoaPods
 
 #### Swift3
-Please make sure using the latest **cocoapods, update with `sudo gem install cocoapods`.
+Please make sure using the latest cocoapods, update with `sudo gem install cocoapods`.
 
 ```ruby
 target 'ProjectName' do
