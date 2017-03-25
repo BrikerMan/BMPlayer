@@ -10,9 +10,9 @@ import Foundation
 import AVFoundation
 
 public struct BMPlayerResource {
-    var name: String
-    var definitions: [BMPlayerResourceDefinition]
-    var cover: URL?
+    public let name: String
+    public let definitions: [BMPlayerResourceDefinition]
+    public let cover: URL?
     
     /**
      Player recource item with url, used to play single difinition video
@@ -22,7 +22,7 @@ public struct BMPlayerResource {
      - parameter cover: video cover, will show before playing, and hide when play
      
      */
-    init(name: String, url: URL, cover: URL? = nil) {
+    public init( url: URL, name: String = "", cover: URL? = nil) {
         self.name = name
         self.cover = cover
         
@@ -37,7 +37,7 @@ public struct BMPlayerResource {
      - parameter definitions: video definitions
      - parameter cover:       video cover
      */
-    init(name: String, definitions: [BMPlayerResourceDefinition], cover: URL? = nil) {
+    public init(name: String = "", definitions: [BMPlayerResourceDefinition], cover: URL? = nil) {
         self.name = name
         self.definitions = definitions
         self.cover = cover
@@ -46,11 +46,11 @@ public struct BMPlayerResource {
 
 
 public struct BMPlayerResourceDefinition {
-    var url: URL
-    var definition: String
+    public let url: URL
+    public let definition: String
     
     /// An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
-    var options: [String : Any]?
+    public var options: [String : Any]?
     
     var avURLAsset: AVURLAsset {
         get {
@@ -73,7 +73,7 @@ public struct BMPlayerResourceDefinition {
         let definiton.options = ["AVURLAssetHTTPHeaderFieldsKey":header]
      ```
      */
-    init(url: URL, definition: String, options: [String : Any]? = nil) {
+    public init(url: URL, definition: String, options: [String : Any]? = nil) {
         self.url        = url
         self.definition = definition
         self.options    = options
@@ -81,7 +81,7 @@ public struct BMPlayerResourceDefinition {
 }
 
 
-
+@available(*, deprecated, message: "please use BMPlayerResource")
 open class BMPlayerItem {
     var title   : String
     var resource : [BMPlayerItemDefinitionProtocol]
@@ -94,7 +94,7 @@ open class BMPlayerItem {
     }
 }
 
-
+@available(*, deprecated, message: "please use BMPlayerResourceDefinition")
 open class BMPlayerItemDefinitionItem: BMPlayerItemDefinitionProtocol {
     @objc open var playURL: URL
     @objc open var definitionName: String

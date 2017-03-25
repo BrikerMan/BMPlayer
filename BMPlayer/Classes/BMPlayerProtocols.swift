@@ -58,7 +58,7 @@ public protocol BMPlayerCustomControlView  {
     /**
      call to prepare UI with definition items
      */
-    func prepareChooseDefinitionView(_ items:[BMPlayerItemDefinitionProtocol], index: Int)
+    func prepareChooseDefinitionView(_ items:[BMPlayerResourceDefinition], index: Int)
     
     
     /**
@@ -110,7 +110,10 @@ public protocol BMPlayerCustomControlView  {
      
      - parameter cover: cover url
      */
+    @available(*, deprecated: 0.8)
     func showCoverWithLink(_ cover:String)
+    
+    func showCover(url: URL?)
     
     /**
      call when needs to hide cover image

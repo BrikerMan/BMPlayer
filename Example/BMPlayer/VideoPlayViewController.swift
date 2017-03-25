@@ -67,28 +67,30 @@ class VideoPlayViewController: UIViewController {
         // 普通播放器
         case (0,0):
             //            player.seek(22)
-            player.videoGravity = "AVLayerVideoGravityResize"
-            
-            player.playWithURL(URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, title: "风格互换：原来你我相爱")
+            let asset = BMPlayerResource(url: URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, name: "风格互换：原来你我相爱")
+            player.setVideo(resource: asset)
             
         case (0,1):
-            let item = self.preparePlayerItem()
-            player.playWithPlayerItem(item)
+            let asset = self.preparePlayerItem()
+            player.setVideo(resource: asset)
             
         case (0,2):
-            let item = self.preparePlayerItem()
-            player.playWithPlayerItem(item)
+            let asset = self.preparePlayerItem()
+            player.setVideo(resource: asset)
             
         case (2,0):
             player.panGesture.isEnabled = false
+            let asset = self.preparePlayerItem()
+            player.setVideo(resource: asset)
             
         case (2,1):
             player.videoGravity = "AVLayerVideoGravityResizeAspect"
-            player.playWithURL(URL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+            let asset = BMPlayerResource(url: URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, name: "风格互换：原来你我相爱")
+            player.setVideo(resource: asset)
             
         default:
-            let item = self.preparePlayerItem()
-            player.playWithPlayerItem(item)
+            let asset = self.preparePlayerItem()
+            player.setVideo(resource: asset)
         }
     }
     
@@ -129,16 +131,14 @@ class VideoPlayViewController: UIViewController {
     /**
      准备播放器资源model
      */
-    func preparePlayerItem() -> BMPlayerItem {
-        let resource0 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
-                                                   definitionName: "高清")
-        let resource1 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/1457529788412_5918_854x480.mp4")!,
-                                                   definitionName: "标清")
+    func preparePlayerItem() -> BMPlayerResource {
+        let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!, definition: "高清")
+        let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!, definition: "标清")
         
-        let item    = BMPlayerItem(title: "周末号外丨中国第一高楼",
-                                   resource: [resource0, resource1],
-                                   cover: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg")
-        return item
+        let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",
+                                     definitions: [res0, res1],
+                                     cover: URL(string: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg"))
+        return asset
     }
     
     

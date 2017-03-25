@@ -76,7 +76,7 @@ open class BMPlayer: UIView {
     
     fileprivate var resource: BMPlayerResource!
     
-    fileprivate var videoItem: BMPlayerItem!
+//    fileprivate var videoItem: BMPlayerItem!
     
     fileprivate var currentDefinition = 0
     
@@ -86,7 +86,7 @@ open class BMPlayer: UIView {
     
     fileprivate var customControllView: BMPlayerCustomControlView?
     
-//    fileprivate var playerItemType = BMPlayerItemType.url
+    //    fileprivate var playerItemType = BMPlayerItemType.url
     
     fileprivate var videoItemURL: URL!
     
@@ -128,22 +128,28 @@ open class BMPlayer: UIView {
     
     //Cache is playing result to improve callback performance
     fileprivate var isPlayingCache: Bool? = nil
-
     
     
-    open func setVideo(resource: BMPlayerResource) {
+    
+    open func setVideo(resource: BMPlayerResource, definitionIndex: Int = 0) {
         self.resource = resource
         controlView.playerTitleLabel?.text = resource.name
-
+        currentDefinition           = definitionIndex
+        
+        if resource.definitions.count > 1 {
+            controlView.prepareChooseDefinitionView(resource.definitions, index: definitionIndex)
+        }
+        
+        if BMPlayerConf.shouldAutoPlay {
+            let asset = resource.definitions[definitionIndex]
+            playerLayer?.playAsset(asset: asset.avURLAsset)
+        } else {
+            controlView.showCover(url: resource.cover)
+            controlView.hideLoader()
+        }
     }
     
-    
-    
-    
-    
-    
-    
-    
+
     // MARK: - Public functions
     /**
      直接使用URL播放
@@ -151,17 +157,10 @@ open class BMPlayer: UIView {
      - parameter url:   视频URL
      - parameter title: 视频标题
      */
+    @available(*, deprecated: 0.8.0, message: "use setVideo(resource: BMPlayerResource, definitionIndex: Int = 0)")
     open func playWithURL(_ url: URL, title: String = "") {
-//        playerItemType              = BMPlayerItemType.url
-//        videoItemURL                = url
-//        controlView.playerTitleLabel?.text = title
-//        
-//        if BMPlayerConf.shouldAutoPlay {
-//            playerLayer?.videoURL   = videoItemURL
-//            isURLSet                = true
-//        } else {
-//            controlView.hideLoader()
-//        }
+        let asset = BMPlayerResource(url: url, name: title, cover: nil)
+        setVideo(resource: asset)
     }
     
     /**
@@ -171,19 +170,18 @@ open class BMPlayer: UIView {
      - parameter title: 视频标题
      - parameter definitionIndex: 起始清晰度
      */
+    @available(*, deprecated: 0.8.0, message: "use setVideo(resource: BMPlayerResource, definitionIndex: Int = 0)")
     open func playWithPlayerItem(_ item:BMPlayerItem, definitionIndex: Int = 0) {
-//        playerItemType              = BMPlayerItemType.bmPlayerItem
-//        videoItem                   = item
-//        controlView.playerTitleLabel?.text = item.title
-//        currentDefinition           = definitionIndex
-//        controlView.prepareChooseDefinitionView(item.resource, index: definitionIndex)
-//        
-//        if BMPlayerConf.shouldAutoPlay {
-//            playerLayer?.videoURL   = videoItem.resource[currentDefinition].playURL
-//            isURLSet                = true
-//        } else {
-//            controlView.showCoverWithLink(item.cover)
-//        }
+        
+        var models: [BMPlayerResourceDefinition] = []
+        
+        for def in item.resource {
+            let model = BMPlayerResourceDefinition(url: def.playURL, definition: def.definitionName)
+            models.append(model)
+        }
+        
+        let asset = BMPlayerResource(name: item.title, definitions: models, cover: URL(string: item.cover))
+        setVideo(resource: asset)
     }
     
     /**
@@ -199,19 +197,15 @@ open class BMPlayer: UIView {
      手动播放
      */
     open func play() {
-        if videoItemURL == nil && videoItem == nil {
+        if videoItemURL == nil && resource == nil {
             return
         }
         if !isURLSet {
-//            if playerItemType == BMPlayerItemType.bmPlayerItem {
-//                playerLayer?.videoURL       = videoItem.resource[currentDefinition].playURL
-//            } else {
-//                playerLayer?.videoURL       = videoItemURL
-//            }
+            let asset = resource.definitions[currentDefinition]
+            playerLayer?.playAsset(asset: asset.avURLAsset)
             controlView.hideCoverImageView()
             isURLSet                = true
         }
-        
         
         controlView.playerPlayButton?.isSelected = true
         playerLayer?.play()
@@ -434,7 +428,7 @@ open class BMPlayer: UIView {
     }
     
     @objc fileprivate func progressSliderValueChanged(_ sender: UISlider)  {
-//        self.pause(allowAutoPlay: true)
+        //        self.pause(allowAutoPlay: true)
         cancelAutoFadeOutControlBar()
     }
     
@@ -713,10 +707,11 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
 
 extension BMPlayer: BMPlayerControlViewDelegate {
     public func controlViewDidChooseDefition(_ index: Int) {
-        shouldSeekTo                = currentPosition
+        shouldSeekTo = currentPosition
         playerLayer?.resetPlayer()
-//        playerLayer?.videoURL       = videoItem.resource[index].playURL
-        currentDefinition           = index
+        currentDefinition = index
+        playerLayer?.playAsset(asset: resource.definitions[index].avURLAsset)
+        
     }
     
     public func controlViewDidPressOnReply() {

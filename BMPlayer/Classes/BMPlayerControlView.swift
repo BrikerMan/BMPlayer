@@ -66,7 +66,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     
     var centerButton     = UIButton(type: UIButtonType.custom)
     
-    var videoItems:[BMPlayerItemDefinitionProtocol] = []
+    var videoItems:[BMPlayerResourceDefinition] = []
     
     var selectedIndex = 0
     
@@ -178,7 +178,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         let Min = Int(toSecound / 60)
         let Sec = Int(toSecound.truncatingRemainder(dividingBy: 60))
         seekToLabel.text    = String(format: "%02d:%02d", Min, Sec)
-        let rotate = isAdd ? 0 : CGFloat(M_PI)
+        let rotate = isAdd ? 0 : CGFloat(Double.pi)
         seekToViewImage.transform = CGAffineTransform(rotationAngle: rotate)
     }
     
@@ -187,7 +187,11 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     }
     
     func showCoverWithLink(_ cover:String) {
-        if let url = URL(string: cover) {
+        self.showCover(url: URL(string: cover))
+    }
+    
+    func showCover(url: URL?) {
+        if let url = url {
             DispatchQueue.global(qos: .default).async {
                 let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check
                 DispatchQueue.main.async(execute: {
@@ -206,7 +210,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         self.maskImageView.isHidden = true
     }
     
-    func prepareChooseDefinitionView(_ items:[BMPlayerItemDefinitionProtocol], index: Int) {
+    func prepareChooseDefinitionView(_ items:[BMPlayerResourceDefinition], index: Int) {
         self.videoItems = items
         for item in chooseDefitionView.subviews {
             item.removeFromSuperview()
@@ -223,7 +227,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
                 button.tag = i
             }
             
-            button.setTitle("\(items[button.tag].definitionName)", for: UIControlState())
+            button.setTitle("\(items[button.tag].definition)", for: UIControlState())
             chooseDefitionView.addSubview(button)
             button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControlEvents.touchUpInside)
             button.snp.makeConstraints({ (make) in
