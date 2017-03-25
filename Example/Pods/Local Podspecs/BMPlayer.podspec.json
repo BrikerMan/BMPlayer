@@ -24,10 +24,10 @@
   ],
   "dependencies": {
     "SnapKit": [
-      "~> 3.0"
+      "~> 3.2"
     ],
     "NVActivityIndicatorView": [
-
+      "~> 3.5"
     ]
   }
 }
