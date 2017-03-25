@@ -67,7 +67,7 @@ class VideoPlayViewController: UIViewController {
         // 普通播放器
         case (0,0):
             //            player.seek(22)
-            let asset = BMPlayerResource(url: URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, name: "风格互换：原来你我相爱")
+            let asset = BMPlayerResource(url: URL(string: "http://cntv.vod.cdn.myqcloud.com/flash/mp4video40/TMS/2015/03/17/29f9f25a356a4e58bc1514e8c3b3e6e1_h264418000nero_aac32-9.mp4")!, name: "风格互换：原来你我相爱")
             player.setVideo(resource: asset)
             
         case (0,1):
