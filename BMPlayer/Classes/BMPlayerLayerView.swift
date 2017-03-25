@@ -20,31 +20,18 @@ open class BMPlayerLayerView: UIView {
     
     open weak var delegate: BMPlayerLayerViewDelegate?
     
-    /// 视频URL
-    open var videoURL: URL! {
-        didSet { onSetVideoURL() }
-    }
-    
     /// 视频跳转秒数置0
     open var seekTime = 0
     
-    open var videoGravity = AVLayerVideoGravityResizeAspect {
+    /// 播放属性
+    open var playerItem: AVPlayerItem? {
         didSet {
-            self.playerLayer?.videoGravity = videoGravity
+            onPlayerItemChange()
         }
     }
-    
-    var aspectRatio:BMPlayerAspectRatio = .default {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
-    
-    /// 计时器
-    var timer       : Timer?
     
     /// 播放属性
-    lazy var player: AVPlayer? = {
+    open lazy var player: AVPlayer? = {
         if let item = self.playerItem {
             let player = AVPlayer(playerItem: item)
             return player
@@ -52,6 +39,12 @@ open class BMPlayerLayerView: UIView {
         return nil
     }()
     
+
+    open var videoGravity = AVLayerVideoGravityResizeAspect {
+        didSet {
+            self.playerLayer?.videoGravity = videoGravity
+        }
+    }
     
     open var isPlaying: Bool {
         get {
@@ -65,6 +58,15 @@ open class BMPlayerLayerView: UIView {
         }
     }
     
+    var aspectRatio:BMPlayerAspectRatio = .default {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
+    /// 计时器
+    var timer       : Timer?
+    
     fileprivate var isPlayingCached = false {
         didSet {
             if isPlayingCached != oldValue {
@@ -73,12 +75,7 @@ open class BMPlayerLayerView: UIView {
         }
     }
     
-    /// 播放属性
-    open var playerItem: AVPlayerItem? {
-        didSet {
-            onPlayerItemChange()
-        }
-    }
+    fileprivate var urlAsset: AVURLAsset?
     
     fileprivate var lastPlayerItem: AVPlayerItem?
     /// playerLayer
@@ -114,6 +111,12 @@ open class BMPlayerLayerView: UIView {
     
     
     // MARK: - Actions
+    open func playAsset(asset: AVURLAsset) {
+        urlAsset = asset
+        onSetVideoAsset()
+    }
+    
+    
     open func play() {
         if let player = player {
             player.play()
@@ -139,7 +142,6 @@ open class BMPlayerLayerView: UIView {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        BMPlayerManager.shared.log("BMPlayerLayerView did dealloc")
     }
     
     
@@ -210,11 +212,10 @@ open class BMPlayerLayerView: UIView {
     
     
     // MARK: - 设置视频URL
-    fileprivate func onSetVideoURL() {
-        self.repeatToPlay = false
-        self.playDidEnd   = false
-        self.configPlayer()
-        
+    fileprivate func onSetVideoAsset() {
+        repeatToPlay = false
+        playDidEnd   = false
+        configPlayer()
     }
     
     fileprivate func onPlayerItemChange() {
@@ -245,24 +246,21 @@ open class BMPlayerLayerView: UIView {
     }
     
     fileprivate func configPlayer(){
-        self.player?.removeObserver(self, forKeyPath: "rate")
+        player?.removeObserver(self, forKeyPath: "rate")
+        playerItem = AVPlayerItem(asset: urlAsset!)
+        player     = AVPlayer(playerItem: playerItem!)
+        player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
         
-        self.playerItem = AVPlayerItem(url: videoURL)
+        playerLayer = AVPlayerLayer(player: player)
         
-        self.player     = AVPlayer(playerItem: playerItem!)
+        playerLayer!.videoGravity = videoGravity
         
-        self.player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
+        layer.addSublayer(playerLayer!)
         
-        self.playerLayer = AVPlayerLayer(player: player)
+        timer  = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
         
-        self.playerLayer!.videoGravity = videoGravity
-        
-        self.layer.insertSublayer(playerLayer!, at: 0)
-        
-        self.timer  = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
-        
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     
     
@@ -298,6 +296,7 @@ open class BMPlayerLayerView: UIView {
                     if player.currentTime() >= currentItem.duration {
                         if self.state != .playedToTheEnd {
                             self.state = .playedToTheEnd
+                            self.timer?.invalidate()
                         }
                         
                         return

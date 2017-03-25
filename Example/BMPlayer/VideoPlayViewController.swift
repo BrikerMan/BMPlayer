@@ -69,7 +69,7 @@ class VideoPlayViewController: UIViewController {
             //            player.seek(22)
             player.videoGravity = "AVLayerVideoGravityResize"
             
-            player.playWithURL(URL(string: "http://gslb.miaopai.com/stream/kPzSuadRd2ipEo82jk9~sA__.mp4")!, title: "风格互换：原来你我相爱")
+            player.playWithURL(URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, title: "风格互换：原来你我相爱")
             
         case (0,1):
             let item = self.preparePlayerItem()

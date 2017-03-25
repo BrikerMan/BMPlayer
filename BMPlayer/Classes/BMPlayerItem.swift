@@ -7,6 +7,80 @@
 //
 
 import Foundation
+import AVFoundation
+
+public struct BMPlayerResource {
+    var name: String
+    var definitions: [BMPlayerResourceDefinition]
+    var cover: URL?
+    
+    /**
+     Player recource item with url, used to play single difinition video
+     
+     - parameter name:  video name
+     - parameter url:   video url
+     - parameter cover: video cover, will show before playing, and hide when play
+     
+     */
+    init(name: String, url: URL, cover: URL? = nil) {
+        self.name = name
+        self.cover = cover
+        
+        let definition = BMPlayerResourceDefinition(url: url, definition: "")
+        self.definitions = [definition]
+    }
+    
+    /**
+     Play resouce with multi definitions
+     
+     - parameter name:        video name
+     - parameter definitions: video definitions
+     - parameter cover:       video cover
+     */
+    init(name: String, definitions: [BMPlayerResourceDefinition], cover: URL? = nil) {
+        self.name = name
+        self.definitions = definitions
+        self.cover = cover
+    }
+}
+
+
+public struct BMPlayerResourceDefinition {
+    var url: URL
+    var definition: String
+    
+    /// An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
+    var options: [String : Any]?
+    
+    var avURLAsset: AVURLAsset {
+        get {
+            return AVURLAsset(url: url, options: options)
+        }
+    }
+    
+    /**
+     Video recource item with defination name and specifying options
+     
+     - parameter url:        video url
+     - parameter definition: url deifination
+     - parameter options:    specifying options for the initialization of the AVURLAsset
+     
+     you can add http-header or other options which mentions in https://developer.apple.com/reference/avfoundation/avurlasset/initialization_options
+     
+     to add http-header init options like this 
+     ```
+        let header = ["User-Agent":"BMPlayer"]
+        let definiton.options = ["AVURLAssetHTTPHeaderFieldsKey":header]
+     ```
+     */
+    init(url: URL, definition: String, options: [String : Any]? = nil) {
+        self.url        = url
+        self.definition = definition
+        self.options    = options
+    }
+}
+
+
 
 open class BMPlayerItem {
     var title   : String
@@ -36,3 +110,5 @@ open class BMPlayerItemDefinitionItem: BMPlayerItemDefinitionProtocol {
         self.definitionName = definitionName
     }
 }
+
+
