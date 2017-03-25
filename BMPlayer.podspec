@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BMPlayer"
-  s.version          = "0.7.1"
+  s.version          = "0.8.0"
   s.summary          = "Video Player Using Swift, based on AVPlayer"
 
   s.description      = <<-DESC
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'UIKit', 'AVFoundation'
   
-  s.dependency 'SnapKit', '~> 3.0'
-  s.dependency 'NVActivityIndicatorView'
+  s.dependency 'SnapKit', '~> 3.2'
+  s.dependency 'NVActivityIndicatorView', '~> 3.5'
 end

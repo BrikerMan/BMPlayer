@@ -20,6 +20,7 @@ A simple video player for iOS, based on AVPlayer, pure swift.
 - Slide horizontal to fast forward and rewind
 - Support multi-definition video
 - Mirror mode, slow play mode
+- Add Http header and other options to AVURLAsset
 
 ## Requirements
 - iOS 8 +
@@ -30,7 +31,7 @@ A simple video player for iOS, based on AVPlayer, pure swift.
 ### CocoaPods
 
 #### Swift3
-Please make sure using the **cocoapods 1.1.0.rc.2**, update with `sudo gem install cocoapods --pre`.
+Please make sure using the latest **cocoapods, update with `sudo gem install cocoapods`.
 
 ```ruby
 target 'ProjectName' do
@@ -106,18 +107,38 @@ player.backBlock = { [unowned self] in
 ### Set video url
 
 ```swift
-player.playWithURL(URL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+let asset = BMPlayerResource(url: URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!,
+                             name: "风格互换：原来你我相爱")
+player.setVideo(resource: asset)
 ```
 
 ### multi-definition video with cover
 
 ```swift
-let resource0 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "HD")
-let resource1 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "SD")
+let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                      definition: "高清")
+let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                      definition: "标清")
+   
+let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",
+                             definitions: [res0, res1],
+                             cover: URL(string: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg"))
 
-let item = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
-                        resource: [resource0, resource1],
-                        cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
+player.setVideo(resource: asset)
+```
+
+### Add HTTP header for request
+
+```swift
+let header = ["User-Agent":"BMPlayer"]
+let options = ["AVURLAssetHTTPHeaderFieldsKey":header]
+  
+let definition = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                            definition: "高清",
+                                            options: options)
+  
+let asset = BMPlayerResource(name: "Video Name",
+                             definitions: [definition])
 ```
 
 ### Listening to player state changes
