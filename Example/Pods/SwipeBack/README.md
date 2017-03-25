@@ -5,6 +5,9 @@ SwipeBack
 
 Enable iOS7 swipe-to-back when custom back button is set.
 
+> SwipeBack plays with iOS native gesture recognizers, so you can also use it to disable swipe-to-back feature.
+
+
 Getting Started
 ---------------
 
@@ -14,7 +17,7 @@ Use [CocoaPods](http://cocoapods.org).
 
 ```ruby
 platform :ios, '7.0'
-pod 'SwipeBack', '~> 1.0'
+pod 'SwipeBack', '~> 1.1'
 ```
 
 Usage
