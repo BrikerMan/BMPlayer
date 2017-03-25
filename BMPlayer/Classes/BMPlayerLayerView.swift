@@ -120,7 +120,7 @@ open class BMPlayerLayerView: UIView {
     open func play() {
         if let player = player {
             player.play()
-            timer?.fireDate = Date()
+            setupTimer()
         }
     }
     
@@ -202,6 +202,7 @@ open class BMPlayerLayerView: UIView {
         if secounds.isNaN {
             return
         }
+        setupTimer()
         if self.player?.currentItem?.status == AVPlayerItemStatus.readyToPlay {
             let draggedTime = CMTimeMake(Int64(secounds), 1)
             self.player!.seek(to: draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
@@ -257,10 +258,14 @@ open class BMPlayerLayerView: UIView {
         
         layer.addSublayer(playerLayer!)
         
-        timer  = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
-        
         setNeedsLayout()
         layoutIfNeeded()
+    }
+    
+    func setupTimer() {
+        timer?.invalidate()
+        timer  = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
+        timer?.fireDate = Date()
     }
     
     
@@ -316,6 +321,7 @@ open class BMPlayerLayerView: UIView {
         if state != .playedToTheEnd {
             self.state = .playedToTheEnd
             self.playDidEnd = true
+            self.timer?.invalidate()
         }
     }
     

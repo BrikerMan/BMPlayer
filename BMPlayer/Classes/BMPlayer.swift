@@ -76,7 +76,7 @@ open class BMPlayer: UIView {
     
     fileprivate var resource: BMPlayerResource!
     
-//    fileprivate var videoItem: BMPlayerItem!
+    //    fileprivate var videoItem: BMPlayerItem!
     
     fileprivate var currentDefinition = 0
     
@@ -149,7 +149,7 @@ open class BMPlayer: UIView {
         }
     }
     
-
+    
     // MARK: - Public functions
     /**
      直接使用URL播放
@@ -247,7 +247,7 @@ open class BMPlayer: UIView {
      取消UI自动隐藏
      */
     open func cancelAutoFadeOutControlBar() {
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(hideControlViewAnimated), object: nil)
     }
     
     /**
@@ -304,12 +304,14 @@ open class BMPlayer: UIView {
         })
     }
     
-    @objc fileprivate func showControlViewAnimated() {
+    @objc fileprivate func showControlViewAnimated(autoHide: Bool = true) {
         UIView.animate(withDuration: BMPlayerControlBarAutoFadeOutTimeInterval, animations: {
             self.controlView.showPlayerUIComponents()
             UIApplication.shared.setStatusBarHidden(false, with: .fade)
         }, completion: { (_) in
-            self.autoFadeOutControlBar()
+            if autoHide {
+                self.autoFadeOutControlBar()
+            }
             self.isMaskShowing = true
         })
     }
@@ -675,13 +677,18 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             controlView.hideLoader()
             playStateDidChanged()
             autoPlay()
+            
         case BMPlayerState.playedToTheEnd:
             isPlayToTheEnd = true
             controlView.playerPlayButton?.isSelected = false
             controlView.showPlayToTheEndView()
+            showControlViewAnimated(autoHide: false)
+            cancelAutoFadeOutControlBar()
         default:
             break
         }
+        
+        tapGesture.isEnabled =  state != .playedToTheEnd
     }
     
     public func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
