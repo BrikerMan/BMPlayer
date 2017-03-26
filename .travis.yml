@@ -1,23 +1,5 @@
+osx_image: xcode8.3
 language: objective-c
-osx_image: xcode8
-xcode_project: BMPlayer.xcodeproj
-xcode_scheme: BMPlayer
-xcode_sdk: iphonesimulator9.3
-env:
-  global:
-  - BMPlayer
-before_install:
-- brew update
-- brew outdated carthage || brew upgrade carthage
-before_script:
-- carthage bootstrap
-before_deploy:
-- carthage build --no-skip-current
-- carthage archive $FRAMEWORK_NAME
-deploy:
-  provider: releases
-  api_key:
-    secure: uOXb8asZ4xf++NWzFdND8wXLxOpw2RNn8vSn+56bX1g//IMhYTWRpgANpMYNwBYd811OxW3badHybEF5HvkVzzWrXu53GN1B97vcF+3OePPIfUly7L/YgiSfiXLuOaP991xlRCH6vqnqWj7BE4oGOSqMGLzXINHry9nB12zAflm7Ip2XY3JRl4UvB0zVwhWMSyrn1gAhbuB2Cme4tVWnnKN768JYBWd2/NEcmPEpkCyyw+t5ZX7yH+aoWKZcyNYALGHLZ5i4xdlliVB4CxuXjkgJqqnJdKz/S+4H4ZUu2oja5rwrQn5kjEl9mZvO1W1Dcim90Nd0+OWTkn/pyprBpiC0x36tuPEe9WOIen/ElQdqawdaDhQgUOcbAorF/Ah55mDmAMY8MgnR1KIOubuclNA9v4YLqkS6ULlOWdJ5TK0RgXAzwRO8S+IS/XV6uw6LFzG6R4l+8X7PSbMfqy3K4OOV1VvqkKz3tKW69Lo3kRpAJAiT5ZtxYbB5gfbsDnEuYSvxAtTQgdwSbAPu6OimiDPJQ5hBP7QJUojlqhx45lfTh88UT/V+3PigzMlsOgPVe5OQ8kjatFMuf8bmXfw1v4/2KfcofmxPWWH3NZnnolO63961/EMjNTOJuj/clj3tQb56P5n1bal53572d6GIbzbnEggEl4/Q8m1OhdY6zXY=
-  file: BMPlayer.framework.zip
-  on:
-    repo: BrikerMan/BMPlayer
+script: xcodebuild clean test -workspace Example/BMPlayer.xcworkspace -scheme BMPlayer -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.1' -enableCodeCoverage YES | xcpretty
+
+
