@@ -35,15 +35,6 @@ target 'ProjectName' do
     use_frameworks!
     pod 'BMPlayer'
 end
-
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |configuration|
-            configuration.build_settings['SWIFT_VERSION'] = "3.0"
-            configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
-        end
-    end
-end
 ```
 
 #### Swift 2.2 
@@ -102,21 +93,38 @@ player.backBlock = { [unowned self] in
 ### 设置普通视频
 
 ```swift
-// 若title为""，则不显示
-player.playWithURL(URL(string: "http://baobab.wdjcdn.com/14571455324031.mp4")!, title: "风格互换：原来你我相爱")
+let asset = BMPlayerResource(url: URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!,
+                             name: "风格互换：原来你我相爱")
+player.setVideo(resource: asset)
 ```
 
 ### 多清晰度，带封面视频
 
 ```swift
-let resource0 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/14570071502774.mp4")!, definitionName: "高清")
-let resource1 = BMPlayerItemDefinitionItem(url: URL(string: "http://baobab.wdjcdn.com/1457007294968_5824_854x480.mp4")!, definitionName: "标清")
+let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                      definition: "高清")
+let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                      definition: "标清")
+   
+let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",
+                             definitions: [res0, res1],
+                             cover: URL(string: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg"))
 
-let item    = BMPlayerItem(title: "周末号外丨川普版权力的游戏",
-resource: [resource0, resource1],
-cover: "http://img.wdjimg.com/image/video/acdba01e52efe8082d7c33556cf61549_0_0.jpeg")
+player.setVideo(resource: asset)
 ```
+### 设置 HTTP header
 
+```swift
+let header = ["User-Agent":"BMPlayer"]
+let options = ["AVURLAssetHTTPHeaderFieldsKey":header]
+  
+let definition = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+                                            definition: "高清",
+                                            options: options)
+  
+let asset = BMPlayerResource(name: "Video Name",
+                             definitions: [definition])
+```
 
 ### 监听状态变化
 具体用法请看 Example 项目
