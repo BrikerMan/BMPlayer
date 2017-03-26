@@ -129,8 +129,14 @@ open class BMPlayer: UIView {
     //Cache is playing result to improve callback performance
     fileprivate var isPlayingCache: Bool? = nil
     
+    // MARK: - Public functions
     
-    
+    /**
+     Play
+     
+     - parameter resource:        media resource
+     - parameter definitionIndex: starting definition index, default start with the first definition
+     */
     open func setVideo(resource: BMPlayerResource, definitionIndex: Int = 0) {
         self.resource = resource
         controlView.playerTitleLabel?.text = resource.name
@@ -149,15 +155,13 @@ open class BMPlayer: UIView {
         }
     }
     
-    
-    // MARK: - Public functions
     /**
      直接使用URL播放
      
      - parameter url:   视频URL
      - parameter title: 视频标题
      */
-    @available(*, deprecated: 0.8.0, message: "use setVideo(resource: BMPlayerResource, definitionIndex: Int = 0)")
+    @available(*, deprecated: 0.8.0, renamed: "setVideo(resource:)")
     open func playWithURL(_ url: URL, title: String = "") {
         let asset = BMPlayerResource(url: url, name: title, cover: nil)
         setVideo(resource: asset)
@@ -170,9 +174,8 @@ open class BMPlayer: UIView {
      - parameter title: 视频标题
      - parameter definitionIndex: 起始清晰度
      */
-    @available(*, deprecated: 0.8.0, message: "use setVideo(resource: BMPlayerResource, definitionIndex: Int = 0)")
+    @available(*, deprecated: 0.8.0, renamed: "setVideo(resource:definitionIndex:)")
     open func playWithPlayerItem(_ item:BMPlayerItem, definitionIndex: Int = 0) {
-        
         var models: [BMPlayerResourceDefinition] = []
         
         for def in item.resource {
@@ -185,7 +188,7 @@ open class BMPlayer: UIView {
     }
     
     /**
-     使用自动播放，参照pause函数
+     auto start playing, call at viewWillAppear, See more at pause
      */
     open func autoPlay() {
         if !isPauseByUser && isURLSet && !isPlayToTheEnd {
@@ -194,7 +197,7 @@ open class BMPlayer: UIView {
     }
     
     /**
-     手动播放
+     Play
      */
     open func play() {
         if videoItemURL == nil && resource == nil {
@@ -213,9 +216,9 @@ open class BMPlayer: UIView {
     }
     
     /**
-     暂停
+     Pause
      
-     - parameter allowAutoPlay: 是否允许自动播放，默认不允许，若允许则在调用autoPlay的情况下开始播放。否则autoPlay不会进行播放。
+     - parameter allow: should allow to response `autoPlay` function
      */
     open func pause(allowAutoPlay allow: Bool = false) {
         controlView.playerPlayButton?.isSelected = false
@@ -236,7 +239,7 @@ open class BMPlayer: UIView {
     }
     
     /**
-     开始自动隐藏UI倒计时
+     start count down to fade out control UI
      */
     open func autoFadeOutControlBar() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(hideControlViewAnimated), object: nil)
@@ -244,29 +247,39 @@ open class BMPlayer: UIView {
     }
     
     /**
-     取消UI自动隐藏
+     cancel auto fade out control UI count down
      */
     open func cancelAutoFadeOutControlBar() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(hideControlViewAnimated), object: nil)
     }
     
     /**
-     旋转屏幕时更新UI
+     update UI to fullScreen
      */
     open func updateUI(_ isFullScreen: Bool) {
         controlView.updateUI(isFullScreen)
     }
     
-    open func addVolume() {
-        self.volumeViewSlider.value += 0.1
-    }
-    
-    open func reduceVolume() {
-        self.volumeViewSlider.value -= 0.1
+    /**
+     increade volume with step, default step 0.1
+     
+     - parameter step: step
+     */
+    open func addVolume(step: Float = 0.1) {
+        self.volumeViewSlider.value += step
     }
     
     /**
-     准备销毁，适用于手动隐藏等场景
+     decreace volume with step, default step 0.1
+     
+     - parameter step: step
+     */
+    open func reduceVolume(step: Float = 0.1) {
+        self.volumeViewSlider.value -= step
+    }
+    
+    /**
+     prepare to dealloc player, call at View or Controllers deinit funciton.
      */
     open func prepareToDealloc() {
         playerLayer?.prepareToDeinit()
