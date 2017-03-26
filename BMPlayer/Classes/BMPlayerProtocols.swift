@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(*, deprecated: 0.8.0)
 @objc public protocol BMPlayerItemDefinitionProtocol {
     /// 视频URL
     var playURL     : URL { get set }
@@ -15,6 +16,7 @@ import UIKit
     /// 清晰度名称，UI上展示，如高清，超清
     var definitionName : String { get set }
 }
+
 
 public protocol BMPlayerControlViewDelegate: class {
     /**

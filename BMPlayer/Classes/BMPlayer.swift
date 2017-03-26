@@ -10,37 +10,56 @@ import UIKit
 import SnapKit
 import MediaPlayer
 
+/**
+ Player status emun
+ 
+ - notSetURL:      not set url yet
+ - readyToPlay:    player ready to play
+ - buffering:      player buffering
+ - bufferFinished: buffer finished
+ - playedToTheEnd: played to the End
+ - error:          error with playing
+ */
 public enum BMPlayerState {
-    case notSetURL      // 未设置URL
-    case readyToPlay    // 可以播放
-    case buffering      // 缓冲中
-    case bufferFinished // 缓冲完毕
-    case playedToTheEnd // 播放结束
-    case error          // 出现错误
+    case notSetURL
+    case readyToPlay
+    case buffering
+    case bufferFinished
+    case playedToTheEnd
+    case error
 }
 
-/// 枚举值，包含水平移动方向和垂直移动方向
-enum BMPanDirection: Int {
-    case horizontal = 0
-    case vertical   = 1
-}
 
-//enum BMPlayerItemType {
-//    case url
-//    case bmPlayerItem
-//}
-// 视频画面比例
+/**
+ video aspect ratio types
+ 
+ - `default`:    video default aspect
+ - sixteen2NINE: 16:9
+ - four2THREE:   4:3
+ */
 public enum BMPlayerAspectRatio : Int {
-    case `default` = 0    //视频源默认比例
-    case sixteen2NINE   //16：9
-    case four2THREE     //4：3
+    case `default`    = 0
+    case sixteen2NINE
+    case four2THREE
 }
 
+/// BMPlayerDelegate to obserbe player state
 public protocol BMPlayerDelegate : class {
     func bmPlayer(player: BMPlayer ,playerStateDidChange state: BMPlayerState)
     func bmPlayer(player: BMPlayer ,loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval)
     func bmPlayer(player: BMPlayer ,playTimeDidChange currentTime : TimeInterval, totalTime: TimeInterval)
     func bmPlayer(player: BMPlayer ,playerIsPlaying playing: Bool)
+}
+
+/**
+ internal enum to check the pan direction
+ 
+ - horizontal: horizontal
+ - vertical:   vertical
+ */
+enum BMPanDirection: Int {
+    case horizontal = 0
+    case vertical   = 1
 }
 
 open class BMPlayer: UIView {
@@ -70,13 +89,12 @@ open class BMPlayer: UIView {
     
     //Closure fired when play time changed
     open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
+    
     //Closure fired when play state chaged
     open var playStateDidChange:((Bool) -> Void)?
     
     
     fileprivate var resource: BMPlayerResource!
-    
-    //    fileprivate var videoItem: BMPlayerItem!
     
     fileprivate var currentDefinition = 0
     
@@ -85,12 +103,6 @@ open class BMPlayer: UIView {
     fileprivate var controlView: BMPlayerCustomControlView!
     
     fileprivate var customControllView: BMPlayerCustomControlView?
-    
-    //    fileprivate var playerItemType = BMPlayerItemType.url
-    
-    fileprivate var videoItemURL: URL!
-    
-    fileprivate var videoTitle = ""
     
     fileprivate var isFullScreen:Bool {
         get {
@@ -200,7 +212,7 @@ open class BMPlayer: UIView {
      Play
      */
     open func play() {
-        if videoItemURL == nil && resource == nil {
+        if resource == nil {
             return
         }
         if !isURLSet {

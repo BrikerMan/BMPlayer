@@ -100,13 +100,13 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     func aspectRatioChanged(_ state:BMPlayerAspectRatio) {
         switch state {
         case .default:
-            ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_ratio"), for: UIControlState())
+            ratioButton.setBackgroundImage(BMImageResourcePath("Pod_Asset_BMPlayer_ratio"), for: UIControlState())
             break
         case .sixteen2NINE:
-            ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_169"), for: UIControlState())
+            ratioButton.setBackgroundImage(BMImageResourcePath("Pod_Asset_BMPlayer_169"), for: UIControlState())
             break
         case .four2THREE:
-            ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_43"), for: UIControlState())
+            ratioButton.setBackgroundImage(BMImageResourcePath("Pod_Asset_BMPlayer_43"), for: UIControlState())
             break
         }
     }
@@ -126,7 +126,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
                     make.right.equalTo(bottomMaskView.snp.right)
                 }
             }
-            fullScreenButton.setImage(BMImageResourcePath("BMPlayer_portialscreen"), for: UIControlState())
+            fullScreenButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_portialscreen"), for: UIControlState())
             ratioButton.isHidden = false
             chooseDefitionView.isHidden = false
             if BMPlayerConf.topBarShowInCase.rawValue == 2 {
@@ -145,7 +145,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
             
             self.slowButton.isHidden = true
             self.mirrorButton.isHidden = true
-            fullScreenButton.setImage(BMImageResourcePath("BMPlayer_fullscreen"), for: UIControlState())
+            fullScreenButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_fullscreen"), for: UIControlState())
             fullScreenButton.snp.remakeConstraints { (make) in
                 make.width.equalTo(50)
                 make.height.equalTo(50)
@@ -294,8 +294,8 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         topMaskView.addSubview(ratioButton)
         self.addSubview(chooseDefitionView)
         
-        backButton.setImage(BMImageResourcePath("BMPlayer_back"), for: UIControlState())
-        ratioButton.setBackgroundImage(BMImageResourcePath("BMPlayer_ratio"), for: UIControlState())
+        backButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_back"), for: UIControlState())
+        ratioButton.setBackgroundImage(BMImageResourcePath("Pod_Asset_BMPlayer_ratio"), for: UIControlState())
         
         titleLabel.textColor = UIColor.white
         titleLabel.text      = "Hello World"
@@ -313,8 +313,8 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         bottomMaskView.addSubview(mirrorButton)
         bottomMaskView.addSubview(slowButton)
         
-        playButton.setImage(BMImageResourcePath("BMPlayer_play"), for: UIControlState())
-        playButton.setImage(BMImageResourcePath("BMPlayer_pause"), for: UIControlState.selected)
+        playButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_play"), for: UIControlState())
+        playButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_pause"), for: UIControlState.selected)
         
         currentTimeLabel.textColor  = UIColor.white
         currentTimeLabel.font       = UIFont.systemFont(ofSize: 12)
@@ -329,7 +329,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         timeSlider.maximumValue = 1.0
         timeSlider.minimumValue = 0.0
         timeSlider.value        = 0.0
-        timeSlider.setThumbImage(BMImageResourcePath("BMPlayer_slider_thumb"), for: UIControlState())
+        timeSlider.setThumbImage(BMImageResourcePath("Pod_Asset_BMPlayer_slider_thumb"), for: UIControlState())
         
         timeSlider.maximumTrackTintColor = UIColor.clear
         timeSlider.minimumTrackTintColor = BMPlayerConf.tintColor
@@ -337,7 +337,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
         progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
         
-        fullScreenButton.setImage(BMImageResourcePath("BMPlayer_fullscreen"), for: UIControlState())
+        fullScreenButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_fullscreen"), for: UIControlState())
         
         mirrorButton.layer.borderWidth = 1
         mirrorButton.layer.borderColor = UIColor(red: 204.0 / 255.0, green: 204.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0).cgColor
@@ -373,11 +373,11 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         seekToView.layer.masksToBounds  = true
         seekToView.isHidden               = true
         
-        seekToViewImage.image = BMImageResourcePath("BMPlayer_seek_to_image")
+        seekToViewImage.image = BMImageResourcePath("Pod_Asset_BMPlayer_seek_to_image")
         
         self.addSubview(centerButton)
         centerButton.isHidden = true
-        centerButton.setImage(BMImageResourcePath("BMPlayer_replay"), for: UIControlState())
+        centerButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_replay"), for: UIControlState())
         centerButton.addTarget(self, action: #selector(self.onReplyButtonPressed), for: UIControlEvents.touchUpInside)
     }
     

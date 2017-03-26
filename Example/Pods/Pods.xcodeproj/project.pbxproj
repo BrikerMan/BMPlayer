@@ -80,6 +80,7 @@
 		B762603DBC55ADBB347E82E28FAB5D0E /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047D2945AD6781953926B63B58CFA6C /* NVActivityIndicatorAnimationBallZigZagDeflect.swift */; };
 		B90381560496783F49D0C20187130C4D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20856005E41EC616DFFD5992995BDCCB /* AVFoundation.framework */; };
 		BDCFE7752545EE388F49475D5D82B6B0 /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ECBE7FE1F4E9E33BC5AD6097DF26FD /* NVActivityIndicatorAnimationLineScalePulseOut.swift */; };
+		BE8A0BBA631C9F34BBBF3B4B127D8877 /* Pod_Asset_BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 713DD2807713B04AAB2C2C794723C2C1 /* Pod_Asset_BMPlayer.xcassets */; };
 		BEF23A07F7CBC570F1F514E6C570CD8A /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C861DE0559A3A4B973C225A8553DFD /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift */; };
 		C1F07CEA33B1A9D563E1B55541D7D854 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EB6728BAEE42D3E804DDACC3AF25C /* NVActivityIndicatorAnimationCubeTransition.swift */; };
 		C2B33B90CC665C2FA12235E555E175E4 /* NVActivityIndicatorAnimationBlank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC1BAF112F0730797E8BBD876792BB /* NVActivityIndicatorAnimationBlank.swift */; };
@@ -109,7 +110,6 @@
 		ED0516F24CC06C0164E3D649B6BC0E51 /* SwipeBack.h in Headers */ = {isa = PBXBuildFile; fileRef = EFA1356F53854745E51F0D8FC0FA6BED /* SwipeBack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6B1BFFD260FBEA62327C9D04D71FD74 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B8F4D12040748BAF96EDCF8DA5340F /* NVActivityIndicatorAnimationBallTrianglePath.swift */; };
 		F7A32E9002DDFB592022735E25C2525A /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAD5B5414620F5D8AD81350B9C5977 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift */; };
-		F994DA6FC0AD00FEBFB9865EE26574C0 /* BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BFDDCFB05C10F5F4272656E5DCC0000 /* BMPlayer.xcassets */; };
 		FFA960D9471B8E90B1C0F00B412831BE /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423F03BD2E794EF421D78C4DED702456 /* ConstraintMakerExtendable.swift */; };
 		FFEC67CA56BBF7AFA41DBC6B5BBA2903 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B7D97FA881198C7286D29313C166B /* NVActivityIndicatorAnimationBallRotate.swift */; };
 /* End PBXBuildFile section */
@@ -166,7 +166,6 @@
 		06E211A5BEA83C4901DCFE99BBAC696A /* SwipeBack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwipeBack-prefix.pch"; sourceTree = "<group>"; };
 		0A46C246C5CBD73778A105BD80C6B3A3 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBallClipRotateMultiple.swift; path = NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotateMultiple.swift; sourceTree = "<group>"; };
 		0AD6E44CB235727BEACC8EA5FB9F2ADC /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPriortizable.swift; path = Source/ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
-		0BFDDCFB05C10F5F4272656E5DCC0000 /* BMPlayer.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = BMPlayer.xcassets; sourceTree = "<group>"; };
 		0CE451F4F943DA02F4E693FDA4ABA8DC /* BMPlayerLayerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BMPlayerLayerView.swift; sourceTree = "<group>"; };
 		0D55B112EBDC7457CE2C760C60505425 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
 		0DBF4AFB76CE08665CB37E3C2DE7909C /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +221,7 @@
 		704D07CBAC40803153554A19635B7A04 /* NVActivityIndicatorAnimationLineScale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationLineScale.swift; path = NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScale.swift; sourceTree = "<group>"; };
 		707C0B0D6A2E975557AA0C364BCFE586 /* BMPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BMPlayer-dummy.m"; sourceTree = "<group>"; };
 		70B0C5DCE267F48307F0996D686BEC4D /* BMPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BMPlayer-umbrella.h"; sourceTree = "<group>"; };
+		713DD2807713B04AAB2C2C794723C2C1 /* Pod_Asset_BMPlayer.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Pod_Asset_BMPlayer.xcassets; sourceTree = "<group>"; };
 		733A63B18B1117F4469B70086B2BEC32 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7475D2CAEC8FE198BB85AA39B51193EC /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		7578DF6F44B3E5A1D3391982F7DBD43B /* NVActivityIndicatorAnimationBallGridPulse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NVActivityIndicatorAnimationBallGridPulse.swift; path = NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallGridPulse.swift; sourceTree = "<group>"; };
@@ -627,18 +627,9 @@
 		C940769833626DAADEAD8B0AC99C85F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D32B982DAC8CECDEF69D40681A0A82EA /* BMPlayer */,
+				E0041B8F4D5067DDDB749D62AE9F4CBD /* BMPlayer */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		D32B982DAC8CECDEF69D40681A0A82EA /* BMPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				0BFDDCFB05C10F5F4272656E5DCC0000 /* BMPlayer.xcassets */,
-			);
-			name = BMPlayer;
-			path = BMPlayer;
 			sourceTree = "<group>";
 		};
 		DD111F5EEC36F4582210AB8C780DCD9B /* Pods */ = {
@@ -650,6 +641,15 @@
 				001C259E12500D9FCD0B9FADFD059398 /* SwipeBack */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E0041B8F4D5067DDDB749D62AE9F4CBD /* BMPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				713DD2807713B04AAB2C2C794723C2C1 /* Pod_Asset_BMPlayer.xcassets */,
+			);
+			name = BMPlayer;
+			path = BMPlayer;
 			sourceTree = "<group>";
 		};
 		F94D5B61B480B302038C6B8190A06E92 /* Frameworks */ = {
@@ -715,7 +715,7 @@
 			buildPhases = (
 				48C9F2CB7222BAA3799B15DCE08747F8 /* Sources */,
 				15DAAFA26E1903F37D9AB3012996167F /* Frameworks */,
-				737041743B213900F35771BE65BE16F4 /* Resources */,
+				C71CC3B31AE779159E6C731F9B1B1BE5 /* Resources */,
 				E98A1D5AF0360E9E24A25FD2B0E4A199 /* Headers */,
 			);
 			buildRules = (
@@ -832,11 +832,11 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		737041743B213900F35771BE65BE16F4 /* Resources */ = {
+		C71CC3B31AE779159E6C731F9B1B1BE5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F994DA6FC0AD00FEBFB9865EE26574C0 /* BMPlayer.xcassets in Resources */,
+				BE8A0BBA631C9F34BBBF3B4B127D8877 /* Pod_Asset_BMPlayer.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
