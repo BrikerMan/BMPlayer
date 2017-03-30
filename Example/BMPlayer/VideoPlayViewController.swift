@@ -106,6 +106,7 @@ class VideoPlayViewController: UIViewController {
             break
         case (0,2):
             // 设置播放器属性，此情况下若提供了cover则先展示封面图，否则黑屏。点击播放后开始loading
+            BMPlayerConf.slowAndMirror  = true
             BMPlayerConf.shouldAutoPlay = false
             
         case (1,0):

@@ -252,8 +252,8 @@ open class BMPlayerLayerView: UIView {
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
         
+        playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
-        
         playerLayer!.videoGravity = videoGravity
         
         layer.addSublayer(playerLayer!)
