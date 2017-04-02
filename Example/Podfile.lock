@@ -2,14 +2,14 @@ PODS:
   - BMPlayer (0.8.1):
     - NVActivityIndicatorView (~> 3.5)
     - SnapKit (~> 3.2)
-  - NVActivityIndicatorView (3.5.1)
-  - Reveal-iOS-SDK (1.6.2)
+  - NVActivityIndicatorView (3.6.0)
+  - Reveal-SDK (7)
   - SnapKit (3.2.0)
   - SwipeBack (1.1.1)
 
 DEPENDENCIES:
   - BMPlayer (from `../`)
-  - Reveal-iOS-SDK
+  - Reveal-SDK
   - SwipeBack
 
 EXTERNAL SOURCES:
@@ -18,11 +18,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   BMPlayer: 8ccea6ecc9756fe942861687365ff333901e9388
-  NVActivityIndicatorView: 075563b3547445ebcff840e3297ce9dd4a23731f
-  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  NVActivityIndicatorView: c7c1c4300b418bd9ed06459e78d4df859ddbe31f
+  Reveal-SDK: 564657bc66c93d2718b1c0121cdebe99d354ddab
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwipeBack: d6759601b40da1f4161033feb30ab475d7d04322
 
-PODFILE CHECKSUM: 09a2933185c2b31b05301cb921973dc78b235625
+PODFILE CHECKSUM: c918fff43ccbf975b12b3e8a3e7ef860240eddab
 
 COCOAPODS: 1.2.0

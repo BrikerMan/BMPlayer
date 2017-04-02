@@ -701,18 +701,14 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         if isSliderSliding {
             return
         }
-        controlView.currentTimeLabel.text = formatSecondsToString(currentTime)
-        controlView.totalTimeLabel.text = formatSecondsToString(totalTime)
-        controlView.timeSlider.value    = Float(currentTime) / Float(totalTime)
         
+        controlView.playTimeDidChange(currentTime: currentTime, totalTime: totalTime, subtitle: resource.subtitle)
+
         if playTimeDidChange != nil {
             DispatchQueue.global(qos: .utility).async {
-                self.playTimeDidChange!(currentTime, totalTime)
+                self.playTimeDidChange?(currentTime, totalTime)
             }
         }
-        
-        print(subtitles.search(for: currentTime))
-        
     }
 }
 

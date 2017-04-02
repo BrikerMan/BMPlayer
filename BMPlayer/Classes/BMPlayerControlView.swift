@@ -51,7 +51,8 @@ public class BMPlayerControlView: UIView {
     var slowButton       = UIButton(type: UIButtonType.custom)
     var mirrorButton     = UIButton(type: UIButtonType.custom)
     
-    
+    var subtitleLabel    = UILabel()
+    var subtitleLabelBack = UIView()
     
     /// 中间部分
     var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -206,6 +207,24 @@ public class BMPlayerControlView: UIView {
         self.maskImageView.isHidden = true
     }
     
+    fileprivate func showSubtile(from subtitle: BMSubtitles, at time: TimeInterval) {
+        if let group = subtitle.search(for: time) {
+            subtitleLabelBack.isHidden = false
+            subtitleLabel.attributedText = NSAttributedString(string: group.text, attributes: subtitle.attributes)
+        } else {
+            subtitleLabelBack.isHidden = true
+        }
+    }
+    
+    func playTimeDidChange(currentTime: TimeInterval, totalTime: TimeInterval, subtitle: BMSubtitles?) {
+        currentTimeLabel.text = formatSecondsToString(currentTime)
+        totalTimeLabel.text = formatSecondsToString(totalTime)
+        timeSlider.value    = Float(currentTime) / Float(totalTime)
+        if let subtitle = subtitle {
+            showSubtile(from: subtitle, at: currentTime)
+        }
+    }
+    
     func prepareChooseDefinitionView(_ items:[BMPlayerResourceDefinition], index: Int) {
         self.videoItems = items
         for item in chooseDefitionView.subviews {
@@ -278,6 +297,19 @@ public class BMPlayerControlView: UIView {
     
     fileprivate func initUI() {
         // 主体
+        subtitleLabel.numberOfLines = 0
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.textColor = UIColor.white
+        subtitleLabel.adjustsFontSizeToFitWidth = true
+        subtitleLabel.minimumScaleFactor = 0.5
+        subtitleLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        subtitleLabelBack.layer.cornerRadius = 2
+        subtitleLabelBack.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        subtitleLabelBack.addSubview(subtitleLabel)
+        subtitleLabelBack.isHidden = true
+        
+        addSubview(subtitleLabelBack)
         addSubview(mainMaskView)
         mainMaskView.addSubview(topMaskView)
         mainMaskView.addSubview(bottomMaskView)
@@ -509,23 +541,30 @@ public class BMPlayerControlView: UIView {
             make.centerY.equalTo(mainMaskView.snp.centerY)
             make.width.height.equalTo(50)
         }
+        
+        subtitleLabelBack.snp.makeConstraints {
+            $0.bottom.equalTo(snp.bottom).offset(-5)
+            $0.centerX.equalTo(snp.centerX)
+            $0.width.lessThanOrEqualTo(snp.width).offset(-10)
+        }
+        
+        subtitleLabel.snp.makeConstraints {
+            $0.left.equalTo(subtitleLabelBack.snp.left).offset(10)
+            $0.right.equalTo(subtitleLabelBack.snp.right).offset(-10)
+            $0.top.equalTo(subtitleLabelBack.snp.top).offset(2)
+            $0.bottom.equalTo(subtitleLabelBack.snp.bottom).offset(-2)
+        }
     }
     
     fileprivate func BMImageResourcePath(_ fileName: String) -> UIImage? {
         let bundle = Bundle(for: self.classForCoder)
         let image  = UIImage(named: fileName, in: bundle, compatibleWith: nil)
         return image
-//        let podBundle = Bundle(for: self.classForCoder)
-//        if let bundleURL = podBundle.url(forResource: "BMPlayer", withExtension: "bundle") {
-//            if let bundle = Bundle(url: bundleURL) {
-//                let image = UIImage(named: fileName, in: bundle, compatibleWith: nil)
-//                return image
-//            }else {
-//                assertionFailure("Could not load the bundle")
-//            }
-//        }else {
-//            assertionFailure("Could not create a path to the bundle")
-//        }
-//        return nil
+    }
+    
+    fileprivate func formatSecondsToString(_ secounds: TimeInterval) -> String {
+        let Min = Int(secounds / 60)
+        let Sec = Int(secounds.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d", Min, Sec)
     }
 }

@@ -102,8 +102,15 @@ class VideoPlayViewController: UIViewController {
         switch (index.section,index.row) {
     
         case (0,0):
-            //            player.seek(22)
-            let asset = BMPlayerResource(url: URL(string: "http://cntv.vod.cdn.myqcloud.com/flash/mp4video40/TMS/2015/03/17/29f9f25a356a4e58bc1514e8c3b3e6e1_h264418000nero_aac32-9.mp4")!, name: "风格互换：原来你我相爱")
+            let str = Bundle.main.url(forResource: "SubtitleDemo", withExtension: "srt")!
+            let url =  URL(string: "http://cntv.vod.cdn.myqcloud.com/flash/mp4video40/TMS/2015/03/17/29f9f25a356a4e58bc1514e8c3b3e6e1_h264418000nero_aac32-9.mp4")!
+           
+            let subtitle = BMSubtitles(url: str)
+            
+            let asset = BMPlayerResource(name: "风格互换：原来你我相爱",
+                                         definitions: [BMPlayerResourceDefinition(url: url, definition: "480p")],
+                                         cover: nil,
+                                         subtitles: subtitle)
             player.setVideo(resource: asset)
             changeButton.isHidden = false
             

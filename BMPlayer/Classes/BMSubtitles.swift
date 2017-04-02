@@ -9,6 +9,9 @@
 import Foundation
 
 public class BMSubtitles {
+    public var groups: [Group] = []
+    public var attributes: [String : Any]?
+    
     public struct Group: CustomStringConvertible {
         var index: Int
         var start: TimeInterval
@@ -36,12 +39,10 @@ public class BMSubtitles {
         }
         
         public var description: String {
-            return "Subtile Group ==========index : \(index),\nstart : \(start)\nend   :\(end)\ntext  :\(text)"
+            return "Subtile Group ==========\nindex : \(index),\nstart : \(start)\nend   :\(end)\ntext  :\(text)"
         }
     }
     
-    
-    var groups: [Group] = []
     
     public init(url: URL, encoding: String.Encoding? = nil) {
         DispatchQueue.global(qos: .background).async {
@@ -105,8 +106,8 @@ public class BMSubtitles {
             scanner.scanUpTo("\r\n\r\n", into: &textString)
             
             if let text = textString {
-                textString = text.replacingOccurrences(of: "\r\n", with: " ") as NSString
                 textString = text.trimmingCharacters(in: .whitespaces) as NSString
+                textString = text.replacingOccurrences(of: "\r", with: "") as NSString
             }
             
             if let indexString = indexString,
