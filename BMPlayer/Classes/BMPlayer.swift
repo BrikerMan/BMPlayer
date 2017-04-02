@@ -637,8 +637,6 @@ open class BMPlayer: UIView {
         controlView.showLoader()
         self.layoutIfNeeded()
     }
-    
-    let subtitles = BMSubtitles(url: URL(string: "http://localhost:8000/123.srt")!)
 }
 
 extension BMPlayer: BMPlayerLayerViewDelegate {
