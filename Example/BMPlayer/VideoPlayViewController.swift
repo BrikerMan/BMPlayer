@@ -107,7 +107,7 @@ class VideoPlayViewController: UIViewController {
            
             let subtitle = BMSubtitles(url: str)
             
-            let asset = BMPlayerResource(name: "风格互换：原来你我相爱",
+            let asset = BMPlayerResource(name: "Video Name Here",
                                          definitions: [BMPlayerResourceDefinition(url: url, definition: "480p")],
                                          cover: nil,
                                          subtitles: subtitle)

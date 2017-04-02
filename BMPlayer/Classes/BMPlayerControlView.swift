@@ -545,7 +545,7 @@ public class BMPlayerControlView: UIView {
         subtitleLabelBack.snp.makeConstraints {
             $0.bottom.equalTo(snp.bottom).offset(-5)
             $0.centerX.equalTo(snp.centerX)
-            $0.width.lessThanOrEqualTo(snp.width).offset(-10)
+            $0.width.lessThanOrEqualTo(snp.width).offset(-10).priority(750)
         }
         
         subtitleLabel.snp.makeConstraints {
