@@ -18,21 +18,8 @@ import UIKit
 }
 
 
-public protocol BMPlayerControlViewDelegate: class {
-    /**
-     call this mehod when user choose to change definetion
-     
-     - parameter index: definition item index
-     */
-    func controlViewDidChooseDefition(_ index: Int)
-    
-    /**
-     call this method when user press on replay
-     */
-    func controlViewDidPressOnReply()
-}
 
-
+@available(*, deprecated: 0.8.0)
 public protocol BMPlayerCustomControlView  {
     
     weak var delegate: BMPlayerControlViewDelegate? { get set }

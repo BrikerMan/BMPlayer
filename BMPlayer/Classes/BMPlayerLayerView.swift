@@ -187,8 +187,6 @@ open class BMPlayerLayerView: UIView {
     }
     
     open func prepareToDeinit() {
-        self.timer?.invalidate()
-        self.playerItem = nil
         self.resetPlayer()
     }
     

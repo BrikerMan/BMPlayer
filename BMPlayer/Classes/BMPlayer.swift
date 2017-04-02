@@ -93,6 +93,9 @@ open class BMPlayer: UIView {
     //Closure fired when play state chaged
     open var playStateDidChange:((Bool) -> Void)?
     
+    open var avPlayer: AVPlayer? {
+        return playerLayer?.player
+    }
     
     fileprivate var resource: BMPlayerResource!
     
@@ -100,9 +103,9 @@ open class BMPlayer: UIView {
     
     fileprivate var playerLayer: BMPlayerLayerView?
     
-    fileprivate var controlView: BMPlayerCustomControlView!
+    fileprivate var controlView: BMPlayerControlView!
     
-    fileprivate var customControllView: BMPlayerCustomControlView?
+    fileprivate var customControllView: BMPlayerControlView?
     
     fileprivate var isFullScreen:Bool {
         get {
@@ -132,7 +135,7 @@ open class BMPlayer: UIView {
     fileprivate var isSlowed        = false
     fileprivate var isMirrored      = false
     fileprivate var isPlayToTheEnd  = false {
-        didSet { controlView.playerReplayButton?.isHidden = !isPlayToTheEnd }
+        didSet { controlView.centerButton.isHidden = !isPlayToTheEnd }
     }
     
     //视频画面比例
@@ -152,7 +155,7 @@ open class BMPlayer: UIView {
     open func setVideo(resource: BMPlayerResource, definitionIndex: Int = 0) {
         isURLSet = false
         self.resource = resource
-        controlView.playerTitleLabel?.text = resource.name
+        controlView.titleLabel.text = resource.name
         currentDefinition           = definitionIndex
         
         if resource.definitions.count > 1 {
@@ -167,38 +170,6 @@ open class BMPlayer: UIView {
             controlView.showCover(url: resource.cover)
             controlView.hideLoader()
         }
-    }
-    
-    /**
-     直接使用URL播放
-     
-     - parameter url:   视频URL
-     - parameter title: 视频标题
-     */
-    @available(*, deprecated: 0.8.0, renamed: "setVideo(resource:)")
-    open func playWithURL(_ url: URL, title: String = "") {
-        let asset = BMPlayerResource(url: url, name: title, cover: nil)
-        setVideo(resource: asset)
-    }
-    
-    /**
-     播放可切换清晰度的视频
-     
-     - parameter items: 清晰度列表
-     - parameter title: 视频标题
-     - parameter definitionIndex: 起始清晰度
-     */
-    @available(*, deprecated: 0.8.0, renamed: "setVideo(resource:definitionIndex:)")
-    open func playWithPlayerItem(_ item:BMPlayerItem, definitionIndex: Int = 0) {
-        var models: [BMPlayerResourceDefinition] = []
-        
-        for def in item.resource {
-            let model = BMPlayerResourceDefinition(url: def.playURL, definition: def.definitionName)
-            models.append(model)
-        }
-        
-        let asset = BMPlayerResource(name: item.title, definitions: models, cover: URL(string: item.cover))
-        setVideo(resource: asset)
     }
     
     /**
@@ -224,7 +195,7 @@ open class BMPlayer: UIView {
             isURLSet                = true
         }
         
-        controlView.playerPlayButton?.isSelected = true
+        controlView.playButton.isSelected = true
         playerLayer?.play()
         isPauseByUser = false
     }
@@ -235,7 +206,7 @@ open class BMPlayer: UIView {
      - parameter allow: should allow to response `autoPlay` function
      */
     open func pause(allowAutoPlay allow: Bool = false) {
-        controlView.playerPlayButton?.isSelected = false
+        controlView.playButton.isSelected = false
         playerLayer?.pause()
         isPauseByUser = !allow
     }
@@ -306,9 +277,9 @@ open class BMPlayer: UIView {
         if let player = playerLayer {
             if player.isPlaying {
                 autoFadeOutControlBar()
-                controlView.playerPlayButton?.isSelected = true
+                controlView.playButton.isSelected = true
             } else {
-                controlView.playerPlayButton?.isSelected = false
+                controlView.playButton.isSelected = false
             }
             if isPlayingCache != player.isPlaying && playStateDidChange != nil {
                 isPlayingCache = player.isPlaying
@@ -445,8 +416,8 @@ open class BMPlayer: UIView {
             
             let targetTime      = formatSecondsToString(sumTime)
             
-            controlView.playerTimeSlider?.value      = Float(sumTime / totalDuration)
-            controlView.playerCurrentTimeLabel?.text       = targetTime
+            controlView.timeSlider.value      = Float(sumTime / totalDuration)
+            controlView.currentTimeLabel.text = targetTime
             controlView.showSeekToView(sumTime, isAdd: value > 0)
         }
     }
@@ -495,11 +466,11 @@ open class BMPlayer: UIView {
         if isSlowed {
             self.playerLayer?.player?.rate = 1.0
             self.isSlowed = false
-            self.controlView.playerSlowButton?.setTitle("慢放", for: UIControlState())
+            self.controlView.slowButton.setTitle("慢放", for: UIControlState())
         } else {
             self.playerLayer?.player?.rate = 0.5
             self.isSlowed = true
-            self.controlView.playerSlowButton?.setTitle("正常", for: UIControlState())
+            self.controlView.slowButton.setTitle("正常", for: UIControlState())
         }
     }
     
@@ -508,18 +479,18 @@ open class BMPlayer: UIView {
         if isMirrored {
             self.playerLayer?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             self.isMirrored = false
-            self.controlView.playerMirrorButton?.setTitle("镜像", for: UIControlState())
+            self.controlView.mirrorButton.setTitle("镜像", for: UIControlState())
         } else {
             self.playerLayer?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             self.isMirrored = true
-            self.controlView.playerMirrorButton?.setTitle("正常", for: UIControlState())
+            self.controlView.mirrorButton.setTitle("正常", for: UIControlState())
         }    }
     
     @objc fileprivate func replayButtonPressed() {
         playerLayer?.seekToTime(0, completionHandler: {
             
         })
-        controlView.playerReplayButton?.isHidden = true
+        controlView.centerButton.isHidden = true
         isPlayToTheEnd = false
         playerLayer?.isPlaying = true
         self.play()
@@ -587,7 +558,7 @@ open class BMPlayer: UIView {
         preparePlayer()
     }
     
-    public convenience init (customControllView: BMPlayerCustomControlView?) {
+    public convenience init (customControllView: BMPlayerControlView?) {
         self.init(frame:CGRect.zero)
         self.customControllView = customControllView
         initUI()
@@ -618,10 +589,10 @@ open class BMPlayer: UIView {
             controlView =  BMPlayerControlView()
         }
         
-        addSubview(controlView.getView)
+        addSubview(controlView)
         controlView.updateUI(isFullScreen)
         controlView.delegate = self
-        controlView.getView.snp.makeConstraints { (make) in
+        controlView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
         
@@ -633,15 +604,15 @@ open class BMPlayer: UIView {
     }
     
     fileprivate func initUIData() {
-        controlView.playerPlayButton?.addTarget(self, action: #selector(self.playButtonPressed(_:)), for: UIControlEvents.touchUpInside)
-        controlView.playerFullScreenButton?.addTarget(self, action: #selector(self.fullScreenButtonPressed(_:)), for: UIControlEvents.touchUpInside)
-        controlView.playerBackButton?.addTarget(self, action: #selector(self.backButtonPressed(_:)), for: UIControlEvents.touchUpInside)
-        controlView.playerTimeSlider?.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), for: UIControlEvents.touchDown)
-        controlView.playerTimeSlider?.addTarget(self, action: #selector(progressSliderValueChanged(_:)), for: UIControlEvents.valueChanged)
-        controlView.playerTimeSlider?.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), for: [UIControlEvents.touchUpInside,UIControlEvents.touchCancel, UIControlEvents.touchUpOutside])
-        controlView.playerSlowButton?.addTarget(self, action: #selector(slowButtonPressed(_:)), for: .touchUpInside)
-        controlView.playerMirrorButton?.addTarget(self, action: #selector(mirrorButtonPressed(_:)), for: .touchUpInside)
-        controlView.playerRatioButton?.addTarget(self, action: #selector(self.ratioButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        controlView.playButton.addTarget(self, action: #selector(self.playButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        controlView.fullScreenButton.addTarget(self, action: #selector(self.fullScreenButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        controlView.backButton.addTarget(self, action: #selector(self.backButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)), for: UIControlEvents.touchDown)
+        controlView.timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)), for: UIControlEvents.valueChanged)
+        controlView.timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)), for: [UIControlEvents.touchUpInside,UIControlEvents.touchCancel, UIControlEvents.touchUpOutside])
+        controlView.slowButton.addTarget(self, action: #selector(slowButtonPressed(_:)), for: .touchUpInside)
+        controlView.mirrorButton.addTarget(self, action: #selector(mirrorButtonPressed(_:)), for: .touchUpInside)
+        controlView.ratioButton.addTarget(self, action: #selector(self.ratioButtonPressed(_:)), for: UIControlEvents.touchUpInside)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
     }
@@ -666,6 +637,8 @@ open class BMPlayer: UIView {
         controlView.showLoader()
         self.layoutIfNeeded()
     }
+    
+    let subtitles = BMSubtitles(url: URL(string: "http://localhost:8000/123.srt")!)
 }
 
 extension BMPlayer: BMPlayerLayerViewDelegate {
@@ -679,7 +652,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         delegate?.bmPlayer(player: self, loadedTimeDidChange: loadedDuration, totalDuration: totalDuration)
         
         self.totalDuration = totalDuration
-        controlView.playerProgressView?.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
+        controlView.progressView.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
     
     public func bmPlayer(player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState) {
@@ -707,7 +680,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             
         case BMPlayerState.playedToTheEnd:
             isPlayToTheEnd = true
-            controlView.playerPlayButton?.isSelected = false
+//            controlView.playButton?.isSelected = false
             controlView.showPlayToTheEndView()
             showControlViewAnimated(autoHide: false)
             cancelAutoFadeOutControlBar()
@@ -718,6 +691,8 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         tapGesture.isEnabled =  state != .playedToTheEnd
     }
     
+    
+    
     public func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
         delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
@@ -726,16 +701,18 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         if isSliderSliding {
             return
         }
-        controlView.playerCurrentTimeLabel?.text = formatSecondsToString(currentTime)
-        controlView.playerTotalTimeLabel?.text = formatSecondsToString(totalTime)
-        
-        controlView.playerTimeSlider?.value    = Float(currentTime) / Float(totalTime)
+        controlView.currentTimeLabel.text = formatSecondsToString(currentTime)
+        controlView.totalTimeLabel.text = formatSecondsToString(totalTime)
+        controlView.timeSlider.value    = Float(currentTime) / Float(totalTime)
         
         if playTimeDidChange != nil {
             DispatchQueue.global(qos: .utility).async {
                 self.playTimeDidChange!(currentTime, totalTime)
             }
         }
+        
+        print(subtitles.search(for: currentTime))
+        
     }
 }
 

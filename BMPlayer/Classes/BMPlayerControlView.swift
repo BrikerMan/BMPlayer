@@ -9,27 +9,23 @@
 import UIKit
 import NVActivityIndicatorView
 
+public protocol BMPlayerControlViewDelegate: class {
+    /**
+     call this mehod when user choose to change definetion
+     
+     - parameter index: definition item index
+     */
+    func controlViewDidChooseDefition(_ index: Int)
+    
+    /**
+     call this method when user press on replay
+     */
+    func controlViewDidPressOnReply()
+}
 
-class BMPlayerControlView: UIView, BMPlayerCustomControlView {
+public class BMPlayerControlView: UIView {
     
     weak var delegate: BMPlayerControlViewDelegate?
-    var playerTitleLabel        : UILabel?  { get { return  titleLabel } }
-    var playerCurrentTimeLabel  : UILabel?  { get { return  currentTimeLabel } }
-    var playerTotalTimeLabel    : UILabel?  { get { return  totalTimeLabel } }
-    
-    var playerPlayButton        : UIButton? { get { return  playButton } }
-    var playerFullScreenButton  : UIButton? { get { return  fullScreenButton } }
-    var playerBackButton        : UIButton? { get { return  backButton } }
-    var playerReplayButton      : UIButton? { get { return  centerButton } }
-    var playerRatioButton       : UIButton? { get { return  ratioButton }}
-    
-    var playerTimeSlider        : UISlider? { get { return  timeSlider } }
-    var playerProgressView      : UIProgressView? { get { return  progressView } }
-    
-    var playerSlowButton        : UIButton? { get { return  slowButton } }
-    var playerMirrorButton      : UIButton? { get { return  mirrorButton } }
-    
-    var getView: UIView { return self }
     
     /// 主体
     var mainMaskView    = UIView()
@@ -38,10 +34,10 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
     var maskImageView   = UIImageView()
     
     /// 顶部
-    var backButton  = UIButton(type: UIButtonType.custom)
-    var titleLabel  = UILabel()
+    var backButton         = UIButton(type : UIButtonType.custom)
+    var titleLabel         = UILabel()
     var chooseDefitionView = UIView()
-    var ratioButton = UIButton(type: .custom)       //调整视频画面比例按钮 Added by toodoo
+    var ratioButton        = UIButton(type : .custom)
     
     /// 底部
     var currentTimeLabel = UILabel()
@@ -273,7 +269,7 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
         addSnapKitConstraint()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUI()
         addSnapKitConstraint()
@@ -531,22 +527,5 @@ class BMPlayerControlView: UIView, BMPlayerCustomControlView {
 //            assertionFailure("Could not create a path to the bundle")
 //        }
 //        return nil
-    }
-}
-
-open class BMTimeSlider: UISlider {
-    override open func trackRect(forBounds bounds: CGRect) -> CGRect {
-        let trackHeigt:CGFloat = 2
-        let position = CGPoint(x: 0 , y: 14)
-        let customBounds = CGRect(origin: position, size: CGSize(width: bounds.size.width, height: trackHeigt))
-        super.trackRect(forBounds: customBounds)
-        return customBounds
-    }
-    
-    override open func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
-        let rect = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
-        let newx = rect.origin.x - 10
-        let newRect = CGRect(x: newx, y: 0, width: 30, height: 30)
-        return newRect
     }
 }

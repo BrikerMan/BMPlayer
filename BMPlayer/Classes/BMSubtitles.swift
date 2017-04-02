@@ -121,14 +121,3 @@ public class BMSubtitles {
         return groups
     }
 }
-
-extension BMPlayer {
-    public func showSubtile(url: URL, encoding: String.Encoding? = nil) {
-        let subtile = BMSubtitles(url: url, encoding: encoding)
-        
-    }
-    
-    func show(subtile: BMSubtitles) {
-        
-    }
-}
