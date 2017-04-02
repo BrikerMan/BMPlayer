@@ -18,6 +18,8 @@ class VideoPlayViewController: UIViewController {
     
     var index: IndexPath!
     
+    var changeButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPlayerManager()
@@ -59,17 +61,16 @@ class VideoPlayViewController: UIViewController {
         // player.panGesture.isEnabled = false
         
         
-        let button = UIButton()
-        button.setTitle("Change Video", for: .normal)
-        button.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
-        button.backgroundColor = UIColor.red.withAlphaComponent(0.7)
-        view.addSubview(button)
+        changeButton.setTitle("Change Video", for: .normal)
+        changeButton.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
+        changeButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
+        view.addSubview(changeButton)
         
-        button.snp.makeConstraints { (make) in
+        changeButton.snp.makeConstraints { (make) in
             make.top.equalTo(player.snp.bottom).offset(30)
             make.left.equalTo(view.snp.left).offset(10)
         }
-        
+        changeButton.isHidden = true
         self.view.layoutIfNeeded()
     }
     
@@ -104,7 +105,7 @@ class VideoPlayViewController: UIViewController {
             //            player.seek(22)
             let asset = BMPlayerResource(url: URL(string: "http://cntv.vod.cdn.myqcloud.com/flash/mp4video40/TMS/2015/03/17/29f9f25a356a4e58bc1514e8c3b3e6e1_h264418000nero_aac32-9.mp4")!, name: "风格互换：原来你我相爱")
             player.setVideo(resource: asset)
-            
+            changeButton.isHidden = false
             
         case (0,1):
             let asset = self.preparePlayerItem()
