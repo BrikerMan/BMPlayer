@@ -150,6 +150,7 @@ open class BMPlayer: UIView {
      - parameter definitionIndex: starting definition index, default start with the first definition
      */
     open func setVideo(resource: BMPlayerResource, definitionIndex: Int = 0) {
+        isURLSet = false
         self.resource = resource
         controlView.playerTitleLabel?.text = resource.name
         currentDefinition           = definitionIndex
@@ -159,6 +160,7 @@ open class BMPlayer: UIView {
         }
         
         if BMPlayerConf.shouldAutoPlay {
+            isURLSet = true
             let asset = resource.definitions[definitionIndex]
             playerLayer?.playAsset(asset: asset.avURLAsset)
         } else {

@@ -57,14 +57,49 @@ class VideoPlayViewController: UIViewController {
         }
         
         // player.panGesture.isEnabled = false
+        
+        
+        let button = UIButton()
+        button.setTitle("Change Video", for: .normal)
+        button.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
+        button.backgroundColor = UIColor.red.withAlphaComponent(0.7)
+        view.addSubview(button)
+        
+        button.snp.makeConstraints { (make) in
+            make.top.equalTo(player.snp.bottom).offset(30)
+            make.left.equalTo(view.snp.left).offset(10)
+        }
+        
         self.view.layoutIfNeeded()
     }
     
     
-    // 设置播放资源
+    @objc fileprivate func onChangeVideoButtonPressed() {
+        let urls = ["http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
+                    "http://baobab.wdjcdn.com/1456117847747a_x264.mp4",
+                    "http://baobab.wdjcdn.com/14525705791193.mp4",
+                    "http://baobab.wdjcdn.com/1456459181808howtoloseweight_x264.mp4",
+                    "http://baobab.wdjcdn.com/1455968234865481297704.mp4",
+                    "http://baobab.wdjcdn.com/1455782903700jy.mp4",
+                    "http://baobab.wdjcdn.com/14564977406580.mp4",
+                    "http://baobab.wdjcdn.com/1456316686552The.mp4",
+                    "http://baobab.wdjcdn.com/1456480115661mtl.mp4",
+                    "http://baobab.wdjcdn.com/1456665467509qingshu.mp4",
+                    "http://baobab.wdjcdn.com/1455614108256t(2).mp4",
+                    "http://baobab.wdjcdn.com/1456317490140jiyiyuetai_x264.mp4",
+                    "http://baobab.wdjcdn.com/1455888619273255747085_x264.mp4",
+                    "http://baobab.wdjcdn.com/1456734464766B(13).mp4",
+                    "http://baobab.wdjcdn.com/1456653443902B.mp4",
+                    "http://baobab.wdjcdn.com/1456231710844S(24).mp4"]
+        let random = Int(arc4random_uniform(UInt32(urls.count)))
+        let asset = BMPlayerResource(url: URL(string: urls[random])!, name: "Video @\(random)")
+        player.setVideo(resource: asset)
+    }
+    
+    
     func setupPlayerResource() {
         switch (index.section,index.row) {
-        // 普通播放器
+    
         case (0,0):
             //            player.seek(22)
             let asset = BMPlayerResource(url: URL(string: "http://cntv.vod.cdn.myqcloud.com/flash/mp4video40/TMS/2015/03/17/29f9f25a356a4e58bc1514e8c3b3e6e1_h264418000nero_aac32-9.mp4")!, name: "风格互换：原来你我相爱")
