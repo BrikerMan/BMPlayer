@@ -24,6 +24,6 @@ class BMPlayerClearityChooseButton: UIButton {
         self.layer.cornerRadius = 2
         self.layer.borderWidth  = 1
         self.layer.borderColor  = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8 ).cgColor
-        self.setTitleColor(UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9 ), for: UIControlState())
+        self.setTitleColor(UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9 ), for: .normal)
     }
 }

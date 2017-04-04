@@ -32,7 +32,7 @@ open class BMPlayerManager {
     
     open var topBarShowInCase = BMPlayerTopBarShowCase.always
     
-    open var animateDelayTimeInterval = TimeInterval(4)
+    open var animateDelayTimeInterval = TimeInterval(5)
     
     /// should show log
     open var allowLog  = false

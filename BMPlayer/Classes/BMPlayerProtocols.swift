@@ -24,4 +24,11 @@ extension BMPlayer {
         let Sec = Int(secounds.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d", Min, Sec)
     }
+    
+    
+//    static func imageResourcePath(_ fileName: String) -> UIImage? {
+//        let bundle = Bundle(for: self.classForCoder)
+//        let image  = UIImage(named: fileName, in: bundle, compatibleWith: nil)
+//        return image
+//    }
 }

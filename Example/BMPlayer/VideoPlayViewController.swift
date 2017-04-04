@@ -31,7 +31,7 @@ class VideoPlayViewController: UIViewController {
      prepare playerView
      */
     func preparePlayer() {
-        player = BMPlayer()
+        player = BMPlayer(customControllView: BMPlayerCustomControlView())
         view.addSubview(player)
         player.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top)
@@ -100,7 +100,7 @@ class VideoPlayViewController: UIViewController {
     
         case (0,0):
             let str = Bundle.main.url(forResource: "SubtitleDemo", withExtension: "srt")!
-            let url =  URL(string: "http://cntv.vod.cdn.myqcloud.com/flash/mp4video40/TMS/2015/03/17/29f9f25a356a4e58bc1514e8c3b3e6e1_h264418000nero_aac32-9.mp4")!
+            let url =  URL(string: "http://baobab.wdjcdn.com/1456117847747a_x264.mp4")!
            
             let subtitle = BMSubtitles(url: str)
             
