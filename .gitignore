@@ -1,7 +1,7 @@
-# OS X
+
 .DS_Store
 
-# Xcode
+
 build/
 *.pbxuser
 !default.pbxuser
@@ -22,5 +22,7 @@ DerivedData
 # Bundler
 .bundle
 
-Carthage
+Carthage/*
 Carthage/Checkouts/*
+/Carthage/Checkouts/SnapKit
+/Carthage/Checkouts/NVActivityIndicatorView
