@@ -27,14 +27,22 @@ import NVActivityIndicatorView
      */
     func controlView(controlView: BMPlayerControlView, didPressButton button: UIButton)
     
-    
+    /**
+     call when slider action trigged
+     
+     - parameter controlView: control view
+     - parameter slider:      progress slider
+     - parameter event:       action
+     */
     func controlView(controlView: BMPlayerControlView, slider: UISlider, onSliderEvent event: UIControlEvents)
     
+    /**
+     call when needs to change playback rate
+     
+     - parameter controlView: control view
+     - parameter rate:        playback rate
+     */
     @objc optional func controlView(controlView: BMPlayerControlView, didChangeVideoPlaybackRate rate: Float)
-}
-
-extension BMPlayerControlViewDelegate {
-    public func controlView(controlView: BMPlayerControlView, didChangeVideoAspectRatio: BMPlayerAspectRatio) { }    
 }
 
 open class BMPlayerControlView: UIView {
