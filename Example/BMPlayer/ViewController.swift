@@ -24,8 +24,7 @@ class ViewController: UIViewController {
             "topBarShow - None",
             "TintColor - Red"
         ],[
-            "Custom AVLayerVideoGravity",
-            "Disable Volume/Brightness controls",
+            "Custom Control UI"
         ]
     
     ]

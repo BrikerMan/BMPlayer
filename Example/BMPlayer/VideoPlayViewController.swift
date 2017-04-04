@@ -31,7 +31,13 @@ class VideoPlayViewController: UIViewController {
      prepare playerView
      */
     func preparePlayer() {
-        player = BMPlayer(customControllView: BMPlayerCustomControlView())
+        var controller: BMPlayerControlView? = nil
+        
+        if index.row == 0 && index.section == 2 {
+            controller = BMPlayerCustomControlView()
+        }
+        
+        player = BMPlayer(customControllView: controller)
         view.addSubview(player)
         player.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top)
