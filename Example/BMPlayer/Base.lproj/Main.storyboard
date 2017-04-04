@@ -86,51 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aN6-of-i5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695" y="440"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="VIA-IK-gJj">
-            <objects>
-                <viewController id="rLt-vJ-k4R" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P7M-uM-mUm"/>
-                        <viewControllerLayoutGuide type="bottom" id="XST-er-bYh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ePe-66-6yt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwv-rq-IN9">
-                                <rect key="frame" x="119.5" y="621" width="137" height="26"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For more information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHM-Tc-oJI">
-                                        <rect key="frame" x="5" y="5" width="127" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.99607843159999998" green="0.8627451062" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="UHM-Tc-oJI" secondAttribute="bottom" constant="5" id="IMc-Mw-VxW"/>
-                                    <constraint firstAttribute="trailing" secondItem="UHM-Tc-oJI" secondAttribute="trailing" constant="5" id="nK0-Is-tWP"/>
-                                    <constraint firstItem="UHM-Tc-oJI" firstAttribute="leading" secondItem="Cwv-rq-IN9" secondAttribute="leading" constant="5" id="urB-O0-NqY"/>
-                                    <constraint firstItem="UHM-Tc-oJI" firstAttribute="top" secondItem="Cwv-rq-IN9" secondAttribute="top" constant="5" id="xAt-i1-cJj"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Cwv-rq-IN9" secondAttribute="trailing" constant="20" id="9NE-Y9-UFn"/>
-                            <constraint firstItem="XST-er-bYh" firstAttribute="top" secondItem="Cwv-rq-IN9" secondAttribute="bottom" constant="20" id="DBZ-KV-11I"/>
-                            <constraint firstItem="Cwv-rq-IN9" firstAttribute="centerX" secondItem="ePe-66-6yt" secondAttribute="centerX" id="JfZ-VL-aq9"/>
-                            <constraint firstItem="Cwv-rq-IN9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ePe-66-6yt" secondAttribute="leading" constant="20" id="zhj-uD-003"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mqZ-7w-BSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2206" y="440"/>
+            <point key="canvasLocation" x="1718" y="311"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gn9-0c-Swe">

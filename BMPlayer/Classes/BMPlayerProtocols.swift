@@ -8,11 +8,20 @@
 
 import UIKit
 
-@available(*, deprecated: 0.8.0)
-@objc public protocol BMPlayerItemDefinitionProtocol {
-    /// 视频URL
-    var playURL     : URL { get set }
-    
-    /// 清晰度名称，UI上展示，如高清，超清
-    var definitionName : String { get set }
+extension BMPlayerControlView {
+    public enum ButtonType: Int {
+        case play       = 101
+        case pause      = 102
+        case back       = 103
+        case fullscreen = 105
+        case replay     = 106
+    }
+}
+
+extension BMPlayer {
+    static func formatSecondsToString(_ secounds: TimeInterval) -> String {
+        let Min = Int(secounds / 60)
+        let Sec = Int(secounds.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d", Min, Sec)
+    }
 }

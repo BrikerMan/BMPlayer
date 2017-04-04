@@ -39,22 +39,18 @@ open class BMPlayerLayerView: UIView {
         return nil
     }()
     
-
+    
     open var videoGravity = AVLayerVideoGravityResizeAspect {
         didSet {
             self.playerLayer?.videoGravity = videoGravity
         }
     }
     
-    open var isPlaying: Bool {
-        get {
-            if let player = player {
-                return player.rate > 0.0
+    open var isPlaying: Bool = false {
+        didSet {
+            if oldValue != isPlaying {
+                delegate?.bmPlayer(player: self, playerIsPlaying: isPlaying)
             }
-            return false
-        }
-        set {
-            self.isPlayingCached = isPlaying
         }
     }
     
@@ -66,14 +62,6 @@ open class BMPlayerLayerView: UIView {
     
     /// 计时器
     var timer       : Timer?
-    
-    fileprivate var isPlayingCached = false {
-        didSet {
-            if isPlayingCached != oldValue {
-                delegate?.bmPlayer(player: self, playerIsPlaying: isPlayingCached)
-            }
-        }
-    }
     
     fileprivate var urlAsset: AVURLAsset?
     
@@ -114,6 +102,7 @@ open class BMPlayerLayerView: UIView {
     open func playAsset(asset: AVURLAsset) {
         urlAsset = asset
         onSetVideoAsset()
+        play()
     }
     
     
@@ -121,23 +110,15 @@ open class BMPlayerLayerView: UIView {
         if let player = player {
             player.play()
             setupTimer()
+            isPlaying = true
         }
     }
     
     
     open func pause() {
         player?.pause()
+        isPlaying = false
         timer?.fireDate = Date.distantFuture
-    }
-    
-    // MARK: - 生命周期
-    /**
-     *  初始化player
-     */
-    func initializeThePlayer() {
-        // TODO: 10
-        // 每次播放视频都解锁屏幕锁定
-        //        [self unLockTheScreen];
     }
     
     deinit {
@@ -163,8 +144,6 @@ open class BMPlayerLayerView: UIView {
             self.playerLayer?.frame = CGRect(x: (self.bounds.width - _w )/2, y: 0, width: _w, height: self.bounds.height)
             break
         }
-        
-        //        self.playerLayer?.frame  = CGRectMake(0, 0, 200, 200)
     }
     
     open func resetPlayer() {
@@ -233,7 +212,9 @@ open class BMPlayerLayerView: UIView {
         lastPlayerItem = playerItem
         
         if let item = playerItem {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.moviePlayDidEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+            NotificationCenter.default.addObserver(self, selector: #selector(moviePlayDidEnd),
+                                                   name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                                   object: playerItem)
             
             item.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
             item.addObserver(self, forKeyPath: "loadedTimeRanges", options: NSKeyValueObservingOptions.new, context: nil)
@@ -262,7 +243,7 @@ open class BMPlayerLayerView: UIView {
     
     func setupTimer() {
         timer?.invalidate()
-        timer  = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
         timer?.fireDate = Date()
     }
     
@@ -297,27 +278,25 @@ open class BMPlayerLayerView: UIView {
                 }
                 if let currentItem = player.currentItem {
                     if player.currentTime() >= currentItem.duration {
-                        if self.state != .playedToTheEnd {
-                            self.state = .playedToTheEnd
-                            self.timer?.invalidate()
-                        }
-                        
+                        moviePlayDidEnd()
                         return
                     }
                     if currentItem.isPlaybackLikelyToKeepUp || currentItem.isPlaybackBufferFull {
-                        self.isPlaying = false
+                        
                     }
                 }
-            } else {
-                isPlaying = true
             }
         }
     }
     
     // MARK: - Notification Event
-    @objc fileprivate func moviePlayDidEnd(_ notif: Notification) {
+    @objc fileprivate func moviePlayDidEnd() {
         if state != .playedToTheEnd {
+            delegate?.bmPlayer(player: self,
+                               playTimeDidChange: CMTimeGetSeconds(playerItem!.duration),
+                               totalTime: CMTimeGetSeconds(playerItem!.duration))
             self.state = .playedToTheEnd
+            self.isPlaying = false
             self.playDidEnd = true
             self.timer?.invalidate()
         }

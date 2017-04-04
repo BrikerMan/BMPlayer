@@ -49,18 +49,15 @@ class VideoPlayViewController: UIViewController {
         
         /// Listening to player state changes with Block
         //Listen to when the player is playing or stopped
-        player.playStateDidChange = { (isPlaying: Bool) in
-            print("| BMPlayer Block | playStateDidChange \(isPlaying)")
-        }
+//        player.playStateDidChange = { (isPlaying: Bool) in
+//            print("| BMPlayer Block | playStateDidChange \(isPlaying)")
+//        }
         
         //Listen to when the play time changes
-        player.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterval) in
-            print("| BMPlayer Block | playTimeDidChange currentTime: \(currentTime) totalTime: \(totalTime)")
-        }
-        
-        // player.panGesture.isEnabled = false
-        
-        
+//        player.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterval) in
+//            print("| BMPlayer Block | playTimeDidChange currentTime: \(currentTime) totalTime: \(totalTime)")
+//        }
+    
         changeButton.setTitle("Change Video", for: .normal)
         changeButton.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
         changeButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
@@ -149,7 +146,6 @@ class VideoPlayViewController: UIViewController {
             break
         case (0,2):
             // 设置播放器属性，此情况下若提供了cover则先展示封面图，否则黑屏。点击播放后开始loading
-            BMPlayerConf.slowAndMirror  = true
             BMPlayerConf.shouldAutoPlay = false
             
         case (1,0):
@@ -237,11 +233,11 @@ extension VideoPlayViewController: BMPlayerDelegate {
     
     // Call back when play time change
     func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
-        print("| BMPlayerDelegate | playTimeDidChange | \(currentTime) of \(totalTime)")
+//        print("| BMPlayerDelegate | playTimeDidChange | \(currentTime) of \(totalTime)")
     }
     
     // Call back when the video loaded duration changed
     func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
-        print("| BMPlayerDelegate | loadedTimeDidChange | \(loadedDuration) of \(totalDuration)")
+//        print("| BMPlayerDelegate | loadedTimeDidChange | \(loadedDuration) of \(totalDuration)")
     }
 }
