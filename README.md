@@ -13,30 +13,6 @@ A simple video player for iOS, based on AVPlayer, pure swift.
 [中文说明](https://github.com/BrikerMan/BMPlayer/blob/master/README.zh.md)
 
 ## Features
-- Support for horizontal and vertical play mode
-- Support play with online URL and local file
-- Adjust brightness by slide vertical at left side of screen
-- Adjust volume by slide vertical at right side of screen
-- Slide horizontal to fast forward and rewind
-- Support multi-definition video
-- Mirror mode, slow play mode
-- Add Http header and other options to AVURLAsset
-
-## BMPlayer
-
-![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)
-![Swift 3.0](https://img.shields.io/badge/Swift-3.0-brightgreen.svg?style=flat)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Version](https://img.shields.io/cocoapods/v/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
-[![License](https://img.shields.io/cocoapods/l/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
-[![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
-[![Weibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%40%E8%89%BE%E5%8A%9B%E4%BA%9A%E5%B0%94-yellow.svg?style=flat)](http://weibo.com/536445669)
-
-A simple video player for iOS, based on AVPlayer, pure swift.
-
-[中文说明](https://github.com/BrikerMan/BMPlayer/blob/master/README.zh.md)
-
-## Features
 - [x] Support for horizontal and vertical play mode
 - [x] Support play online URL and local file
 - [x] Adjust brightness by slide vertical at left side of screen
