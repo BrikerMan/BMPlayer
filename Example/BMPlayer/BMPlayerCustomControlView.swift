@@ -17,8 +17,7 @@ class BMPlayerCustomControlView: BMPlayerControlView {
     /**
      Override if need to customize UI components
      */
-    override func setupUIComponents() {
-        super.setupUIComponents()
+    override func customizeUIComponents() {
         mainMaskView.backgroundColor   = UIColor.clear
         topMaskView.backgroundColor    = UIColor.black.withAlphaComponent(0.4)
         bottomMaskView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
@@ -38,11 +37,6 @@ class BMPlayerCustomControlView: BMPlayerControlView {
             $0.right.equalTo(chooseDefitionView.snp.left).offset(-5)
             $0.centerY.equalTo(chooseDefitionView)
         }
-    }
-    
-    
-    override func addSnapKitConstraint() {
-        super.addSnapKitConstraint()
     }
     
     override func updateUI(_ isForFullScreen: Bool) {

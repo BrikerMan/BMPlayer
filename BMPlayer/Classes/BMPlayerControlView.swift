@@ -99,6 +99,7 @@ open class BMPlayerControlView: UIView {
     
     open var subtitleLabel    = UILabel()
     open var subtitleBackView = UIView()
+    open var subtileAttrabute: [String : Any]?
     
     /// Activty Indector for loading
     open var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -417,7 +418,8 @@ open class BMPlayerControlView: UIView {
     fileprivate func showSubtile(from subtitle: BMSubtitles, at time: TimeInterval) {
         if let group = subtitle.search(for: time) {
             subtitleBackView.isHidden = false
-            subtitleLabel.attributedText = NSAttributedString(string: group.text, attributes: subtitle.attributes)
+            subtitleLabel.attributedText = NSAttributedString(string: group.text,
+                                                              attributes: subtileAttrabute)
         } else {
             subtitleBackView.isHidden = true
         }
@@ -449,15 +451,22 @@ open class BMPlayerControlView: UIView {
         super.init(frame: frame)
         setupUIComponents()
         addSnapKitConstraint()
+        customizeUIComponents()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUIComponents()
         addSnapKitConstraint()
+        customizeUIComponents()
     }
     
-    open func setupUIComponents() {
+    /// Add Customize functions here
+    open func customizeUIComponents() {
+        
+    }
+    
+    func setupUIComponents() {
         // Subtile view
         subtitleLabel.numberOfLines = 0
         subtitleLabel.textAlignment = .center
@@ -574,7 +583,7 @@ open class BMPlayerControlView: UIView {
         addGestureRecognizer(tapGesture)
     }
     
-    open func addSnapKitConstraint() {
+    func addSnapKitConstraint() {
         // Main mask view
         mainMaskView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)

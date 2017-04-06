@@ -24,7 +24,8 @@ class ViewController: UIViewController {
             "topBarShow - None",
             "TintColor - Red"
         ],[
-            "Custom Control UI"
+            "Custom Control UI",
+            "Custom Control UI 2"
         ]
     
     ]

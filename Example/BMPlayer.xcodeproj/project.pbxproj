@@ -17,6 +17,7 @@
 		6A4F83161E90CB8500ABE3CA /* SubtitleDemo.srt in Resources */ = {isa = PBXBuildFile; fileRef = 6A4F83151E90CB8500ABE3CA /* SubtitleDemo.srt */; };
 		6AAA770B1CE18427009745BA /* BMPlayer_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */; };
 		6AB6B7171CD226F70031AFC5 /* VideoPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB6B7161CD226F70031AFC5 /* VideoPlayViewController.swift */; };
+		6ABE976E1E960FC3006CE453 /* BMPlayerCustomControlView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE976D1E960FC3006CE453 /* BMPlayerCustomControlView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMPlayer_Tests.swift; sourceTree = "<group>"; };
 		6AAA770C1CE18427009745BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AB6B7161CD226F70031AFC5 /* VideoPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoPlayViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		6ABE976D1E960FC3006CE453 /* BMPlayerCustomControlView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView2.swift; sourceTree = "<group>"; };
 		6D397051623BC89F9251AE28 /* Pods_BMPlayer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMPlayer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77666BAD3073AEDAAB5F193B /* Pods-BMPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMPlayer_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
 		99063F39CF18C5E3F0C969F9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				6A33958A1E93A4B300809411 /* BMPlayerCustomControlView.swift */,
+				6ABE976D1E960FC3006CE453 /* BMPlayerCustomControlView2.swift */,
 				6AB6B7161CD226F70031AFC5 /* VideoPlayViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AB6B7171CD226F70031AFC5 /* VideoPlayViewController.swift in Sources */,
+				6ABE976E1E960FC3006CE453 /* BMPlayerCustomControlView2.swift in Sources */,
 				6A33958B1E93A4B300809411 /* BMPlayerCustomControlView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

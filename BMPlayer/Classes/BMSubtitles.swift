@@ -10,7 +10,6 @@ import Foundation
 
 public class BMSubtitles {
     public var groups: [Group] = []
-    public var attributes: [String : Any]?
     
     public struct Group: CustomStringConvertible {
         var index: Int
@@ -42,7 +41,6 @@ public class BMSubtitles {
             return "Subtile Group ==========\nindex : \(index),\nstart : \(start)\nend   :\(end)\ntext  :\(text)"
         }
     }
-    
     
     public init(url: URL, encoding: String.Encoding? = nil) {
         DispatchQueue.global(qos: .background).async {

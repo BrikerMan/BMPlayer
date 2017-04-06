@@ -37,6 +37,10 @@ class VideoPlayViewController: UIViewController {
             controller = BMPlayerCustomControlView()
         }
         
+        if index.row == 1 && index.section == 2 {
+            controller = BMPlayerCustomControlView2()
+        }
+        
         player = BMPlayer(customControllView: controller)
         view.addSubview(player)
         player.snp.makeConstraints { (make) in
