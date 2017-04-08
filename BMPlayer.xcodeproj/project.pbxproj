@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6A302EED1DF199F700AD54B6 /* BMPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A302EEB1DF199F700AD54B6 /* BMPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A3B22421E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */; };
 		6A6FDB991DF19A15003727BC /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 6A6FDB781DF19A15003727BC /* .gitkeep */; };
 		6A6FDB9A1DF19A15003727BC /* BMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB791DF19A15003727BC /* BMPlayer.swift */; };
 		6A6FDB9B1DF19A15003727BC /* BMPlayerClearityChooseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */; };
@@ -18,13 +19,13 @@
 		6A6FDBA01DF19A15003727BC /* BMPlayerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7F1DF19A15003727BC /* BMPlayerProtocols.swift */; };
 		6A6FDBA61DF19AB3003727BC /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6FDBA21DF19A39003727BC /* NVActivityIndicatorView.framework */; };
 		6A6FDBA71DF19AB3003727BC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6FDBA31DF19A39003727BC /* SnapKit.framework */; };
-		6AA406D61DF1C410004869B7 /* BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AA406D51DF1C410004869B7 /* BMPlayer.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6A302EE81DF199F700AD54B6 /* BMPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BMPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A302EEB1DF199F700AD54B6 /* BMPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMPlayer.h; sourceTree = "<group>"; };
 		6A302EEC1DF199F700AD54B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pod_Asset_BMPlayer.xcassets; sourceTree = "<group>"; };
 		6A6FDB781DF19A15003727BC /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		6A6FDB791DF19A15003727BC /* BMPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayer.swift; sourceTree = "<group>"; };
 		6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerClearityChooseButton.swift; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		6A6FDB7F1DF19A15003727BC /* BMPlayerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerProtocols.swift; sourceTree = "<group>"; };
 		6A6FDBA21DF19A39003727BC /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		6A6FDBA31DF19A39003727BC /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		6AA406D51DF1C410004869B7 /* BMPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BMPlayer.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 		6A302EEA1DF199F700AD54B6 /* BMPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				6AA406D51DF1C410004869B7 /* BMPlayer.xcassets */,
+				6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */,
 				6A6FDB771DF19A15003727BC /* Classes */,
 				6A302EEB1DF199F700AD54B6 /* BMPlayer.h */,
 				6A302EEC1DF199F700AD54B6 /* Info.plist */,
@@ -173,8 +173,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3B22421E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets in Resources */,
 				6A6FDB991DF19A15003727BC /* .gitkeep in Resources */,
-				6AA406D61DF1C410004869B7 /* BMPlayer.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
