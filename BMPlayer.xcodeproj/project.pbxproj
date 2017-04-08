@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6A302EED1DF199F700AD54B6 /* BMPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A302EEB1DF199F700AD54B6 /* BMPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A3B22421E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */; };
+		6A3B22631E98C7E200C20DD3 /* BMSubtitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3B22611E98C7E200C20DD3 /* BMSubtitles.swift */; };
+		6A3B22641E98C7E200C20DD3 /* BMTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3B22621E98C7E200C20DD3 /* BMTimeSlider.swift */; };
 		6A6FDB991DF19A15003727BC /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 6A6FDB781DF19A15003727BC /* .gitkeep */; };
 		6A6FDB9A1DF19A15003727BC /* BMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB791DF19A15003727BC /* BMPlayer.swift */; };
 		6A6FDB9B1DF19A15003727BC /* BMPlayerClearityChooseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */; };
@@ -26,6 +28,8 @@
 		6A302EEB1DF199F700AD54B6 /* BMPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMPlayer.h; sourceTree = "<group>"; };
 		6A302EEC1DF199F700AD54B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pod_Asset_BMPlayer.xcassets; sourceTree = "<group>"; };
+		6A3B22611E98C7E200C20DD3 /* BMSubtitles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMSubtitles.swift; sourceTree = "<group>"; };
+		6A3B22621E98C7E200C20DD3 /* BMTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTimeSlider.swift; sourceTree = "<group>"; };
 		6A6FDB781DF19A15003727BC /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		6A6FDB791DF19A15003727BC /* BMPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayer.swift; sourceTree = "<group>"; };
 		6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerClearityChooseButton.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				6A6FDB781DF19A15003727BC /* .gitkeep */,
+				6A3B22611E98C7E200C20DD3 /* BMSubtitles.swift */,
+				6A3B22621E98C7E200C20DD3 /* BMTimeSlider.swift */,
 				6A6FDB791DF19A15003727BC /* BMPlayer.swift */,
 				6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */,
 				6A6FDB7B1DF19A15003727BC /* BMPlayerControlView.swift */,
@@ -187,11 +193,13 @@
 			files = (
 				6A6FDB9D1DF19A15003727BC /* BMPlayerItem.swift in Sources */,
 				6A6FDB9F1DF19A15003727BC /* BMPlayerManager.swift in Sources */,
+				6A3B22631E98C7E200C20DD3 /* BMSubtitles.swift in Sources */,
 				6A6FDBA01DF19A15003727BC /* BMPlayerProtocols.swift in Sources */,
 				6A6FDB9E1DF19A15003727BC /* BMPlayerLayerView.swift in Sources */,
 				6A6FDB9C1DF19A15003727BC /* BMPlayerControlView.swift in Sources */,
 				6A6FDB9A1DF19A15003727BC /* BMPlayer.swift in Sources */,
 				6A6FDB9B1DF19A15003727BC /* BMPlayerClearityChooseButton.swift in Sources */,
+				6A3B22641E98C7E200C20DD3 /* BMTimeSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
