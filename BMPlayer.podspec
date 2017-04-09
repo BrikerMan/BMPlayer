@@ -1,27 +1,37 @@
 Pod::Spec.new do |s|
-  s.name             = "BMPlayer"
-  s.version          = "0.8.3"
-  s.summary          = "Video Player Using Swift, based on AVPlayer"
+s.name             = "BMPlayer"
+s.version          = "0.8.3"
+s.summary          = "Video Player Using Swift, based on AVPlayer"
 
-  s.description      = <<-DESC
-                        Video Player Using Swift, based on AVPlayer, support for the horizontal screen, vertical screen, the upper and lower slide to adjust the volume, the screen brightness, or so slide to adjust the playback progress.
-                        DESC
+s.description      = <<-DESC
+Video Player Using Swift, based on AVPlayer, support for the horizontal screen, vertical screen, the upper and lower slide to adjust the volume, the screen brightness, or so slide to adjust the playback progress.
+DESC
 
-  s.homepage         = "https://github.com/BrikerMan/BMPlayer"
+s.homepage         = "https://github.com/BrikerMan/BMPlayer"
 
-  s.license          = 'MIT'
-  s.author           = { "Eliyar Eziz" => "eliyar917@gmail.com" }
-  s.source           = { :git => "https://github.com/BrikerMan/BMPlayer.git", :tag => s.version.to_s }
-  s.social_media_url = 'http://weibo.com/536445669'
+s.license          = 'MIT'
+s.author           = { "Eliyar Eziz" => "eliyar917@gmail.com" }
+s.source           = { :git => "https://github.com/BrikerMan/BMPlayer.git", :tag => s.version.to_s }
+s.social_media_url = 'http://weibo.com/536445669'
 
-  s.ios.deployment_target = '8.0'
-  s.platform     = :ios, '8.0'
-  s.source_files = 'BMPlayer/Classes/**/*'
-  s.resources    = "BMPlayer/**/*.xcassets"
+s.ios.deployment_target = '8.0'
+s.platform     = :ios, '8.0'
 
+s.default_subspec = 'Full'
 
-  s.frameworks = 'UIKit', 'AVFoundation'
-  
-  s.dependency 'SnapKit', '~> 3.2'
-  s.dependency 'NVActivityIndicatorView', '~> 3.5'
+s.subspec 'Core' do |core|
+    core.frameworks   = 'UIKit', 'AVFoundation'
+    core.source_files = 'Source/BMPlayerLayerView.swift'
+end
+
+s.subspec 'Full' do |full|
+    full.source_files = 'Source/*'
+    full.resources    = "Source/**/*.xcassets"
+    full.frameworks   = 'UIKit', 'AVFoundation'
+    full.dependency 'BMPlayer/Core'
+    full.dependency 'SnapKit', '~> 3.2'
+    full.dependency 'NVActivityIndicatorView', '~> 3.5'
+
+end
+
 end

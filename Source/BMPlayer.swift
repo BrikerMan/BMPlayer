@@ -10,39 +10,6 @@ import UIKit
 import SnapKit
 import MediaPlayer
 
-/**
- Player status emun
- 
- - notSetURL:      not set url yet
- - readyToPlay:    player ready to play
- - buffering:      player buffering
- - bufferFinished: buffer finished
- - playedToTheEnd: played to the End
- - error:          error with playing
- */
-public enum BMPlayerState {
-    case notSetURL
-    case readyToPlay
-    case buffering
-    case bufferFinished
-    case playedToTheEnd
-    case error
-}
-
-
-/**
- video aspect ratio types
- 
- - `default`:    video default aspect
- - sixteen2NINE: 16:9
- - four2THREE:   4:3
- */
-public enum BMPlayerAspectRatio : Int {
-    case `default`    = 0
-    case sixteen2NINE
-    case four2THREE
-}
-
 /// BMPlayerDelegate to obserbe player state
 public protocol BMPlayerDelegate : class {
     func bmPlayer(player: BMPlayer ,playerStateDidChange state: BMPlayerState)

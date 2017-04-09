@@ -1,5 +1,9 @@
 PODS:
-  - BMPlayer (0.8.1):
+  - BMPlayer (0.8.3):
+    - BMPlayer/Full (= 0.8.3)
+  - BMPlayer/Core (0.8.3)
+  - BMPlayer/Full (0.8.3):
+    - BMPlayer/Core
     - NVActivityIndicatorView (~> 3.5)
     - SnapKit (~> 3.2)
   - NVActivityIndicatorView (3.6.0)
@@ -17,7 +21,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BMPlayer: 8ccea6ecc9756fe942861687365ff333901e9388
+  BMPlayer: 8dc9cf051ab5a6b779cc5ef07caaf5d486d9e23a
   NVActivityIndicatorView: c7c1c4300b418bd9ed06459e78d4df859ddbe31f
   Reveal-SDK: 564657bc66c93d2718b1c0121cdebe99d354ddab
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7

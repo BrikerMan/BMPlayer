@@ -9,6 +9,39 @@
 import UIKit
 import AVFoundation
 
+/**
+ Player status emun
+ 
+ - notSetURL:      not set url yet
+ - readyToPlay:    player ready to play
+ - buffering:      player buffering
+ - bufferFinished: buffer finished
+ - playedToTheEnd: played to the End
+ - error:          error with playing
+ */
+public enum BMPlayerState {
+    case notSetURL
+    case readyToPlay
+    case buffering
+    case bufferFinished
+    case playedToTheEnd
+    case error
+}
+
+
+/**
+ video aspect ratio types
+ 
+ - `default`:    video default aspect
+ - sixteen2NINE: 16:9
+ - four2THREE:   4:3
+ */
+public enum BMPlayerAspectRatio : Int {
+    case `default`    = 0
+    case sixteen2NINE
+    case four2THREE
+}
+
 public protocol BMPlayerLayerViewDelegate : class {
     func bmPlayer(player: BMPlayerLayerView ,playerStateDidChange state: BMPlayerState)
     func bmPlayer(player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: TimeInterval , totalDuration: TimeInterval)
