@@ -132,6 +132,11 @@ open class BMPlayerLayerView: UIView {
     
     
     // MARK: - Actions
+    open func playURL(url: URL) {
+        let asset = AVURLAsset(url: url)
+        playAsset(asset: asset)
+    }
+    
     open func playAsset(asset: AVURLAsset) {
         urlAsset = asset
         onSetVideoAsset()
