@@ -174,11 +174,7 @@ open class BMPlayer: UIView {
      - parameter to: target time
      */
     open func seek(_ to:TimeInterval, completion: (()->Void)? = nil) {
-        self.shouldSeekTo = to
-        playerLayer?.seekToTime(to, completionHandler: {
-            self.shouldSeekTo = 0
-            completion?()
-        })
+        playerLayer?.seek(to: to, completion: completion)
     }
     
     /**
@@ -266,12 +262,11 @@ open class BMPlayer: UIView {
                 isSliderSliding = false
                 if isPlayToTheEnd {
                     isPlayToTheEnd = false
-                    playerLayer?.seekToTime(self.sumTime, completionHandler: {
-                        self.play()
+                    seek(self.sumTime, completion: {
                         self.play()
                     })
                 } else {
-                    playerLayer?.seekToTime(self.sumTime, completionHandler: {
+                    seek(self.sumTime, completion: {
                         self.autoPlay()
                     })
                 }
@@ -427,12 +422,6 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         controlView.playerStateDidChange(state: state)
         switch state {
         case BMPlayerState.readyToPlay:
-            if shouldSeekTo != 0 {
-                playerLayer?.seekToTime(shouldSeekTo, completionHandler: {
-                    
-                })
-                shouldSeekTo = 0
-            }
             play()
             
         case BMPlayerState.bufferFinished:
@@ -503,9 +492,7 @@ extension BMPlayer: BMPlayerControlViewDelegate {
                 
             case .replay:
                 isPlayToTheEnd = false
-                playerLayer?.seekToTime(0, completionHandler: {
-                    
-                })
+                seek(0)
                 play()
                 
             case .fullscreen:
@@ -531,13 +518,12 @@ extension BMPlayer: BMPlayerControlViewDelegate {
             
             if isPlayToTheEnd {
                 isPlayToTheEnd = false
-                playerLayer?.seekToTime(target, completionHandler: {
-                    self.play()
+                seek(target, completion: { 
                     self.play()
                 })
                 controlView.hidePlayToTheEndView()
             } else {
-                playerLayer?.seekToTime(target, completionHandler: {
+                seek(target, completion: {
                     self.autoPlay()
                 })
             }

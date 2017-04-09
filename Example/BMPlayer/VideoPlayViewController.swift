@@ -118,6 +118,7 @@ class VideoPlayViewController: UIViewController {
                                          definitions: [BMPlayerResourceDefinition(url: url, definition: "480p")],
                                          cover: nil,
                                          subtitles: subtitle)
+            player.seek(30)
             player.setVideo(resource: asset)
             changeButton.isHidden = false
             

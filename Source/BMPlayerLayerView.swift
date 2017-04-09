@@ -129,7 +129,7 @@ open class BMPlayerLayerView: UIView {
     // 仅在bufferingSomeSecond里面使用
     fileprivate var isBuffering     = false
     
-    
+    fileprivate var shouldSeekTo: TimeInterval = 0
     
     // MARK: - Actions
     open func playURL(url: URL) {
@@ -213,7 +213,7 @@ open class BMPlayerLayerView: UIView {
         }
     }
     
-    open func seekToTime(_ secounds: TimeInterval, completionHandler:(()->Void)?) {
+    open func seek(to secounds: TimeInterval, completion:(()->Void)?) {
         if secounds.isNaN {
             return
         }
@@ -223,6 +223,8 @@ open class BMPlayerLayerView: UIView {
             self.player!.seek(to: draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
                 
             })
+        } else {
+            self.shouldSeekTo = secounds
         }
     }
     
@@ -348,7 +350,10 @@ open class BMPlayerLayerView: UIView {
                 case "status":
                     if player?.status == AVPlayerStatus.readyToPlay {
                         self.state = .readyToPlay
-                        player?.play()
+                        if shouldSeekTo != 0 {
+                            seek(to: shouldSeekTo, completion: nil)
+                            shouldSeekTo = 0
+                        }
                     } else if player?.status == AVPlayerStatus.failed {
                         self.state = .error
                     }
