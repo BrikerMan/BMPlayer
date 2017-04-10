@@ -128,7 +128,7 @@ open class BMPlayerLayerView: UIView {
     // playbackBufferEmpty会反复进入，因此在bufferingOneSecond延时播放执行完之前再调用bufferingSomeSecond都忽略
     // 仅在bufferingSomeSecond里面使用
     fileprivate var isBuffering     = false
-    
+    fileprivate var hasReadyToPlay  = false
     fileprivate var shouldSeekTo: TimeInterval = 0
     
     // MARK: - Actions
@@ -221,7 +221,7 @@ open class BMPlayerLayerView: UIView {
         if self.player?.currentItem?.status == AVPlayerItemStatus.readyToPlay {
             let draggedTime = CMTimeMake(Int64(secounds), 1)
             self.player!.seek(to: draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
-                
+                completion?()
             })
         } else {
             self.shouldSeekTo = secounds
@@ -349,10 +349,17 @@ open class BMPlayerLayerView: UIView {
                 switch keyPath {
                 case "status":
                     if player?.status == AVPlayerStatus.readyToPlay {
-                        self.state = .readyToPlay
+                        self.state = .buffering
                         if shouldSeekTo != 0 {
-                            seek(to: shouldSeekTo, completion: nil)
-                            shouldSeekTo = 0
+                            print("BMPlayerLayer | Should seek to \(shouldSeekTo)")
+                            seek(to: shouldSeekTo, completion: {
+                                self.shouldSeekTo = 0
+                                self.hasReadyToPlay = true
+                                self.state = .readyToPlay
+                            })
+                        } else {
+                            self.hasReadyToPlay = true
+                            self.state = .readyToPlay
                         }
                     } else if player?.status == AVPlayerStatus.failed {
                         self.state = .error
@@ -374,7 +381,7 @@ open class BMPlayerLayerView: UIView {
                     }
                 case "playbackLikelyToKeepUp":
                     if item.isPlaybackBufferEmpty {
-                        if state != .bufferFinished {
+                        if state != .bufferFinished && hasReadyToPlay {
                             self.state = .bufferFinished
                             self.playDidEnd = true
                         }
