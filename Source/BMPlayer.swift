@@ -468,13 +468,12 @@ extension BMPlayer: BMPlayerControlViewDelegate {
         if let action = BMPlayerControlView.ButtonType(rawValue: button.tag) {
             switch action {
             case .back:
+                backBlock?(isFullScreen)
                 if isFullScreen {
                     fullScreenButtonPressed()
                 } else {
                     playerLayer?.prepareToDeinit()
-                    
                 }
-                backBlock?(isFullScreen)
                 
             case .play:
                 if button.isSelected {

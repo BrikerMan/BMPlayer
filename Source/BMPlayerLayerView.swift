@@ -270,6 +270,8 @@ open class BMPlayerLayerView: UIView {
         playerItem = AVPlayerItem(asset: urlAsset!)
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
+    
+        
         
         playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
