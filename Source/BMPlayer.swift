@@ -207,6 +207,7 @@ open class BMPlayer: UIView {
      */
     open func prepareToDealloc() {
         playerLayer?.prepareToDeinit()
+        controlView.prepareToDealloc()
     }
     
     

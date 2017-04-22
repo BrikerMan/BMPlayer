@@ -206,8 +206,8 @@ open class BMPlayerControlView: UIView {
      */
     open func autoFadeOutControlViewWithAnimation() {
         cancelAutoFadeOutAnimation()
-        delayItem = DispatchWorkItem {
-            self.controlViewAnimation(isShow: false)
+        delayItem = DispatchWorkItem { [weak self] in
+            self?.controlViewAnimation(isShow: false)
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + BMPlayerConf.animateDelayTimeInterval,
                                       execute: delayItem!)
@@ -358,6 +358,10 @@ open class BMPlayerControlView: UIView {
                 button.isEnabled = false
             }
         }
+    }
+    
+    open func prepareToDealloc() {
+        self.delayItem = nil
     }
     
     // MARK: - Action Response
