@@ -1,8 +1,8 @@
 ## Check List
 
 Thanks for considering to open an issue. Before you submit your issue, please confirm these boxes are checked.
-- [ ] I have searched in [existing issues](https://github.com/BrikerMan/BMPlayer/issues?utf8=%E2%9C%93&q=), but did find a same one.
-- [ ] I want to reoprt a problem instead of asking a question. It'd better to use [BMplayer tag in Stack Overflow](http://stackoverflow.com/questions/tagged/bmplayer) to ask a question.
+- [ ] I have searched in [existing issues](https://github.com/BrikerMan/BMPlayer/issues?utf8=%E2%9C%93&q=) but did not find the same one.
+- [ ] I want to report a problem instead of asking a question. It would better to use [BMplayer tag in Stack Overflow](http://stackoverflow.com/questions/tagged/bmplayer) to ask a question.
 
 ## BMPlayer version 
 
@@ -18,7 +18,7 @@ Thanks for considering to open an issue. Before you submit your issue, please co
 
 ### Reproduce
 
-[The steps to reproduce this issue. What is the url you were trying to load, where did you put your code, etc.]
+[The steps to reproduce this issue. What is the URL you were trying to play, where did you put your code, etc.]
 
 ### Other Comment
 
