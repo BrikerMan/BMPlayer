@@ -7,37 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A302EED1DF199F700AD54B6 /* BMPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A302EEB1DF199F700AD54B6 /* BMPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6A3B22421E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */; };
-		6A3B22631E98C7E200C20DD3 /* BMSubtitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3B22611E98C7E200C20DD3 /* BMSubtitles.swift */; };
-		6A3B22641E98C7E200C20DD3 /* BMTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3B22621E98C7E200C20DD3 /* BMTimeSlider.swift */; };
-		6A6FDB991DF19A15003727BC /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 6A6FDB781DF19A15003727BC /* .gitkeep */; };
-		6A6FDB9A1DF19A15003727BC /* BMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB791DF19A15003727BC /* BMPlayer.swift */; };
-		6A6FDB9B1DF19A15003727BC /* BMPlayerClearityChooseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */; };
-		6A6FDB9C1DF19A15003727BC /* BMPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7B1DF19A15003727BC /* BMPlayerControlView.swift */; };
-		6A6FDB9D1DF19A15003727BC /* BMPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7C1DF19A15003727BC /* BMPlayerItem.swift */; };
-		6A6FDB9E1DF19A15003727BC /* BMPlayerLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7D1DF19A15003727BC /* BMPlayerLayerView.swift */; };
-		6A6FDB9F1DF19A15003727BC /* BMPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7E1DF19A15003727BC /* BMPlayerManager.swift */; };
-		6A6FDBA01DF19A15003727BC /* BMPlayerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6FDB7F1DF19A15003727BC /* BMPlayerProtocols.swift */; };
+		6A5B61D01EADB5DA00158FF9 /* BMPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5B61C41EADB5DA00158FF9 /* BMPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A5B61D11EADB5DA00158FF9 /* BMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C51EADB5DA00158FF9 /* BMPlayer.swift */; };
+		6A5B61D21EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C61EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift */; };
+		6A5B61D31EADB5DA00158FF9 /* BMPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C71EADB5DA00158FF9 /* BMPlayerControlView.swift */; };
+		6A5B61D41EADB5DA00158FF9 /* BMPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C81EADB5DA00158FF9 /* BMPlayerItem.swift */; };
+		6A5B61D51EADB5DA00158FF9 /* BMPlayerLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C91EADB5DA00158FF9 /* BMPlayerLayerView.swift */; };
+		6A5B61D61EADB5DA00158FF9 /* BMPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CA1EADB5DA00158FF9 /* BMPlayerManager.swift */; };
+		6A5B61D71EADB5DA00158FF9 /* BMPlayerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CB1EADB5DA00158FF9 /* BMPlayerProtocols.swift */; };
+		6A5B61D81EADB5DA00158FF9 /* BMSubtitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CC1EADB5DA00158FF9 /* BMSubtitles.swift */; };
+		6A5B61D91EADB5DA00158FF9 /* BMTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CD1EADB5DA00158FF9 /* BMTimeSlider.swift */; };
+		6A5B61DA1EADB5DA00158FF9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A5B61CE1EADB5DA00158FF9 /* Info.plist */; };
+		6A5B61DB1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A5B61CF1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets */; };
 		6A6FDBA61DF19AB3003727BC /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6FDBA21DF19A39003727BC /* NVActivityIndicatorView.framework */; };
 		6A6FDBA71DF19AB3003727BC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6FDBA31DF19A39003727BC /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6A302EE81DF199F700AD54B6 /* BMPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BMPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A302EEB1DF199F700AD54B6 /* BMPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMPlayer.h; sourceTree = "<group>"; };
-		6A302EEC1DF199F700AD54B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pod_Asset_BMPlayer.xcassets; sourceTree = "<group>"; };
-		6A3B22611E98C7E200C20DD3 /* BMSubtitles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMSubtitles.swift; sourceTree = "<group>"; };
-		6A3B22621E98C7E200C20DD3 /* BMTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTimeSlider.swift; sourceTree = "<group>"; };
-		6A6FDB781DF19A15003727BC /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		6A6FDB791DF19A15003727BC /* BMPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayer.swift; sourceTree = "<group>"; };
-		6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerClearityChooseButton.swift; sourceTree = "<group>"; };
-		6A6FDB7B1DF19A15003727BC /* BMPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerControlView.swift; sourceTree = "<group>"; };
-		6A6FDB7C1DF19A15003727BC /* BMPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerItem.swift; sourceTree = "<group>"; };
-		6A6FDB7D1DF19A15003727BC /* BMPlayerLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerLayerView.swift; sourceTree = "<group>"; };
-		6A6FDB7E1DF19A15003727BC /* BMPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerManager.swift; sourceTree = "<group>"; };
-		6A6FDB7F1DF19A15003727BC /* BMPlayerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerProtocols.swift; sourceTree = "<group>"; };
+		6A5B61C41EADB5DA00158FF9 /* BMPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMPlayer.h; sourceTree = "<group>"; };
+		6A5B61C51EADB5DA00158FF9 /* BMPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayer.swift; sourceTree = "<group>"; };
+		6A5B61C61EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerClearityChooseButton.swift; sourceTree = "<group>"; };
+		6A5B61C71EADB5DA00158FF9 /* BMPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerControlView.swift; sourceTree = "<group>"; };
+		6A5B61C81EADB5DA00158FF9 /* BMPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerItem.swift; sourceTree = "<group>"; };
+		6A5B61C91EADB5DA00158FF9 /* BMPlayerLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerLayerView.swift; sourceTree = "<group>"; };
+		6A5B61CA1EADB5DA00158FF9 /* BMPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerManager.swift; sourceTree = "<group>"; };
+		6A5B61CB1EADB5DA00158FF9 /* BMPlayerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerProtocols.swift; sourceTree = "<group>"; };
+		6A5B61CC1EADB5DA00158FF9 /* BMSubtitles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMSubtitles.swift; sourceTree = "<group>"; };
+		6A5B61CD1EADB5DA00158FF9 /* BMTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTimeSlider.swift; sourceTree = "<group>"; };
+		6A5B61CE1EADB5DA00158FF9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A5B61CF1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pod_Asset_BMPlayer.xcassets; sourceTree = "<group>"; };
 		6A6FDBA21DF19A39003727BC /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		6A6FDBA31DF19A39003727BC /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,30 +74,29 @@
 		6A302EEA1DF199F700AD54B6 /* BMPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				6A3B22411E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets */,
-				6A6FDB771DF19A15003727BC /* Classes */,
-				6A302EEB1DF199F700AD54B6 /* BMPlayer.h */,
-				6A302EEC1DF199F700AD54B6 /* Info.plist */,
+				6A5B61C31EADB5DA00158FF9 /* Source */,
 			);
 			path = BMPlayer;
 			sourceTree = "<group>";
 		};
-		6A6FDB771DF19A15003727BC /* Classes */ = {
+		6A5B61C31EADB5DA00158FF9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6A6FDB781DF19A15003727BC /* .gitkeep */,
-				6A3B22611E98C7E200C20DD3 /* BMSubtitles.swift */,
-				6A3B22621E98C7E200C20DD3 /* BMTimeSlider.swift */,
-				6A6FDB791DF19A15003727BC /* BMPlayer.swift */,
-				6A6FDB7A1DF19A15003727BC /* BMPlayerClearityChooseButton.swift */,
-				6A6FDB7B1DF19A15003727BC /* BMPlayerControlView.swift */,
-				6A6FDB7C1DF19A15003727BC /* BMPlayerItem.swift */,
-				6A6FDB7D1DF19A15003727BC /* BMPlayerLayerView.swift */,
-				6A6FDB7E1DF19A15003727BC /* BMPlayerManager.swift */,
-				6A6FDB7F1DF19A15003727BC /* BMPlayerProtocols.swift */,
+				6A5B61C41EADB5DA00158FF9 /* BMPlayer.h */,
+				6A5B61C51EADB5DA00158FF9 /* BMPlayer.swift */,
+				6A5B61C61EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift */,
+				6A5B61C71EADB5DA00158FF9 /* BMPlayerControlView.swift */,
+				6A5B61C81EADB5DA00158FF9 /* BMPlayerItem.swift */,
+				6A5B61C91EADB5DA00158FF9 /* BMPlayerLayerView.swift */,
+				6A5B61CA1EADB5DA00158FF9 /* BMPlayerManager.swift */,
+				6A5B61CB1EADB5DA00158FF9 /* BMPlayerProtocols.swift */,
+				6A5B61CC1EADB5DA00158FF9 /* BMSubtitles.swift */,
+				6A5B61CD1EADB5DA00158FF9 /* BMTimeSlider.swift */,
+				6A5B61CE1EADB5DA00158FF9 /* Info.plist */,
+				6A5B61CF1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets */,
 			);
-			path = Classes;
-			sourceTree = "<group>";
+			path = Source;
+			sourceTree = SOURCE_ROOT;
 		};
 		6A6FDBA11DF19A39003727BC /* Frameworks */ = {
 			isa = PBXGroup;
@@ -116,7 +114,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A302EED1DF199F700AD54B6 /* BMPlayer.h in Headers */,
+				6A5B61D01EADB5DA00158FF9 /* BMPlayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,8 +177,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A3B22421E98C16400C20DD3 /* Pod_Asset_BMPlayer.xcassets in Resources */,
-				6A6FDB991DF19A15003727BC /* .gitkeep in Resources */,
+				6A5B61DB1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets in Resources */,
+				6A5B61DA1EADB5DA00158FF9 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,15 +189,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A6FDB9D1DF19A15003727BC /* BMPlayerItem.swift in Sources */,
-				6A6FDB9F1DF19A15003727BC /* BMPlayerManager.swift in Sources */,
-				6A3B22631E98C7E200C20DD3 /* BMSubtitles.swift in Sources */,
-				6A6FDBA01DF19A15003727BC /* BMPlayerProtocols.swift in Sources */,
-				6A6FDB9E1DF19A15003727BC /* BMPlayerLayerView.swift in Sources */,
-				6A6FDB9C1DF19A15003727BC /* BMPlayerControlView.swift in Sources */,
-				6A6FDB9A1DF19A15003727BC /* BMPlayer.swift in Sources */,
-				6A6FDB9B1DF19A15003727BC /* BMPlayerClearityChooseButton.swift in Sources */,
-				6A3B22641E98C7E200C20DD3 /* BMTimeSlider.swift in Sources */,
+				6A5B61D41EADB5DA00158FF9 /* BMPlayerItem.swift in Sources */,
+				6A5B61D61EADB5DA00158FF9 /* BMPlayerManager.swift in Sources */,
+				6A5B61D81EADB5DA00158FF9 /* BMSubtitles.swift in Sources */,
+				6A5B61D71EADB5DA00158FF9 /* BMPlayerProtocols.swift in Sources */,
+				6A5B61D51EADB5DA00158FF9 /* BMPlayerLayerView.swift in Sources */,
+				6A5B61D31EADB5DA00158FF9 /* BMPlayerControlView.swift in Sources */,
+				6A5B61D11EADB5DA00158FF9 /* BMPlayer.swift in Sources */,
+				6A5B61D21EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift in Sources */,
+				6A5B61D91EADB5DA00158FF9 /* BMTimeSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +316,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = BMPlayer/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -342,7 +340,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = BMPlayer/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
