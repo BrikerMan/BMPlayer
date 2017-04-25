@@ -19,7 +19,7 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 - [x] Adjust volume by slide vertical at right side of screen
 - [x] Slide horizontal to fast forward and rewind
 - [x] Support multi-definition video
-- [x] Mirror mode, slow play mode
+- [x] Custom playrate
 - [x] Add Http header and other options to AVURLAsset
 - [x] Easy to customize
 - [x] Supporting show local and online subtitles 
@@ -170,15 +170,13 @@ BMPlayerConf.shouldAutoPlay = true
 BMPlayerConf.tintColor = UIColor.whiteColor()
 // options to show header view (which include the back button, title and definition change button) , default .Always，options: .Always, .HorizantalOnly and .None
 BMPlayerConf.topBarShowInCase = .Always
-// show mirror mode, slow play mode button, default false
-BMPlayerConf.slowAndMirror = true
 // loader type, see detail：https://github.com/ninjaprox/NVActivityIndicatorView
 BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 ```
 
 ## Advanced Customize
-- Subclass 
-- Use the `BMPlayerLayer` with your own player control view
+- Subclass `BMPlayerControlView` to create your personal control UI, check the Example.
+- Use the `BMPlayerLayer` with your own player control view.
 
 ## Demonstration
 ![gif](https://github.com/BrikerMan/resources/raw/master/BMPlayer/demo.gif)

@@ -11,13 +11,17 @@
 本项目是基于 AVPlayer 使用 Swift 封装的视频播放器，方便快速集成。
 
 ## 功能
-- 支持横、竖屏切换，支持自动旋转屏幕
-- 支持本地视频、网络视频播放
-- 左侧 1/2 位置上下滑动调节屏幕亮度（模拟器调不了亮度，请在真机调试）
-- 右侧 1/2 位置上下滑动调节音量（模拟器调不了音量，请在真机调试）
-- 左右滑动调节播放进度
-- 清晰度切换
-- 镜像、慢放
+- [x] 支持竖屏切换，支持自动旋转屏幕
+- [x] 支持本地视频、网络视频播放
+- [x] 右侧 1/2 位置上下滑动调节屏幕亮度（模拟器调不了亮度，请在真机调试）
+- [x] 左侧 1/2 位置上下滑动调节音量（模拟器调不了音量，请在真机调试）
+- [x] 左右滑动调节播放进度
+- [x] 清晰度切换
+- [x] 自定义播放速度
+- [x] 自定义资源 HTTP Header
+- [x] 易于定制控制 UI
+- [x] 展示本地和在在线字幕文件
+- [x] [Swift 3](https://developer.apple.com/swift/)
 
 ## 要求
 - iOS 8 +
@@ -162,14 +166,12 @@ BMPlayerConf.shouldAutoPlay = true
 BMPlayerConf.tintColor = UIColor.whiteColor()
 // 顶部返回和标题显示选项，默认.Always，可选.HorizantalOnly、.None
 BMPlayerConf.topBarShowInCase = .Always
-// 显示慢放和镜像按钮
-BMPlayerConf.slowAndMirror = true
 // 加载效果，更多请见：https://github.com/ninjaprox/NVActivityIndicatorView
 BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
 ```
 
 ## 进阶用法
-- [自定义控制 UI](https://eliyar.biz/custom-player-ui-with-bmplayer/)
+- 继承 `BMPlayerControlView` 来创建自定义控制UI，具体实现请参考 Example
 - 或者使用 `BMPlayerLayer` 并且自己定制控制 UI 和逻辑。
 
 ## 效果
