@@ -334,9 +334,12 @@ open class BMPlayerLayerView: UIView {
     // MARK: - Notification Event
     @objc fileprivate func moviePlayDidEnd() {
         if state != .playedToTheEnd {
-            delegate?.bmPlayer(player: self,
-                               playTimeDidChange: CMTimeGetSeconds(playerItem!.duration),
-                               totalTime: CMTimeGetSeconds(playerItem!.duration))
+            if let playerItem = playerItem {
+                delegate?.bmPlayer(player: self,
+                                   playTimeDidChange: CMTimeGetSeconds(playerItem.duration),
+                                   totalTime: CMTimeGetSeconds(playerItem.duration))
+            }
+
             self.state = .playedToTheEnd
             self.isPlaying = false
             self.playDidEnd = true
