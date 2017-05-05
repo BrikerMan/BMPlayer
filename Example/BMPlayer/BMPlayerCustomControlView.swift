@@ -111,10 +111,6 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         print("rotated")
         rotateCount += 1
         layer.transform = CGAffineTransform(rotationAngle: rotateCount * CGFloat(Double.pi/2))
-//        layer.snp.remakeConstraints { (make) in
-//            make.edges.equalTo(self)
-//        }
-//        player?.layoutIfNeeded()
         layer.frame = player!.bounds
     }
 }
