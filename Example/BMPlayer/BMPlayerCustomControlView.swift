@@ -62,13 +62,16 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         super.updateUI(isForFullScreen)
         playbackRateButton.isHidden = !isForFullScreen
         rotateButton.isHidden = !isForFullScreen
+        if let layer = player?.playerLayer {
+            layer.frame = player!.bounds
+        }
     }
     
     override func controlViewAnimation(isShow: Bool) {
         self.isMaskShowing = isShow
         UIApplication.shared.setStatusBarHidden(!isShow, with: .fade)
         
-        UIView.animate(withDuration: 0.24, animations: { 
+        UIView.animate(withDuration: 0.24, animations: {
             self.topMaskView.snp.remakeConstraints {
                 $0.top.equalTo(self.mainMaskView).offset(isShow ? 0 : -65)
                 $0.left.right.equalTo(self.mainMaskView)
