@@ -48,6 +48,7 @@ import NVActivityIndicatorView
 open class BMPlayerControlView: UIView {
     
     open weak var delegate: BMPlayerControlViewDelegate?
+    open weak var player: BMPlayer?
     
     // MARK: Variables
     open var resource: BMPlayerResource?

@@ -14,6 +14,9 @@ class BMPlayerCustomControlView: BMPlayerControlView {
     var playbackRateButton = UIButton(type: .custom)
     var playRate: Float = 1.0
     
+    var rotateButton = UIButton(type: .custom)
+    var rotateCount: CGFloat = 0
+    
     /**
      Override if need to customize UI components
      */
@@ -37,11 +40,28 @@ class BMPlayerCustomControlView: BMPlayerControlView {
             $0.right.equalTo(chooseDefitionView.snp.left).offset(-5)
             $0.centerY.equalTo(chooseDefitionView)
         }
+        
+        topMaskView.addSubview(rotateButton)
+        rotateButton.layer.cornerRadius = 2
+        rotateButton.layer.borderWidth  = 1
+        rotateButton.layer.borderColor  = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8 ).cgColor
+        rotateButton.setTitleColor(UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9 ), for: .normal)
+        rotateButton.setTitle("  rotate  ", for: .normal)
+        rotateButton.addTarget(self, action: #selector(onRotateButtonPressed), for: .touchUpInside)
+        rotateButton.titleLabel?.font   = UIFont.systemFont(ofSize: 12)
+        rotateButton.isHidden = true
+        rotateButton.snp.makeConstraints {
+            $0.right.equalTo(playbackRateButton.snp.left).offset(-5)
+            $0.centerY.equalTo(chooseDefitionView)
+        }
     }
+    
+    
     
     override func updateUI(_ isForFullScreen: Bool) {
         super.updateUI(isForFullScreen)
         playbackRateButton.isHidden = !isForFullScreen
+        rotateButton.isHidden = !isForFullScreen
     }
     
     override func controlViewAnimation(isShow: Bool) {
@@ -80,5 +100,21 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         }
         playbackRateButton.setTitle("  rate \(playRate)  ", for: .normal)
         delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: playRate)
+    }
+    
+    
+    
+    @objc func onRotateButtonPressed() {
+        guard let layer = player?.playerLayer else {
+            return
+        }
+        print("rotated")
+        rotateCount += 1
+        layer.transform = CGAffineTransform(rotationAngle: rotateCount * CGFloat(Double.pi/2))
+//        layer.snp.remakeConstraints { (make) in
+//            make.edges.equalTo(self)
+//        }
+//        player?.layoutIfNeeded()
+        layer.frame = player!.bounds
     }
 }

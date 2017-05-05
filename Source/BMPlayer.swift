@@ -61,11 +61,11 @@ open class BMPlayer: UIView {
         return playerLayer?.player
     }
     
+    open var playerLayer: BMPlayerLayerView?
+    
     fileprivate var resource: BMPlayerResource!
     
     fileprivate var currentDefinition = 0
-    
-    fileprivate var playerLayer: BMPlayerLayerView?
     
     fileprivate var controlView: BMPlayerControlView!
     
@@ -368,6 +368,7 @@ open class BMPlayer: UIView {
         addSubview(controlView)
         controlView.updateUI(isFullScreen)
         controlView.delegate = self
+        controlView.player   = self
         controlView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
