@@ -25,7 +25,8 @@ class ViewController: UIViewController {
             "TintColor - Red"
         ],[
             "Custom Control UI",
-            "Custom Control UI 2"
+            "Custom Control UI 2",
+            "Custom Control UI In Storyboard"
         ]
     
     ]
@@ -65,6 +66,10 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "pushVideoDetail", sender: indexPath)
+        if (indexPath.section, indexPath.row) == (2, 2) {
+            performSegue(withIdentifier: "pushStoryboardPlayer", sender: indexPath)
+        } else {
+            performSegue(withIdentifier: "pushVideoDetail", sender: indexPath)
+        }
     }
 }

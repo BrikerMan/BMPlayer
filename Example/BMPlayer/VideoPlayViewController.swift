@@ -41,7 +41,7 @@ class VideoPlayViewController: UIViewController {
             controller = BMPlayerCustomControlView2()
         }
         
-        player = BMPlayer(customControllView: controller)
+        player = BMPlayer(customControlView: controller)
         view.addSubview(player)
         player.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top)
