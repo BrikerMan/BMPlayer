@@ -43,7 +43,11 @@ target 'ProjectName' do
 end
 ```
 
-**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use `pod 'BMPlayer/CacheSupport'`**
+**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use **
+
+```swift
+pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+```
 
 #### Swift 2.2 
 ```
