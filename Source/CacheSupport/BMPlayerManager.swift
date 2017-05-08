@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import VIMediaCache
+import AVFoundation
+
 import NVActivityIndicatorView
 
 public let BMPlayerConf = BMPlayerManager.shared
@@ -36,6 +39,16 @@ open class BMPlayerManager {
     
     /// should show log
     open var allowLog  = false
+    
+    open var cacheManeger = VIResourceLoaderManager()
+    
+
+    
+    internal static func asset(for resouce: BMPlayerResourceDefinition) -> AVURLAsset {
+        let asset = BMPlayerManager.shared.cacheManeger.playerItem(with: resouce.url)
+        return asset!.asset as! AVURLAsset
+    }
+    
     /**
      打印log
      

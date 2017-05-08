@@ -60,7 +60,7 @@ public struct BMPlayerResourceDefinition {
     
     var avURLAsset: AVURLAsset {
         get {
-            return AVURLAsset(url: url, options: options)
+            return BMPlayerManager.asset(for: self)
         }
     }
     

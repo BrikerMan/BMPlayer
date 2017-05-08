@@ -28,7 +28,10 @@
     },
     {
       "name": "Full",
-      "source_files": "Source/*",
+      "source_files": [
+        "Source/*.swift",
+        "Source/Default/*"
+      ],
       "resources": "Source/**/*.xcassets",
       "frameworks": [
         "UIKit",
@@ -43,6 +46,32 @@
         ],
         "NVActivityIndicatorView": [
           "~> 3.5"
+        ]
+      }
+    },
+    {
+      "name": "CacheSupport",
+      "source_files": [
+        "Source/*.swift",
+        "Source/CacheSupport/*"
+      ],
+      "resources": "Source/**/*.xcassets",
+      "frameworks": [
+        "UIKit",
+        "AVFoundation"
+      ],
+      "dependencies": {
+        "BMPlayer/Core": [
+
+        ],
+        "SnapKit": [
+          "~> 3.2"
+        ],
+        "NVActivityIndicatorView": [
+          "~> 3.5"
+        ],
+        "VIMediaCache": [
+
         ]
       }
     }
