@@ -25,6 +25,24 @@ class VideoPlayViewController: UIViewController {
         setupPlayerManager()
         preparePlayer()
         setupPlayerResource()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationDidEnterBackground),
+                                               name: NSNotification.Name.UIApplicationDidEnterBackground,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillEnterForeground),
+                                               name: NSNotification.Name.UIApplicationWillEnterForeground,
+                                               object: nil)
+    }
+    
+    func applicationWillEnterForeground() {
+        
+    }
+    
+    func applicationDidEnterBackground() {
+        player.pause(allowAutoPlay: false)
     }
     
     /**
@@ -56,17 +74,6 @@ class VideoPlayViewController: UIViewController {
             }
             let _ = self.navigationController?.popViewController(animated: true)
         }
-        
-        /// Listening to player state changes with Block
-        //Listen to when the player is playing or stopped
-//        player.playStateDidChange = { (isPlaying: Bool) in
-//            print("| BMPlayer Block | playStateDidChange \(isPlaying)")
-//        }
-        
-        //Listen to when the play time changes
-//        player.playTimeDidChange = { (currentTime: TimeInterval, totalTime: TimeInterval) in
-//            print("| BMPlayer Block | playTimeDidChange currentTime: \(currentTime) totalTime: \(totalTime)")
-//        }
     
         changeButton.setTitle("Change Video", for: .normal)
         changeButton.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)

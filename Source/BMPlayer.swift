@@ -437,7 +437,9 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         controlView.playerStateDidChange(state: state)
         switch state {
         case BMPlayerState.readyToPlay:
-            play()
+            if !isPauseByUser {
+                play()
+            }
             
         case BMPlayerState.bufferFinished:
             autoPlay()
