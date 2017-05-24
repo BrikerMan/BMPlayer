@@ -440,6 +440,15 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             if !isPauseByUser {
                 play()
             }
+            if shouldSeekTo != 0 {
+                seek(shouldSeekTo, completion: {
+                    if !self.isPauseByUser {
+                        self.play()
+                    } else {
+                        self.pause()
+                    }
+                })
+            }
             
         case BMPlayerState.bufferFinished:
             autoPlay()
@@ -497,7 +506,7 @@ extension BMPlayer: BMPlayerControlViewDelegate {
                     pause()
                 } else {
                     if isPlayToTheEnd {
-                        seek(0, completion: { 
+                        seek(0, completion: {
                             self.play()
                         })
                         controlView.hidePlayToTheEndView()
@@ -534,7 +543,7 @@ extension BMPlayer: BMPlayerControlViewDelegate {
             
             if isPlayToTheEnd {
                 isPlayToTheEnd = false
-                seek(target, completion: { 
+                seek(target, completion: {
                     self.play()
                 })
                 controlView.hidePlayToTheEndView()
