@@ -63,6 +63,9 @@ open class BMPlayer: UIView {
     
     open var playerLayer: BMPlayerLayerView?
     
+    /// Adjust the value of Pan to Seek
+    open var panToSeekRate: Double = 1.0
+    
     fileprivate var resource: BMPlayerResource!
     
     fileprivate var currentDefinition = 0
@@ -299,7 +302,7 @@ open class BMPlayer: UIView {
         isSliderSliding = true
         if let playerItem = playerLayer?.playerItem {
             // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
-            self.sumTime = self.sumTime + TimeInterval(value) / 100.0 * (TimeInterval(self.totalDuration)/400)
+            self.sumTime = self.sumTime + TimeInterval(value) / 100.0 * (TimeInterval(self.totalDuration)/400) * panToSeekRate
             
             let totalTime       = playerItem.duration
             
