@@ -73,7 +73,7 @@ open class BMPlayerLayerView: UIView {
     }()
     
     
-    open var videoGravity = AVLayerVideoGravityResizeAspect {
+    open var videoGravity = AVLayerVideoGravity.resizeAspect {
         didSet {
             self.playerLayer?.videoGravity = videoGravity
         }
