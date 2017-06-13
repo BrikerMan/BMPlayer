@@ -37,11 +37,11 @@ class VideoPlayViewController: UIViewController {
                                                object: nil)
     }
     
-    func applicationWillEnterForeground() {
+    @objc func applicationWillEnterForeground() {
         
     }
     
-    func applicationDidEnterBackground() {
+    @objc func applicationDidEnterBackground() {
         player.pause(allowAutoPlay: false)
     }
     
