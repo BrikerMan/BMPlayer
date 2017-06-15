@@ -39,7 +39,7 @@ open class BMPlayer: UIView {
     open var panGesture: UIPanGestureRecognizer!
     
     /// AVLayerVideoGravityType
-    open var videoGravity = AVLayerVideoGravityResizeAspect {
+    open var videoGravity = AVLayerVideoGravity.resizeAspect {
         didSet {
             self.playerLayer?.videoGravity = videoGravity
         }
@@ -344,7 +344,7 @@ open class BMPlayer: UIView {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        if let customControlView = classForCoder.storyBoardCustomControl() {
+        if let customControlView = BMPlayer.self.storyBoardCustomControl() {
             self.customControlView = customControlView
         }
         initUI()

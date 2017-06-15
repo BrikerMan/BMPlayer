@@ -100,7 +100,7 @@ open class BMPlayerControlView: UIView {
     
     open var subtitleLabel    = UILabel()
     open var subtitleBackView = UIView()
-    open var subtileAttrabute: [String : Any]?
+    open var subtileAttrabute: [NSAttributedStringKey : Any]?
     
     /// Activty Indector for loading
     open var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -371,7 +371,7 @@ open class BMPlayerControlView: UIView {
      
      - parameter button: action Button
      */
-    open func onButtonPressed(_ button: UIButton) {
+    @objc open func onButtonPressed(_ button: UIButton) {
         autoFadeOutControlViewWithAnimation()
         if let type = ButtonType(rawValue: button.tag) {
             switch type {
@@ -391,7 +391,7 @@ open class BMPlayerControlView: UIView {
      
      - parameter gesture: tap gesture
      */
-    open func onTapGestureTapped(_ gesture: UITapGestureRecognizer) {
+    @objc open func onTapGestureTapped(_ gesture: UITapGestureRecognizer) {
         if playerLastState == .playedToTheEnd {
             return
         }
