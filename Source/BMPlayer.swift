@@ -104,7 +104,7 @@ open class BMPlayer: UIView {
     fileprivate var isPlayToTheEnd  = false
     //视频画面比例
     fileprivate var aspectRatio:BMPlayerAspectRatio = .default
-    
+      
     //Cache is playing result to improve callback performance
     fileprivate var isPlayingCache: Bool? = nil
     
@@ -156,7 +156,6 @@ open class BMPlayer: UIView {
             isURLSet                = true
         }
         
-        panGesture.isEnabled = true
         playerLayer?.play()
         isPauseByUser = false
     }
@@ -226,6 +225,10 @@ open class BMPlayer: UIView {
     // MARK: - Action Response
     
     @objc fileprivate func panDirection(_ pan: UIPanGestureRecognizer) {
+        // 播放结束时，忽略手势
+        guard playerLayer?.state != .playedToTheEnd else {
+            return
+        }
         // 根据在view上Pan的位置，确定是调音量还是亮度
         let locationPoint = pan.location(in: self)
         
@@ -462,7 +465,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         default:
             break
         }
-        panGesture.isEnabled = state != .playedToTheEnd
+
         delegate?.bmPlayer(player: self, playerStateDidChange: state)
     }
     
