@@ -104,7 +104,7 @@ open class BMPlayerLayerView: UIView {
     /// 音量滑杆
     fileprivate var volumeViewSlider: UISlider!
     /// 播发器的几种状态
-    fileprivate var state = BMPlayerState.notSetURL {
+    internal fileprivate(set) var state = BMPlayerState.notSetURL {
         didSet {
             if state != oldValue {
                 delegate?.bmPlayer(player: self, playerStateDidChange: state)
