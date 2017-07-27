@@ -9,11 +9,12 @@
 import Foundation
 import AVFoundation
 
-public struct BMPlayerResource {
+public class BMPlayerResource {
     public let name  : String
     public let cover : URL?
-    public let subtitle: BMSubtitles?
+    public var subtitle: BMSubtitles?
     public let definitions: [BMPlayerResourceDefinition]
+    
     
     /**
      Player recource item with url, used to play single difinition video
@@ -23,7 +24,7 @@ public struct BMPlayerResource {
      - parameter cover:     video cover, will show before playing, and hide when play
      - parameter subtitles: video subtitles
      */
-    public init(url: URL, name: String = "", cover: URL? = nil, subtitle: URL? = nil) {
+    public convenience init(url: URL, name: String = "", cover: URL? = nil, subtitle: URL? = nil) {
         let definition = BMPlayerResourceDefinition(url: url, definition: "")
         
         var subtitles: BMSubtitles? = nil
@@ -51,7 +52,7 @@ public struct BMPlayerResource {
 }
 
 
-public struct BMPlayerResourceDefinition {
+public class BMPlayerResourceDefinition {
     public let url: URL
     public let definition: String
     

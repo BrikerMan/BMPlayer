@@ -15,6 +15,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		6A07AC961F29C8A8001522E1 /* SubtitleDemo2.srt in Resources */ = {isa = PBXBuildFile; fileRef = 6A07AC951F29C8A8001522E1 /* SubtitleDemo2.srt */; };
 		6A33958B1E93A4B300809411 /* BMPlayerCustomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A33958A1E93A4B300809411 /* BMPlayerCustomControlView.swift */; };
 		6A4F83161E90CB8500ABE3CA /* SubtitleDemo.srt in Resources */ = {isa = PBXBuildFile; fileRef = 6A4F83151E90CB8500ABE3CA /* SubtitleDemo.srt */; };
 		6AAA770B1CE18427009745BA /* BMPlayer_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */; };
@@ -33,6 +34,7 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		6A07AC951F29C8A8001522E1 /* SubtitleDemo2.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SubtitleDemo2.srt; sourceTree = "<group>"; };
 		6A33958A1E93A4B300809411 /* BMPlayerCustomControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView.swift; sourceTree = "<group>"; };
 		6A4F83151E90CB8500ABE3CA /* SubtitleDemo.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SubtitleDemo.srt; sourceTree = "<group>"; };
 		6AAA77081CE18427009745BA /* BMPlayer_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMPlayer_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 		6A4F83141E90CB8500ABE3CA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				6A07AC951F29C8A8001522E1 /* SubtitleDemo2.srt */,
 				6A4F83151E90CB8500ABE3CA /* SubtitleDemo.srt */,
 			);
 			path = Resource;
@@ -211,13 +214,13 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = SXRTDM2GE2;
+						DevelopmentTeam = SMPQ9YA3H4;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					6AAA77071CE18427009745BA = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = SXRTDM2GE2;
+						DevelopmentTeam = SMPQ9YA3H4;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A4F83161E90CB8500ABE3CA /* SubtitleDemo.srt in Resources */,
+				6A07AC961F29C8A8001522E1 /* SubtitleDemo2.srt in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -450,7 +454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SXRTDM2GE2;
+				DEVELOPMENT_TEAM = SMPQ9YA3H4;
 				INFOPLIST_FILE = BMPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -470,7 +474,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SXRTDM2GE2;
+				DEVELOPMENT_TEAM = SMPQ9YA3H4;
 				INFOPLIST_FILE = BMPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -487,7 +491,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = SXRTDM2GE2;
+				DEVELOPMENT_TEAM = SMPQ9YA3H4;
 				INFOPLIST_FILE = BMPlayer_Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -501,7 +505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				DEVELOPMENT_TEAM = SXRTDM2GE2;
+				DEVELOPMENT_TEAM = SMPQ9YA3H4;
 				INFOPLIST_FILE = BMPlayer_Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

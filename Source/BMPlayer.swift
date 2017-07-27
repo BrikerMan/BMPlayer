@@ -51,6 +51,9 @@ open class BMPlayer: UIView {
         }
     }
     
+    
+    open var currentResource: BMPlayerResource?
+    
     //Closure fired when play time changed
     open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
     
@@ -66,7 +69,11 @@ open class BMPlayer: UIView {
     /// Adjust the value of Pan to Seek
     open var panToSeekRate: Double = 1.0
     
-    fileprivate var resource: BMPlayerResource!
+    fileprivate var resource: BMPlayerResource! {
+        didSet {
+            self.currentResource = resource
+        }
+    }
     
     fileprivate var currentDefinition = 0
     
@@ -119,7 +126,7 @@ open class BMPlayer: UIView {
     open func setVideo(resource: BMPlayerResource, definitionIndex: Int = 0) {
         isURLSet = false
         self.resource = resource
-        
+    
         currentDefinition           = definitionIndex
         controlView.prepareUI(for: resource, selectedIndex: definitionIndex)
         

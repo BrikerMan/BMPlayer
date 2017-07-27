@@ -10,6 +10,14 @@ import UIKit
 import BMPlayer
 import NVActivityIndicatorView
 
+func delay(_ seconds: Double, completion:@escaping ()->()) {
+    let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
+    
+    DispatchQueue.main.asyncAfter(deadline: popTime) {
+        completion()
+    }
+}
+
 class VideoPlayViewController: UIViewController {
     
     //    @IBOutlet weak var player: BMPlayer!
@@ -74,7 +82,7 @@ class VideoPlayViewController: UIViewController {
             }
             let _ = self.navigationController?.popViewController(animated: true)
         }
-    
+        
         changeButton.setTitle("Change Video", for: .normal)
         changeButton.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
         changeButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
@@ -114,17 +122,41 @@ class VideoPlayViewController: UIViewController {
     
     func setupPlayerResource() {
         switch (index.section,index.row) {
-    
+            
         case (0,0):
             let str = Bundle.main.url(forResource: "SubtitleDemo", withExtension: "srt")!
-            let url =  URL(string: "http://baobab.wdjcdn.com/1456117847747a_x264.mp4")!
-           
+            let url = URL(string: "http://baobab.wdjcdn.com/1456117847747a_x264.mp4")!
+            
             let subtitle = BMSubtitles(url: str)
             
             let asset = BMPlayerResource(name: "Video Name Here",
                                          definitions: [BMPlayerResourceDefinition(url: url, definition: "480p")],
                                          cover: nil,
                                          subtitles: subtitle)
+            
+//            // How to change subtiles
+//            delay(5, completion: {
+//                if let resource = self.player.currentResource {
+//                    resource.subtitle = nil
+//                }
+//            })
+//
+//            delay(10, completion: {
+//                if let resource = self.player.currentResource {
+//                    resource.subtitle = BMSubtitles(url: Bundle.main.url(forResource: "SubtitleDemo2", withExtension: "srt")!)
+//                }
+//            })
+//            
+//            
+//            // How to change get current uel
+//            delay(5, completion: {
+//                if let resource = self.player.currentResource {
+//                    for i in resource.definitions {
+//                        print("video \(i.definition) url is \(i.url)")
+//                    }
+//                }
+//            })
+//            
             player.seek(30)
             player.setVideo(resource: asset)
             changeButton.isHidden = false
@@ -251,11 +283,11 @@ extension VideoPlayViewController: BMPlayerDelegate {
     
     // Call back when play time change
     func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
-//        print("| BMPlayerDelegate | playTimeDidChange | \(currentTime) of \(totalTime)")
+        //        print("| BMPlayerDelegate | playTimeDidChange | \(currentTime) of \(totalTime)")
     }
     
     // Call back when the video loaded duration changed
     func bmPlayer(player: BMPlayer, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
-//        print("| BMPlayerDelegate | loadedTimeDidChange | \(loadedDuration) of \(totalDuration)")
+        //        print("| BMPlayerDelegate | loadedTimeDidChange | \(loadedDuration) of \(totalDuration)")
     }
 }
