@@ -134,10 +134,11 @@ class VideoPlayViewController: UIViewController {
                                          cover: nil,
                                          subtitles: subtitle)
             
-//            // How to change subtiles
+            // How to change subtiles
 //            delay(5, completion: {
 //                if let resource = self.player.currentResource {
 //                    resource.subtitle = nil
+//                    self.player.forceReloadSubtile()
 //                }
 //            })
 //

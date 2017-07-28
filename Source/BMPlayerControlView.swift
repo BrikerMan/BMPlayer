@@ -127,6 +127,8 @@ open class BMPlayerControlView: UIView {
         timeSlider.value      = Float(currentTime) / Float(totalTime)
         if let subtitle = resource?.subtitle {
             showSubtile(from: subtitle, at: currentTime)
+        } else {
+            subtitleBackView.isHidden = true
         }
     }
     

@@ -219,6 +219,12 @@ open class BMPlayer: UIView {
         controlView.prepareToDealloc()
     }
     
+    open func forceReloadSubtile() {
+        controlView.playTimeDidChange(currentTime: currentPosition,
+                                      totalTime: totalDuration)
+    }
+    
+    
     /**
      If you want to create BMPlayer with custom control in storyboard.
      create a subclass and override this method.
