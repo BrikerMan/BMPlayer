@@ -287,21 +287,22 @@ open class BMPlayer: UIView {
             // 比如水平移动结束时，要快进到指定位置，如果这里没有判断，当我们调节音量完之后，会出现屏幕跳动的bug
             switch (self.panDirection) {
             case BMPanDirection.horizontal:
-                controlView.hideSeekToView()
-                isSliderSliding = false
-                if isPlayToTheEnd {
-                    isPlayToTheEnd = false
-                    seek(self.sumTime, completion: {
-                        self.play()
-                    })
-                } else {
-                    seek(self.sumTime, completion: {
-                        self.autoPlay()
-                    })
+                if BMPlayerConf.enablePlaytimeGestures {
+                    controlView.hideSeekToView()
+                    isSliderSliding = false
+                    if isPlayToTheEnd {
+                        isPlayToTheEnd = false
+                        seek(self.sumTime, completion: {
+                            self.play()
+                        })
+                    } else {
+                        seek(self.sumTime, completion: {
+                            self.autoPlay()
+                        })
+                    }
+                    // 把sumTime滞空，不然会越加越多
+                    self.sumTime = 0.0
                 }
-                // 把sumTime滞空，不然会越加越多
-                self.sumTime = 0.0
-                
             case BMPanDirection.vertical:
                 self.isVolume = false
             }
@@ -311,10 +312,19 @@ open class BMPlayer: UIView {
     }
     
     fileprivate func verticalMoved(_ value: CGFloat) {
-        self.isVolume ? (self.volumeViewSlider.value -= Float(value / 10000)) : (UIScreen.main.brightness -= value / 10000)
+        if self.isVolume {
+            if BMPlayerConf.enableVolumeGestures {
+                self.volumeViewSlider.value -= Float(value / 10000)
+            }
+        } else if BMPlayerConf.enableBrightnessGestures {
+            UIScreen.main.brightness -= value / 10000
+        }
     }
     
     fileprivate func horizontalMoved(_ value: CGFloat) {
+        if (!BMPlayerConf.enablePlaytimeGestures) {
+            return
+        }
         isSliderSliding = true
         if let playerItem = playerLayer?.playerItem {
             // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
