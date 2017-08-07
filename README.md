@@ -8,7 +8,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![Weibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%40%E8%89%BE%E5%8A%9B%E4%BA%9A%E5%B0%94-yellow.svg?style=flat)](http://weibo.com/536445669)
 
-A video player for iOS, based on AVPlayer, support the horizontal, vertical screen. support adjust volume, brightness and seek by slide, support subtitles. 
+A video player for iOS, based on AVPlayer, support the horizontal, vertical screen. support adjust volume, brightness and seek by slide, support subtitles.
 
 [中文说明](https://github.com/BrikerMan/BMPlayer/blob/master/README.zh.md)
 
@@ -22,12 +22,12 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 - [x] Custom playrate
 - [x] Add Http header and other options to AVURLAsset
 - [x] Easy to customize
-- [x] Supporting show local and online subtitles 
+- [x] Supporting show local and online subtitles
 - [x] [Swift 3](https://developer.apple.com/swift/)
 
 ## Requirements
 - iOS 8 +
-- Xcode 8 
+- Xcode 8
 - Swift 3
 
 ## Installation
@@ -49,7 +49,7 @@ end
 pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
-#### Swift 2.2 
+#### Swift 2.2
 ```
 use_frameworks!
 
@@ -118,7 +118,7 @@ let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com
                                       definition: "高清")
 let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
                                       definition: "标清")
-   
+
 let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",
                              definitions: [res0, res1],
                              cover: URL(string: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg"))
@@ -131,11 +131,11 @@ player.setVideo(resource: asset)
 ```swift
 let header = ["User-Agent":"BMPlayer"]
 let options = ["AVURLAssetHTTPHeaderFieldsKey":header]
-  
+
 let definition = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
                                             definition: "高清",
                                             options: options)
-  
+
 let asset = BMPlayerResource(name: "Video Name",
                              definitions: [definition])
 ```
@@ -178,6 +178,13 @@ BMPlayerConf.tintColor = UIColor.whiteColor()
 BMPlayerConf.topBarShowInCase = .Always
 // loader type, see detail：https://github.com/ninjaprox/NVActivityIndicatorView
 BMPlayerConf.loaderType  = NVActivityIndicatorType.BallRotateChase
+// enable setting the brightness by touch gesture in the player
+BMPlayerConf.enableBrightnessGestures = true
+// enable setting the volume by touch gesture in the player
+BMPlayerConf.enableVolumeGestures = true
+// enable setting the playtime by touch gesture in the player
+BMPlayerConf.enablePlaytimeGestures = true
+
 ```
 
 ## Advanced Customize
@@ -204,4 +211,3 @@ You are welcome to fork and submit pull requests.
 
 ## License
 BMPlayer is available under the MIT license. See the LICENSE file for more info.
-
