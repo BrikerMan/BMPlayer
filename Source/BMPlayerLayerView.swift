@@ -73,7 +73,7 @@ open class BMPlayerLayerView: UIView {
     }()
     
     
-    open var videoGravity = AVLayerVideoGravityResizeAspect {
+    open var videoGravity = AVLayerVideoGravity.resizeAspect {
         didSet {
             self.playerLayer?.videoGravity = videoGravity
         }
@@ -104,7 +104,7 @@ open class BMPlayerLayerView: UIView {
     /// 音量滑杆
     fileprivate var volumeViewSlider: UISlider!
     /// 播发器的几种状态
-    internal fileprivate(set) var state = BMPlayerState.notSetURL {
+    fileprivate var state = BMPlayerState.notSetURL {
         didSet {
             if state != oldValue {
                 delegate?.bmPlayer(player: self, playerStateDidChange: state)
@@ -169,15 +169,15 @@ open class BMPlayerLayerView: UIView {
         super.layoutSubviews()
         switch self.aspectRatio {
         case .default:
-            self.playerLayer?.videoGravity = "AVLayerVideoGravityResizeAspect"
+            self.playerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
             self.playerLayer?.frame  = self.bounds
             break
         case .sixteen2NINE:
-            self.playerLayer?.videoGravity = "AVLayerVideoGravityResize"
+            self.playerLayer?.videoGravity = AVLayerVideoGravity.resize
             self.playerLayer?.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width/(16/9))
             break
         case .four2THREE:
-            self.playerLayer?.videoGravity = "AVLayerVideoGravityResize"
+            self.playerLayer?.videoGravity = AVLayerVideoGravity.resize
             let _w = self.bounds.height * 4 / 3
             self.playerLayer?.frame = CGRect(x: (self.bounds.width - _w )/2, y: 0, width: _w, height: self.bounds.height)
             break
@@ -270,7 +270,7 @@ open class BMPlayerLayerView: UIView {
         playerItem = AVPlayerItem(asset: urlAsset!)
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
-    
+        
         
         
         playerLayer?.removeFromSuperlayer()
@@ -339,7 +339,7 @@ open class BMPlayerLayerView: UIView {
                                    playTimeDidChange: CMTimeGetSeconds(playerItem.duration),
                                    totalTime: CMTimeGetSeconds(playerItem.duration))
             }
-
+            
             self.state = .playedToTheEnd
             self.isPlaying = false
             self.playDidEnd = true
@@ -449,3 +449,4 @@ open class BMPlayerLayerView: UIView {
         }
     }
 }
+

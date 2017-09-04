@@ -100,7 +100,7 @@ open class BMPlayerControlView: UIView {
     
     open var subtitleLabel    = UILabel()
     open var subtitleBackView = UIView()
-    open var subtileAttrabute: [String : Any]?
+    open var subtileAttrabute: [NSAttributedStringKey : Any]?
     
     /// Activty Indector for loading
     open var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -127,8 +127,6 @@ open class BMPlayerControlView: UIView {
         timeSlider.value      = Float(currentTime) / Float(totalTime)
         if let subtitle = resource?.subtitle {
             showSubtile(from: subtitle, at: currentTime)
-        } else {
-            subtitleBackView.isHidden = true
         }
     }
     
@@ -373,7 +371,7 @@ open class BMPlayerControlView: UIView {
      
      - parameter button: action Button
      */
-    open func onButtonPressed(_ button: UIButton) {
+    @objc open func onButtonPressed(_ button: UIButton) {
         autoFadeOutControlViewWithAnimation()
         if let type = ButtonType(rawValue: button.tag) {
             switch type {
@@ -393,7 +391,7 @@ open class BMPlayerControlView: UIView {
      
      - parameter gesture: tap gesture
      */
-    open func onTapGestureTapped(_ gesture: UITapGestureRecognizer) {
+    @objc open func onTapGestureTapped(_ gesture: UITapGestureRecognizer) {
         if playerLastState == .playedToTheEnd {
             return
         }
@@ -496,7 +494,7 @@ open class BMPlayerControlView: UIView {
         mainMaskView.insertSubview(maskImageView, at: 0)
         mainMaskView.clipsToBounds = true
         mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
-       
+        
         // Top views
         topMaskView.addSubview(backButton)
         topMaskView.addSubview(titleLabel)
@@ -718,3 +716,4 @@ open class BMPlayerControlView: UIView {
         return image
     }
 }
+
