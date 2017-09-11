@@ -79,9 +79,11 @@ import BMPlayer
 
 player.playWithURL(URL(string: url)!)
 
-player.backBlock = { [unowned self] in
+player.backBlock = { [unowned self] (isFullScreen) in
+    if isFullScreen == true { return }
     let _ = self.navigationController?.popViewController(animated: true)
 }
+
 ```
 
 ### Code implementation by [SnapKit](https://github.com/SnapKit/SnapKit)
