@@ -49,6 +49,20 @@ end
 pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
+#### Swift 4
+```
+use_frameworks!
+
+pod 'BMPlayer'
+```
+
+#### Swift 3
+```
+use_frameworks!
+
+pod 'BMPlayer', '~> 0.9.1'
+```
+
 #### Swift 2.2
 ```
 use_frameworks!

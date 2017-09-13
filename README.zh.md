@@ -31,17 +31,21 @@
 ## 安装
 ### CocoaPods
 
-#### Swift3
-确保使用最新版本cocoapods **cocoapods 1.1.0.rc.2**, 可以使用命令 `sudo gem install cocoapods --pre` 来升级.
+#### Swift 4
+```
+use_frameworks!
 
-```ruby
-target 'ProjectName' do
-    use_frameworks!
-    pod 'BMPlayer'
-end
+pod 'BMPlayer'
 ```
 
-#### Swift 2.2 
+#### Swift 3
+```
+use_frameworks!
+
+pod 'BMPlayer', '~> 0.9.1'
+```
+
+#### Swift 2.2
 ```
 use_frameworks!
 
