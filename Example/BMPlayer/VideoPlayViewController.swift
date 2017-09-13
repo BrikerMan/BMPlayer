@@ -8,6 +8,7 @@
 
 import UIKit
 import BMPlayer
+import AVFoundation
 import NVActivityIndicatorView
 
 func delay(_ seconds: Double, completion:@escaping ()->()) {
@@ -45,11 +46,11 @@ class VideoPlayViewController: UIViewController {
                                                object: nil)
     }
     
-    func applicationWillEnterForeground() {
+    @objc func applicationWillEnterForeground() {
         
     }
     
-    func applicationDidEnterBackground() {
+    @objc func applicationDidEnterBackground() {
         player.pause(allowAutoPlay: false)
     }
     
@@ -176,7 +177,7 @@ class VideoPlayViewController: UIViewController {
             player.setVideo(resource: asset)
             
         case (2,1):
-            player.videoGravity = "AVLayerVideoGravityResizeAspect"
+            player.videoGravity = AVLayerVideoGravity.resizeAspect
             let asset = BMPlayerResource(url: URL(string: "http://baobab.wdjcdn.com/14525705791193.mp4")!, name: "风格互换：原来你我相爱")
             player.setVideo(resource: asset)
             
