@@ -52,6 +52,12 @@ use_frameworks!
 pod 'BMPlayer', '~> 0.3.3'
 ```
 
+**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
+
+```swift
+pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+```
+
 ### Carthage
 安装好 Carthage 后，将下列内容加入你项目的 Cartfile:
 ```

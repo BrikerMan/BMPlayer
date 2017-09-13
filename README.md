@@ -33,22 +33,6 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 ## Installation
 ### CocoaPods
 
-#### Swift3
-Please make sure using the latest cocoapods, update with `sudo gem install cocoapods`.
-
-```ruby
-target 'ProjectName' do
-    use_frameworks!
-    pod 'BMPlayer'
-end
-```
-
-**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
-
-```swift
-pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
-```
-
 #### Swift 4
 ```
 use_frameworks!
@@ -68,6 +52,12 @@ pod 'BMPlayer', '~> 0.9.1'
 use_frameworks!
 
 pod 'BMPlayer', '~> 0.3.3'
+```
+
+**To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
+
+```swift
+pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
 ### Carthage
