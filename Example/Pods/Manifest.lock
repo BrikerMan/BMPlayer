@@ -1,20 +1,20 @@
 PODS:
-  - BMPlayer (0.9.0):
-    - BMPlayer/Full (= 0.9.0)
-  - BMPlayer/Core (0.9.0)
-  - BMPlayer/Full (0.9.0):
+  - BMPlayer/CacheSupport (0.9.0):
     - BMPlayer/Core
     - NVActivityIndicatorView (~> 3.5)
     - SnapKit (~> 3.2)
+    - VIMediaCache
+  - BMPlayer/Core (0.9.0)
   - NVActivityIndicatorView (3.7.0):
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
   - Reveal-SDK (10)
   - SnapKit (3.2.0)
   - SwipeBack (1.1.1)
+  - VIMediaCache (0.3)
 
 DEPENDENCIES:
-  - BMPlayer (from `../`)
+  - BMPlayer/CacheSupport (from `../`)
   - Reveal-SDK
   - SwipeBack
 
@@ -28,7 +28,8 @@ SPEC CHECKSUMS:
   Reveal-SDK: 7869ddf1f902cabbb07a1f0dd06bd25861a126f7
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwipeBack: d6759601b40da1f4161033feb30ab475d7d04322
+  VIMediaCache: 02c03af2adf2526eddc8ee3b06e41f26e9546f38
 
-PODFILE CHECKSUM: c918fff43ccbf975b12b3e8a3e7ef860240eddab
+PODFILE CHECKSUM: de0a8818c1b74390b7c88fac79721798a8f20b23
 
 COCOAPODS: 1.2.1

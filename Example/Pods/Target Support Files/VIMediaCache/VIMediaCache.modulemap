@@ -1,0 +1,6 @@
+framework module VIMediaCache {
+  umbrella header "VIMediaCache-umbrella.h"
+
+  export *
+  module * { export * }
+}
