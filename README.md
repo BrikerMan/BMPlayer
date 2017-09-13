@@ -37,7 +37,7 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 ```
 use_frameworks!
 
-pod 'BMPlayer'
+pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
 #### Swift 3
