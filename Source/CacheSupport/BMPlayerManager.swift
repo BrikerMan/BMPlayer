@@ -40,9 +40,13 @@ open class BMPlayerManager {
     /// should show log
     open var allowLog  = false
     
+    /// use gestures to set brightness, volume and play position
+    open var enableBrightnessGestures = true
+    open var enableVolumeGestures = true
+    open var enablePlaytimeGestures = true
+
     open var cacheManeger = VIResourceLoaderManager()
     
-
     
     internal static func asset(for resouce: BMPlayerResourceDefinition) -> AVURLAsset {
         let asset = BMPlayerManager.shared.cacheManeger.playerItem(with: resouce.url)
