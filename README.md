@@ -34,7 +34,7 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 ### CocoaPods
 
 #### Swift 4
-** Remember to change NVActivityIndicatorView's swift_version to 3.2 after pod install **
+**Remember to change NVActivityIndicatorView's swift_version to 3.2 after pod install**
 ```
 use_frameworks!
 

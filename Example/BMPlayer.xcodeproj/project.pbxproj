@@ -37,6 +37,7 @@
 		6A07AC951F29C8A8001522E1 /* SubtitleDemo2.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SubtitleDemo2.srt; sourceTree = "<group>"; };
 		6A33958A1E93A4B300809411 /* BMPlayerCustomControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView.swift; sourceTree = "<group>"; };
 		6A4F83151E90CB8500ABE3CA /* SubtitleDemo.srt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SubtitleDemo.srt; sourceTree = "<group>"; };
+		6A638BD71F739BB600FA2000 /* README.zh.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.zh.md; path = ../README.zh.md; sourceTree = "<group>"; };
 		6AAA77081CE18427009745BA /* BMPlayer_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMPlayer_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AAA770A1CE18427009745BA /* BMPlayer_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMPlayer_Tests.swift; sourceTree = "<group>"; };
 		6AAA770C1CE18427009745BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 			children = (
 				BE1603B0E75A92AB9D964831 /* BMPlayer.podspec */,
 				B1777343B0CAECA69C6340C6 /* README.md */,
+				6A638BD71F739BB600FA2000 /* README.zh.md */,
 				99063F39CF18C5E3F0C969F9 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
