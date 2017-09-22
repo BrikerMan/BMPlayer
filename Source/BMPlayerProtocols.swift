@@ -20,6 +20,9 @@ extension BMPlayerControlView {
 
 extension BMPlayer {
     static func formatSecondsToString(_ secounds: TimeInterval) -> String {
+        if secounds.isNaN {
+            return "00:00"
+        }
         let Min = Int(secounds / 60)
         let Sec = Int(secounds.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d", Min, Sec)
