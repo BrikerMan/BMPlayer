@@ -48,7 +48,7 @@
           "~> 4.0.0"
         ],
         "NVActivityIndicatorView": [
-          "~> 3.5"
+          "~> 4.0"
         ]
       }
     },
@@ -71,7 +71,7 @@
           "~> 4.0.0"
         ],
         "NVActivityIndicatorView": [
-          "~> 3.5"
+          "~> 4.0"
         ],
         "VIMediaCache": [
 

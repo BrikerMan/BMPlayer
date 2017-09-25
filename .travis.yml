@@ -1,4 +1,4 @@
-osx_image: xcode8.3
+osx_image: xcode9
 language: objective-c
 script: xcodebuild clean test -workspace Example/BMPlayer.xcworkspace -scheme BMPlayer -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.1' -enableCodeCoverage YES | xcpretty
 

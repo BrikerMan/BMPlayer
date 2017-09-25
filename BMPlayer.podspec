@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "BMPlayer"
-s.version          = "0.9.5"
+s.version          = "1.0.0"
 s.summary          = "Video Player Using Swift, based on AVPlayer"
 
 s.description      = <<-DESC
@@ -31,7 +31,7 @@ s.subspec 'Full' do |full|
 
     full.dependency 'BMPlayer/Core'
     full.dependency 'SnapKit', '~> 4.0.0'
-    full.dependency 'NVActivityIndicatorView', '~> 3.5'
+    full.dependency 'NVActivityIndicatorView', '~> 4.0.0'
 end
 
 s.subspec 'CacheSupport' do |cache|
@@ -41,7 +41,7 @@ s.subspec 'CacheSupport' do |cache|
 
     cache.dependency 'BMPlayer/Core'
     cache.dependency 'SnapKit', '~> 4.0.0'
-    cache.dependency 'NVActivityIndicatorView', '~> 3.5'
+    cache.dependency 'NVActivityIndicatorView', '~> 4.0.0'
     cache.dependency 'VIMediaCache'
 end
 

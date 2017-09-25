@@ -32,7 +32,6 @@
 ### CocoaPods
 
 #### Swift 4
-**安装后需要把 NVActivityIndicatorView 的 swift_version 改为 3.2**
 ```
 use_frameworks!
 
