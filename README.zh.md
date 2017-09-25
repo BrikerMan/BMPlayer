@@ -35,7 +35,7 @@
 ```
 use_frameworks!
 
-pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+pod 'BMPlayer', '~> 1.0.0'
 ```
 
 #### Swift 3
@@ -100,7 +100,7 @@ player.snp_makeConstraints { (make) in
     // 注意此处，宽高比 16:9 优先级比 1000 低就行，在因为 iPhone 4S 宽高比不是 16：9
         make.height.equalTo(player.snp_width).multipliedBy(9.0/16.0).priority(750)
 }
-player.backBlock = { [unowned self] in
+player.backBlock = { [unowned self] (isFullScreen) in
     let _ = self.navigationController?.popViewController(animated: true)
 }
 ```

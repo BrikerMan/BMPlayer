@@ -23,12 +23,12 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 - [x] Add Http header and other options to AVURLAsset
 - [x] Easy to customize
 - [x] Supporting show local and online subtitles
-- [x] [Swift 3](https://developer.apple.com/swift/)
+- [x] [Swift 4](https://developer.apple.com/swift/)
 
 ## Requirements
 - iOS 8 +
-- Xcode 8
-- Swift 3
+- Xcode 9
+- Swift 4
 
 ## Installation
 ### CocoaPods
@@ -38,7 +38,7 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 ```
 use_frameworks!
 
-pod 'BMPlayer', :git => 'https://github.com/BrikerMan/BMPlayer.git'
+pod 'BMPlayer', '~> 1.0.0'
 ```
 
 #### Swift 3
@@ -67,6 +67,7 @@ Add `BMPlayer` in your Cartfile.
 github "BrikerMan/BMPlayer"
 ```
 Run carthage to build the framework and drag the built BMPlayer.framework into your Xcode project.
+
 ### Demo
 run `pod install` at `Example` folder before run the demo.
 
@@ -105,7 +106,8 @@ player.snp.makeConstraints { (make) in
     make.height.equalTo(player.snp.width).multipliedBy(9.0/16.0).priority(750)
 }
 // Back button event
-player.backBlock = { [unowned self] in
+player.backBlock = { [unowned self] (isFullScreen) in
+    if isFullScreen == true { return }
     let _ = self.navigationController?.popViewController(animated: true)
 }
 ```
