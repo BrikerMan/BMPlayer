@@ -63,11 +63,11 @@ open class BMPlayer: UIView {
     
     open var playerLayer: BMPlayerLayerView?
     
+    open var controlView: BMPlayerControlView!
+    
     fileprivate var resource: BMPlayerResource!
     
     fileprivate var currentDefinition = 0
-    
-    fileprivate var controlView: BMPlayerControlView!
     
     fileprivate var customControlView: BMPlayerControlView?
     
