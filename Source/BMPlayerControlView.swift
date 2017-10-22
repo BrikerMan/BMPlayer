@@ -262,7 +262,7 @@ open class BMPlayerControlView: UIView {
     open func updateUI(_ isForFullScreen: Bool) {
         isFullscreen = isForFullScreen
         fullscreenButton.isSelected = isForFullScreen
-        chooseDefitionView.isHidden = !isForFullScreen
+        chooseDefitionView.isHidden = !BMPlayerConf.enableChooseDefinition || !isForFullScreen
         if isForFullScreen {
             if BMPlayerConf.topBarShowInCase.rawValue == 2 {
                 topMaskView.isHidden = true
