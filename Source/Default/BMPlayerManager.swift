@@ -43,6 +43,8 @@ open class BMPlayerManager {
     open var enableVolumeGestures = true
     open var enablePlaytimeGestures = true
     
+    open var enableChooseDefinition = true
+    
     internal static func asset(for resouce: BMPlayerResourceDefinition) -> AVURLAsset {
         return AVURLAsset(url: resouce.url, options: resouce.options)
     }
