@@ -44,6 +44,7 @@ open class BMPlayerManager {
     open var enableBrightnessGestures = true
     open var enableVolumeGestures = true
     open var enablePlaytimeGestures = true
+    open var enableChooseDefinition = true
 
     open var cacheManeger = VIResourceLoaderManager()
     

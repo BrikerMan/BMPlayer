@@ -155,7 +155,6 @@ open class BMPlayerControlView: UIView {
             playButton.isSelected = false
             showPlayToTheEndView()
             controlViewAnimation(isShow: true)
-            cancelAutoFadeOutAnimation()
             
         default:
             break
@@ -208,7 +207,9 @@ open class BMPlayerControlView: UIView {
     open func autoFadeOutControlViewWithAnimation() {
         cancelAutoFadeOutAnimation()
         delayItem = DispatchWorkItem { [weak self] in
-            self?.controlViewAnimation(isShow: false)
+            if self?.playerLastState != .playedToTheEnd {
+                self?.controlViewAnimation(isShow: false)
+            }
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + BMPlayerConf.animateDelayTimeInterval,
                                       execute: delayItem!)
