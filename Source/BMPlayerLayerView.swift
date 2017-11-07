@@ -103,7 +103,7 @@ open class BMPlayerLayerView: UIView {
     fileprivate var playerLayer: AVPlayerLayer?
     /// 音量滑杆
     fileprivate var volumeViewSlider: UISlider!
-    /// 播发器的几种状态
+    /// 播放器的几种状态
     fileprivate var state = BMPlayerState.notSetURL {
         didSet {
             if state != oldValue {
