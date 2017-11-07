@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A53E1971FB1A54300928FA3 /* BMPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A53E1961FB1A54200928FA3 /* BMPlayerManager.swift */; };
 		6A5B61D01EADB5DA00158FF9 /* BMPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5B61C41EADB5DA00158FF9 /* BMPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A5B61D11EADB5DA00158FF9 /* BMPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C51EADB5DA00158FF9 /* BMPlayer.swift */; };
 		6A5B61D21EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C61EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift */; };
 		6A5B61D31EADB5DA00158FF9 /* BMPlayerControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C71EADB5DA00158FF9 /* BMPlayerControlView.swift */; };
 		6A5B61D41EADB5DA00158FF9 /* BMPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C81EADB5DA00158FF9 /* BMPlayerItem.swift */; };
 		6A5B61D51EADB5DA00158FF9 /* BMPlayerLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61C91EADB5DA00158FF9 /* BMPlayerLayerView.swift */; };
-		6A5B61D61EADB5DA00158FF9 /* BMPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CA1EADB5DA00158FF9 /* BMPlayerManager.swift */; };
 		6A5B61D71EADB5DA00158FF9 /* BMPlayerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CB1EADB5DA00158FF9 /* BMPlayerProtocols.swift */; };
 		6A5B61D81EADB5DA00158FF9 /* BMSubtitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CC1EADB5DA00158FF9 /* BMSubtitles.swift */; };
 		6A5B61D91EADB5DA00158FF9 /* BMTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B61CD1EADB5DA00158FF9 /* BMTimeSlider.swift */; };
-		6A5B61DA1EADB5DA00158FF9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A5B61CE1EADB5DA00158FF9 /* Info.plist */; };
 		6A5B61DB1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A5B61CF1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets */; };
 		6A6FDBA61DF19AB3003727BC /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6FDBA21DF19A39003727BC /* NVActivityIndicatorView.framework */; };
 		6A6FDBA71DF19AB3003727BC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6FDBA31DF19A39003727BC /* SnapKit.framework */; };
@@ -25,13 +24,13 @@
 
 /* Begin PBXFileReference section */
 		6A302EE81DF199F700AD54B6 /* BMPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BMPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A53E1961FB1A54200928FA3 /* BMPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BMPlayerManager.swift; path = Default/BMPlayerManager.swift; sourceTree = "<group>"; };
 		6A5B61C41EADB5DA00158FF9 /* BMPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMPlayer.h; sourceTree = "<group>"; };
 		6A5B61C51EADB5DA00158FF9 /* BMPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayer.swift; sourceTree = "<group>"; };
 		6A5B61C61EADB5DA00158FF9 /* BMPlayerClearityChooseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerClearityChooseButton.swift; sourceTree = "<group>"; };
 		6A5B61C71EADB5DA00158FF9 /* BMPlayerControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerControlView.swift; sourceTree = "<group>"; };
 		6A5B61C81EADB5DA00158FF9 /* BMPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerItem.swift; sourceTree = "<group>"; };
 		6A5B61C91EADB5DA00158FF9 /* BMPlayerLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerLayerView.swift; sourceTree = "<group>"; };
-		6A5B61CA1EADB5DA00158FF9 /* BMPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerManager.swift; sourceTree = "<group>"; };
 		6A5B61CB1EADB5DA00158FF9 /* BMPlayerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerProtocols.swift; sourceTree = "<group>"; };
 		6A5B61CC1EADB5DA00158FF9 /* BMSubtitles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMSubtitles.swift; sourceTree = "<group>"; };
 		6A5B61CD1EADB5DA00158FF9 /* BMTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMTimeSlider.swift; sourceTree = "<group>"; };
@@ -57,7 +56,7 @@
 		6A302EDE1DF199F700AD54B6 = {
 			isa = PBXGroup;
 			children = (
-				6A302EEA1DF199F700AD54B6 /* BMPlayer */,
+				6A5B61C31EADB5DA00158FF9 /* Source */,
 				6A302EE91DF199F700AD54B6 /* Products */,
 				6A6FDBA11DF19A39003727BC /* Frameworks */,
 			);
@@ -71,14 +70,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A302EEA1DF199F700AD54B6 /* BMPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				6A5B61C31EADB5DA00158FF9 /* Source */,
-			);
-			path = BMPlayer;
-			sourceTree = "<group>";
-		};
 		6A5B61C31EADB5DA00158FF9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,7 +79,7 @@
 				6A5B61C71EADB5DA00158FF9 /* BMPlayerControlView.swift */,
 				6A5B61C81EADB5DA00158FF9 /* BMPlayerItem.swift */,
 				6A5B61C91EADB5DA00158FF9 /* BMPlayerLayerView.swift */,
-				6A5B61CA1EADB5DA00158FF9 /* BMPlayerManager.swift */,
+				6A53E1961FB1A54200928FA3 /* BMPlayerManager.swift */,
 				6A5B61CB1EADB5DA00158FF9 /* BMPlayerProtocols.swift */,
 				6A5B61CC1EADB5DA00158FF9 /* BMSubtitles.swift */,
 				6A5B61CD1EADB5DA00158FF9 /* BMTimeSlider.swift */,
@@ -145,7 +136,7 @@
 		6A302EDF1DF199F700AD54B6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = BrikerMan;
 				TargetAttributes = {
 					6A302EE71DF199F700AD54B6 = {
@@ -178,7 +169,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A5B61DB1EADB5DA00158FF9 /* Pod_Asset_BMPlayer.xcassets in Resources */,
-				6A5B61DA1EADB5DA00158FF9 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,8 +180,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A5B61D41EADB5DA00158FF9 /* BMPlayerItem.swift in Sources */,
-				6A5B61D61EADB5DA00158FF9 /* BMPlayerManager.swift in Sources */,
 				6A5B61D81EADB5DA00158FF9 /* BMSubtitles.swift in Sources */,
+				6A53E1971FB1A54300928FA3 /* BMPlayerManager.swift in Sources */,
 				6A5B61D71EADB5DA00158FF9 /* BMPlayerProtocols.swift in Sources */,
 				6A5B61D51EADB5DA00158FF9 /* BMPlayerLayerView.swift in Sources */,
 				6A5B61D31EADB5DA00158FF9 /* BMPlayerControlView.swift in Sources */,
@@ -213,7 +203,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -221,7 +213,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -266,7 +263,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -274,7 +273,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -323,7 +327,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = con.eliyar.BMPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -347,7 +351,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = con.eliyar.BMPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
