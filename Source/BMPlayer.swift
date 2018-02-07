@@ -302,6 +302,7 @@ open class BMPlayer: UIView {
     }
     
     fileprivate func horizontalMoved(_ value: CGFloat) {
+        if !BMPlayerConf.enablePlaytimeGestures { return }
         isSliderSliding = true
         if let playerItem = playerLayer?.playerItem {
             // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
