@@ -239,14 +239,15 @@ open class BMPlayer: UIView {
             let y = fabs(velocityPoint.y)
             
             if x > y {
-                self.panDirection = BMPanDirection.horizontal
-                
-                // 给sumTime初值
-                if let player = playerLayer?.player {
-                    let time = player.currentTime()
-                    self.sumTime = TimeInterval(time.value) / TimeInterval(time.timescale)
+                if BMPlayerConf.enablePlaytimeGestures {
+                    self.panDirection = BMPanDirection.horizontal
+                    
+                    // 给sumTime初值
+                    if let player = playerLayer?.player {
+                        let time = player.currentTime()
+                        self.sumTime = TimeInterval(time.value) / TimeInterval(time.timescale)
+                    }
                 }
-                
             } else {
                 self.panDirection = BMPanDirection.vertical
                 if locationPoint.x > self.bounds.size.width / 2 {
