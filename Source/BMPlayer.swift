@@ -217,7 +217,7 @@ open class BMPlayer: UIView {
      
      - return: costom control which you want to use
      */
-    class open func storyBoardCustomControl() -> BMPlayerControlView? {
+    open func storyBoardCustomControl() -> BMPlayerControlView? {
         return nil
     }
     
@@ -349,10 +349,9 @@ open class BMPlayer: UIView {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        // breaks, should fix if want to have something from storyboard
-        //if let customControlView = classForCoder.storyBoardCustomControl() {
-        //    self.customControlView = customControlView
-        //}
+        if let customControlView = storyBoardCustomControl() {
+            self.customControlView = customControlView
+        }
         initUI()
         initUIData()
         configureVolume()
