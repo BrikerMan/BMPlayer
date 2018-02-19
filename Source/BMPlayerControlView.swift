@@ -358,6 +358,7 @@ open class BMPlayerControlView: UIView {
             
             if resource.definitions.count == 1 {
                 button.isEnabled = false
+                button.isHidden = true
             }
         }
     }

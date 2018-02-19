@@ -217,7 +217,7 @@ open class BMPlayer: UIView {
      
      - return: costom control which you want to use
      */
-    class open func storyBoardCustomControl() -> BMPlayerControlView? {
+    open func storyBoardCustomControl() -> BMPlayerControlView? {
         return nil
     }
     
@@ -239,14 +239,15 @@ open class BMPlayer: UIView {
             let y = fabs(velocityPoint.y)
             
             if x > y {
-                self.panDirection = BMPanDirection.horizontal
-                
-                // 给sumTime初值
-                if let player = playerLayer?.player {
-                    let time = player.currentTime()
-                    self.sumTime = TimeInterval(time.value) / TimeInterval(time.timescale)
+                if BMPlayerConf.enablePlaytimeGestures {
+                    self.panDirection = BMPanDirection.horizontal
+                    
+                    // 给sumTime初值
+                    if let player = playerLayer?.player {
+                        let time = player.currentTime()
+                        self.sumTime = TimeInterval(time.value) / TimeInterval(time.timescale)
+                    }
                 }
-                
             } else {
                 self.panDirection = BMPanDirection.vertical
                 if locationPoint.x > self.bounds.size.width / 2 {
@@ -293,10 +294,16 @@ open class BMPlayer: UIView {
     }
     
     fileprivate func verticalMoved(_ value: CGFloat) {
-        self.isVolume ? (self.volumeViewSlider.value -= Float(value / 10000)) : (UIScreen.main.brightness -= value / 10000)
+        if BMPlayerConf.enableVolumeGestures && self.isVolume{
+            self.volumeViewSlider.value -= Float(value / 10000)
+        }
+        else if BMPlayerConf.enableBrightnessGestures && !self.isVolume{
+            UIScreen.main.brightness -= value / 10000
+        }
     }
     
     fileprivate func horizontalMoved(_ value: CGFloat) {
+        if !BMPlayerConf.enablePlaytimeGestures { return }
         isSliderSliding = true
         if let playerItem = playerLayer?.playerItem {
             // 每次滑动需要叠加时间，通过一定的比例，使滑动一直处于统一水平
@@ -343,10 +350,9 @@ open class BMPlayer: UIView {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        // breaks, should fix if want to have something from storyboard
-        //if let customControlView = classForCoder.storyBoardCustomControl() {
-        //    self.customControlView = customControlView
-        //}
+        if let customControlView = storyBoardCustomControl() {
+            self.customControlView = customControlView
+        }
         initUI()
         initUIData()
         configureVolume()
