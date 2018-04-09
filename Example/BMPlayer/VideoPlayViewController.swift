@@ -29,7 +29,7 @@ class VideoPlayViewController: UIViewController {
   
   var changeButton = UIButton()
     
-    var playerTopConstraint: NSLayoutConstraint!
+  var playerTopConstraint: NSLayoutConstraint!
     
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -288,7 +288,6 @@ extension VideoPlayViewController: BMPlayerDelegate {
             if #available(iOS 11.0, *) {
                 playerTopConstraint = player.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
             } else {
-                // Fallback on earlier versions
                 playerTopConstraint = player.topAnchor.constraint(equalTo: view.topAnchor)
             }
            playerTopConstraint.isActive = true

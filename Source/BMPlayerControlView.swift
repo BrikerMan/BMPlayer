@@ -77,6 +77,7 @@ open class BMPlayerControlView: UIView {
     open var backButton         = UIButton(type : UIButtonType.custom)
     open var titleLabel         = UILabel()
     open var chooseDefitionView = UIView()
+    private var chooseDefinitionHeightConstraint : NSLayoutConstraint!
     
     /// bottom view
     open var currentTimeLabel = UILabel()
@@ -242,8 +243,10 @@ open class BMPlayerControlView: UIView {
                 if self.isFullscreen { self.chooseDefitionView.alpha = 1.0 }
             } else {
                 self.replayButton.isHidden = true
-                self.chooseDefitionView.snp.updateConstraints { (make) in
-                    make.height.equalTo(35)
+                if #available(iOS 9.0, *) {
+                    self.chooseDefinitionHeightConstraint.isActive = false
+                    self.chooseDefinitionHeightConstraint = self.chooseDefitionView.heightAnchor.constraint(equalToConstant: 35)
+                    self.chooseDefinitionHeightConstraint.isActive = true
                 }
                 self.chooseDefitionView.alpha = 0.0
             }
@@ -349,13 +352,13 @@ open class BMPlayerControlView: UIView {
             button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControlState())
             chooseDefitionView.addSubview(button)
             button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControlEvents.touchUpInside)
-            button.snp.makeConstraints({ (make) in
-                make.top.equalTo(chooseDefitionView.snp.top).offset(35 * i)
-                make.width.equalTo(50)
-                make.height.equalTo(25)
-                make.centerX.equalTo(chooseDefitionView)
-            })
-            
+            if #available(iOS 9.0, *) {
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.topAnchor.constraint(equalTo: chooseDefitionView.topAnchor, constant: CGFloat(35 * i)).isActive = true
+                button.widthAnchor.constraint(equalToConstant: 50).isActive = true
+                button.heightAnchor.constraint(equalToConstant: 25).isActive = true
+                button.centerXAnchor.constraint(equalTo: chooseDefitionView.centerXAnchor).isActive = true
+            }
             if resource.definitions.count == 1 {
                 button.isEnabled = false
                 button.isHidden = true
@@ -434,8 +437,10 @@ open class BMPlayerControlView: UIView {
     
     @objc fileprivate func onDefinitionSelected(_ button:UIButton) {
         let height = isSelectecDefitionViewOpened ? 35 : resource!.definitions.count * 40
-        chooseDefitionView.snp.updateConstraints { (make) in
-            make.height.equalTo(height)
+        if #available(iOS 9.0, *) {
+            chooseDefinitionHeightConstraint.isActive = false
+            chooseDefinitionHeightConstraint = chooseDefitionView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+            chooseDefinitionHeightConstraint.isActive = true
         }
         
         UIView.animate(withDuration: 0.3, animations: {
@@ -592,123 +597,144 @@ open class BMPlayerControlView: UIView {
     
     func addSnapKitConstraint() {
         // Main mask view
-        mainMaskView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+        if #available(iOS 9.0, *) {
+            mainMaskView.translatesAutoresizingMaskIntoConstraints = false
+            mainMaskView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            mainMaskView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            mainMaskView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            mainMaskView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         }
-        
-        maskImageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(mainMaskView)
+        if #available(iOS 9.0, *) {
+            maskImageView.translatesAutoresizingMaskIntoConstraints = false
+            mainMaskView.topAnchor.constraint(equalTo: mainMaskView.topAnchor).isActive = true
+            mainMaskView.bottomAnchor.constraint(equalTo: mainMaskView.bottomAnchor).isActive = true
+            mainMaskView.leadingAnchor.constraint(equalTo: mainMaskView.leadingAnchor).isActive = true
+            mainMaskView.trailingAnchor.constraint(equalTo: mainMaskView.trailingAnchor).isActive = true
         }
-        
-        
-        topMaskView.snp.makeConstraints { (make) in
-            make.top.left.right.equalTo(mainMaskView)
-            make.height.equalTo(65)
+        if #available(iOS 9.0, *) {
+            topMaskView.translatesAutoresizingMaskIntoConstraints = false
+            topMaskView.topAnchor.constraint(equalTo: mainMaskView.topAnchor).isActive = true
+            topMaskView.leadingAnchor.constraint(equalTo: mainMaskView.leadingAnchor).isActive = true
+            topMaskView.trailingAnchor.constraint(equalTo: mainMaskView.trailingAnchor).isActive = true
+            topMaskView.heightAnchor.constraint(equalToConstant: 65).isActive = true
         }
-        
-        bottomMaskView.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalTo(mainMaskView)
-            make.height.equalTo(50)
+        if #available(iOS 9.0, *) {
+            bottomMaskView.translatesAutoresizingMaskIntoConstraints = false
+            bottomMaskView.bottomAnchor.constraint(equalTo: mainMaskView.bottomAnchor).isActive = true
+            bottomMaskView.leadingAnchor.constraint(equalTo: mainMaskView.leadingAnchor).isActive = true
+            bottomMaskView.trailingAnchor.constraint(equalTo: mainMaskView.trailingAnchor).isActive = true
+            bottomMaskView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         }
-        
         // Top views
-        backButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(50)
-            make.left.bottom.equalTo(topMaskView)
+        if #available(iOS 9.0, *) {
+            backButton.translatesAutoresizingMaskIntoConstraints = false
+            backButton.leadingAnchor.constraint(equalTo: topMaskView.leadingAnchor).isActive = true
+            backButton.bottomAnchor.constraint(equalTo: topMaskView.bottomAnchor).isActive = true
+            backButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            backButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         }
-        
-        titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(backButton.snp.right)
-            make.centerY.equalTo(backButton)
+        if #available(iOS 9.0, *) {
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.leadingAnchor.constraint(equalTo: backButton.trailingAnchor).isActive = true
+            titleLabel.centerYAnchor.constraint(equalTo: backButton.centerYAnchor).isActive = true
         }
-        
-        chooseDefitionView.snp.makeConstraints { (make) in
-            make.right.equalTo(topMaskView.snp.right).offset(-20)
-            make.top.equalTo(titleLabel.snp.top).offset(-4)
-            make.width.equalTo(60)
-            make.height.equalTo(30)
+        if #available(iOS 9.0, *) {
+            chooseDefitionView.translatesAutoresizingMaskIntoConstraints = false
+            chooseDefitionView.trailingAnchor.constraint(equalTo: topMaskView.trailingAnchor, constant: -20).isActive = true
+            chooseDefitionView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -4).isActive = true
+            chooseDefitionView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+            chooseDefinitionHeightConstraint = chooseDefitionView.heightAnchor.constraint(equalToConstant: 30)
+            chooseDefinitionHeightConstraint.isActive = true
         }
-        
         // Bottom views
-        playButton.snp.makeConstraints { (make) in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.left.bottom.equalTo(bottomMaskView)
+        if #available(iOS 9.0, *) {
+            playButton.translatesAutoresizingMaskIntoConstraints = false
+            playButton.leadingAnchor.constraint(equalTo: bottomMaskView.leadingAnchor).isActive = true
+            playButton.bottomAnchor.constraint(equalTo: bottomMaskView.bottomAnchor).isActive = true
+            playButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            playButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         }
-        
-        currentTimeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(playButton.snp.right)
-            make.centerY.equalTo(playButton)
-            make.width.equalTo(40)
+        if #available(iOS 9.0, *) {
+            currentTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+            currentTimeLabel.leadingAnchor.constraint(equalTo: playButton.trailingAnchor).isActive = true
+            currentTimeLabel.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
+            currentTimeLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
         }
-        
-        timeSlider.snp.makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(currentTimeLabel.snp.right).offset(10).priority(750)
-            make.height.equalTo(30)
+        if #available(iOS 9.0, *) {
+            timeSlider.translatesAutoresizingMaskIntoConstraints = false
+            let tempLeadingConstraint = timeSlider.leadingAnchor.constraint(equalTo: currentTimeLabel.trailingAnchor, constant: 10)
+            tempLeadingConstraint.priority = UILayoutPriority(750)
+            tempLeadingConstraint.isActive = true
+            timeSlider.centerYAnchor.constraint(equalTo: currentTimeLabel.centerYAnchor).isActive = true
+            timeSlider.heightAnchor.constraint(equalToConstant: 30).isActive = true
         }
-        
-        progressView.snp.makeConstraints { (make) in
-            make.centerY.left.right.equalTo(timeSlider)
-            make.height.equalTo(2)
+        if #available(iOS 9.0, *) {
+            progressView.translatesAutoresizingMaskIntoConstraints = false
+            progressView.leadingAnchor.constraint(equalTo: timeSlider.leadingAnchor).isActive = true
+            progressView.trailingAnchor.constraint(equalTo: timeSlider.trailingAnchor).isActive = true
+            progressView.centerYAnchor.constraint(equalTo: currentTimeLabel.centerYAnchor).isActive = true
+            progressView.heightAnchor.constraint(equalToConstant: 2).isActive = true
         }
-        
-        totalTimeLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(timeSlider.snp.right).offset(5)
-            make.width.equalTo(40)
+        if #available(iOS 9.0, *) {
+            totalTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+            totalTimeLabel.leadingAnchor.constraint(equalTo: timeSlider.trailingAnchor, constant: 5).isActive = true
+            totalTimeLabel.centerYAnchor.constraint(equalTo: currentTimeLabel.centerYAnchor).isActive = true
+            totalTimeLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
         }
-        
-        fullscreenButton.snp.makeConstraints { (make) in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(totalTimeLabel.snp.right)
-            make.right.equalTo(bottomMaskView.snp.right)
+        if #available(iOS 9.0, *) {
+            fullscreenButton.translatesAutoresizingMaskIntoConstraints = false
+            fullscreenButton.leadingAnchor.constraint(equalTo: totalTimeLabel.trailingAnchor).isActive = true
+            fullscreenButton.trailingAnchor.constraint(equalTo: bottomMaskView.trailingAnchor).isActive = true
+            fullscreenButton.centerYAnchor.constraint(equalTo: currentTimeLabel.centerYAnchor).isActive = true
+            fullscreenButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            fullscreenButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         }
-        
-        
-        loadingIndector.snp.makeConstraints { (make) in
-            make.centerX.equalTo(mainMaskView.snp.centerX).offset(0)
-            make.centerY.equalTo(mainMaskView.snp.centerY).offset(0)
+        if #available(iOS 9.0, *) {
+            loadingIndector.translatesAutoresizingMaskIntoConstraints = false
+            loadingIndector.centerXAnchor.constraint(equalTo: mainMaskView.centerXAnchor).isActive = true
+            loadingIndector.centerYAnchor.constraint(equalTo: mainMaskView.centerYAnchor).isActive = true
         }
-        
         // View to show when slide to seek
-        seekToView.snp.makeConstraints { (make) in
-            make.center.equalTo(self.snp.center)
-            make.width.equalTo(100)
-            make.height.equalTo(40)
+        if #available(iOS 9.0, *) {
+            seekToView.translatesAutoresizingMaskIntoConstraints = false
+            seekToView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            seekToView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            seekToView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            seekToView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         }
-        
-        seekToViewImage.snp.makeConstraints { (make) in
-            make.left.equalTo(seekToView.snp.left).offset(15)
-            make.centerY.equalTo(seekToView.snp.centerY)
-            make.height.equalTo(15)
-            make.width.equalTo(25)
+        if #available(iOS 9.0, *) {
+            seekToViewImage.translatesAutoresizingMaskIntoConstraints = false
+            seekToViewImage.leadingAnchor.constraint(equalTo: seekToView.leadingAnchor, constant: 15).isActive = true
+            seekToViewImage.centerYAnchor.constraint(equalTo: seekToView.centerYAnchor).isActive = true
+            seekToViewImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
+            seekToViewImage.heightAnchor.constraint(equalToConstant: 15).isActive = true
         }
-        
-        seekToLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(seekToViewImage.snp.right).offset(10)
-            make.centerY.equalTo(seekToView.snp.centerY)
+        if #available(iOS 9.0, *) {
+            seekToLabel.translatesAutoresizingMaskIntoConstraints = false
+            seekToLabel.leadingAnchor.constraint(equalTo: seekToViewImage.trailingAnchor, constant: 10).isActive = true
+            seekToLabel.centerYAnchor.constraint(equalTo: seekToView.centerYAnchor).isActive = true
         }
-        
-        replayButton.snp.makeConstraints { (make) in
-            make.centerX.equalTo(mainMaskView.snp.centerX)
-            make.centerY.equalTo(mainMaskView.snp.centerY)
-            make.width.height.equalTo(50)
+        if #available(iOS 9.0, *) {
+            replayButton.translatesAutoresizingMaskIntoConstraints = false
+            replayButton.leadingAnchor.constraint(equalTo: seekToViewImage.trailingAnchor, constant: 10).isActive = true
+            replayButton.centerXAnchor.constraint(equalTo: mainMaskView.centerXAnchor).isActive = true
+            replayButton.centerYAnchor.constraint(equalTo: mainMaskView.centerYAnchor).isActive = true
+            replayButton.heightAnchor.constraint(equalToConstant:50).isActive = true
         }
-        
-        subtitleBackView.snp.makeConstraints {
-            $0.bottom.equalTo(snp.bottom).offset(-5)
-            $0.centerX.equalTo(snp.centerX)
-            $0.width.lessThanOrEqualTo(snp.width).offset(-10).priority(750)
+        if #available(iOS 9.0, *) {
+            subtitleBackView.translatesAutoresizingMaskIntoConstraints = false
+            subtitleBackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
+            subtitleBackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            let tempWidthConstraint = subtitleBackView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 1, constant: -10)
+            tempWidthConstraint.priority = UILayoutPriority(750)
+            tempWidthConstraint.isActive = true
         }
-        
-        subtitleLabel.snp.makeConstraints {
-            $0.left.equalTo(subtitleBackView.snp.left).offset(10)
-            $0.right.equalTo(subtitleBackView.snp.right).offset(-10)
-            $0.top.equalTo(subtitleBackView.snp.top).offset(2)
-            $0.bottom.equalTo(subtitleBackView.snp.bottom).offset(-2)
+        if #available(iOS 9.0, *) {
+            subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+            subtitleLabel.leadingAnchor.constraint(equalTo: subtitleBackView.leadingAnchor, constant: 10).isActive = true
+            subtitleLabel.trailingAnchor.constraint(equalTo: subtitleBackView.trailingAnchor, constant: -10).isActive = true
+            subtitleLabel.topAnchor.constraint(equalTo: subtitleBackView.topAnchor, constant: 2).isActive = true
+            subtitleLabel.bottomAnchor.constraint(equalTo: subtitleBackView.bottomAnchor, constant: -2).isActive = true
         }
     }
     
