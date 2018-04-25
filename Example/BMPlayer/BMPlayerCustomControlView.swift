@@ -67,9 +67,9 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         }
     }
     
+    //Leave status bar handling to the application
     override func controlViewAnimation(isShow: Bool) {
         self.isMaskShowing = isShow
-        UIApplication.shared.setStatusBarHidden(!isShow, with: .fade)
         
         UIView.animate(withDuration: 0.24, animations: {
             self.topMaskView.snp.remakeConstraints {

@@ -327,15 +327,14 @@ open class BMPlayer: UIView {
         delegate?.bmPlayer(player: self, playerOrientChanged: isFullScreen)
     }
     
+    //Now let application handle the hiding and showing on the status bar
     @objc fileprivate func fullScreenButtonPressed() {
         controlView.updateUI(!self.isFullScreen)
         if isFullScreen {
             UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-            UIApplication.shared.setStatusBarHidden(false, with: .fade)
             UIApplication.shared.statusBarOrientation = .portrait
         } else {
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-            UIApplication.shared.setStatusBarHidden(false, with: .fade)
             UIApplication.shared.statusBarOrientation = .landscapeRight
         }
     }

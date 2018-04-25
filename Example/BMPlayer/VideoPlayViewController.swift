@@ -31,6 +31,14 @@ class VideoPlayViewController: UIViewController {
     
   var playerTopConstraint: NSLayoutConstraint!
     
+  var playerHeightOrBottomConstraint: NSLayoutConstraint!
+    
+  var isFullScreen : Bool {
+    get {
+      return UIApplication.shared.statusBarOrientation.isLandscape
+    }
+  }
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     setupPlayerManager()
@@ -71,25 +79,8 @@ class VideoPlayViewController: UIViewController {
     }
     
     player = BMPlayer(customControlView: controller)
-    player.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(player)
-    if #available(iOS 11.0, *) {
-        player.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 9/16).isActive = true
-        playerTopConstraint = player.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        playerTopConstraint.isActive = true
-        player.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        player.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-    } else {
-        if #available(iOS 9.0, *) {
-            player.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            player.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-            player.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-            player.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        } else {
-            print("This pod does not support below iOS 9.0")
-        }
-    }
-    
+    setUpPlayerConstriants()
     player.delegate = self
     player.backBlock = { [unowned self] (isFullScreen) in
       if isFullScreen {
@@ -98,7 +89,8 @@ class VideoPlayViewController: UIViewController {
         let _ = self.navigationController?.popViewController(animated: true)
       }
     }
-    
+    //Check current orientation and hide navbar if in landscape
+    navigationController?.setNavigationBarHidden(isFullScreen, animated: true)
     changeButton.setTitle("Change Video", for: .normal)
     changeButton.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
     changeButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
@@ -108,28 +100,66 @@ class VideoPlayViewController: UIViewController {
         changeButton.topAnchor.constraint(equalTo: player.bottomAnchor, constant: 30).isActive = true
         changeButton.leadingAnchor.constraint(equalTo: player.leadingAnchor, constant: 10).isActive = true
     } else {
-        print("This pod does not support below iOS 9")
+        fatalError(BMError.version.rawValue)
     }
     changeButton.isHidden = true
     self.view.layoutIfNeeded()
   }
+    
+    func setUpPlayerConstriants() {
+        player.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            player.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            player.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            if #available(iOS 11.0, *) {
+                //Take into account the navbar, and the orientation in which the screen is opened
+                if isFullScreen {
+                    playerHeightOrBottomConstraint = player.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                } else {
+                    playerHeightOrBottomConstraint = player.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 9/16)
+                }
+                playerHeightOrBottomConstraint.isActive = true
+                playerTopConstraint = player.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+                playerTopConstraint.isActive = true
+            } else {
+                playerHeightOrBottomConstraint = player.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 9/16)
+                playerHeightOrBottomConstraint.isActive = true
+                playerTopConstraint = player.topAnchor.constraint(equalTo: view.topAnchor)
+                playerTopConstraint.isActive = true
+            }
+        } else {
+            fatalError(BMError.version.rawValue)
+        }
+    }
   
   @objc fileprivate func onChangeVideoButtonPressed() {
-    let urls = ["http://us-west-1-cdn.indi.com/Zencoder/z3_0/a88dbdd7d5236918df5c5d358d676b38/video-0480p-1088k.mp4",
-                "http://us-west-1-cdn.indi.com/Zencoder/z3_0/a88dbdd7d5236918df5c5d358d676b38/video-0480p-1088k.mp4",
-                "http://us-west-1-cdn.indi.com/Zencoder/z3_0/a88dbdd7d5236918df5c5d358d676b38/video-0480p-1088k.mp4"]
+    let urls = ["http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
+                "http://baobab.wdjcdn.com/1456117847747a_x264.mp4",
+                "http://baobab.wdjcdn.com/14525705791193.mp4",
+                "http://baobab.wdjcdn.com/1456459181808howtoloseweight_x264.mp4",
+                "http://baobab.wdjcdn.com/1455968234865481297704.mp4",
+                "http://baobab.wdjcdn.com/1455782903700jy.mp4",
+                "http://baobab.wdjcdn.com/14564977406580.mp4",
+                "http://baobab.wdjcdn.com/1456316686552The.mp4",
+                "http://baobab.wdjcdn.com/1456480115661mtl.mp4",
+                "http://baobab.wdjcdn.com/1456665467509qingshu.mp4",
+                "http://baobab.wdjcdn.com/1455614108256t(2).mp4",
+                "http://baobab.wdjcdn.com/1456317490140jiyiyuetai_x264.mp4",
+                "http://baobab.wdjcdn.com/1455888619273255747085_x264.mp4",
+                "http://baobab.wdjcdn.com/1456734464766B(13).mp4",
+                "http://baobab.wdjcdn.com/1456653443902B.mp4",
+                "http://baobab.wdjcdn.com/1456231710844S(24).mp4"]
     let random = Int(arc4random_uniform(UInt32(urls.count)))
     let asset = BMPlayerResource(url: URL(string: urls[random])!, name: "Video @\(random)")
     player.setVideo(resource: asset)
   }
-  
   
   func setupPlayerResource() {
     switch (index.section,index.row) {
       
     case (0,0):
       let str = Bundle.main.url(forResource: "SubtitleDemo", withExtension: "srt")!
-      let url = URL(string: "http://us-west-1-cdn.indi.com/Zencoder/z3_0/a88dbdd7d5236918df5c5d358d676b38/video-0480p-1088k.mp4")!
+      let url = URL(string: "http://baobab.wdjcdn.com/1456117847747a_x264.mp4")!
       
       let subtitle = BMSubtitles(url: str)
       
@@ -247,19 +277,18 @@ class VideoPlayViewController: UIViewController {
     BMPlayerConf.topBarShowInCase = .always
     BMPlayerConf.loaderType  = NVActivityIndicatorType.ballRotateChase
   }
-  
+    
+  //Leave status bar handling to the application
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: false)
     // If use the slide to back, remember to call this method
     // 使用手势返回的时候，调用下面方法
     player.pause(allowAutoPlay: true)
   }
   
-  
+  //Leave status bar handling to the application
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
     // If use the slide to back, remember to call this method
     // 使用手势返回的时候，调用下面方法
     player.autoPlay()
@@ -276,24 +305,31 @@ class VideoPlayViewController: UIViewController {
 
 // MARK:- BMPlayerDelegate example
 extension VideoPlayViewController: BMPlayerDelegate {
-  // Call when player orinet changed
+  // Call when player orientation changed
   func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool) {
     navigationController?.setNavigationBarHidden(isFullscreen, animated: true)
     playerTopConstraint.isActive = false
+    playerHeightOrBottomConstraint.isActive = false
     if #available(iOS 9.0, *) {
         if isFullscreen {
+            //Not to the safe area anymore for full screen
             playerTopConstraint = player.topAnchor.constraint(equalTo: view.topAnchor)
             playerTopConstraint.isActive = true
+            //Set the bottom constraint
+            playerHeightOrBottomConstraint = player.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            playerHeightOrBottomConstraint.isActive = true
         } else {
             if #available(iOS 11.0, *) {
                 playerTopConstraint = player.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+                playerHeightOrBottomConstraint = player.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 9/16)
+                playerHeightOrBottomConstraint.isActive = true
             } else {
                 playerTopConstraint = player.topAnchor.constraint(equalTo: view.topAnchor)
             }
-           playerTopConstraint.isActive = true
+            playerTopConstraint.isActive = true
         }
     } else {
-        print("Not allowed in < iOS 9.0")
+        fatalError(BMError.version.rawValue)
     }
   }
   
