@@ -43,10 +43,10 @@ public enum BMPlayerAspectRatio : Int {
 }
 
 public protocol BMPlayerLayerViewDelegate : class {
-    func bmPlayer(player: BMPlayerLayerView ,playerStateDidChange state: BMPlayerState)
-    func bmPlayer(player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: TimeInterval , totalDuration: TimeInterval)
-    func bmPlayer(player: BMPlayerLayerView ,playTimeDidChange    currentTime   : TimeInterval , totalTime: TimeInterval)
-    func bmPlayer(player: BMPlayerLayerView ,playerIsPlaying      playing: Bool)
+    func bmPlayer(player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState)
+    func bmPlayer(player: BMPlayerLayerView, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval)
+    func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval)
+    func bmPlayer(player: BMPlayerLayerView, playerIsPlaying playing: Bool)
 }
 
 open class BMPlayerLayerView: UIView {
@@ -87,14 +87,14 @@ open class BMPlayerLayerView: UIView {
         }
     }
     
-    var aspectRatio:BMPlayerAspectRatio = .default {
+    var aspectRatio: BMPlayerAspectRatio = .default {
         didSet {
             self.setNeedsLayout()
         }
     }
     
     /// 计时器
-    var timer       : Timer?
+    var timer: Timer?
     
     fileprivate var urlAsset: AVURLAsset?
     
@@ -120,7 +120,7 @@ open class BMPlayerLayerView: UIView {
     /// 是否播放本地文件
     fileprivate var isLocalVideo  = false
     /// slider上次的值
-    fileprivate var sliderLastValue:Float = 0
+    fileprivate var sliderLastValue: Float = 0
     /// 是否点了重播
     fileprivate var repeatToPlay  = false
     /// 播放完了
@@ -151,7 +151,6 @@ open class BMPlayerLayerView: UIView {
             isPlaying = true
         }
     }
-    
     
     open func pause() {
         player?.pause()
@@ -270,8 +269,6 @@ open class BMPlayerLayerView: UIView {
         playerItem = AVPlayerItem(asset: urlAsset!)
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
-        
-        
         
         playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
@@ -410,6 +407,7 @@ open class BMPlayerLayerView: UIView {
     fileprivate func availableDuration() -> TimeInterval? {
         if let loadedTimeRanges = player?.currentItem?.loadedTimeRanges,
             let first = loadedTimeRanges.first {
+            
             let timeRange = first.timeRangeValue
             let startSeconds = CMTimeGetSeconds(timeRange.start)
             let durationSecound = CMTimeGetSeconds(timeRange.duration)

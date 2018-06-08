@@ -23,10 +23,10 @@ open class BMPlayerManager {
     open static let shared = BMPlayerManager()
     
     /// tint color
-    open var tintColor   = UIColor.white
+    open var tintColor = UIColor.white
     
     /// Loader
-    open var loaderType  = NVActivityIndicatorType.ballRotateChase
+    open var loaderType = NVActivityIndicatorType.ballRotateChase
     
     /// should auto play
     open var shouldAutoPlay = true
@@ -36,7 +36,7 @@ open class BMPlayerManager {
     open var animateDelayTimeInterval = TimeInterval(5)
     
     /// should show log
-    open var allowLog  = false
+    open var allowLog = false
     
     /// use gestures to set brightness, volume and play position
     open var enableBrightnessGestures = true
