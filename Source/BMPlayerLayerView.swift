@@ -289,25 +289,25 @@ open class BMPlayerLayerView: UIView {
     
     // MARK: - 计时器事件
     @objc fileprivate func playerTimerAction() {
-        if let playerItem = playerItem {
-            if playerItem.duration.timescale != 0 {
-                let currentTime = CMTimeGetSeconds(self.player!.currentTime())
-                let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
-                delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
-            }
-            updateStatus(inclodeLoading: true)
+        guard let playerItem = playerItem else { return }
+        
+        if playerItem.duration.timescale != 0 {
+            let currentTime = CMTimeGetSeconds(self.player!.currentTime())
+            let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
+            delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
         }
+        updateStatus(includeLoading: true)
     }
     
-    fileprivate func updateStatus(inclodeLoading: Bool = false) {
+    fileprivate func updateStatus(includeLoading: Bool = false) {
         if let player = player {
-            if let playerItem = playerItem {
-                if inclodeLoading {
-                    if playerItem.isPlaybackLikelyToKeepUp || playerItem.isPlaybackBufferFull {
-                        self.state = .bufferFinished
-                    } else {
-                        self.state = .buffering
-                    }
+            if let playerItem = playerItem, includeLoading {
+                if playerItem.isPlaybackLikelyToKeepUp || playerItem.isPlaybackBufferFull {
+                    self.state = .bufferFinished
+                } else if playerItem.status == .failed {
+                    self.state = .error
+                } else {
+                    self.state = .buffering
                 }
             }
             if player.rate == 0.0 {
@@ -350,7 +350,9 @@ open class BMPlayerLayerView: UIView {
             if item == self.playerItem {
                 switch keyPath {
                 case "status":
-                    if player?.status == AVPlayerStatus.readyToPlay {
+                    if item.status == .failed || player?.status == AVPlayerStatus.failed {
+                        self.state = .error
+                    } else if player?.status == AVPlayerStatus.readyToPlay {
                         self.state = .buffering
                         if shouldSeekTo != 0 {
                             print("BMPlayerLayer | Should seek to \(shouldSeekTo)")
@@ -363,8 +365,6 @@ open class BMPlayerLayerView: UIView {
                             self.hasReadyToPlay = true
                             self.state = .readyToPlay
                         }
-                    } else if player?.status == AVPlayerStatus.failed {
-                        self.state = .error
                     }
                     
                 case "loadedTimeRanges":
