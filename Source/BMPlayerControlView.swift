@@ -113,6 +113,7 @@ open class BMPlayerControlView: UIView {
     
     /// Gesture used to show / hide control view
     open var tapGesture: UITapGestureRecognizer!
+    open var doubleTapGesture: UITapGestureRecognizer!
     
     // MARK: - handle player state change
     /**
@@ -400,6 +401,17 @@ open class BMPlayerControlView: UIView {
         controlViewAnimation(isShow: !isMaskShowing)
     }
     
+    @objc open func onDoubleTapGestureRecognized(_ gesture: UITapGestureRecognizer) {
+        guard let player = player else { return }
+        guard playerLastState == .readyToPlay || playerLastState == .buffering || playerLastState == .bufferFinished else { return }
+        
+        if player.isPlaying {
+            player.pause()
+        } else {
+            player.play()
+        }
+    }
+    
     // MARK: - handle UI slider actions
     @objc func progressSliderTouchBegan(_ sender: UISlider)  {
         delegate?.controlView(controlView: self, slider: sender, onSliderEvent: .touchDown)
@@ -586,6 +598,14 @@ open class BMPlayerControlView: UIView {
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapGestureTapped(_:)))
         addGestureRecognizer(tapGesture)
+        
+        if BMPlayerManager.shared.enablePlayControlGestures {
+            doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onDoubleTapGestureRecognized(_:)))
+            doubleTapGesture.numberOfTapsRequired = 2
+            addGestureRecognizer(doubleTapGesture)
+            
+            tapGesture.require(toFail: doubleTapGesture)
+        }
     }
     
     func addSnapKitConstraint() {
