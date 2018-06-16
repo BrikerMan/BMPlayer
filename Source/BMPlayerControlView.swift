@@ -103,7 +103,7 @@ open class BMPlayerControlView: UIView {
     open var subtileAttribute: [NSAttributedStringKey : Any]?
     
     /// Activty Indector for loading
-    open var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
+    open var loadingIndicator  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
     
     open var seekToView       = UIView()
     open var seekToViewImage  = UIImageView()
@@ -291,12 +291,12 @@ open class BMPlayerControlView: UIView {
     }
     
     open func showLoader() {
-        loadingIndector.isHidden = false
-        loadingIndector.startAnimating()
+        loadingIndicator.isHidden = false
+        loadingIndicator.startAnimating()
     }
     
     open func hideLoader() {
-        loadingIndector.isHidden = true
+        loadingIndicator.isHidden = true
     }
     
     open func hideSeekToView() {
@@ -559,10 +559,10 @@ open class BMPlayerControlView: UIView {
         fullscreenButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_portialscreen"), for: .selected)
         fullscreenButton.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
         
-        mainMaskView.addSubview(loadingIndector)
+        mainMaskView.addSubview(loadingIndicator)
         
-        loadingIndector.type  = BMPlayerConf.loaderType
-        loadingIndector.color = BMPlayerConf.tintColor
+        loadingIndicator.type  = BMPlayerConf.loaderType
+        loadingIndicator.color = BMPlayerConf.tintColor
         
         // View to show when slide to seek
         addSubview(seekToView)
@@ -664,7 +664,7 @@ open class BMPlayerControlView: UIView {
             make.right.equalTo(bottomMaskView.snp.right)
         }
         
-        loadingIndector.snp.makeConstraints { (make) in
+        loadingIndicator.snp.makeConstraints { (make) in
             make.centerX.equalTo(mainMaskView.snp.centerX).offset(0)
             make.centerY.equalTo(mainMaskView.snp.centerY).offset(0)
         }
