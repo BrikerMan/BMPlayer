@@ -74,11 +74,13 @@ open class BMPlayerControlView: UIView {
     open var maskImageView = UIImageView()
     
     /// top views
+    open var topWrapperView = UIView()
     open var backButton = UIButton(type : UIButtonType.custom)
     open var titleLabel = UILabel()
     open var chooseDefinitionView = UIView()
     
     /// bottom view
+    open var bottomWrapperView = UIView()
     open var currentTimeLabel = UILabel()
     open var totalTimeLabel   = UILabel()
     
@@ -508,9 +510,10 @@ open class BMPlayerControlView: UIView {
         mainMaskView.backgroundColor = UIColor(white: 0, alpha: 0.4 )
         
         // Top views
-        topMaskView.addSubview(backButton)
-        topMaskView.addSubview(titleLabel)
-        addSubview(chooseDefinitionView)
+        topMaskView.addSubview(topWrapperView)
+        topWrapperView.addSubview(backButton)
+        topWrapperView.addSubview(titleLabel)
+        topWrapperView.addSubview(chooseDefinitionView)
         
         backButton.tag = BMPlayerControlView.ButtonType.back.rawValue
         backButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_back"), for: .normal)
@@ -523,12 +526,13 @@ open class BMPlayerControlView: UIView {
         chooseDefinitionView.clipsToBounds = true
         
         // Bottom views
-        bottomMaskView.addSubview(playButton)
-        bottomMaskView.addSubview(currentTimeLabel)
-        bottomMaskView.addSubview(totalTimeLabel)
-        bottomMaskView.addSubview(progressView)
-        bottomMaskView.addSubview(timeSlider)
-        bottomMaskView.addSubview(fullscreenButton)
+        bottomMaskView.addSubview(bottomWrapperView)
+        bottomWrapperView.addSubview(playButton)
+        bottomWrapperView.addSubview(currentTimeLabel)
+        bottomWrapperView.addSubview(totalTimeLabel)
+        bottomWrapperView.addSubview(progressView)
+        bottomWrapperView.addSubview(timeSlider)
+        bottomWrapperView.addSubview(fullscreenButton)
         
         playButton.tag = BMPlayerControlView.ButtonType.play.rawValue
         playButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_play"),  for: .normal)
@@ -620,18 +624,39 @@ open class BMPlayerControlView: UIView {
         
         topMaskView.snp.makeConstraints { (make) in
             make.top.left.right.equalTo(mainMaskView)
-            make.height.equalTo(65)
+        }
+        
+        topWrapperView.snp.makeConstraints { (make) in
+            make.height.equalTo(50)
+            
+            if #available(iOS 11.0, *) {
+                make.top.left.right.equalTo(topMaskView.safeAreaLayoutGuide)
+                make.bottom.equalToSuperview()
+            } else {
+                make.top.equalToSuperview().offset(15)
+                make.bottom.left.right.equalToSuperview()
+            }
         }
         
         bottomMaskView.snp.makeConstraints { (make) in
             make.bottom.left.right.equalTo(mainMaskView)
+        }
+        
+        bottomWrapperView.snp.makeConstraints { (make) in
             make.height.equalTo(50)
+            
+            if #available(iOS 11.0, *) {
+                make.bottom.left.right.equalTo(bottomMaskView.safeAreaLayoutGuide)
+                make.top.equalToSuperview()
+            } else {
+                make.edges.equalToSuperview()
+            }
         }
         
         // Top views
         backButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(50)
-            make.left.bottom.equalTo(topMaskView)
+            make.left.bottom.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -640,7 +665,7 @@ open class BMPlayerControlView: UIView {
         }
         
         chooseDefinitionView.snp.makeConstraints { (make) in
-            make.right.equalTo(topMaskView.snp.right).offset(-20)
+            make.right.equalToSuperview().offset(-20)
             make.top.equalTo(titleLabel.snp.top).offset(-4)
             make.width.equalTo(60)
             make.height.equalTo(30)
@@ -650,7 +675,7 @@ open class BMPlayerControlView: UIView {
         playButton.snp.makeConstraints { (make) in
             make.width.equalTo(50)
             make.height.equalTo(50)
-            make.left.bottom.equalTo(bottomMaskView)
+            make.left.bottom.equalToSuperview()
         }
         
         currentTimeLabel.snp.makeConstraints { (make) in
@@ -681,12 +706,11 @@ open class BMPlayerControlView: UIView {
             make.height.equalTo(50)
             make.centerY.equalTo(currentTimeLabel)
             make.left.equalTo(totalTimeLabel.snp.right)
-            make.right.equalTo(bottomMaskView.snp.right)
+            make.right.equalToSuperview()
         }
         
         loadingIndicator.snp.makeConstraints { (make) in
-            make.centerX.equalTo(mainMaskView.snp.centerX).offset(0)
-            make.centerY.equalTo(mainMaskView.snp.centerY).offset(0)
+            make.center.equalTo(mainMaskView)
         }
         
         // View to show when slide to seek
@@ -709,8 +733,7 @@ open class BMPlayerControlView: UIView {
         }
         
         replayButton.snp.makeConstraints { (make) in
-            make.centerX.equalTo(mainMaskView.snp.centerX)
-            make.centerY.equalTo(mainMaskView.snp.centerY)
+            make.center.equalTo(mainMaskView)
             make.width.height.equalTo(50)
         }
         
