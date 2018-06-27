@@ -43,10 +43,10 @@ public enum BMPlayerAspectRatio : Int {
 }
 
 public protocol BMPlayerLayerViewDelegate : class {
-    func bmPlayer(player: BMPlayerLayerView ,playerStateDidChange state: BMPlayerState)
-    func bmPlayer(player: BMPlayerLayerView ,loadedTimeDidChange  loadedDuration: TimeInterval , totalDuration: TimeInterval)
-    func bmPlayer(player: BMPlayerLayerView ,playTimeDidChange    currentTime   : TimeInterval , totalTime: TimeInterval)
-    func bmPlayer(player: BMPlayerLayerView ,playerIsPlaying      playing: Bool)
+    func bmPlayer(player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState)
+    func bmPlayer(player: BMPlayerLayerView, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval)
+    func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval)
+    func bmPlayer(player: BMPlayerLayerView, playerIsPlaying playing: Bool)
 }
 
 open class BMPlayerLayerView: UIView {
@@ -87,14 +87,14 @@ open class BMPlayerLayerView: UIView {
         }
     }
     
-    var aspectRatio:BMPlayerAspectRatio = .default {
+    var aspectRatio: BMPlayerAspectRatio = .default {
         didSet {
             self.setNeedsLayout()
         }
     }
     
     /// 计时器
-    var timer       : Timer?
+    var timer: Timer?
     
     fileprivate var urlAsset: AVURLAsset?
     
@@ -120,7 +120,7 @@ open class BMPlayerLayerView: UIView {
     /// 是否播放本地文件
     fileprivate var isLocalVideo  = false
     /// slider上次的值
-    fileprivate var sliderLastValue:Float = 0
+    fileprivate var sliderLastValue: Float = 0
     /// 是否点了重播
     fileprivate var repeatToPlay  = false
     /// 播放完了
@@ -151,7 +151,6 @@ open class BMPlayerLayerView: UIView {
             isPlaying = true
         }
     }
-    
     
     open func pause() {
         player?.pause()
@@ -271,8 +270,6 @@ open class BMPlayerLayerView: UIView {
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
         
-        
-        
         playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
         playerLayer!.videoGravity = videoGravity
@@ -292,25 +289,25 @@ open class BMPlayerLayerView: UIView {
     
     // MARK: - 计时器事件
     @objc fileprivate func playerTimerAction() {
-        if let playerItem = playerItem {
-            if playerItem.duration.timescale != 0 {
-                let currentTime = CMTimeGetSeconds(self.player!.currentTime())
-                let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
-                delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
-            }
-            updateStatus(inclodeLoading: true)
+        guard let playerItem = playerItem else { return }
+        
+        if playerItem.duration.timescale != 0 {
+            let currentTime = CMTimeGetSeconds(self.player!.currentTime())
+            let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
+            delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
         }
+        updateStatus(includeLoading: true)
     }
     
-    fileprivate func updateStatus(inclodeLoading: Bool = false) {
+    fileprivate func updateStatus(includeLoading: Bool = false) {
         if let player = player {
-            if let playerItem = playerItem {
-                if inclodeLoading {
-                    if playerItem.isPlaybackLikelyToKeepUp || playerItem.isPlaybackBufferFull {
-                        self.state = .bufferFinished
-                    } else {
-                        self.state = .buffering
-                    }
+            if let playerItem = playerItem, includeLoading {
+                if playerItem.isPlaybackLikelyToKeepUp || playerItem.isPlaybackBufferFull {
+                    self.state = .bufferFinished
+                } else if playerItem.status == .failed {
+                    self.state = .error
+                } else {
+                    self.state = .buffering
                 }
             }
             if player.rate == 0.0 {
@@ -353,7 +350,9 @@ open class BMPlayerLayerView: UIView {
             if item == self.playerItem {
                 switch keyPath {
                 case "status":
-                    if player?.status == AVPlayerStatus.readyToPlay {
+                    if item.status == .failed || player?.status == AVPlayerStatus.failed {
+                        self.state = .error
+                    } else if player?.status == AVPlayerStatus.readyToPlay {
                         self.state = .buffering
                         if shouldSeekTo != 0 {
                             print("BMPlayerLayer | Should seek to \(shouldSeekTo)")
@@ -366,8 +365,6 @@ open class BMPlayerLayerView: UIView {
                             self.hasReadyToPlay = true
                             self.state = .readyToPlay
                         }
-                    } else if player?.status == AVPlayerStatus.failed {
-                        self.state = .error
                     }
                     
                 case "loadedTimeRanges":
@@ -410,6 +407,7 @@ open class BMPlayerLayerView: UIView {
     fileprivate func availableDuration() -> TimeInterval? {
         if let loadedTimeRanges = player?.currentItem?.loadedTimeRanges,
             let first = loadedTimeRanges.first {
+            
             let timeRange = first.timeRangeValue
             let startSeconds = CMTimeGetSeconds(timeRange.start)
             let durationSecound = CMTimeGetSeconds(timeRange.duration)
