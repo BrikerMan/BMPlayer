@@ -10,8 +10,8 @@ import Foundation
 import AVFoundation
 
 public class BMPlayerResource {
-    public let name  : String
-    public let cover : URL?
+    public let name: String
+    public let cover: URL?
     public var subtitle: BMSubtitles?
     public let definitions: [BMPlayerResourceDefinition]
     
