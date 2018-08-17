@@ -28,7 +28,17 @@ class VideoPlayViewController: UIViewController {
   var index: IndexPath!
   
   var changeButton = UIButton()
-  
+    
+  var playerTopConstraint: NSLayoutConstraint!
+    
+  var playerHeightOrBottomConstraint: NSLayoutConstraint!
+    
+  var isFullScreen : Bool {
+    get {
+      return UIApplication.shared.statusBarOrientation.isLandscape
+    }
+  }
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     setupPlayerManager()
@@ -70,14 +80,7 @@ class VideoPlayViewController: UIViewController {
     
     player = BMPlayer(customControlView: controller)
     view.addSubview(player)
-    
-    player.snp.makeConstraints { (make) in
-      make.top.equalTo(view.snp.top)
-      make.left.equalTo(view.snp.left)
-      make.right.equalTo(view.snp.right)
-      make.height.equalTo(view.snp.width).multipliedBy(9.0/16.0).priority(500)
-    }
-    
+    setUpPlayerConstriants()
     player.delegate = self
     player.backBlock = { [unowned self] (isFullScreen) in
       if isFullScreen {
@@ -86,20 +89,48 @@ class VideoPlayViewController: UIViewController {
         let _ = self.navigationController?.popViewController(animated: true)
       }
     }
-    
+    //Check current orientation and hide navbar if in landscape
+    navigationController?.setNavigationBarHidden(isFullScreen, animated: true)
     changeButton.setTitle("Change Video", for: .normal)
     changeButton.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
     changeButton.backgroundColor = UIColor.red.withAlphaComponent(0.7)
     view.addSubview(changeButton)
-    
-    changeButton.snp.makeConstraints { (make) in
-      make.top.equalTo(player.snp.bottom).offset(30)
-      make.left.equalTo(view.snp.left).offset(10)
+    changeButton.translatesAutoresizingMaskIntoConstraints = false
+    if #available(iOS 9.0, *) {
+        changeButton.topAnchor.constraint(equalTo: player.bottomAnchor, constant: 30).isActive = true
+        changeButton.leadingAnchor.constraint(equalTo: player.leadingAnchor, constant: 10).isActive = true
+    } else {
+        fatalError(BMError.version.rawValue)
     }
     changeButton.isHidden = true
     self.view.layoutIfNeeded()
   }
-  
+    
+    func setUpPlayerConstriants() {
+        player.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            player.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            player.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            if #available(iOS 11.0, *) {
+                //Take into account the navbar, and the orientation in which the screen is opened
+                if isFullScreen {
+                    playerHeightOrBottomConstraint = player.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                } else {
+                    playerHeightOrBottomConstraint = player.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 9/16)
+                }
+                playerHeightOrBottomConstraint.isActive = true
+                playerTopConstraint = player.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+                playerTopConstraint.isActive = true
+            } else {
+                playerHeightOrBottomConstraint = player.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 9/16)
+                playerHeightOrBottomConstraint.isActive = true
+                playerTopConstraint = player.topAnchor.constraint(equalTo: view.topAnchor)
+                playerTopConstraint.isActive = true
+            }
+        } else {
+            fatalError(BMError.version.rawValue)
+        }
+    }
   
   @objc fileprivate func onChangeVideoButtonPressed() {
     let urls = ["http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
@@ -122,7 +153,6 @@ class VideoPlayViewController: UIViewController {
     let asset = BMPlayerResource(url: URL(string: urls[random])!, name: "Video @\(random)")
     player.setVideo(resource: asset)
   }
-  
   
   func setupPlayerResource() {
     switch (index.section,index.row) {
@@ -247,19 +277,18 @@ class VideoPlayViewController: UIViewController {
     BMPlayerConf.topBarShowInCase = .always
     BMPlayerConf.loaderType  = NVActivityIndicatorType.ballRotateChase
   }
-  
+    
+  //Leave status bar handling to the application
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: false)
     // If use the slide to back, remember to call this method
     // 使用手势返回的时候，调用下面方法
     player.pause(allowAutoPlay: true)
   }
   
-  
+  //Leave status bar handling to the application
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
     // If use the slide to back, remember to call this method
     // 使用手势返回的时候，调用下面方法
     player.autoPlay()
@@ -276,17 +305,31 @@ class VideoPlayViewController: UIViewController {
 
 // MARK:- BMPlayerDelegate example
 extension VideoPlayViewController: BMPlayerDelegate {
-  // Call when player orinet changed
+  // Call when player orientation changed
   func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool) {
-    player.snp.remakeConstraints { (make) in
-      make.top.equalTo(view.snp.top)
-      make.left.equalTo(view.snp.left)
-      make.right.equalTo(view.snp.right)
-      if isFullscreen {
-        make.bottom.equalTo(view.snp.bottom)
-      } else {
-        make.height.equalTo(view.snp.width).multipliedBy(9.0/16.0).priority(500)
-      }
+    navigationController?.setNavigationBarHidden(isFullscreen, animated: true)
+    playerTopConstraint.isActive = false
+    playerHeightOrBottomConstraint.isActive = false
+    if #available(iOS 9.0, *) {
+        if isFullscreen {
+            //Not to the safe area anymore for full screen
+            playerTopConstraint = player.topAnchor.constraint(equalTo: view.topAnchor)
+            playerTopConstraint.isActive = true
+            //Set the bottom constraint
+            playerHeightOrBottomConstraint = player.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            playerHeightOrBottomConstraint.isActive = true
+        } else {
+            if #available(iOS 11.0, *) {
+                playerTopConstraint = player.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+                playerHeightOrBottomConstraint = player.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 9/16)
+                playerHeightOrBottomConstraint.isActive = true
+            } else {
+                playerTopConstraint = player.topAnchor.constraint(equalTo: view.topAnchor)
+            }
+            playerTopConstraint.isActive = true
+        }
+    } else {
+        fatalError(BMError.version.rawValue)
     }
   }
   

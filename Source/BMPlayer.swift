@@ -328,15 +328,14 @@ open class BMPlayer: UIView {
         delegate?.bmPlayer(player: self, playerOrientChanged: isFullScreen)
     }
     
+    //Now let application handle the hiding and showing on the status bar
     @objc fileprivate func fullScreenButtonPressed() {
         controlView.updateUI(!self.isFullScreen)
         if isFullScreen {
             UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-            UIApplication.shared.setStatusBarHidden(false, with: .fade)
             UIApplication.shared.statusBarOrientation = .portrait
         } else {
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-            UIApplication.shared.setStatusBarHidden(false, with: .fade)
             UIApplication.shared.statusBarOrientation = .landscapeRight
         }
     }
@@ -392,10 +391,14 @@ open class BMPlayer: UIView {
         controlView.updateUI(isFullScreen)
         controlView.delegate = self
         controlView.player   = self
-        controlView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+        controlView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            controlView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            controlView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            controlView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            controlView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         }
-        
+
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panDirection(_:)))
         self.addGestureRecognizer(panGesture)
     }
@@ -417,8 +420,12 @@ open class BMPlayer: UIView {
         playerLayer = BMPlayerLayerView()
         playerLayer!.videoGravity = videoGravity
         insertSubview(playerLayer!, at: 0)
-        playerLayer!.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+        playerLayer?.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 9.0, *) {
+            playerLayer?.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            playerLayer?.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            playerLayer?.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            playerLayer?.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         }
         playerLayer!.delegate = self
         controlView.showLoader()
