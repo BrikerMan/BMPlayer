@@ -21,7 +21,7 @@
 - [x] 自定义资源 HTTP Header
 - [x] 易于定制控制 UI
 - [x] 展示本地和在在线字幕文件
-- [x] [Swift 3](https://developer.apple.com/swift/)
+- [x] [Swift 4](https://developer.apple.com/swift/)
 
 ## 要求
 - iOS 8 +
