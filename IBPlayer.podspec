@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-s.name             = "BMPlayer"
+s.name             = "IBPlayer"
 s.version          = "1.0.1"
 s.summary          = "Video Player Using Swift, based on AVPlayer"
 
@@ -11,7 +11,7 @@ s.homepage         = "https://github.com/BrikerMan/BMPlayer"
 
 s.license          = 'MIT'
 s.author           = { "Eliyar Eziz" => "eliyar917@gmail.com" }
-s.source           = { :git => "https://github.com/BrikerMan/BMPlayer.git", :tag => s.version.to_s }
+s.source           = { :git => "https://github.com/iblacksun/BMPlayer.git", :branch => 'master' }
 s.social_media_url = 'http://weibo.com/536445669'
 
 s.ios.deployment_target = '8.0'
@@ -29,7 +29,7 @@ s.subspec 'Full' do |full|
     full.resources    = "Source/**/*.xcassets"
     full.frameworks   = 'UIKit', 'AVFoundation'
 
-    full.dependency 'BMPlayer/Core'
+    full.dependency 'IBPlayer/Core'
     full.dependency 'SnapKit', '~> 4.0.0'
     full.dependency 'NVActivityIndicatorView', '~> 4.3.0'
 end
@@ -39,7 +39,7 @@ s.subspec 'CacheSupport' do |cache|
     cache.resources    = "Source/**/*.xcassets"
     cache.frameworks   = 'UIKit', 'AVFoundation'
 
-    cache.dependency 'BMPlayer/Core'
+    cache.dependency 'IBPlayer/Core'
     cache.dependency 'SnapKit', '~> 4.0.0'
     cache.dependency 'NVActivityIndicatorView', '~> 4.0.0'
     cache.dependency 'VIMediaCache'

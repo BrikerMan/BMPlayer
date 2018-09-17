@@ -233,10 +233,10 @@ open class BMPlayer: UIView {
         
         // 判断是垂直移动还是水平移动
         switch pan.state {
-        case UIGestureRecognizerState.began:
+        case UIGestureRecognizer.State.began:
             // 使用绝对值来判断移动的方向
-            let x = fabs(velocityPoint.x)
-            let y = fabs(velocityPoint.y)
+            let x = abs(velocityPoint.x)
+            let y = abs(velocityPoint.y)
             
             if x > y {
                 if BMPlayerConf.enablePlaytimeGestures {
@@ -257,7 +257,7 @@ open class BMPlayer: UIView {
                 }
             }
             
-        case UIGestureRecognizerState.changed:
+        case UIGestureRecognizer.State.changed:
             switch self.panDirection {
             case BMPanDirection.horizontal:
                 self.horizontalMoved(velocityPoint.x)
@@ -265,7 +265,7 @@ open class BMPlayer: UIView {
                 self.verticalMoved(velocityPoint.y)
             }
             
-        case UIGestureRecognizerState.ended:
+        case UIGestureRecognizer.State.ended:
             // 移动结束也需要判断垂直或者平移
             // 比如水平移动结束时，要快进到指定位置，如果这里没有判断，当我们调节音量完之后，会出现屏幕跳动的bug
             switch (self.panDirection) {
@@ -345,7 +345,7 @@ open class BMPlayer: UIView {
     deinit {
         playerLayer?.pause()
         playerLayer?.prepareToDeinit()
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
     
@@ -401,7 +401,7 @@ open class BMPlayer: UIView {
     }
     
     fileprivate func initUIData() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onOrientationChanged), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
     fileprivate func configureVolume() {
@@ -539,7 +539,7 @@ extension BMPlayer: BMPlayerControlViewDelegate {
     
     open func controlView(controlView: BMPlayerControlView,
                           slider: UISlider,
-                          onSliderEvent event: UIControlEvents) {
+                          onSliderEvent event: UIControl.Event) {
         switch event {
         case .touchDown:
             playerLayer?.onTimeSliderBegan()

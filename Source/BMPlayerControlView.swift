@@ -34,7 +34,7 @@ import NVActivityIndicatorView
      - parameter slider:      progress slider
      - parameter event:       action
      */
-    func controlView(controlView: BMPlayerControlView, slider: UISlider, onSliderEvent event: UIControlEvents)
+    func controlView(controlView: BMPlayerControlView, slider: UISlider, onSliderEvent event: UIControl.Event)
     
     /**
      call when needs to change playback rate
@@ -75,7 +75,7 @@ open class BMPlayerControlView: UIView {
     
     /// top views
     open var topWrapperView = UIView()
-    open var backButton = UIButton(type : UIButtonType.custom)
+    open var backButton = UIButton(type : UIButton.ButtonType.custom)
     open var titleLabel = UILabel()
     open var chooseDefinitionView = UIView()
     
@@ -93,16 +93,16 @@ open class BMPlayerControlView: UIView {
     /* play button
      playButton.isSelected = player.isPlaying
      */
-    open var playButton = UIButton(type: UIButtonType.custom)
+    open var playButton = UIButton(type: UIButton.ButtonType.custom)
     
     /* fullScreen button
      fullScreenButton.isSelected = player.isFullscreen
      */
-    open var fullscreenButton = UIButton(type: UIButtonType.custom)
+    open var fullscreenButton = UIButton(type: UIButton.ButtonType.custom)
     
     open var subtitleLabel    = UILabel()
     open var subtitleBackView = UIView()
-    open var subtileAttribute: [NSAttributedStringKey : Any]?
+    open var subtileAttribute: [NSAttributedString.Key : Any]?
     
     /// Activty Indector for loading
     open var loadingIndicator  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -111,7 +111,7 @@ open class BMPlayerControlView: UIView {
     open var seekToViewImage  = UIImageView()
     open var seekToLabel      = UILabel()
     
-    open var replayButton     = UIButton(type: UIButtonType.custom)
+    open var replayButton     = UIButton(type: UIButton.ButtonType.custom)
     
     /// Gesture used to show / hide control view
     open var tapGesture: UITapGestureRecognizer!
@@ -349,9 +349,9 @@ open class BMPlayerControlView: UIView {
                 button.tag = i
             }
             
-            button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControlState())
+            button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControl.State())
             chooseDefinitionView.addSubview(button)
-            button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControlEvents.touchUpInside)
+            button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControl.Event.touchUpInside)
             button.snp.makeConstraints({ (make) in
                 make.top.equalTo(chooseDefinitionView.snp.top).offset(35 * i)
                 make.width.equalTo(50)
@@ -559,13 +559,13 @@ open class BMPlayerControlView: UIView {
         timeSlider.minimumTrackTintColor = BMPlayerConf.tintColor
         
         timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)),
-                             for: UIControlEvents.touchDown)
+                             for: UIControl.Event.touchDown)
         
         timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)),
-                             for: UIControlEvents.valueChanged)
+                             for: UIControl.Event.valueChanged)
         
         timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)),
-                             for: [UIControlEvents.touchUpInside,UIControlEvents.touchCancel, UIControlEvents.touchUpOutside])
+                             for: [UIControl.Event.touchUpInside,UIControl.Event.touchCancel, UIControl.Event.touchUpOutside])
         
         progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
         progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
