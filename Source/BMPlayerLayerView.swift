@@ -207,7 +207,7 @@ open class BMPlayerLayerView: UIView {
     }
     
     open func onTimeSliderBegan() {
-        if self.player?.currentItem?.status == AVPlayerItemStatus.readyToPlay {
+        if self.player?.currentItem?.status == AVPlayerItem.Status.readyToPlay {
             self.timer?.fireDate = Date.distantFuture
         }
     }
@@ -217,9 +217,9 @@ open class BMPlayerLayerView: UIView {
             return
         }
         setupTimer()
-        if self.player?.currentItem?.status == AVPlayerItemStatus.readyToPlay {
-            let draggedTime = CMTimeMake(Int64(secounds), 1)
-            self.player!.seek(to: draggedTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (finished) in
+        if self.player?.currentItem?.status == AVPlayerItem.Status.readyToPlay {
+            let draggedTime = CMTimeMake(value: Int64(secounds), timescale: 1)
+            self.player!.seek(to: draggedTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (finished) in
                 completion?()
             })
         } else {
@@ -350,9 +350,9 @@ open class BMPlayerLayerView: UIView {
             if item == self.playerItem {
                 switch keyPath {
                 case "status":
-                    if item.status == .failed || player?.status == AVPlayerStatus.failed {
+                    if item.status == .failed || player?.status == AVPlayer.Status.failed {
                         self.state = .error
-                    } else if player?.status == AVPlayerStatus.readyToPlay {
+                    } else if player?.status == AVPlayer.Status.readyToPlay {
                         self.state = .buffering
                         if shouldSeekTo != 0 {
                             print("BMPlayerLayer | Should seek to \(shouldSeekTo)")
