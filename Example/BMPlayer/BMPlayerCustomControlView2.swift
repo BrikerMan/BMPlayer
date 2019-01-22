@@ -20,7 +20,7 @@ class BMPlayerCustomControlView2: BMPlayerControlView {
     override func customizeUIComponents() {
         // just make the view hidden
         topMaskView.isHidden = true
-        chooseDefitionView.isHidden = true
+        chooseDefinitionView.isHidden = true
         
         // or remove from superview
         playButton.removeFromSuperview()
@@ -57,7 +57,7 @@ class BMPlayerCustomControlView2: BMPlayerControlView {
     
     override func updateUI(_ isForFullScreen: Bool) {
         topMaskView.isHidden = true
-        chooseDefitionView.isHidden = true
+        chooseDefinitionView.isHidden = true
     }
     
     override func playTimeDidChange(currentTime: TimeInterval, totalTime: TimeInterval) {

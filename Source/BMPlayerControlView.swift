@@ -603,7 +603,7 @@ open class BMPlayerControlView: UIView {
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapGestureTapped(_:)))
         addGestureRecognizer(tapGesture)
         
-        if BMPlayerManager.shared.enablePlayControlGestures {
+        if BMPlayerManager.shared.enablePlaytimeGestures {
             doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onDoubleTapGestureRecognized(_:)))
             doubleTapGesture.numberOfTapsRequired = 2
             addGestureRecognizer(doubleTapGesture)
