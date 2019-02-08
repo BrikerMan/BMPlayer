@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "IBPlayer"
-s.version          = "1.0.2"
+s.version          = "1.0.3"
 s.summary          = "Video Player Using Swift, based on AVPlayer"
 
 s.description      = <<-DESC
@@ -31,7 +31,7 @@ s.subspec 'Full' do |full|
 
     full.dependency 'IBPlayer/Core'
     full.dependency 'SnapKit', '~> 4.0.1'
-    full.dependency 'NVActivityIndicatorView', '~> 4.4.0'
+    full.dependency 'NVActivityIndicatorView', '~> 4.5.1'
 end
 
 s.subspec 'CacheSupport' do |cache|
@@ -41,7 +41,7 @@ s.subspec 'CacheSupport' do |cache|
 
     cache.dependency 'IBPlayer/Core'
     cache.dependency 'SnapKit', '~> 4.0.1'
-    cache.dependency 'NVActivityIndicatorView', '~> 4.4.0'
+    cache.dependency 'NVActivityIndicatorView', '~> 4.5.1'
     cache.dependency 'VIMediaCache'
 end
 
