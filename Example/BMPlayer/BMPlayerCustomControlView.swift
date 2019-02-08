@@ -37,8 +37,8 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         playbackRateButton.titleLabel?.font   = UIFont.systemFont(ofSize: 12)
         playbackRateButton.isHidden = true
         playbackRateButton.snp.makeConstraints {
-            $0.right.equalTo(chooseDefitionView.snp.left).offset(-5)
-            $0.centerY.equalTo(chooseDefitionView)
+            $0.right.equalTo(chooseDefinitionView.snp.left).offset(-5)
+            $0.centerY.equalTo(chooseDefinitionView)
         }
         
         topMaskView.addSubview(rotateButton)
@@ -52,7 +52,7 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         rotateButton.isHidden = true
         rotateButton.snp.makeConstraints {
             $0.right.equalTo(playbackRateButton.snp.left).offset(-5)
-            $0.centerY.equalTo(chooseDefitionView)
+            $0.centerY.equalTo(chooseDefinitionView)
         }
     }
     

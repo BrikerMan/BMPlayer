@@ -34,27 +34,12 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 ## Installation
 ### CocoaPods
 
-#### Swift 4
-
-```
-use_frameworks!
-
-pod 'BMPlayer', '~> 1.0.0'
-```
-
-#### Swift 3
-```
-use_frameworks!
-
-pod 'BMPlayer', '~> 0.9.1'
-```
-
-#### Swift 2.2
-```
-use_frameworks!
-
-pod 'BMPlayer', '~> 0.3.3'
-```
+| Swift     | podfile                      |
+| --------- | ---------------------------- |
+| Swift 4.2 | `pod 'BMPlayer', '~> 1.2.0'` |
+| Swift 4.0 | `pod 'BMPlayer', '~> 1.0.0'` |
+| Swift 3.0 | `pod 'BMPlayer', '~> 0.9.1'` |
+| Swift 2.2 | `pod 'BMPlayer', '~> 0.3.3'` |
 
 **To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
 
