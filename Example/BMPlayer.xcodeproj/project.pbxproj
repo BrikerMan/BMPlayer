@@ -272,7 +272,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-20/iOS/RevealServer.framework",
@@ -291,7 +291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		953FA8CDEC2E175E8540A86C /* [CP] Check Pods Manifest.lock */ = {
