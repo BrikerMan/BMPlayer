@@ -213,7 +213,6 @@ NVActivityIndicatorPresenter.sharedInstance.setMessage("Done")
 ```
 
 Check if it is animating.
-<<<<<<< HEAD
 
 ```swift
 animating = NVActivityIndicatorPresenter.sharedInstance.isAnimating
@@ -228,22 +227,6 @@ startAnimating(fadeInAnimation: fadeInAnimation)
 stopAnimating(fadeOutAnimation)
 ```
 
-=======
-
-```swift
-animating = NVActivityIndicatorPresenter.sharedInstance.isAnimating
-```
-
-#### Fade in/out animation
-
-You have control over showing and hiding UI blocker animation.
-
-```swift
-startAnimating(fadeInAnimation: fadeInAnimation)
-stopAnimating(fadeOutAnimation)
-```
-
->>>>>>> BrikerMan/master
 Check `DEFAULT_FADE_IN_ANIMATION` and `DEFAULT_FADE_OUT_ANIMATION` for examples of how to implement animation.
 
 ## Acknowledgment

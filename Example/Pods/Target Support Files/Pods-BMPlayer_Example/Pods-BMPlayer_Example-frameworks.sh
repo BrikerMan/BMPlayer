@@ -3,12 +3,6 @@ set -e
 set -u
 set -o pipefail
 
-<<<<<<< HEAD
-if [ -z ${FRAMEWORKS_FOLDER_PATH+x} ]; then
-    # If FRAMEWORKS_FOLDER_PATH is not set, then there's nowhere for us to copy
-    # frameworks to, so exit 0 (signalling the script phase was successful).
-    exit 0
-=======
 function on_error {
   echo "$(realpath -mq "${0}"):$1: error: Unexpected failure"
 }
@@ -18,7 +12,6 @@ if [ -z ${FRAMEWORKS_FOLDER_PATH+x} ]; then
   # If FRAMEWORKS_FOLDER_PATH is not set, then there's nowhere for us to copy
   # frameworks to, so exit 0 (signalling the script phase was successful).
   exit 0
->>>>>>> BrikerMan/master
 fi
 
 echo "mkdir -p ${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
@@ -118,13 +111,8 @@ install_dsym() {
 
 # Signs a framework with the provided identity
 code_sign_if_enabled() {
-<<<<<<< HEAD
-  if [ -n "${EXPANDED_CODE_SIGN_IDENTITY}" -a "${CODE_SIGNING_REQUIRED:-}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
-    # Use the current code_sign_identitiy
-=======
   if [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" -a "${CODE_SIGNING_REQUIRED:-}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
     # Use the current code_sign_identity
->>>>>>> BrikerMan/master
     echo "Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
     local code_sign_cmd="/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'"
 
@@ -167,11 +155,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework"
-<<<<<<< HEAD
-  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-18/iOS/RevealServer.framework"
-=======
-  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-20/iOS/RevealServer.framework"
->>>>>>> BrikerMan/master
+  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer-22/iOS/RevealServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwipeBack/SwipeBack.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/VIMediaCache/VIMediaCache.framework"

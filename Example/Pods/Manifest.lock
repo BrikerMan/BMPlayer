@@ -1,30 +1,17 @@
 PODS:
-<<<<<<< HEAD
-  - BMPlayer/CacheSupport (1.0.2):
+  - BMPlayer/CacheSupport (1.2.1):
     - BMPlayer/Core
-    - NVActivityIndicatorView (~> 4.4.0)
-    - SnapKit (~> 4.2.0)
+    - NVActivityIndicatorView (~> 4.7.0)
+    - SnapKit (~> 5.0.0)
     - VIMediaCache
-  - BMPlayer/Core (1.0.2)
-  - NVActivityIndicatorView (4.4.0):
-    - NVActivityIndicatorView/Presenter (= 4.4.0)
-  - NVActivityIndicatorView/Presenter (4.4.0)
-  - Reveal-SDK (18)
-=======
-  - BMPlayer/CacheSupport (1.2.0):
-    - BMPlayer/Core
-    - NVActivityIndicatorView (~> 4.6.1)
-    - SnapKit (~> 4.2.0)
-    - VIMediaCache
-  - BMPlayer/Core (1.2.0)
-  - NVActivityIndicatorView (4.6.1):
-    - NVActivityIndicatorView/Presenter (= 4.6.1)
-  - NVActivityIndicatorView/Presenter (4.6.1)
-  - Reveal-SDK (20)
->>>>>>> BrikerMan/master
-  - SnapKit (4.2.0)
+  - BMPlayer/Core (1.2.1)
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
+  - Reveal-SDK (22)
+  - SnapKit (5.0.0)
   - SwipeBack (1.1.1)
-  - VIMediaCache (0.3)
+  - VIMediaCache (0.4)
 
 DEPENDENCIES:
   - BMPlayer/CacheSupport (from `../`)
@@ -44,23 +31,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-<<<<<<< HEAD
-  BMPlayer: ad7a93fd9daa13678bd2bf3fcab221e4f3d07bb1
-  NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  Reveal-SDK: cce79388da3fd0bbb6ae19d769b906cfc3a33a89
-=======
-  BMPlayer: 7e279b69b4bc90aaf4150f86b042a5896206ee62
-  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
-  Reveal-SDK: 43206a57f575632fd304e85385cc259b5d359e32
->>>>>>> BrikerMan/master
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  BMPlayer: ea61ce7332a6a9c9f1287598b0838e5c91952c29
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
+  Reveal-SDK: 1385ab77aa15e9a3e21f798c74bd8e94cb54c651
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwipeBack: d6759601b40da1f4161033feb30ab475d7d04322
-  VIMediaCache: 02c03af2adf2526eddc8ee3b06e41f26e9546f38
+  VIMediaCache: aa650f82cb114c68a343beb4e67416cf5eb2f3a2
 
-PODFILE CHECKSUM: e6260ad2cccc640a9c4d2b9ffbcf0063728b772b
+PODFILE CHECKSUM: e66c01a79736fc724a4cc4cebeac12108b2b73e2
 
-<<<<<<< HEAD
-COCOAPODS: 1.5.3
-=======
-COCOAPODS: 1.6.0
->>>>>>> BrikerMan/master
+COCOAPODS: 1.6.1

@@ -8,6 +8,7 @@
 
 #import "VICacheManager.h"
 #import "VIMediaDownloader.h"
+#import "NSString+VIMD5.h"
 
 NSString *VICacheManagerDidUpdateCacheNotification = @"VICacheManagerDidUpdateCacheNotification";
 NSString *VICacheManagerDidFinishCacheNotification = @"VICacheManagerDidFinishCacheNotification";
@@ -45,7 +46,9 @@ static NSTimeInterval kMCMediaCacheNotifyInterval;
 }
 
 + (NSString *)cachedFilePathForURL:(NSURL *)url {
-    return [[self cacheDirectory] stringByAppendingPathComponent:[url lastPathComponent]];
+    NSString *pathComponent = [url.absoluteString vi_md5];
+    pathComponent = [pathComponent stringByAppendingPathExtension:url.pathExtension];
+    return [[self cacheDirectory] stringByAppendingPathComponent:pathComponent];
 }
 
 + (VICacheConfiguration *)cacheConfigurationForURL:(NSURL *)url {
@@ -105,7 +108,9 @@ static NSTimeInterval kMCMediaCacheNotifyInterval;
 + (void)cleanCacheForURL:(NSURL *)url error:(NSError **)error {
     if ([[VIMediaDownloaderStatus shared] containsURL:url]) {
         NSString *description = [NSString stringWithFormat:NSLocalizedString(@"Clean cache for url `%@` can't be done, because it's downloading", nil), url];
-        *error = [NSError errorWithDomain:@"com.mediadownload" code:2 userInfo:@{NSLocalizedDescriptionKey: description}];
+        if (error) {
+            *error = [NSError errorWithDomain:@"com.mediadownload" code:2 userInfo:@{NSLocalizedDescriptionKey: description}];
+        }
         return;
     }
     

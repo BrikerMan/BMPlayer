@@ -14,9 +14,9 @@ s.author           = { "Eliyar Eziz" => "eliyar917@gmail.com" }
 s.source           = { :git => "https://github.com/BrikerMan/BMPlayer.git", :tag => s.version.to_s }
 s.social_media_url = 'http://weibo.com/536445669'
 
-s.ios.deployment_target = '8.0'
-s.platform     = :ios, '8.0'
-s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
+s.ios.deployment_target = '10.0'
+s.platform     = :ios, '10.0'
+s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 s.default_subspec = 'Full'
 
 s.subspec 'Core' do |core|
@@ -30,12 +30,8 @@ s.subspec 'Full' do |full|
     full.frameworks   = 'UIKit', 'AVFoundation'
 
     full.dependency 'BMPlayer/Core'
-    full.dependency 'SnapKit', '~> 4.2.0'
-<<<<<<< HEAD
-    full.dependency 'NVActivityIndicatorView', '~> 4.4.0'
-=======
-    full.dependency 'NVActivityIndicatorView', '~> 4.6.1'
->>>>>>> BrikerMan/master
+    full.dependency 'SnapKit', '~> 5.0.0'
+    full.dependency 'NVActivityIndicatorView', '~> 4.7.0'
 end
 
 s.subspec 'CacheSupport' do |cache|
@@ -44,12 +40,8 @@ s.subspec 'CacheSupport' do |cache|
     cache.frameworks   = 'UIKit', 'AVFoundation'
 
     cache.dependency 'BMPlayer/Core'
-    cache.dependency 'SnapKit', '~> 4.2.0'
-<<<<<<< HEAD
-    cache.dependency 'NVActivityIndicatorView', '~> 4.4.0'
-=======
-    cache.dependency 'NVActivityIndicatorView', '~> 4.6.1'
->>>>>>> BrikerMan/master
+    cache.dependency 'SnapKit', '~> 5.0.0'
+    cache.dependency 'NVActivityIndicatorView', '~> 4.7.0'
     cache.dependency 'VIMediaCache'
 end
 
