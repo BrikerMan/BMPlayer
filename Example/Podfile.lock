@@ -1,4 +1,5 @@
 PODS:
+<<<<<<< HEAD
   - BMPlayer/CacheSupport (1.0.2):
     - BMPlayer/Core
     - NVActivityIndicatorView (~> 4.4.0)
@@ -9,6 +10,18 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
   - Reveal-SDK (18)
+=======
+  - BMPlayer/CacheSupport (1.2.0):
+    - BMPlayer/Core
+    - NVActivityIndicatorView (~> 4.6.1)
+    - SnapKit (~> 4.2.0)
+    - VIMediaCache
+  - BMPlayer/Core (1.2.0)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+  - Reveal-SDK (20)
+>>>>>>> BrikerMan/master
   - SnapKit (4.2.0)
   - SwipeBack (1.1.1)
   - VIMediaCache (0.3)
@@ -31,13 +44,23 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+<<<<<<< HEAD
   BMPlayer: ad7a93fd9daa13678bd2bf3fcab221e4f3d07bb1
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
   Reveal-SDK: cce79388da3fd0bbb6ae19d769b906cfc3a33a89
+=======
+  BMPlayer: 7e279b69b4bc90aaf4150f86b042a5896206ee62
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  Reveal-SDK: 43206a57f575632fd304e85385cc259b5d359e32
+>>>>>>> BrikerMan/master
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwipeBack: d6759601b40da1f4161033feb30ab475d7d04322
   VIMediaCache: 02c03af2adf2526eddc8ee3b06e41f26e9546f38
 
-PODFILE CHECKSUM: de0a8818c1b74390b7c88fac79721798a8f20b23
+PODFILE CHECKSUM: e6260ad2cccc640a9c4d2b9ffbcf0063728b772b
 
+<<<<<<< HEAD
 COCOAPODS: 1.5.3
+=======
+COCOAPODS: 1.6.0
+>>>>>>> BrikerMan/master
