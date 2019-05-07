@@ -1,7 +1,6 @@
 ## BMPlayer
 
-![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)
-![Swift 3.0](https://img.shields.io/badge/Swift-3.0-brightgreen.svg?style=flat)
+![Swift 2.2-5.0](https://img.shields.io/badge/Swift-2.2--5.0-brightgreen.svg?style=flat)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
 [![License](https://img.shields.io/cocoapods/l/BMPlayer.svg?style=flat)](http://cocoapods.org/pods/BMPlayer)
@@ -202,6 +201,7 @@ This project heavily reference the Objective-C version of this project [ZFPlayer
 - [tooodooo](https://github.com/tooodooo)
 - [Ben Bahrenburg](https://github.com/benbahrenburg)
 - [MangoMade](https://github.com/MangoMade)
+- [iblacksun](https://github.com/iblacksun)
 
 You are welcome to fork and submit pull requests.
 
