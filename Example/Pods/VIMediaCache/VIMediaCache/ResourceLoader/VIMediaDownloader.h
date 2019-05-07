@@ -10,10 +10,14 @@
 
 @protocol VIMediaDownloaderDelegate;
 @class VIContentInfo;
+@class VIMediaCacheWorker;
 
 @interface VIMediaDownloaderStatus : NSObject
 
 + (instancetype)shared;
+
+- (void)addURL:(NSURL *)url;
+- (void)removeURL:(NSURL *)url;
 
 /**
  return YES if downloading the url source
@@ -25,10 +29,11 @@
 
 @interface VIMediaDownloader : NSObject
 
-- (instancetype)initWithURL:(NSURL *)url;
+- (instancetype)initWithURL:(NSURL *)url cacheWorker:(VIMediaCacheWorker *)cacheWorker;
 @property (nonatomic, strong, readonly) NSURL *url;
 @property (nonatomic, weak) id<VIMediaDownloaderDelegate> delegate;
 @property (nonatomic, strong) VIContentInfo *info;
+@property (nonatomic, assign) BOOL saveToCache;
 
 - (void)downloadTaskFromOffset:(unsigned long long)fromOffset
                         length:(NSUInteger)length
@@ -36,7 +41,6 @@
 - (void)downloadFromStartToEnd;
 
 - (void)cancel;
-- (void)invalidateAndCancel;
 
 @end
 
