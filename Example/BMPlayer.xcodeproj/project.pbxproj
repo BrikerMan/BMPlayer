@@ -276,7 +276,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-22/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeBack/SwipeBack.framework",
 				"${BUILT_PRODUCTS_DIR}/VIMediaCache/VIMediaCache.framework",
@@ -285,7 +284,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeBack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VIMediaCache.framework",

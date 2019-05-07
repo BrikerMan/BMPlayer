@@ -33,6 +33,7 @@
 
 | Swift     | podfile                      |
 | --------- | ---------------------------- |
+| Swift 5.0 | `pod 'BMPlayer', '~> 1.3.0'` |
 | Swift 4.2 | `pod 'BMPlayer', '~> 1.2.0'` |
 | Swift 4.0 | `pod 'BMPlayer', '~> 1.0.0'` |
 | Swift 3.0 | `pod 'BMPlayer', '~> 0.9.1'` |

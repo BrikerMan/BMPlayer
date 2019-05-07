@@ -4,7 +4,7 @@ use_frameworks!
 target 'BMPlayer_Example' do
   pod 'BMPlayer/CacheSupport', :path => '../'
 
-  pod 'Reveal-SDK', :configurations => ['Debug']
+#  pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'SwipeBack'                         ## 全能滑动手势返回,建议集成
 end
 

@@ -1,9 +1,9 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BMPlayer" "${PODS_CONFIGURATION_BUILD_DIR}/NVActivityIndicatorView" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit" "${PODS_CONFIGURATION_BUILD_DIR}/SwipeBack" "${PODS_CONFIGURATION_BUILD_DIR}/VIMediaCache" "${PODS_ROOT}/Reveal-SDK/RevealServer-22/iOS"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BMPlayer" "${PODS_CONFIGURATION_BUILD_DIR}/NVActivityIndicatorView" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit" "${PODS_CONFIGURATION_BUILD_DIR}/SwipeBack" "${PODS_CONFIGURATION_BUILD_DIR}/VIMediaCache"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BMPlayer/BMPlayer.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwipeBack/SwipeBack.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/VIMediaCache/VIMediaCache.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -l"z" -framework "AVFoundation" -framework "BMPlayer" -framework "CFNetwork" -framework "CoreGraphics" -framework "Foundation" -framework "MobileCoreServices" -framework "NVActivityIndicatorView" -framework "QuartzCore" -framework "RevealServer" -framework "SnapKit" -framework "SwipeBack" -framework "UIKit" -framework "VIMediaCache"
+OTHER_LDFLAGS = $(inherited) -framework "AVFoundation" -framework "BMPlayer" -framework "Foundation" -framework "MobileCoreServices" -framework "NVActivityIndicatorView" -framework "QuartzCore" -framework "SnapKit" -framework "SwipeBack" -framework "UIKit" -framework "VIMediaCache"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
