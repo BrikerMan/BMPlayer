@@ -193,9 +193,14 @@ open class BMPlayerLayerView: UIView {
       playerItem?.removeObserver(self, forKeyPath: "loadedTimeRanges")
       playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
       playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
+      lastPlayerItem?.removeObserver(self, forKeyPath: "status")
+      lastPlayerItem?.removeObserver(self, forKeyPath: "loadedTimeRanges")
+      lastPlayerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
+      lastPlayerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
     
       self.playDidEnd = false
       self.playerItem = nil
+      self.lastPlayerItem = nil
       self.seekTime   = 0
       
       self.timer?.invalidate()
