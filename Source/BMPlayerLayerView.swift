@@ -357,10 +357,10 @@ open class BMPlayerLayerView: UIView {
                         self.state = .buffering
                         if shouldSeekTo != 0 {
                             print("BMPlayerLayer | Should seek to \(shouldSeekTo)")
-                            seek(to: shouldSeekTo, completion: {
-                                self.shouldSeekTo = 0
-                                self.hasReadyToPlay = true
-                                self.state = .readyToPlay
+                            seek(to: shouldSeekTo, completion: { [weak self] in
+                                self?.shouldSeekTo = 0
+                                self?.hasReadyToPlay = true
+                                self?.state = .readyToPlay
                             })
                         } else {
                             self.hasReadyToPlay = true

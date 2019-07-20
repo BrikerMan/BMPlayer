@@ -273,12 +273,12 @@ open class BMPlayer: UIView {
                 isSliderSliding = false
                 if isPlayToTheEnd {
                     isPlayToTheEnd = false
-                    seek(self.sumTime, completion: {
-                        self.play()
+                    seek(self.sumTime, completion: {[weak self] in
+                        self?.play()
                     })
                 } else {
-                    seek(self.sumTime, completion: {
-                        self.autoPlay()
+                    seek(self.sumTime, completion: {[weak self] in
+                        self?.autoPlay()
                     })
                 }
                 // 把sumTime滞空，不然会越加越多
@@ -444,12 +444,13 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
                 play()
             }
             if shouldSeekTo != 0 {
-                seek(shouldSeekTo, completion: {
-                    if !self.isPauseByUser {
-                        self.play()
-                    } else {
-                        self.pause()
-                    }
+                seek(shouldSeekTo, completion: {[weak self] in
+                  guard let `self` = self else { return }
+                  if !self.isPauseByUser {
+                      self.play()
+                  } else {
+                      self.pause()
+                  }
                 })
             }
             
@@ -509,8 +510,8 @@ extension BMPlayer: BMPlayerControlViewDelegate {
                     pause()
                 } else {
                     if isPlayToTheEnd {
-                        seek(0, completion: {
-                            self.play()
+                        seek(0, completion: {[weak self] in
+                          self?.play()
                         })
                         controlView.hidePlayToTheEndView()
                         isPlayToTheEnd = false
@@ -546,13 +547,13 @@ extension BMPlayer: BMPlayerControlViewDelegate {
             
             if isPlayToTheEnd {
                 isPlayToTheEnd = false
-                seek(target, completion: {
-                    self.play()
+                seek(target, completion: {[weak self] in
+                  self?.play()
                 })
                 controlView.hidePlayToTheEndView()
             } else {
-                seek(target, completion: {
-                    self.autoPlay()
+                seek(target, completion: {[weak self] in
+                  self?.autoPlay()
                 })
             }
         default:

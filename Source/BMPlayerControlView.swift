@@ -233,22 +233,23 @@ open class BMPlayerControlView: UIView {
         
         UIApplication.shared.setStatusBarHidden(!isShow, with: .fade)
         
-        UIView.animate(withDuration: 0.3, animations: {
-            self.topMaskView.alpha    = alpha
-            self.bottomMaskView.alpha = alpha
-            self.mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: isShow ? 0.4 : 0.0)
-            
-            if isShow {
-                if self.isFullscreen { self.chooseDefitionView.alpha = 1.0 }
-            } else {
-                self.replayButton.isHidden = true
-                self.chooseDefitionView.snp.updateConstraints { (make) in
-                    make.height.equalTo(35)
-                }
-                self.chooseDefitionView.alpha = 0.0
-            }
-            self.layoutIfNeeded()
-        }) { (_) in
+        UIView.animate(withDuration: 0.3, animations: {[weak self] in
+          guard let `self` = self else { return }
+          self.topMaskView.alpha    = alpha
+          self.bottomMaskView.alpha = alpha
+          self.mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: isShow ? 0.4 : 0.0)
+          
+          if isShow {
+              if self.isFullscreen { self.chooseDefitionView.alpha = 1.0 }
+          } else {
+              self.replayButton.isHidden = true
+              self.chooseDefitionView.snp.updateConstraints { (make) in
+                  make.height.equalTo(35)
+              }
+              self.chooseDefitionView.alpha = 0.0
+          }
+          self.layoutIfNeeded()
+        }) { [weak self](_) in
             if isShow {
                 self.autoFadeOutControlViewWithAnimation()
             }
@@ -309,9 +310,10 @@ open class BMPlayerControlView: UIView {
     
     open func showCover(url: URL?) {
         if let url = url {
-            DispatchQueue.global(qos: .default).async {
+            DispatchQueue.global(qos: .default).async { [weak self] in
                 let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.async(execute: { [weak self] in
+                  guard let `self` = self else { return }
                     if let data = data {
                         self.maskImageView.image = UIImage(data: data)
                     } else {
@@ -349,11 +351,12 @@ open class BMPlayerControlView: UIView {
             button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControlState())
             chooseDefitionView.addSubview(button)
             button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControlEvents.touchUpInside)
-            button.snp.makeConstraints({ (make) in
-                make.top.equalTo(chooseDefitionView.snp.top).offset(35 * i)
+            button.snp.makeConstraints({ [weak self](make) in
+              guard let `self` = self else { return }
+                make.top.equalTo(self.chooseDefitionView.snp.top).offset(35 * i)
                 make.width.equalTo(50)
                 make.height.equalTo(25)
-                make.centerX.equalTo(chooseDefitionView)
+                make.centerX.equalTo(self.chooseDefitionView)
             })
             
             if resource.definitions.count == 1 {
@@ -437,8 +440,8 @@ open class BMPlayerControlView: UIView {
             make.height.equalTo(height)
         }
         
-        UIView.animate(withDuration: 0.3, animations: {
-            self.layoutIfNeeded()
+        UIView.animate(withDuration: 0.3, animations: {[weak self] in
+            self?.layoutIfNeeded()
         })
         isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
         if selectedIndex != button.tag {
@@ -591,123 +594,143 @@ open class BMPlayerControlView: UIView {
     
     func addSnapKitConstraint() {
         // Main mask view
-        mainMaskView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+        mainMaskView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.edges.equalTo(self)
         }
         
-        maskImageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(mainMaskView)
+        maskImageView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.edges.equalTo(self.mainMaskView)
         }
         
         
-        topMaskView.snp.makeConstraints { (make) in
-            make.top.left.right.equalTo(mainMaskView)
-            make.height.equalTo(65)
+        topMaskView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.top.left.right.equalTo(self.mainMaskView)
+          make.height.equalTo(65)
         }
         
-        bottomMaskView.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalTo(mainMaskView)
-            make.height.equalTo(50)
+        bottomMaskView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.bottom.left.right.equalTo(self.mainMaskView)
+          make.height.equalTo(50)
         }
         
         // Top views
-        backButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(50)
-            make.left.bottom.equalTo(topMaskView)
+        backButton.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.width.height.equalTo(50)
+          make.left.bottom.equalTo(self.topMaskView)
         }
         
-        titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(backButton.snp.right)
-            make.centerY.equalTo(backButton)
+        titleLabel.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.left.equalTo(self.backButton.snp.right)
+          make.centerY.equalTo(self.backButton)
         }
         
-        chooseDefitionView.snp.makeConstraints { (make) in
-            make.right.equalTo(topMaskView.snp.right).offset(-20)
-            make.top.equalTo(titleLabel.snp.top).offset(-4)
-            make.width.equalTo(60)
-            make.height.equalTo(30)
+        chooseDefitionView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.right.equalTo(self.topMaskView.snp.right).offset(-20)
+          make.top.equalTo(self.titleLabel.snp.top).offset(-4)
+          make.width.equalTo(60)
+          make.height.equalTo(30)
         }
         
         // Bottom views
-        playButton.snp.makeConstraints { (make) in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.left.bottom.equalTo(bottomMaskView)
+        playButton.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.width.equalTo(50)
+          make.height.equalTo(50)
+          make.left.bottom.equalTo(self.bottomMaskView)
         }
         
-        currentTimeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(playButton.snp.right)
-            make.centerY.equalTo(playButton)
-            make.width.equalTo(40)
+        currentTimeLabel.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.left.equalTo(self.playButton.snp.right)
+          make.centerY.equalTo(self.playButton)
+          make.width.equalTo(40)
         }
         
-        timeSlider.snp.makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(currentTimeLabel.snp.right).offset(10).priority(750)
-            make.height.equalTo(30)
+        timeSlider.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.centerY.equalTo(self.currentTimeLabel)
+          make.left.equalTo(self.currentTimeLabel.snp.right).offset(10).priority(750)
+          make.height.equalTo(30)
         }
         
-        progressView.snp.makeConstraints { (make) in
-            make.centerY.left.right.equalTo(timeSlider)
-            make.height.equalTo(2)
+        progressView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.centerY.left.right.equalTo(self.timeSlider)
+          make.height.equalTo(2)
         }
         
-        totalTimeLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(timeSlider.snp.right).offset(5)
-            make.width.equalTo(40)
+        totalTimeLabel.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.centerY.equalTo(self.currentTimeLabel)
+          make.left.equalTo(self.timeSlider.snp.right).offset(5)
+          make.width.equalTo(40)
         }
         
-        fullscreenButton.snp.makeConstraints { (make) in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-            make.centerY.equalTo(currentTimeLabel)
-            make.left.equalTo(totalTimeLabel.snp.right)
-            make.right.equalTo(bottomMaskView.snp.right)
+        fullscreenButton.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.width.equalTo(50)
+          make.height.equalTo(50)
+          make.centerY.equalTo(self.currentTimeLabel)
+          make.left.equalTo(self.totalTimeLabel.snp.right)
+          make.right.equalTo(self.bottomMaskView.snp.right)
         }
         
         
-        loadingIndector.snp.makeConstraints { (make) in
-            make.centerX.equalTo(mainMaskView.snp.centerX).offset(0)
-            make.centerY.equalTo(mainMaskView.snp.centerY).offset(0)
+        loadingIndector.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.centerX.equalTo(self.mainMaskView.snp.centerX).offset(0)
+          make.centerY.equalTo(self.mainMaskView.snp.centerY).offset(0)
         }
         
         // View to show when slide to seek
-        seekToView.snp.makeConstraints { (make) in
-            make.center.equalTo(self.snp.center)
-            make.width.equalTo(100)
-            make.height.equalTo(40)
+        seekToView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.center.equalTo(self.snp.center)
+          make.width.equalTo(100)
+          make.height.equalTo(40)
         }
         
-        seekToViewImage.snp.makeConstraints { (make) in
-            make.left.equalTo(seekToView.snp.left).offset(15)
-            make.centerY.equalTo(seekToView.snp.centerY)
-            make.height.equalTo(15)
-            make.width.equalTo(25)
+        seekToViewImage.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.left.equalTo(self.seekToView.snp.left).offset(15)
+          make.centerY.equalTo(self.seekToView.snp.centerY)
+          make.height.equalTo(15)
+          make.width.equalTo(25)
         }
         
-        seekToLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(seekToViewImage.snp.right).offset(10)
-            make.centerY.equalTo(seekToView.snp.centerY)
+        seekToLabel.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.left.equalTo(self.seekToViewImage.snp.right).offset(10)
+          make.centerY.equalTo(self.seekToView.snp.centerY)
         }
         
-        replayButton.snp.makeConstraints { (make) in
-            make.centerX.equalTo(mainMaskView.snp.centerX)
-            make.centerY.equalTo(mainMaskView.snp.centerY)
-            make.width.height.equalTo(50)
+        replayButton.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.centerX.equalTo(self.mainMaskView.snp.centerX)
+          make.centerY.equalTo(self.mainMaskView.snp.centerY)
+          make.width.height.equalTo(50)
         }
         
-        subtitleBackView.snp.makeConstraints {
-            $0.bottom.equalTo(snp.bottom).offset(-5)
-            $0.centerX.equalTo(snp.centerX)
-            $0.width.lessThanOrEqualTo(snp.width).offset(-10).priority(750)
+        subtitleBackView.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.bottom.equalTo(snp.bottom).offset(-5)
+          make.centerX.equalTo(snp.centerX)
+          make.width.lessThanOrEqualTo(snp.width).offset(-10).priority(750)
         }
         
-        subtitleLabel.snp.makeConstraints {
-            $0.left.equalTo(subtitleBackView.snp.left).offset(10)
-            $0.right.equalTo(subtitleBackView.snp.right).offset(-10)
-            $0.top.equalTo(subtitleBackView.snp.top).offset(2)
-            $0.bottom.equalTo(subtitleBackView.snp.bottom).offset(-2)
+        subtitleLabel.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.left.equalTo(self.subtitleBackView.snp.left).offset(10)
+          make.right.equalTo(self.subtitleBackView.snp.right).offset(-10)
+          make.top.equalTo(self.subtitleBackView.snp.top).offset(2)
+          make.bottom.equalTo(self.subtitleBackView.snp.bottom).offset(-2)
         }
     }
     
