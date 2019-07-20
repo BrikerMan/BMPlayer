@@ -387,7 +387,6 @@ open class BMPlayerControlView: UIView {
           break
         }
       }
-      weak var _self = self
       delegate?.controlView(controlView: self, didPressButton: button)
     }
     
@@ -407,7 +406,6 @@ open class BMPlayerControlView: UIView {
     
     // MARK: - handle UI slider actions
     @objc func progressSliderTouchBegan(_ sender: UISlider)  {
-      weak var _self = self
       delegate?.controlView(controlView: self, slider: sender, onSliderEvent: .touchDown)
     }
     
@@ -416,13 +414,11 @@ open class BMPlayerControlView: UIView {
       cancelAutoFadeOutAnimation()
       let currentTime = Double(sender.value) * totalDuration
       currentTimeLabel.text = BMPlayer.formatSecondsToString(currentTime)
-      weak var _self = self
       delegate?.controlView(controlView: self, slider: sender, onSliderEvent: .valueChanged)
     }
     
     @objc func progressSliderTouchEnded(_ sender: UISlider)  {
       autoFadeOutControlViewWithAnimation()
-      weak var _self = self
       delegate?.controlView(controlView: self, slider: sender, onSliderEvent: .touchUpInside)
     }
     
@@ -450,7 +446,6 @@ open class BMPlayerControlView: UIView {
       isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
       if selectedIndex != button.tag {
         selectedIndex = button.tag
-        weak var _self = self
         delegate?.controlView(controlView: self, didChooseDefition: button.tag)
       }
       prepareChooseDefinitionView()
