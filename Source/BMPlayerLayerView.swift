@@ -160,7 +160,12 @@ open class BMPlayerLayerView: UIView {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+      NotificationCenter.default.removeObserver(self)
+      playerItem?.removeObserver(self, forKeyPath: "status")
+      playerItem?.removeObserver(self, forKeyPath: "loadedTimeRanges")
+      playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
+      playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
+      player?.removeObserver(self, forKeyPath: "rate")
     }
     
     
