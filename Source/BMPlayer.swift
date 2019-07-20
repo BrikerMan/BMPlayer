@@ -410,8 +410,9 @@ open class BMPlayer: UIView {
         playerLayer = BMPlayerLayerView()
         playerLayer!.videoGravity = videoGravity
         insertSubview(playerLayer!, at: 0)
-        playerLayer!.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+        playerLayer!.snp.makeConstraints { [weak self](make) in
+          guard let `self` = self else { return }
+          make.edges.equalTo(self)
         }
         playerLayer!.delegate = self
         controlView.showLoader()
@@ -422,14 +423,16 @@ open class BMPlayer: UIView {
 extension BMPlayer: BMPlayerLayerViewDelegate {
     public func bmPlayer(player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
         controlView.playStateDidChange(isPlaying: playing)
-        delegate?.bmPlayer(player: self, playerIsPlaying: playing)
+        weak var _self = self
+        delegate?.bmPlayer(player: _self, playerIsPlaying: playing)
         playStateDidChange?(player.isPlaying)
     }
     
     public func bmPlayer(player: BMPlayerLayerView ,loadedTimeDidChange loadedDuration: TimeInterval , totalDuration: TimeInterval) {
         BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
         controlView.loadedTimeDidChange(loadedDuration: loadedDuration , totalDuration: totalDuration)
-        delegate?.bmPlayer(player: self, loadedTimeDidChange: loadedDuration, totalDuration: totalDuration)
+        weak var _self = self
+        delegate?.bmPlayer(player: _self, loadedTimeDidChange: loadedDuration, totalDuration: totalDuration)
         controlView.totalDuration = totalDuration
         self.totalDuration = totalDuration
     }
@@ -464,20 +467,21 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
             break
         }
         panGesture.isEnabled = state != .playedToTheEnd
-        delegate?.bmPlayer(player: self, playerStateDidChange: state)
+        weak var _self = self
+        delegate?.bmPlayer(player: _self, playerStateDidChange: state)
     }
     
     
     
     public func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
-        delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
+        weak var _self = self
+        delegate?.bmPlayer(player: _self, playTimeDidChange: currentTime, totalTime: totalTime)
         self.currentPosition = currentTime
         totalDuration = totalTime
         if isSliderSliding {
             return
         }
-        
         controlView.playTimeDidChange(currentTime: currentTime, totalTime: totalTime)
         controlView.totalDuration = totalDuration
         playTimeDidChange?(currentTime, totalTime)

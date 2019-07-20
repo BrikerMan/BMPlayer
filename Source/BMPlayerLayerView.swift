@@ -161,11 +161,6 @@ open class BMPlayerLayerView: UIView {
     
     deinit {
       NotificationCenter.default.removeObserver(self)
-      playerItem?.removeObserver(self, forKeyPath: "status")
-      playerItem?.removeObserver(self, forKeyPath: "loadedTimeRanges")
-      playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
-      playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
-      player?.removeObserver(self, forKeyPath: "rate")
     }
     
     
@@ -191,7 +186,14 @@ open class BMPlayerLayerView: UIView {
     
     open func resetPlayer() {
         // 初始化状态变量
-        self.playDidEnd = false
+      NotificationCenter.default.removeObserver(self)
+      playerItem?.removeObserver(self, forKeyPath: "status")
+      playerItem?.removeObserver(self, forKeyPath: "loadedTimeRanges")
+      playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
+      playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
+      player?.removeObserver(self, forKeyPath: "rate")
+    
+      self.playDidEnd = false
         self.playerItem = nil
         self.seekTime   = 0
         

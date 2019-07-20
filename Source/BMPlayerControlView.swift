@@ -376,18 +376,19 @@ open class BMPlayerControlView: UIView {
      - parameter button: action Button
      */
     @objc open func onButtonPressed(_ button: UIButton) {
-        autoFadeOutControlViewWithAnimation()
-        if let type = ButtonType(rawValue: button.tag) {
-            switch type {
-            case .play, .replay:
-                if playerLastState == .playedToTheEnd {
-                    hidePlayToTheEndView()
-                }
-            default:
-                break
-            }
+      autoFadeOutControlViewWithAnimation()
+      if let type = ButtonType(rawValue: button.tag) {
+        switch type {
+        case .play, .replay:
+          if playerLastState == .playedToTheEnd {
+            hidePlayToTheEndView()
+          }
+        default:
+          break
         }
-        delegate?.controlView(controlView: self, didPressButton: button)
+      }
+      weak var _self = self
+      delegate?.controlView(controlView: _self, didPressButton: button)
     }
     
     /**
@@ -406,20 +407,23 @@ open class BMPlayerControlView: UIView {
     
     // MARK: - handle UI slider actions
     @objc func progressSliderTouchBegan(_ sender: UISlider)  {
-        delegate?.controlView(controlView: self, slider: sender, onSliderEvent: .touchDown)
+      weak var _self = self
+      delegate?.controlView(controlView: _self, slider: sender, onSliderEvent: .touchDown)
     }
     
     @objc func progressSliderValueChanged(_ sender: UISlider)  {
-        hidePlayToTheEndView()
-        cancelAutoFadeOutAnimation()
-        let currentTime = Double(sender.value) * totalDuration
-        currentTimeLabel.text = BMPlayer.formatSecondsToString(currentTime)
-        delegate?.controlView(controlView: self, slider: sender, onSliderEvent: .valueChanged)
+      hidePlayToTheEndView()
+      cancelAutoFadeOutAnimation()
+      let currentTime = Double(sender.value) * totalDuration
+      currentTimeLabel.text = BMPlayer.formatSecondsToString(currentTime)
+      weak var _self = self
+      delegate?.controlView(controlView: _self, slider: sender, onSliderEvent: .valueChanged)
     }
     
     @objc func progressSliderTouchEnded(_ sender: UISlider)  {
-        autoFadeOutControlViewWithAnimation()
-        delegate?.controlView(controlView: self, slider: sender, onSliderEvent: .touchUpInside)
+      autoFadeOutControlViewWithAnimation()
+      weak var _self = self
+      delegate?.controlView(controlView: _self, slider: sender, onSliderEvent: .touchUpInside)
     }
     
     
@@ -435,20 +439,21 @@ open class BMPlayerControlView: UIView {
     }
     
     @objc fileprivate func onDefinitionSelected(_ button:UIButton) {
-        let height = isSelectecDefitionViewOpened ? 35 : resource!.definitions.count * 40
-        chooseDefitionView.snp.updateConstraints { (make) in
-            make.height.equalTo(height)
-        }
-        
-        UIView.animate(withDuration: 0.3, animations: {[weak self] in
-            self?.layoutIfNeeded()
-        })
-        isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
-        if selectedIndex != button.tag {
-            selectedIndex = button.tag
-            delegate?.controlView(controlView: self, didChooseDefition: button.tag)
-        }
-        prepareChooseDefinitionView()
+      let height = isSelectecDefitionViewOpened ? 35 : resource!.definitions.count * 40
+      chooseDefitionView.snp.updateConstraints { (make) in
+        make.height.equalTo(height)
+      }
+      
+      UIView.animate(withDuration: 0.3, animations: {[weak self] in
+        self?.layoutIfNeeded()
+      })
+      isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
+      if selectedIndex != button.tag {
+        selectedIndex = button.tag
+        weak var _self = self
+        delegate?.controlView(controlView: _self, didChooseDefition: button.tag)
+      }
+      prepareChooseDefinitionView()
     }
     
     @objc fileprivate func onReplyButtonPressed() {
