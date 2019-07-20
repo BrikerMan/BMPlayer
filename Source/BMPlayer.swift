@@ -424,7 +424,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     public func bmPlayer(player: BMPlayerLayerView, playerIsPlaying playing: Bool) {
         controlView.playStateDidChange(isPlaying: playing)
         weak var _self = self
-        delegate?.bmPlayer(player: _self!, playerIsPlaying: playing)
+        delegate?.bmPlayer(player: self, playerIsPlaying: playing)
         playStateDidChange?(player.isPlaying)
     }
     
@@ -432,7 +432,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         BMPlayerManager.shared.log("loadedTimeDidChange - \(loadedDuration) - \(totalDuration)")
         controlView.loadedTimeDidChange(loadedDuration: loadedDuration , totalDuration: totalDuration)
         weak var _self = self
-        delegate?.bmPlayer(player: _self!, loadedTimeDidChange: loadedDuration, totalDuration: totalDuration)
+        delegate?.bmPlayer(player: self, loadedTimeDidChange: loadedDuration, totalDuration: totalDuration)
         controlView.totalDuration = totalDuration
         self.totalDuration = totalDuration
     }
@@ -468,7 +468,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         }
         panGesture.isEnabled = state != .playedToTheEnd
         weak var _self = self
-        delegate?.bmPlayer(player: _self!, playerStateDidChange: state)
+        delegate?.bmPlayer(player: self, playerStateDidChange: state)
     }
     
     
@@ -476,7 +476,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
     public func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
         BMPlayerManager.shared.log("playTimeDidChange - \(currentTime) - \(totalTime)")
         weak var _self = self
-        delegate?.bmPlayer(player: _self!, playTimeDidChange: currentTime, totalTime: totalTime)
+        delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
         self.currentPosition = currentTime
         totalDuration = totalTime
         if isSliderSliding {

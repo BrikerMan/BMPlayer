@@ -83,7 +83,7 @@ open class BMPlayerLayerView: UIView {
         didSet {
             if oldValue != isPlaying {
                 weak var _self = self
-                delegate?.bmPlayer(player: _self!, playerIsPlaying: isPlaying)
+                delegate?.bmPlayer(player: self, playerIsPlaying: isPlaying)
             }
         }
     }
@@ -109,7 +109,7 @@ open class BMPlayerLayerView: UIView {
         didSet {
             if state != oldValue {
               weak var _self = self
-              delegate?.bmPlayer(player: _self!, playerStateDidChange: state)
+              delegate?.bmPlayer(player: self, playerStateDidChange: state)
             }
         }
     }
@@ -304,7 +304,7 @@ open class BMPlayerLayerView: UIView {
                 let currentTime = CMTimeGetSeconds(self.player!.currentTime())
                 let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
                 weak var _self = self
-                delegate?.bmPlayer(player: _self!, playTimeDidChange: currentTime, totalTime: totalTime)
+                delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
             }
             updateStatus(inclodeLoading: true)
         }
@@ -344,7 +344,7 @@ open class BMPlayerLayerView: UIView {
         if state != .playedToTheEnd {
             if let playerItem = playerItem {
                 weak var _self = self
-                delegate?.bmPlayer(player: _self!,
+                delegate?.bmPlayer(player: self,
                                    playTimeDidChange: CMTimeGetSeconds(playerItem.duration),
                                    totalTime: CMTimeGetSeconds(playerItem.duration))
             }
@@ -385,7 +385,7 @@ open class BMPlayerLayerView: UIView {
                         let duration        = item.duration
                         let totalDuration   = CMTimeGetSeconds(duration)
                         weak var _self = self
-                        delegate?.bmPlayer(player: _self!, loadedTimeDidChange: timeInterVarl, totalDuration: totalDuration)
+                        delegate?.bmPlayer(player: self, loadedTimeDidChange: timeInterVarl, totalDuration: totalDuration)
                     }
                     
                 case "playbackBufferEmpty":
