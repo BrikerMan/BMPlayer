@@ -82,7 +82,8 @@ open class BMPlayerLayerView: UIView {
     open var isPlaying: Bool = false {
         didSet {
             if oldValue != isPlaying {
-                delegate?.bmPlayer(player: self, playerIsPlaying: isPlaying)
+                weak var _self = self
+                delegate?.bmPlayer(player: _self!, playerIsPlaying: isPlaying)
             }
         }
     }
@@ -107,7 +108,8 @@ open class BMPlayerLayerView: UIView {
     fileprivate var state = BMPlayerState.notSetURL {
         didSet {
             if state != oldValue {
-                delegate?.bmPlayer(player: self, playerStateDidChange: state)
+              weak var _self = self
+              delegate?.bmPlayer(player: _self, playerStateDidChange: state)
             }
         }
     }
@@ -191,23 +193,22 @@ open class BMPlayerLayerView: UIView {
       playerItem?.removeObserver(self, forKeyPath: "loadedTimeRanges")
       playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
       playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
-      player?.removeObserver(self, forKeyPath: "rate")
     
       self.playDidEnd = false
-        self.playerItem = nil
-        self.seekTime   = 0
-        
-        self.timer?.invalidate()
-        
-        self.pause()
-        // 移除原来的layer
-        self.playerLayer?.removeFromSuperlayer()
-        // 替换PlayerItem为nil
-        self.player?.replaceCurrentItem(with: nil)
-        player?.removeObserver(self, forKeyPath: "rate")
-        
-        // 把player置为nil
-        self.player = nil
+      self.playerItem = nil
+      self.seekTime   = 0
+      
+      self.timer?.invalidate()
+      
+      self.pause()
+      // 移除原来的layer
+      self.playerLayer?.removeFromSuperlayer()
+      // 替换PlayerItem为nil
+      self.player?.replaceCurrentItem(with: nil)
+      player?.removeObserver(self, forKeyPath: "rate")
+      
+      // 把player置为nil
+      self.player = nil
     }
     
     open func prepareToDeinit() {
@@ -277,15 +278,10 @@ open class BMPlayerLayerView: UIView {
         playerItem = AVPlayerItem(asset: urlAsset!)
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
-        
-        
-        
         playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
         playerLayer!.videoGravity = videoGravity
-        
         layer.addSublayer(playerLayer!)
-        
         setNeedsLayout()
         layoutIfNeeded()
     }
@@ -295,15 +291,15 @@ open class BMPlayerLayerView: UIView {
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
         timer?.fireDate = Date()
     }
-    
-    
+  
     // MARK: - 计时器事件
     @objc fileprivate func playerTimerAction() {
         if let playerItem = playerItem {
             if playerItem.duration.timescale != 0 {
                 let currentTime = CMTimeGetSeconds(self.player!.currentTime())
                 let totalTime   = TimeInterval(playerItem.duration.value) / TimeInterval(playerItem.duration.timescale)
-                delegate?.bmPlayer(player: self, playTimeDidChange: currentTime, totalTime: totalTime)
+                weak var _self = self
+                delegate?.bmPlayer(player: _self, playTimeDidChange: currentTime, totalTime: totalTime)
             }
             updateStatus(inclodeLoading: true)
         }
@@ -342,7 +338,8 @@ open class BMPlayerLayerView: UIView {
     @objc fileprivate func moviePlayDidEnd() {
         if state != .playedToTheEnd {
             if let playerItem = playerItem {
-                delegate?.bmPlayer(player: self,
+                weak var _self = self
+                delegate?.bmPlayer(player: _self,
                                    playTimeDidChange: CMTimeGetSeconds(playerItem.duration),
                                    totalTime: CMTimeGetSeconds(playerItem.duration))
             }
@@ -382,7 +379,8 @@ open class BMPlayerLayerView: UIView {
                     if let timeInterVarl    = self.availableDuration() {
                         let duration        = item.duration
                         let totalDuration   = CMTimeGetSeconds(duration)
-                        delegate?.bmPlayer(player: self, loadedTimeDidChange: timeInterVarl, totalDuration: totalDuration)
+                        weak var _self = self
+                        delegate?.bmPlayer(player: _self, loadedTimeDidChange: timeInterVarl, totalDuration: totalDuration)
                     }
                     
                 case "playbackBufferEmpty":
@@ -441,8 +439,8 @@ open class BMPlayerLayerView: UIView {
         player?.pause()
         let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * 1.0 )) / Double(NSEC_PER_SEC)
         
-        DispatchQueue.main.asyncAfter(deadline: popTime) {
-            
+        DispatchQueue.main.asyncAfter(deadline: popTime) {[weak self] in
+            guard let `self` = self else { return }
             // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
             self.isBuffering = false
             if let item = self.playerItem {
