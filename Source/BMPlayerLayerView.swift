@@ -185,7 +185,6 @@ open class BMPlayerLayerView: UIView {
     
     open func resetPlayer() {
         // 初始化状态变量
-      NotificationCenter.default.removeObserver(self)
     
       self.playDidEnd = false
       self.playerItem = nil
