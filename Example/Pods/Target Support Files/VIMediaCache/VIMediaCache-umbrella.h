@@ -11,6 +11,7 @@
 #endif
 
 #import "VIMediaCache.h"
+#import "NSString+VIMD5.h"
 #import "VICacheAction.h"
 #import "VICacheConfiguration.h"
 #import "VICacheManager.h"

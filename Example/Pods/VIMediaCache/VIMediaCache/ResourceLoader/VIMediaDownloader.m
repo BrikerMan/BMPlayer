@@ -19,6 +19,7 @@
 
 @protocol  VIURLSessionDelegateObjectDelegate <NSObject>
 
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler;
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler;
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data;
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(nullable NSError *)error;
@@ -48,6 +49,9 @@ static NSInteger kBufferSize = 10 * 1024;
 }
 
 #pragma mark - NSURLSessionDataDelegate
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler{
+    [self.delegate URLSession:session didReceiveChallenge:challenge completionHandler:completionHandler];
+}
 
 - (void)URLSession:(NSURLSession *)session
           dataTask:(NSURLSessionDataTask *)dataTask
@@ -103,6 +107,7 @@ didCompleteWithError:(nullable NSError *)error {
 @property (nonatomic, strong) NSMutableArray<VICacheAction *> *actions;
 - (instancetype)initWithActions:(NSArray<VICacheAction *> *)actions url:(NSURL *)url cacheWorker:(VIMediaCacheWorker *)cacheWorker;
 
+@property (nonatomic, assign) BOOL canSaveToCache;
 @property (nonatomic, weak) id<VIActionWorkerDelegate> delegate;
 
 - (void)start;
@@ -136,6 +141,7 @@ didCompleteWithError:(nullable NSError *)error {
 - (instancetype)initWithActions:(NSArray<VICacheAction *> *)actions url:(NSURL *)url cacheWorker:(VIMediaCacheWorker *)cacheWorker {
     self = [super init];
     if (self) {
+        _canSaveToCache = YES;
         _actions = [actions mutableCopy];
         _cacheWorker = cacheWorker;
         _url = url;
@@ -242,6 +248,11 @@ didCompleteWithError:(nullable NSError *)error {
 
 #pragma mark - VIURLSessionDelegateObjectDelegate
 
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+    NSURLCredential *card = [[NSURLCredential alloc] initWithTrust:challenge.protectionSpace.serverTrust];
+    completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+}
+
 - (void)URLSession:(NSURLSession *)session
           dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSURLResponse *)response
@@ -256,7 +267,9 @@ didReceiveResponse:(NSURLResponse *)response
         if ([self.delegate respondsToSelector:@selector(actionWorker:didReceiveResponse:)]) {
             [self.delegate actionWorker:self didReceiveResponse:response];
         }
-        [self.cacheWorker startWritting];
+        if (self.canSaveToCache) {
+            [self.cacheWorker startWritting];
+        }
         completionHandler(NSURLSessionResponseAllow);
     }
 }
@@ -267,16 +280,20 @@ didReceiveResponse:(NSURLResponse *)response
     if (self.isCancelled) {
         return;
     }
-    NSRange range = NSMakeRange(self.startOffset, data.length);
-    NSError *error;
-    [self.cacheWorker cacheData:data forRange:range error:&error];
-    if (error) {
-        if ([self.delegate respondsToSelector:@selector(actionWorker:didFinishWithError:)]) {
-            [self.delegate actionWorker:self didFinishWithError:error];
+    
+    if (self.canSaveToCache) {
+        NSRange range = NSMakeRange(self.startOffset, data.length);
+        NSError *error;
+        [self.cacheWorker cacheData:data forRange:range error:&error];
+        if (error) {
+            if ([self.delegate respondsToSelector:@selector(actionWorker:didFinishWithError:)]) {
+                [self.delegate actionWorker:self didFinishWithError:error];
+            }
+            return;
         }
-        return;
+        [self.cacheWorker save];
     }
-    [self.cacheWorker save];
+    
     self.startOffset += data.length;
     if ([self.delegate respondsToSelector:@selector(actionWorker:didReceiveData:isLocal:)]) {
         [self.delegate actionWorker:self didReceiveData:data isLocal:NO];
@@ -288,8 +305,10 @@ didReceiveResponse:(NSURLResponse *)response
 - (void)URLSession:(NSURLSession *)session
               task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
-    [self.cacheWorker finishWritting];
-    [self.cacheWorker save];
+    if (self.canSaveToCache) {
+        [self.cacheWorker finishWritting];
+        [self.cacheWorker save];
+    }
     if (error) {
         if ([self.delegate respondsToSelector:@selector(actionWorker:didFinishWithError:)]) {
             [self.delegate actionWorker:self didFinishWithError:error];
@@ -354,7 +373,6 @@ didCompleteWithError:(nullable NSError *)error {
 @interface VIMediaDownloader () <VIActionWorkerDelegate>
 
 @property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSURLSessionDataTask *task;
 
 @property (nonatomic, strong) VIMediaCacheWorker *cacheWorker;
@@ -370,33 +388,21 @@ didCompleteWithError:(nullable NSError *)error {
     [[VIMediaDownloaderStatus shared] removeURL:self.url];
 }
 
-- (instancetype)initWithURL:(NSURL *)url {
+- (instancetype)initWithURL:(NSURL *)url cacheWorker:(VIMediaCacheWorker *)cacheWorker {
     self = [super init];
     if (self) {
+        _saveToCache = YES;
         _url = url;
-        _cacheWorker = [[VIMediaCacheWorker alloc] initWithURL:url];
+        _cacheWorker = cacheWorker;
         _info = _cacheWorker.cacheConfiguration.contentInfo;
+        [[VIMediaDownloaderStatus shared] addURL:self.url];
     }
     return self;
-}
-
-- (NSURLSession *)session {
-    if (!_session) {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _session = [NSURLSession sessionWithConfiguration:configuration];
-    }
-    return _session;
 }
 
 - (void)downloadTaskFromOffset:(unsigned long long)fromOffset
                         length:(NSUInteger)length
                          toEnd:(BOOL)toEnd {
-    if ([self isCurrentURLDownloading]) {
-        [self handleCurrentURLDownloadingError];
-        return;
-    }
-    [[VIMediaDownloaderStatus shared] addURL:self.url];
-    
     // ---
     NSRange range = NSMakeRange((NSUInteger)fromOffset, length);
     
@@ -407,53 +413,28 @@ didCompleteWithError:(nullable NSError *)error {
     NSArray *actions = [self.cacheWorker cachedDataActionsForRange:range];
 
     self.actionWorker = [[VIActionWorker alloc] initWithActions:actions url:self.url cacheWorker:self.cacheWorker];
+    self.actionWorker.canSaveToCache = self.saveToCache;
     self.actionWorker.delegate = self;
     [self.actionWorker start];
 }
 
 - (void)downloadFromStartToEnd {
-    if ([self isCurrentURLDownloading]) {
-        [self handleCurrentURLDownloadingError];
-        return;
-    }
-    [[VIMediaDownloaderStatus shared] addURL:self.url];
-    
     // ---
     self.downloadToEnd = YES;
     NSRange range = NSMakeRange(0, 2);
     NSArray *actions = [self.cacheWorker cachedDataActionsForRange:range];
 
     self.actionWorker = [[VIActionWorker alloc] initWithActions:actions url:self.url cacheWorker:self.cacheWorker];
+    self.actionWorker.canSaveToCache = self.saveToCache;
     self.actionWorker.delegate = self;
     [self.actionWorker start];
 }
 
 - (void)cancel {
+    self.actionWorker.delegate = nil;
     [[VIMediaDownloaderStatus shared] removeURL:self.url];
     [self.actionWorker cancel];
-    self.actionWorker.delegate = nil;
     self.actionWorker = nil;
-}
-
-- (void)invalidateAndCancel {
-    [[VIMediaDownloaderStatus shared] removeURL:self.url];
-    [self.actionWorker cancel];
-    self.actionWorker.delegate = nil;
-    self.actionWorker = nil;
-}
-
-#pragma mark - Union check
-
-- (BOOL)isCurrentURLDownloading {
-    return [[VIMediaDownloaderStatus shared] containsURL:self.url];
-}
-
-- (void)handleCurrentURLDownloadingError {
-    if (self.delegate) {
-        NSString *description = [NSString stringWithFormat:NSLocalizedString(@"URL: `%@` alreay in downloading queue.", nil), self.url];
-        NSError *error = [NSError errorWithDomain:@"com.meidadownload" code:1 userInfo:@{NSLocalizedDescriptionKey: description}];
-        [self.delegate mediaDownloader:self didFinishedWithError:error];
-    }
 }
 
 #pragma mark - VIActionWorkerDelegate

@@ -15,7 +15,11 @@
   <key>CFBundlePackageType</key>
   <string>FMWK</string>
   <key>CFBundleShortVersionString</key>
-  <string>4.0.0</string>
+<<<<<<< HEAD
+  <string>4.4.0</string>
+=======
+  <string>4.6.1</string>
+>>>>>>> BrikerMan/master
   <key>CFBundleSignature</key>
   <string>????</string>
   <key>CFBundleVersion</key>

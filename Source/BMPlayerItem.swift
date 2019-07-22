@@ -10,8 +10,8 @@ import Foundation
 import AVFoundation
 
 public class BMPlayerResource {
-    public let name  : String
-    public let cover : URL?
+    public let name: String
+    public let cover: URL?
     public var subtitle: BMSubtitles?
     public let definitions: [BMPlayerResourceDefinition]
     
@@ -52,14 +52,14 @@ public class BMPlayerResource {
 }
 
 
-public class BMPlayerResourceDefinition {
+open class BMPlayerResourceDefinition {
     public let url: URL
     public let definition: String
     
     /// An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
     public var options: [String : Any]?
     
-    var avURLAsset: AVURLAsset {
+    open var avURLAsset: AVURLAsset {
         get {
             return BMPlayerManager.asset(for: self)
         }

@@ -21,7 +21,7 @@
 - [x] 自定义资源 HTTP Header
 - [x] 易于定制控制 UI
 - [x] 展示本地和在在线字幕文件
-- [x] [Swift 3](https://developer.apple.com/swift/)
+- [x] [Swift 4](https://developer.apple.com/swift/)
 
 ## 要求
 - iOS 8 +
@@ -31,26 +31,13 @@
 ## 安装
 ### CocoaPods
 
-#### Swift 4
-```
-use_frameworks!
-
-pod 'BMPlayer', '~> 1.0.0'
-```
-
-#### Swift 3
-```
-use_frameworks!
-
-pod 'BMPlayer', '~> 0.9.1'
-```
-
-#### Swift 2.2
-```
-use_frameworks!
-
-pod 'BMPlayer', '~> 0.3.3'
-```
+| Swift     | podfile                      |
+| --------- | ---------------------------- |
+| Swift 5.0 | `pod 'BMPlayer', '~> 1.3.0'` |
+| Swift 4.2 | `pod 'BMPlayer', '~> 1.2.0'` |
+| Swift 4.0 | `pod 'BMPlayer', '~> 1.0.0'` |
+| Swift 3.0 | `pod 'BMPlayer', '~> 0.9.1'` |
+| Swift 2.2 | `pod 'BMPlayer', '~> 0.3.3'` |
 
 **To test the experimental caching support with [VIMediaCache](https://github.com/vitoziv/VIMediaCache), use**
 

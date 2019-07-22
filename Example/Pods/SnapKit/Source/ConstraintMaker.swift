@@ -69,7 +69,7 @@ public class ConstraintMaker {
         return self.makeExtendableWithAttributes(.centerY)
     }
     
-    @available(*, deprecated:3.0, message:"Use lastBaseline instead")
+    @available(*, deprecated, message:"Use lastBaseline instead")
     public var baseline: ConstraintMakerExtendable {
         return self.makeExtendableWithAttributes(.lastBaseline)
     }
@@ -171,15 +171,7 @@ public class ConstraintMaker {
     }
     
     internal static func makeConstraints(item: LayoutConstraintItem, closure: (_ make: ConstraintMaker) -> Void) {
-        let maker = ConstraintMaker(item: item)
-        closure(maker)
-        var constraints: [Constraint] = []
-        for description in maker.descriptions {
-            guard let constraint = description.constraint else {
-                continue
-            }
-            constraints.append(constraint)
-        }
+        let constraints = prepareConstraints(item: item, closure: closure)
         for constraint in constraints {
             constraint.activateIfNeeded(updatingExisting: false)
         }
@@ -196,15 +188,7 @@ public class ConstraintMaker {
             return
         }
         
-        let maker = ConstraintMaker(item: item)
-        closure(maker)
-        var constraints: [Constraint] = []
-        for description in maker.descriptions {
-            guard let constraint = description.constraint else {
-                continue
-            }
-            constraints.append(constraint)
-        }
+        let constraints = prepareConstraints(item: item, closure: closure)
         for constraint in constraints {
             constraint.activateIfNeeded(updatingExisting: true)
         }
