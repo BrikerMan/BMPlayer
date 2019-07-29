@@ -20,13 +20,13 @@ public enum BMPlayerTopBarShowCase: Int {
 
 open class BMPlayerManager {
     /// 单例
-    open static let shared = BMPlayerManager()
+    public static let shared = BMPlayerManager()
     
     /// tint color
-    open var tintColor   = UIColor.white
+    open var tintColor = UIColor.white
     
     /// Loader
-    open var loaderType  = NVActivityIndicatorType.ballRotateChase
+    open var loaderType = NVActivityIndicatorType.ballRotateChase
     
     /// should auto play
     open var shouldAutoPlay = true
@@ -36,12 +36,13 @@ open class BMPlayerManager {
     open var animateDelayTimeInterval = TimeInterval(5)
     
     /// should show log
-    open var allowLog  = false
+    open var allowLog = false
     
     /// use gestures to set brightness, volume and play position
     open var enableBrightnessGestures = true
     open var enableVolumeGestures = true
     open var enablePlaytimeGestures = true
+    open var enablePlayControlGestures = true
     
     open var enableChooseDefinition = true
     

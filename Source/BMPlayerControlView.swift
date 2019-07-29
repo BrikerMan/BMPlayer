@@ -17,7 +17,7 @@ import NVActivityIndicatorView
      - parameter controlView: control view
      - parameter index:       index of definition
      */
-    func controlView(controlView: BMPlayerControlView, didChooseDefition index: Int)
+    func controlView(controlView: BMPlayerControlView, didChooseDefinition index: Int)
     
     /**
      call when control view pressed an button
@@ -34,7 +34,7 @@ import NVActivityIndicatorView
      - parameter slider:      progress slider
      - parameter event:       action
      */
-    func controlView(controlView: BMPlayerControlView, slider: UISlider, onSliderEvent event: UIControlEvents)
+    func controlView(controlView: BMPlayerControlView, slider: UISlider, onSliderEvent event: UIControl.Event)
     
     /**
      call when needs to change playback rate
@@ -57,62 +57,65 @@ open class BMPlayerControlView: UIView {
     open var isFullscreen  = false
     open var isMaskShowing = true
     
-    open var totalDuration:TimeInterval = 0
+    open var totalDuration: TimeInterval = 0
     open var delayItem: DispatchWorkItem?
     
     var playerLastState: BMPlayerState = .notSetURL
     
-    fileprivate var isSelectecDefitionViewOpened = false
+    fileprivate var isSelectDefinitionViewOpened = false
     
     // MARK: UI Components
     /// main views which contains the topMaskView and bottom mask view
-    open var mainMaskView    = UIView()
-    open var topMaskView     = UIView()
-    open var bottomMaskView  = UIView()
+    open var mainMaskView   = UIView()
+    open var topMaskView    = UIView()
+    open var bottomMaskView = UIView()
     
     /// Image view to show video cover
-    open var maskImageView   = UIImageView()
+    open var maskImageView = UIImageView()
     
     /// top views
-    open var backButton         = UIButton(type : UIButtonType.custom)
-    open var titleLabel         = UILabel()
-    open var chooseDefitionView = UIView()
+    open var topWrapperView = UIView()
+    open var backButton = UIButton(type : UIButton.ButtonType.custom)
+    open var titleLabel = UILabel()
+    open var chooseDefinitionView = UIView()
     
     /// bottom view
+    open var bottomWrapperView = UIView()
     open var currentTimeLabel = UILabel()
     open var totalTimeLabel   = UILabel()
     
     /// Progress slider
-    open var timeSlider       = BMTimeSlider()
+    open var timeSlider = BMTimeSlider()
     
     /// load progress view
-    open var progressView     = UIProgressView()
+    open var progressView = UIProgressView()
     
     /* play button
      playButton.isSelected = player.isPlaying
      */
-    open var playButton       = UIButton(type: UIButtonType.custom)
+    open var playButton = UIButton(type: UIButton.ButtonType.custom)
     
     /* fullScreen button
      fullScreenButton.isSelected = player.isFullscreen
      */
-    open var fullscreenButton = UIButton(type: UIButtonType.custom)
+    open var fullscreenButton = UIButton(type: UIButton.ButtonType.custom)
     
     open var subtitleLabel    = UILabel()
     open var subtitleBackView = UIView()
-    open var subtileAttrabute: [NSAttributedStringKey : Any]?
+    open var subtileAttribute: [NSAttributedString.Key : Any]?
     
     /// Activty Indector for loading
-    open var loadingIndector  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
+    open var loadingIndicator  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
     
     open var seekToView       = UIView()
     open var seekToViewImage  = UIImageView()
     open var seekToLabel      = UILabel()
     
-    open var replayButton     = UIButton(type: UIButtonType.custom)
+    open var replayButton     = UIButton(type: UIButton.ButtonType.custom)
     
     /// Gesture used to show / hide control view
     open var tapGesture: UITapGestureRecognizer!
+    open var doubleTapGesture: UITapGestureRecognizer!
     
     // MARK: - handle player state change
     /**
@@ -136,7 +139,7 @@ open class BMPlayerControlView: UIView {
      - parameter loadedDuration: loaded duration
      - parameter totalDuration:  total duration
      */
-    open func loadedTimeDidChange(loadedDuration: TimeInterval , totalDuration: TimeInterval) {
+    open func loadedTimeDidChange(loadedDuration: TimeInterval, totalDuration: TimeInterval) {
         progressView.setProgress(Float(loadedDuration)/Float(totalDuration), animated: true)
     }
     
@@ -170,14 +173,14 @@ open class BMPlayerControlView: UIView {
      - parameter isAdd:         isAdd
      */
     open func showSeekToView(to toSecound: TimeInterval, total totalDuration:TimeInterval, isAdd: Bool) {
-        seekToView.isHidden   = false
+        seekToView.isHidden = false
         seekToLabel.text    = BMPlayer.formatSecondsToString(toSecound)
         
         let rotate = isAdd ? 0 : CGFloat(Double.pi)
         seekToViewImage.transform = CGAffineTransform(rotationAngle: rotate)
         
-        let targetTime      = BMPlayer.formatSecondsToString(toSecound)
-        timeSlider.value      = Float(toSecound / totalDuration)
+        let targetTime = BMPlayer.formatSecondsToString(toSecound)
+        timeSlider.value = Float(toSecound / totalDuration)
         currentTimeLabel.text = targetTime
     }
     
@@ -234,19 +237,18 @@ open class BMPlayerControlView: UIView {
         UIApplication.shared.setStatusBarHidden(!isShow, with: .fade)
         
         UIView.animate(withDuration: 0.3, animations: {[weak self] in
-          guard let `self` = self else { return }
           self.topMaskView.alpha    = alpha
           self.bottomMaskView.alpha = alpha
-          self.mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: isShow ? 0.4 : 0.0)
-          
+          self.mainMaskView.backgroundColor = UIColor(white: 0, alpha: isShow ? 0.4 : 0.0)
+
           if isShow {
-              if self.isFullscreen { self.chooseDefitionView.alpha = 1.0 }
+              if self.isFullscreen { self.chooseDefinitionView.alpha = 1.0 }
           } else {
               self.replayButton.isHidden = true
-              self.chooseDefitionView.snp.updateConstraints { (make) in
+              self.chooseDefinitionView.snp.updateConstraints { (make) in
                   make.height.equalTo(35)
               }
-              self.chooseDefitionView.alpha = 0.0
+              self.chooseDefinitionView.alpha = 0.0
           }
           self.layoutIfNeeded()
         }) { [weak self](_) in
@@ -264,7 +266,7 @@ open class BMPlayerControlView: UIView {
     open func updateUI(_ isForFullScreen: Bool) {
         isFullscreen = isForFullScreen
         fullscreenButton.isSelected = isForFullScreen
-        chooseDefitionView.isHidden = !BMPlayerConf.enableChooseDefinition || !isForFullScreen
+        chooseDefinitionView.isHidden = !BMPlayerConf.enableChooseDefinition || !isForFullScreen
         if isForFullScreen {
             if BMPlayerConf.topBarShowInCase.rawValue == 2 {
                 topMaskView.isHidden = true
@@ -292,12 +294,12 @@ open class BMPlayerControlView: UIView {
     }
     
     open func showLoader() {
-        loadingIndector.isHidden = false
-        loadingIndector.startAnimating()
+        loadingIndicator.isHidden = false
+        loadingIndicator.startAnimating()
     }
     
     open func hideLoader() {
-        loadingIndector.isHidden = true
+        loadingIndicator.isHidden = true
     }
     
     open func hideSeekToView() {
@@ -333,7 +335,7 @@ open class BMPlayerControlView: UIView {
         guard let resource = resource else {
             return
         }
-        for item in chooseDefitionView.subviews {
+        for item in chooseDefinitionView.subviews {
             item.removeFromSuperview()
         }
         
@@ -348,19 +350,20 @@ open class BMPlayerControlView: UIView {
                 button.tag = i
             }
             
-            button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControlState())
-            chooseDefitionView.addSubview(button)
-            button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControlEvents.touchUpInside)
+            button.setTitle("\(resource.definitions[button.tag].definition)", for: UIControl.State())
+            chooseDefinitionView.addSubview(button)
+            button.addTarget(self, action: #selector(self.onDefinitionSelected(_:)), for: UIControl.Event.touchUpInside)
             button.snp.makeConstraints({ [weak self](make) in
-              guard let `self` = self else { return }
-                make.top.equalTo(self.chooseDefitionView.snp.top).offset(35 * i)
+                guard let `self` = self else { return }
+                make.top.equalTo(chooseDefinitionView.snp.top).offset(35 * i)
                 make.width.equalTo(50)
                 make.height.equalTo(25)
-                make.centerX.equalTo(self.chooseDefitionView)
+                make.centerX.equalTo(chooseDefinitionView)
             })
             
             if resource.definitions.count == 1 {
                 button.isEnabled = false
+                button.isHidden = true
             }
         }
     }
@@ -402,7 +405,16 @@ open class BMPlayerControlView: UIView {
         controlViewAnimation(isShow: !isMaskShowing)
     }
     
-    
+    @objc open func onDoubleTapGestureRecognized(_ gesture: UITapGestureRecognizer) {
+        guard let player = player else { return }
+        guard playerLastState == .readyToPlay || playerLastState == .buffering || playerLastState == .bufferFinished else { return }
+        
+        if player.isPlaying {
+            player.pause()
+        } else {
+            player.play()
+        }
+    }
     
     // MARK: - handle UI slider actions
     @objc func progressSliderTouchBegan(_ sender: UISlider)  {
@@ -428,27 +440,27 @@ open class BMPlayerControlView: UIView {
         if let group = subtitle.search(for: time) {
             subtitleBackView.isHidden = false
             subtitleLabel.attributedText = NSAttributedString(string: group.text,
-                                                              attributes: subtileAttrabute)
+                                                              attributes: subtileAttribute)
         } else {
             subtitleBackView.isHidden = true
         }
     }
     
     @objc fileprivate func onDefinitionSelected(_ button:UIButton) {
-      let height = isSelectecDefitionViewOpened ? 35 : resource!.definitions.count * 40
-      chooseDefitionView.snp.updateConstraints { (make) in
-        make.height.equalTo(height)
-      }
-      
-      UIView.animate(withDuration: 0.3, animations: {[weak self] in
-        self?.layoutIfNeeded()
-      })
-      isSelectecDefitionViewOpened = !isSelectecDefitionViewOpened
-      if selectedIndex != button.tag {
-        selectedIndex = button.tag
-        delegate?.controlView(controlView: self, didChooseDefition: button.tag)
-      }
-      prepareChooseDefinitionView()
+        let height = isSelectDefinitionViewOpened ? 35 : resource!.definitions.count * 40
+        chooseDefinitionView.snp.updateConstraints { (make) in
+            make.height.equalTo(height)
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {[weak self] in
+            self?.layoutIfNeeded()
+        })
+        isSelectDefinitionViewOpened = !isSelectDefinitionViewOpened
+        if selectedIndex != button.tag {
+            selectedIndex = button.tag
+            delegate?.controlView(controlView: self, didChooseDefinition: button.tag)
+        }
+        prepareChooseDefinitionView()
     }
     
     @objc fileprivate func onReplyButtonPressed() {
@@ -497,12 +509,13 @@ open class BMPlayerControlView: UIView {
         mainMaskView.addSubview(bottomMaskView)
         mainMaskView.insertSubview(maskImageView, at: 0)
         mainMaskView.clipsToBounds = true
-        mainMaskView.backgroundColor = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4 )
+        mainMaskView.backgroundColor = UIColor(white: 0, alpha: 0.4 )
         
         // Top views
-        topMaskView.addSubview(backButton)
-        topMaskView.addSubview(titleLabel)
-        addSubview(chooseDefitionView)
+        topMaskView.addSubview(topWrapperView)
+        topWrapperView.addSubview(backButton)
+        topWrapperView.addSubview(titleLabel)
+        topWrapperView.addSubview(chooseDefinitionView)
         
         backButton.tag = BMPlayerControlView.ButtonType.back.rawValue
         backButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_back"), for: .normal)
@@ -512,15 +525,16 @@ open class BMPlayerControlView: UIView {
         titleLabel.text      = ""
         titleLabel.font      = UIFont.systemFont(ofSize: 16)
         
-        chooseDefitionView.clipsToBounds = true
+        chooseDefinitionView.clipsToBounds = true
         
         // Bottom views
-        bottomMaskView.addSubview(playButton)
-        bottomMaskView.addSubview(currentTimeLabel)
-        bottomMaskView.addSubview(totalTimeLabel)
-        bottomMaskView.addSubview(progressView)
-        bottomMaskView.addSubview(timeSlider)
-        bottomMaskView.addSubview(fullscreenButton)
+        bottomMaskView.addSubview(bottomWrapperView)
+        bottomWrapperView.addSubview(playButton)
+        bottomWrapperView.addSubview(currentTimeLabel)
+        bottomWrapperView.addSubview(totalTimeLabel)
+        bottomWrapperView.addSubview(progressView)
+        bottomWrapperView.addSubview(timeSlider)
+        bottomWrapperView.addSubview(fullscreenButton)
         
         playButton.tag = BMPlayerControlView.ButtonType.play.rawValue
         playButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_play"),  for: .normal)
@@ -547,13 +561,13 @@ open class BMPlayerControlView: UIView {
         timeSlider.minimumTrackTintColor = BMPlayerConf.tintColor
         
         timeSlider.addTarget(self, action: #selector(progressSliderTouchBegan(_:)),
-                             for: UIControlEvents.touchDown)
+                             for: UIControl.Event.touchDown)
         
         timeSlider.addTarget(self, action: #selector(progressSliderValueChanged(_:)),
-                             for: UIControlEvents.valueChanged)
+                             for: UIControl.Event.valueChanged)
         
         timeSlider.addTarget(self, action: #selector(progressSliderTouchEnded(_:)),
-                             for: [UIControlEvents.touchUpInside,UIControlEvents.touchCancel, UIControlEvents.touchUpOutside])
+                             for: [UIControl.Event.touchUpInside,UIControl.Event.touchCancel, UIControl.Event.touchUpOutside])
         
         progressView.tintColor      = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6 )
         progressView.trackTintColor = UIColor ( red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3 )
@@ -563,10 +577,10 @@ open class BMPlayerControlView: UIView {
         fullscreenButton.setImage(BMImageResourcePath("Pod_Asset_BMPlayer_portialscreen"), for: .selected)
         fullscreenButton.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
         
-        mainMaskView.addSubview(loadingIndector)
+        mainMaskView.addSubview(loadingIndicator)
         
-        loadingIndector.type             = BMPlayerConf.loaderType
-        loadingIndector.color            = BMPlayerConf.tintColor
+        loadingIndicator.type  = BMPlayerConf.loaderType
+        loadingIndicator.color = BMPlayerConf.tintColor
         
         // View to show when slide to seek
         addSubview(seekToView)
@@ -578,7 +592,7 @@ open class BMPlayerControlView: UIView {
         seekToView.backgroundColor      = UIColor ( red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7 )
         seekToView.layer.cornerRadius   = 4
         seekToView.layer.masksToBounds  = true
-        seekToView.isHidden               = true
+        seekToView.isHidden             = true
         
         seekToViewImage.image = BMImageResourcePath("Pod_Asset_BMPlayer_seek_to_image")
         
@@ -590,6 +604,14 @@ open class BMPlayerControlView: UIView {
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapGestureTapped(_:)))
         addGestureRecognizer(tapGesture)
+        
+        if BMPlayerManager.shared.enablePlayControlGestures {
+            doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onDoubleTapGestureRecognized(_:)))
+            doubleTapGesture.numberOfTapsRequired = 2
+            addGestureRecognizer(doubleTapGesture)
+            
+            tapGesture.require(toFail: doubleTapGesture)
+        }
     }
     
     func addSnapKitConstraint() {
@@ -605,27 +627,48 @@ open class BMPlayerControlView: UIView {
             make.edges.equalTo(self.mainMaskView)
           }
         }
-      
+
         topMaskView.snp.makeConstraints { [weak self](make) in
           if let `self` = self {
             make.top.left.right.equalTo(self.mainMaskView)
-            make.height.equalTo(65)
+          }
+        }
+        
+        topWrapperView.snp.makeConstraints { [weak self](make) in
+          if let `self` = self {
+            make.height.equalTo(50)
+            if #available(iOS 11.0, *) {
+              make.top.left.right.equalTo(self.topMaskView.safeAreaLayoutGuide)
+              make.bottom.equalToSuperview()
+            } else {
+              make.top.equalToSuperview().offset(15)
+              make.bottom.left.right.equalToSuperview()
+            }
           }
         }
         
         bottomMaskView.snp.makeConstraints { [weak self](make) in
           if let `self` = self {
             make.bottom.left.right.equalTo(self.mainMaskView)
+          }
+        }
+        
+        bottomWrapperView.snp.makeConstraints { [weak self](make) in
+          if let `self` = self {
             make.height.equalTo(50)
+            if #available(iOS 11.0, *) {
+              make.bottom.left.right.equalTo(self.bottomMaskView.safeAreaLayoutGuide)
+              make.top.equalToSuperview()
+            } else {
+              make.edges.equalToSuperview()
+            }
           }
         }
         
         // Top views
-        backButton.snp.makeConstraints { [weak self](make) in
-          if let `self` = self {
-            make.width.height.equalTo(50)
-            make.left.bottom.equalTo(self.topMaskView)
-          }
+        backButton.snp.makeConstraints { (make) in
+          make.width.height.equalTo(50)
+          make.left.bottom.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { [weak self](make) in
@@ -635,9 +678,9 @@ open class BMPlayerControlView: UIView {
           }
         }
         
-        chooseDefitionView.snp.makeConstraints { [weak self](make) in
+        chooseDefinitionView.snp.makeConstraints { [weak self](make) in
           if let `self` = self {
-            make.right.equalTo(self.topMaskView.snp.right).offset(-20)
+            make.right.equalToSuperview().offset(-20)
             make.top.equalTo(self.titleLabel.snp.top).offset(-4)
             make.width.equalTo(60)
             make.height.equalTo(30)
@@ -645,12 +688,10 @@ open class BMPlayerControlView: UIView {
         }
         
         // Bottom views
-        playButton.snp.makeConstraints { [weak self](make) in
-          if let `self` = self {
+        playButton.snp.makeConstraints { (make) in
             make.width.equalTo(50)
             make.height.equalTo(50)
-            make.left.bottom.equalTo(self.bottomMaskView)
-          }
+            make.left.bottom.equalToSuperview()
         }
         
         currentTimeLabel.snp.makeConstraints { [weak self](make) in
@@ -683,21 +724,20 @@ open class BMPlayerControlView: UIView {
             make.width.equalTo(40)
           }
         }
-        
+    
         fullscreenButton.snp.makeConstraints { [weak self](make) in
           if let `self` = self {
             make.width.equalTo(50)
             make.height.equalTo(50)
             make.centerY.equalTo(self.currentTimeLabel)
             make.left.equalTo(self.totalTimeLabel.snp.right)
-            make.right.equalTo(self.bottomMaskView.snp.right)
+            make.right.equalToSuperview()
           }
         }
-      
-        loadingIndector.snp.makeConstraints { [weak self](make) in
+        
+        loadingIndicator.snp.makeConstraints { [weak self](make) in
           if let `self` = self {
-            make.centerX.equalTo(self.mainMaskView.snp.centerX).offset(0)
-            make.centerY.equalTo(self.mainMaskView.snp.centerY).offset(0)
+            make.center.equalTo(self.mainMaskView)
           }
         }
         
@@ -725,11 +765,10 @@ open class BMPlayerControlView: UIView {
             make.centerY.equalTo(self.seekToView.snp.centerY)
           }
         }
-        
-        replayButton.snp.makeConstraints { [weak self](make) in
+
+        replayButton.snp.makeConstraints { (make) in
           if let `self` = self {
-            make.centerX.equalTo(self.mainMaskView.snp.centerX)
-            make.centerY.equalTo(self.mainMaskView.snp.centerY)
+            make.center.equalTo(self.mainMaskView)
             make.width.height.equalTo(50)
           }
         }
@@ -754,8 +793,7 @@ open class BMPlayerControlView: UIView {
     
     fileprivate func BMImageResourcePath(_ fileName: String) -> UIImage? {
         let bundle = Bundle(for: BMPlayer.self)
-        let image  = UIImage(named: fileName, in: bundle, compatibleWith: nil)
-        return image
+        return UIImage(named: fileName, in: bundle, compatibleWith: nil)
     }
 }
 
