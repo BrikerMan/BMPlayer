@@ -107,7 +107,7 @@ open class BMPlayerLayerView: UIView {
     fileprivate var state = BMPlayerState.notSetURL {
         didSet {
             if state != oldValue {
-                delegate?.bmPlayer(player: self, playerStateDidChange: state)
+              delegate?.bmPlayer(player: self, playerStateDidChange: state)
             }
         }
     }
@@ -159,7 +159,7 @@ open class BMPlayerLayerView: UIView {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+      NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -185,21 +185,23 @@ open class BMPlayerLayerView: UIView {
     
     open func resetPlayer() {
         // 初始化状态变量
-        self.playDidEnd = false
-        self.playerItem = nil
-        self.seekTime   = 0
-        
-        self.timer?.invalidate()
-        
-        self.pause()
-        // 移除原来的layer
-        self.playerLayer?.removeFromSuperlayer()
-        // 替换PlayerItem为nil
-        self.player?.replaceCurrentItem(with: nil)
-        player?.removeObserver(self, forKeyPath: "rate")
-        
-        // 把player置为nil
-        self.player = nil
+    
+      self.playDidEnd = false
+      self.playerItem = nil
+      self.lastPlayerItem = nil
+      self.seekTime   = 0
+      
+      self.timer?.invalidate()
+      
+      self.pause()
+      // 移除原来的layer
+      self.playerLayer?.removeFromSuperlayer()
+      // 替换PlayerItem为nil
+      self.player?.replaceCurrentItem(with: nil)
+      player?.removeObserver(self, forKeyPath: "rate")
+      
+      // 把player置为nil
+      self.player = nil
     }
     
     open func prepareToDeinit() {
@@ -269,13 +271,10 @@ open class BMPlayerLayerView: UIView {
         playerItem = AVPlayerItem(asset: urlAsset!)
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
-        
         playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
         playerLayer!.videoGravity = videoGravity
-        
         layer.addSublayer(playerLayer!)
-        
         setNeedsLayout()
         layoutIfNeeded()
     }
@@ -285,8 +284,7 @@ open class BMPlayerLayerView: UIView {
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
         timer?.fireDate = Date()
     }
-    
-    
+  
     // MARK: - 计时器事件
     @objc fileprivate func playerTimerAction() {
         guard let playerItem = playerItem else { return }
@@ -356,10 +354,10 @@ open class BMPlayerLayerView: UIView {
                         self.state = .buffering
                         if shouldSeekTo != 0 {
                             print("BMPlayerLayer | Should seek to \(shouldSeekTo)")
-                            seek(to: shouldSeekTo, completion: {
-                                self.shouldSeekTo = 0
-                                self.hasReadyToPlay = true
-                                self.state = .readyToPlay
+                            seek(to: shouldSeekTo, completion: { [weak self] in
+                                self?.shouldSeekTo = 0
+                                self?.hasReadyToPlay = true
+                                self?.state = .readyToPlay
                             })
                         } else {
                             self.hasReadyToPlay = true
@@ -432,8 +430,8 @@ open class BMPlayerLayerView: UIView {
         player?.pause()
         let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * 1.0 )) / Double(NSEC_PER_SEC)
         
-        DispatchQueue.main.asyncAfter(deadline: popTime) {
-            
+        DispatchQueue.main.asyncAfter(deadline: popTime) {[weak self] in
+            guard let `self` = self else { return }
             // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
             self.isBuffering = false
             if let item = self.playerItem {
