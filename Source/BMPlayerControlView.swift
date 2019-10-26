@@ -237,20 +237,21 @@ open class BMPlayerControlView: UIView {
         UIApplication.shared.setStatusBarHidden(!isShow, with: .fade)
         
         UIView.animate(withDuration: 0.3, animations: {[weak self] in
-          self.topMaskView.alpha    = alpha
-          self.bottomMaskView.alpha = alpha
-          self.mainMaskView.backgroundColor = UIColor(white: 0, alpha: isShow ? 0.4 : 0.0)
+          guard let wSelf = self else { return }
+          wSelf.topMaskView.alpha    = alpha
+          wSelf.bottomMaskView.alpha = alpha
+          wSelf.mainMaskView.backgroundColor = UIColor(white: 0, alpha: isShow ? 0.4 : 0.0)
 
           if isShow {
-              if self.isFullscreen { self.chooseDefinitionView.alpha = 1.0 }
+              if wSelf.isFullscreen { wSelf.chooseDefinitionView.alpha = 1.0 }
           } else {
-              self.replayButton.isHidden = true
-              self.chooseDefinitionView.snp.updateConstraints { (make) in
+              wSelf.replayButton.isHidden = true
+              wSelf.chooseDefinitionView.snp.updateConstraints { (make) in
                   make.height.equalTo(35)
               }
-              self.chooseDefinitionView.alpha = 0.0
+              wSelf.chooseDefinitionView.alpha = 0.0
           }
-          self.layoutIfNeeded()
+          wSelf.layoutIfNeeded()
         }) { [weak self](_) in
             if isShow {
                 self?.autoFadeOutControlViewWithAnimation()
