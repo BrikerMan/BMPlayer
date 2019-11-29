@@ -56,7 +56,14 @@ open class BMPlayer: UIView {
     open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
     
     //Closure fired when play state chaged
+    @available(*, deprecated:3.0, message:"Use newer init(isPlayingStateDidChange:)")
     open var playStateDidChange:((Bool) -> Void)?
+
+    open var playOrientChanged:((Bool) -> Void)?
+
+    open var isPlayingStateChanged:((Bool) -> Void)?
+
+    open var playStateChanged:((BMPlayerState) -> Void)?
     
     open var avPlayer: AVPlayer? {
         return playerLayer?.player
@@ -326,6 +333,7 @@ open class BMPlayer: UIView {
     @objc open func onOrientationChanged() {
         self.updateUI(isFullScreen)
         delegate?.bmPlayer(player: self, playerOrientChanged: isFullScreen)
+        playOrientChanged?(isFullScreen)
     }
     
     @objc fileprivate func fullScreenButtonPressed() {
@@ -432,6 +440,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         controlView.playStateDidChange(isPlaying: playing)
         delegate?.bmPlayer(player: self, playerIsPlaying: playing)
         playStateDidChange?(player.isPlaying)
+        isPlayingStateChanged?(player.isPlaying)
     }
     
     public func bmPlayer(player: BMPlayerLayerView, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval) {
@@ -473,6 +482,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
         }
         panGesture.isEnabled = state != .playedToTheEnd
         delegate?.bmPlayer(player: self, playerStateDidChange: state)
+        playStateChanged?(state)
     }
     
     public func bmPlayer(player: BMPlayerLayerView, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
