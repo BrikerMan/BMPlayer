@@ -54,9 +54,9 @@ open class BMPlayer: UIView {
     
     //Closure fired when play time changed
     open var playTimeDidChange:((TimeInterval, TimeInterval) -> Void)?
-    
+
     //Closure fired when play state chaged
-    @available(*, deprecated:3.0, message:"Use newer init(isPlayingStateDidChange:)")
+    @available(*, deprecated:3.0.1, message:"Use newer init(isPlayingStateDidChange:)")
     open var playStateDidChange:((Bool) -> Void)?
 
     open var playOrientChanged:((Bool) -> Void)?
