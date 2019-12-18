@@ -61,7 +61,7 @@ open class BMPlayerResourceDefinition {
     
     open var avURLAsset: AVURLAsset {
         get {
-            return BMPlayerManager.asset(for: self)
+            return url.isFileURL ? AVURLAsset(url: url) : BMPlayerManager.asset(for: self)
         }
     }
     
