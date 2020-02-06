@@ -228,7 +228,7 @@ class VideoPlayViewController: UIViewController {
    准备播放器资源model
    */
   func preparePlayerItem() -> BMPlayerResource {
-    let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+    let res0 = BMPlayerResourceDefinition(url: URL(string: "http://techslides.com/demos/sample-videos/small.mp4")!,
                                           definition: "高清")
     let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
                                           definition: "标清")

@@ -271,12 +271,12 @@ open class BMPlayerLayerView: UIView {
         playerItem = AVPlayerItem(asset: urlAsset!)
         player     = AVPlayer(playerItem: playerItem!)
         player!.addObserver(self, forKeyPath: "rate", options: NSKeyValueObservingOptions.new, context: nil)
-        playerLayer?.removeFromSuperlayer()
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer!.videoGravity = videoGravity
-        layer.addSublayer(playerLayer!)
+        self.connectPlayerLayer()
         setNeedsLayout()
         layoutIfNeeded()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.connectPlayerLayer), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.disconnectPlayerLayer), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func setupTimer() {
@@ -443,6 +443,19 @@ open class BMPlayerLayerView: UIView {
                 }
             }
         }
+    }
+    
+    @objc fileprivate func connectPlayerLayer() {
+        playerLayer?.removeFromSuperlayer()
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer!.videoGravity = videoGravity
+        
+        layer.addSublayer(playerLayer!)
+    }
+    
+    @objc fileprivate func disconnectPlayerLayer() {
+        playerLayer?.removeFromSuperlayer()
+        playerLayer = nil
     }
 }
 
