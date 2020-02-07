@@ -8,7 +8,6 @@
 
 import UIKit
 import BMPlayer
-import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -35,8 +34,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
-        try? AVAudioSession.sharedInstance().setActive(true)
     }
     
     
