@@ -46,8 +46,8 @@
 		6D397051623BC89F9251AE28 /* Pods_BMPlayer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMPlayer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77666BAD3073AEDAAB5F193B /* Pods-BMPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMPlayer_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMPlayer_Example/Pods-BMPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
 		99063F39CF18C5E3F0C969F9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		B1777343B0CAECA69C6340C6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; name = README.md; path = ../README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
-		BE1603B0E75A92AB9D964831 /* BMPlayer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BMPlayer.podspec; path = ../BMPlayer.podspec; sourceTree = "<group>"; };
+		B1777343B0CAECA69C6340C6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; lineEnding = 0; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		BE1603B0E75A92AB9D964831 /* BMPlayer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BMPlayer.podspec; path = ../BMPlayer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

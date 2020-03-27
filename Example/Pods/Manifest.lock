@@ -17,7 +17,7 @@ DEPENDENCIES:
   - SwipeBack
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - NVActivityIndicatorView
     - SnapKit
     - SwipeBack
@@ -36,4 +36,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8d8c62882064f74fa5f1c85343d9ba80417cc081
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.1
