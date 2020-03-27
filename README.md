@@ -23,11 +23,11 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 - [x] Add Http header and other options to AVURLAsset
 - [x] Easy to customize
 - [x] Supporting show local and online subtitles
-- [x] [Swift 4](https://developer.apple.com/swift/)
+- [x] [Swift 5](https://developer.apple.com/swift/)
 
 ## Requirements
-- iOS 8 +
-- Xcode 9
+- iOS 10.0+
+- Xcode 10.0+
 - Swift 4
 
 ## Installation
