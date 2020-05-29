@@ -469,6 +469,7 @@ extension BMPlayer: BMPlayerLayerViewDelegate {
                       self.pause()
                   }
                 })
+                shouldSeekTo = 0
             }
             
         case .bufferFinished:
