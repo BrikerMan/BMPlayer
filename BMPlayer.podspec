@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 s.name             = "BMPlayer"
 s.version          = "1.3.2"
 s.summary          = "Video Player Using Swift, based on AVPlayer"
-
+s.swift_versions   = "5"
 s.description      = <<-DESC
 Video Player Using Swift, based on AVPlayer, support for the horizontal screen, vertical screen, the upper and lower slide to adjust the volume, the screen brightness, or so slide to adjust the playback progress.
 DESC
