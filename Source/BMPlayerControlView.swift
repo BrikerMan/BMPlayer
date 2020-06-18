@@ -133,8 +133,12 @@ open class BMPlayerControlView: UIView {
         }
     }
 
-    /// update subtitles
-    /// - Parameter subtitles: need change subtitles
+
+    /**
+     change subtitle resource
+     
+     - Parameter subtitles: new subtitle object
+     */
     open func update(subtitles: BMSubtitles?) {
         resource?.subtitle = subtitles
     }
