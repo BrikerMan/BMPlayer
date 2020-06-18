@@ -10,6 +10,8 @@ import Foundation
 
 public class BMSubtitles {
     public var groups: [Group] = []
+    /// subtitles delay, positive:fast, negative:forward
+    public var delay: TimeInterval = 0
     
     public struct Group: CustomStringConvertible {
         var index: Int
@@ -67,7 +69,7 @@ public class BMSubtitles {
      */
     public func search(for time: TimeInterval) -> Group? {
         let result = groups.first(where: { group -> Bool in
-            if group.start <= time && group.end >= time {
+            if group.start - delay <= time && group.end - delay >= time {
                 return true
             }
             return false

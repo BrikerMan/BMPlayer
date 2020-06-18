@@ -132,6 +132,12 @@ open class BMPlayerControlView: UIView {
             showSubtile(from: subtitle, at: currentTime)
         }
     }
+
+    /// update subtitles
+    /// - Parameter subtitles: need change subtitles
+    open func update(subtitles: BMSubtitles?) {
+        resource?.subtitle = subtitles
+    }
     
     /**
      call on load duration changed, update load progressView here
