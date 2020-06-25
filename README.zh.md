@@ -29,7 +29,7 @@
 
 **你可以通过点击下面的广告来支持本项目，只需要点击一下即可**
 
-<a href="https://images.gitads.io/BMPlayer">
+<a href="https://tracking.gitads.io/?repo=BMPlayer">
   <img alt="Sponsor banner" src="https://images.gitads.io/BMPlayer" />
 </a>
 <br><i>本广告由 <a href="https://tracking.gitads.io/?repo=BMPlayer">GitAds</a> 提供</i>

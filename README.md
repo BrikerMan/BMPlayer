@@ -36,7 +36,7 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 
 **You can support the project by checking out our sponsor page. It takes only one click:**
 
-<a href="https://images.gitads.io/BMPlayer">
+<a href="https://tracking.gitads.io/?repo=BMPlayer">
   <img alt="Sponsor banner" src="https://images.gitads.io/BMPlayer" />
 </a>
 <br><i>This advert was placed by <a href="https://tracking.gitads.io/?repo=BMPlayer">GitAds</a> </i>
