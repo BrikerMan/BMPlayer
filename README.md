@@ -13,6 +13,7 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 [中文说明](https://github.com/BrikerMan/BMPlayer/blob/master/README.zh.md)
 
 ## Features
+
 - [x] Support for horizontal and vertical play mode
 - [x] Support play online URL and local file
 - [x] Adjust brightness by slide vertical at left side of screen
@@ -26,11 +27,22 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 - [x] [Swift 5](https://developer.apple.com/swift/)
 
 ## Requirements
+
 - iOS 10.0+
 - Xcode 10.0+
-- Swift 4
+- Swift 4+
+
+## Supporting the project
+
+**You can support the project by checking out our sponsor page. It takes only one click:**
+
+<a href="https://images.gitads.io/BMPlayer">
+  <img alt="Sponsor banner" src="https://images.gitads.io/BMPlayer" />
+</a>
+<br><i>This advert was placed by <a href="https://tracking.gitads.io/?repo=BMPlayer">GitAds</a> </i>
 
 ## Installation
+
 ### CocoaPods
 
 | Swift     | podfile                      |
@@ -48,13 +60,17 @@ pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
 
 ### Carthage
+
 Add `BMPlayer` in your Cartfile.
-```
+
+```txt
 github "BrikerMan/BMPlayer"
 ```
+
 Run carthage to build the framework and drag the built BMPlayer.framework into your Xcode project.
 
 ### Demo
+
 run `pod install` at `Example` folder before run the demo.
 
 ## Usage （Support IB and code）

@@ -8,9 +8,11 @@
 [![Weibo](https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-%40%E8%89%BE%E5%8A%9B%E4%BA%9A%E5%B0%94-yellow.svg?style=flat)](http://weibo.com/536445669)
 
 ## 介绍
+
 本项目是基于 AVPlayer 使用 Swift 封装的视频播放器，方便快速集成。
 
 ## 功能
+
 - [x] 支持竖屏切换，支持自动旋转屏幕
 - [x] 支持本地视频、网络视频播放
 - [x] 右侧 1/2 位置上下滑动调节屏幕亮度（模拟器调不了亮度，请在真机调试）
@@ -23,12 +25,23 @@
 - [x] 展示本地和在在线字幕文件
 - [x] [Swift 4](https://developer.apple.com/swift/)
 
+## 支持本项目
+
+**你可以通过点击下面的广告来支持本项目，只需要点击一下即可**
+
+<a href="https://images.gitads.io/BMPlayer">
+  <img alt="Sponsor banner" src="https://images.gitads.io/BMPlayer" />
+</a>
+<br><i>本广告由 <a href="https://tracking.gitads.io/?repo=BMPlayer">GitAds</a> 提供</i>
+
 ## 要求
+
 - iOS 8 +
 - Xcode 7.3
-- Swift 2.2
+- Swift 2.2 +
 
 ## 安装
+
 ### CocoaPods
 
 | Swift     | podfile                      |
