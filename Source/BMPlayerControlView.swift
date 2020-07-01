@@ -128,9 +128,7 @@ open class BMPlayerControlView: UIView {
         currentTimeLabel.text = BMPlayer.formatSecondsToString(currentTime)
         totalTimeLabel.text   = BMPlayer.formatSecondsToString(totalTime)
         timeSlider.value      = Float(currentTime) / Float(totalTime)
-        if let subtitle = resource?.subtitle {
-            showSubtile(from: subtitle, at: currentTime)
-        }
+        showSubtile(from: resource?.subtitle, at: currentTime)
     }
 
 
@@ -447,8 +445,8 @@ open class BMPlayerControlView: UIView {
     
     
     // MARK: - private functions
-    fileprivate func showSubtile(from subtitle: BMSubtitles, at time: TimeInterval) {
-        if let group = subtitle.search(for: time) {
+    fileprivate func showSubtile(from subtitle: BMSubtitles?, at time: TimeInterval) {
+        if let subtitle = subtitle, let group = subtitle.search(for: time) {
             subtitleBackView.isHidden = false
             subtitleLabel.attributedText = NSAttributedString(string: group.text,
                                                               attributes: subtileAttribute)
