@@ -13,6 +13,9 @@ let package = Package(
             targets: ["BMPlayer"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/SnapKit/SnapKit", majorVersion: 5)
+    ],
     targets: [
         .target(
             name: "BMPlayer",
