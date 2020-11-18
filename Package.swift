@@ -14,12 +14,13 @@ let package = Package(
         ),
     ],
     dependencies: [
-		.package(name: "SnapKit", url: "https://github.com/SnapKit/SnapKit", from: "5.0.1")
+		.package(name: "SnapKit", url: "https://github.com/SnapKit/SnapKit", from: "5.0.1"),
+		.package(name: "NVActivityIndicatorView", url: "https://github.com/ninjaprox/NVActivityIndicatorView", from: "5.1.1")
     ],
     targets: [
 		.target(
             name: "BMPlayer",
-			dependencies: ["SnapKit"],
+			dependencies: ["SnapKit", "NVActivityIndicatorView"],
             path: "Source",
             exclude: [
                 "Info.plist"
