@@ -14,14 +14,15 @@ let package = Package(
         ),
     ],
     dependencies: [
-		.package(name: "SnapKit", url: "https://github.com/SnapKit/SnapKit", .branch("master"))
+		.package(name: "SnapKit", url: "https://github.com/SnapKit/SnapKit", from: "5.0.1")
     ],
     targets: [
-        .target(
+		.target(
             name: "BMPlayer",
+			dependencies: ["SnapKit"],
             path: "Source",
             exclude: [
-                "Info.plist",
+                "Info.plist"
             ]
         ),
     ],
