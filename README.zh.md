@@ -57,7 +57,10 @@
 ```swift
 pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
-
+### Swift Pakage
+```swift
+ 'https://github.com/BrikerMan/BMPlayer.git'
+```
 ### Carthage
 安装好 Carthage 后，将下列内容加入你项目的 Cartfile:
 ```

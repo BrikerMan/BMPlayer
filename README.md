@@ -58,6 +58,10 @@ A video player for iOS, based on AVPlayer, support the horizontal, vertical scre
 ```swift
 pod 'BMPlayer/CacheSupport', :git => 'https://github.com/BrikerMan/BMPlayer.git'
 ```
+### Swift Pakage Manager 
+```swift
+ 'https://github.com/BrikerMan/BMPlayer.git'
+```
 
 ### Carthage
 
