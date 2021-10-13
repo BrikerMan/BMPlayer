@@ -276,6 +276,10 @@ class VideoPlayViewController: UIViewController {
 
 // MARK:- BMPlayerDelegate example
 extension VideoPlayViewController: BMPlayerDelegate {
+    func bmPlayer(player: BMPlayer, didChangeVideoPlaybackTime duration: Double) {
+        
+    }
+    
   // Call when player orinet changed
   func bmPlayer(player: BMPlayer, playerOrientChanged isFullscreen: Bool) {
     player.snp.remakeConstraints { (make) in
