@@ -281,7 +281,8 @@ open class BMPlayerLayerView: UIView {
     
     func setupTimer() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
+        let timeInterval = BMPlayerManager.shared.playTimeInterval
+        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(playerTimerAction), userInfo: nil, repeats: true)
         timer?.fireDate = Date()
     }
   

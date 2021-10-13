@@ -35,6 +35,9 @@ open class BMPlayerManager {
     
     open var animateDelayTimeInterval = TimeInterval(5)
     
+    //play timeInterval
+    open var playTimeInterval:Double = 0.5
+    
     /// should show log
     open var allowLog = false
     
