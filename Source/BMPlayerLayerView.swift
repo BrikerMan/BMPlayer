@@ -168,7 +168,7 @@ open class BMPlayerLayerView: UIView {
         super.layoutSubviews()
         switch self.aspectRatio {
         case .default:
-            self.playerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
+            self.playerLayer?.videoGravity = self.videoGravity
             self.playerLayer?.frame  = self.bounds
             break
         case .sixteen2NINE:
