@@ -175,7 +175,7 @@ class VideoPlayViewController: UIViewController {
       player.setVideo(resource: asset)
       
     case (2,0):
-      player.panGesture.isEnabled = false
+//      player.panGesture.isEnabled = false
       let asset = self.preparePlayerItem()
       player.setVideo(resource: asset)
       
@@ -228,9 +228,9 @@ class VideoPlayViewController: UIViewController {
    准备播放器资源model
    */
   func preparePlayerItem() -> BMPlayerResource {
-    let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+    let res0 = BMPlayerResourceDefinition(url: URL(string: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!,
                                           definition: "高清")
-    let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+    let res1 = BMPlayerResourceDefinition(url: URL(string: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!,
                                           definition: "标清")
     
     let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",

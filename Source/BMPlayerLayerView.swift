@@ -42,6 +42,15 @@ public enum BMPlayerAspectRatio : Int {
     case four2THREE
 }
 
+/// 返回的截图对象
+public struct BMPlayerThumbnail {
+    public var requestedTime: CMTime
+    public var image: UIImage?
+    public var actualTime: CMTime
+    public var result: AVAssetImageGenerator.Result
+    public var error: Error?
+}
+
 public protocol BMPlayerLayerViewDelegate : class {
     func bmPlayer(player: BMPlayerLayerView, playerStateDidChange state: BMPlayerState)
     func bmPlayer(player: BMPlayerLayerView, loadedTimeDidChange loadedDuration: TimeInterval, totalDuration: TimeInterval)
@@ -55,6 +64,13 @@ open class BMPlayerLayerView: UIView {
     
     /// 视频跳转秒数置0
     open var seekTime = 0
+    
+    /// 视频截图
+    open private(set)  var imageGenerator: AVAssetImageGenerator?
+    /// 视频截图m3u8
+    open private(set)  var videoOutput: AVPlayerItemVideoOutput?
+    
+    open private(set)  var isM3U8 = false
     
     /// 播放属性
     open var playerItem: AVPlayerItem? {
@@ -96,7 +112,18 @@ open class BMPlayerLayerView: UIView {
     /// 计时器
     var timer: Timer?
     
-    fileprivate var urlAsset: AVURLAsset?
+    fileprivate var urlAsset: AVURLAsset?{
+        didSet{
+            if oldValue != urlAsset{
+                if urlAsset != nil {
+                    self.imageGenerator = AVAssetImageGenerator(asset: urlAsset!)
+                }else{
+                    self.imageGenerator = nil
+                }
+                self.isM3U8 = (urlAsset?.url.pathExtension == "m3u8")
+            }
+        }
+    }
     
     fileprivate var lastPlayerItem: AVPlayerItem?
     /// playerLayer
@@ -184,24 +211,27 @@ open class BMPlayerLayerView: UIView {
     }
     
     open func resetPlayer() {
-        // 初始化状态变量
-    
-      self.playDidEnd = false
-      self.playerItem = nil
-      self.lastPlayerItem = nil
-      self.seekTime   = 0
-      
-      self.timer?.invalidate()
-      
-      self.pause()
-      // 移除原来的layer
-      self.playerLayer?.removeFromSuperlayer()
-      // 替换PlayerItem为nil
-      self.player?.replaceCurrentItem(with: nil)
-      player?.removeObserver(self, forKeyPath: "rate")
-      
-      // 把player置为nil
-      self.player = nil
+        if self.videoOutput != nil {
+            self.playerItem?.remove(self.videoOutput!)
+        }
+        self.videoOutput = nil
+        
+        self.playDidEnd = false
+        self.playerItem = nil
+        self.lastPlayerItem = nil
+        self.seekTime   = 0
+        
+        self.timer?.invalidate()
+        
+        self.pause()
+        // 移除原来的layer
+        self.playerLayer?.removeFromSuperlayer()
+        // 替换PlayerItem为nil
+        self.player?.replaceCurrentItem(with: nil)
+        player?.removeObserver(self, forKeyPath: "rate")
+        
+        // 把player置为nil
+        self.player = nil
     }
     
     open func prepareToDeinit() {
@@ -218,7 +248,7 @@ open class BMPlayerLayerView: UIView {
         if secounds.isNaN {
             return
         }
-        setupTimer()
+//        setupTimer()
         if self.player?.currentItem?.status == AVPlayerItem.Status.readyToPlay {
             let draggedTime = CMTime(value: Int64(secounds), timescale: 1)
             self.player!.seek(to: draggedTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (finished) in
@@ -267,6 +297,10 @@ open class BMPlayerLayerView: UIView {
     }
     
     fileprivate func configPlayer(){
+        if self.videoOutput != nil {
+            self.playerItem?.remove(self.videoOutput!)
+        }
+        self.videoOutput = nil
         player?.removeObserver(self, forKeyPath: "rate")
         playerItem = AVPlayerItem(asset: urlAsset!)
         player     = AVPlayer(playerItem: playerItem!)
@@ -459,3 +493,68 @@ open class BMPlayerLayerView: UIView {
     }
 }
 
+// MARK: - generateThumbnails
+extension BMPlayerLayerView {
+    //不支持m3u8
+    public func generateThumbnails(times: [TimeInterval],maximumSize: CGSize, completionHandler: @escaping (([BMPlayerThumbnail]) -> Swift.Void )){
+        guard let imageGenerator = self.imageGenerator else {
+            return
+        }
+
+        var values = [NSValue]()
+        for time in times {
+            values.append(NSValue(time: CMTimeMakeWithSeconds(time,preferredTimescale: CMTimeScale(NSEC_PER_SEC))))
+        }
+
+        var thumbnailCount = values.count
+        var thumbnails = [BMPlayerThumbnail]()
+        imageGenerator.cancelAllCGImageGeneration()
+        imageGenerator.appliesPreferredTrackTransform = true// 截图的时候调整到正确的方向
+        imageGenerator.maximumSize = maximumSize//设置后可以获取缩略图
+        imageGenerator.generateCGImagesAsynchronously(forTimes:values) { (requestedTime: CMTime,image: CGImage?,actualTime: CMTime,result: AVAssetImageGenerator.Result,error: Error?) in
+
+            let thumbnail = BMPlayerThumbnail(requestedTime: requestedTime, image: image == nil ? nil :  UIImage(cgImage: image!) , actualTime: actualTime, result: result, error: error)
+            thumbnails.append(thumbnail)
+            thumbnailCount -= 1
+            if thumbnailCount == 0 {
+                DispatchQueue.main.async {
+                    completionHandler(thumbnails)
+                }
+
+            }
+        }
+    }
+
+
+    //支持m3u8
+    public func snapshotImage() -> UIImage? {
+        guard let playerItem = self.playerItem else {  //playerItem is AVPlayerItem
+            return nil
+        }
+
+        if self.videoOutput == nil {
+            self.videoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: nil)
+            playerItem.remove(self.videoOutput!)
+            playerItem.add(self.videoOutput!)
+        }
+
+        guard let videoOutput = self.videoOutput else {
+            return nil
+        }
+
+        let time = videoOutput.itemTime(forHostTime: CACurrentMediaTime())
+        if videoOutput.hasNewPixelBuffer(forItemTime: time) {
+            let lastSnapshotPixelBuffer = videoOutput.copyPixelBuffer(forItemTime: time, itemTimeForDisplay: nil)
+            if lastSnapshotPixelBuffer != nil {
+                let ciImage = CIImage(cvPixelBuffer: lastSnapshotPixelBuffer!)
+                let context = CIContext(options: nil)
+                let rect = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(CVPixelBufferGetWidth(lastSnapshotPixelBuffer!)), height: CGFloat(CVPixelBufferGetHeight(lastSnapshotPixelBuffer!)))
+                let cgImage = context.createCGImage(ciImage, from: rect)
+                if cgImage != nil {
+                    return UIImage(cgImage: cgImage!)
+                }
+            }
+        }
+        return nil
+    }
+}
