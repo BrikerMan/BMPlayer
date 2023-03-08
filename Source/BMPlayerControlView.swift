@@ -331,7 +331,7 @@ open class BMPlayerControlView: UIView {
                         self.maskImageView.image = nil
                     }
                     self.hideLoader()
-                });
+                })
             }
         }
     }

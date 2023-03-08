@@ -168,7 +168,7 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         self.thumbnailsImageView.isHidden = false
         if !playerLayer.isM3U8 {
             playerLayer.generateThumbnails(times: [toSecound], maximumSize: CGSize(width: self.videoSize.width, height: self.videoSize.height)) { (thumbnails) in
-                if thumbnails.count > 0 {
+                if !thumbnails.isEmpty {
                     let thumbnail = thumbnails[0]
                     if thumbnail.result == .succeeded {
                         self.thumbnailsImageView.image = thumbnail.image
