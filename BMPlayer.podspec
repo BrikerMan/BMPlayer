@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "BMPlayer"
-s.version          = "1.3.2"
+s.version          = "1.3.3"
 s.summary          = "Video Player Using Swift, based on AVPlayer"
 s.swift_versions   = "5"
 s.description      = <<-DESC
