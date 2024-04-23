@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "BMPlayer"
-s.version          = "1.3.2"
+s.version          = "1.3.3"
 s.summary          = "Video Player Using Swift, based on AVPlayer"
 s.swift_versions   = "5"
 s.description      = <<-DESC
@@ -14,8 +14,8 @@ s.author           = { "Eliyar Eziz" => "eliyar917@gmail.com" }
 s.source           = { :git => "https://github.com/BrikerMan/BMPlayer.git", :tag => s.version.to_s }
 s.social_media_url = 'http://weibo.com/536445669'
 
-s.ios.deployment_target = '10.0'
-s.platform     = :ios, '10.0'
+s.ios.deployment_target = '12.0'
+s.platform     = :ios, '12.0'
 s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 s.default_subspec = 'Full'
 
@@ -30,7 +30,7 @@ s.subspec 'Full' do |full|
     full.frameworks   = 'UIKit', 'AVFoundation'
 
     full.dependency 'BMPlayer/Core'
-    full.dependency 'SnapKit', '~> 5.0.0'
+    full.dependency 'SnapKit', '~> 5.7.1'
     full.dependency 'NVActivityIndicatorView', '~> 4.7.0'
 end
 
