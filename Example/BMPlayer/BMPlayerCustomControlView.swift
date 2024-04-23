@@ -11,11 +11,23 @@ import BMPlayer
 
 class BMPlayerCustomControlView: BMPlayerControlView {
     
+    /// slider Thumbnails
+    var thumbnailsImageView = UIImageView()
+    
     var playbackRateButton = UIButton(type: .custom)
     var playRate: Float = 1.0
     
     var rotateButton = UIButton(type: .custom)
     var rotateCount: CGFloat = 0
+    
+    var videoSize: CGSize = CGSize(width: 160, height: 90) {
+        didSet {
+            thumbnailsImageView.snp.updateConstraints { make in
+                make.width.equalTo(videoSize.width)
+                make.height.equalTo(videoSize.height)
+            }
+        }
+    }
     
     /**
      Override if need to customize UI components
@@ -53,6 +65,14 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         rotateButton.snp.makeConstraints {
             $0.right.equalTo(playbackRateButton.snp.left).offset(-5)
             $0.centerY.equalTo(chooseDefinitionView)
+        }
+        mainMaskView.addSubview(thumbnailsImageView)
+        thumbnailsImageView.isHidden = true
+        thumbnailsImageView.snp.remakeConstraints { [unowned self](make) in
+            make.bottom.equalTo(bottomWrapperView.snp.top)
+            make.width.equalTo(videoSize.width)
+            make.height.equalTo(videoSize.height)
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -105,7 +125,30 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         delegate?.controlView?(controlView: self, didChangeVideoPlaybackRate: playRate)
     }
     
+    override func showSeekToView(to toSecound: TimeInterval, total totalDuration:TimeInterval, isAdd: Bool) {
+        super.showSeekToView(to: toSecound, total: totalDuration, isAdd: isAdd)
+        self.showThumbnail(toSecound: toSecound)
+    }
     
+    override func progressSliderValueChanged(_ sender: UISlider) {
+        super.progressSliderValueChanged(sender)
+        let toSecound = Double(sender.value) * totalDuration
+        self.showThumbnail(toSecound: toSecound)
+    }
+    
+    override func progressSliderTouchEnded(_ sender: UISlider) {
+        super.progressSliderTouchEnded(sender)
+        self.hideThumbnailsImage()
+    }
+    
+    override func hideSeekToView() {
+        super.hideSeekToView()
+        self.hideThumbnailsImage()
+    }
+    
+    func hideThumbnailsImage() {
+        self.thumbnailsImageView.isHidden = true
+    }
     
     @objc func onRotateButtonPressed() {
         guard let layer = player?.playerLayer else {
@@ -115,5 +158,23 @@ class BMPlayerCustomControlView: BMPlayerControlView {
         rotateCount += 1
         layer.transform = CGAffineTransform(rotationAngle: rotateCount * CGFloat(Double.pi/2))
         layer.frame = player!.bounds
+    }
+    
+    /// 显示
+    func showThumbnail(toSecound: TimeInterval) {
+        guard let playerLayer = self.player?.playerLayer  else {
+            return
+        }
+        self.thumbnailsImageView.isHidden = false
+        if !playerLayer.isM3U8 {
+            playerLayer.generateThumbnails(times: [toSecound], maximumSize: CGSize(width: self.videoSize.width, height: self.videoSize.height)) { (thumbnails) in
+                if !thumbnails.isEmpty {
+                    let thumbnail = thumbnails[0]
+                    if thumbnail.result == .succeeded {
+                        self.thumbnailsImageView.image = thumbnail.image
+                    }
+                }
+            }
+        }
     }
 }
